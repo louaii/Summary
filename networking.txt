@@ -1,26 +1,32 @@
 AP(Access Points) layer 2 device exchanges frames wirelessly using channels(radio waves frequency)
+
 Network Architecture:
 Two Tier Network:
 Two core switches for redanduncy in case of failure point(only critical devices to be wired)
 Access or distribution switches where you can have access to that switch
+
 Three Tier Network:
 depends on core, distribution switches and at the end the access phase to connect devices
 Spine-leaf Network:
 Basically used for data centers, instead of going to the top core layer and then going back to the bottom access layer for two computers to communicate with each others, the spine leaf has introduced a routing way so the communication will be horizantal
-PoE:
-802.3 power over ethernet standard
+
+PoE: 802.3 power over ethernet standard
 subnetting:
 1.convert the nb of networks to binary
 ==> 192.168.5.0 ===> 11000000.10101000.00000101.00000000
 subnetting based on network recuirement if 192.168.0.5 for 5 hosts count the bits to reach 5
 subnetting based on hosts recuirement if 25 hosts then count the bits on subnet mask to be able to form the number required.
+
 cdp cisco discovery protocol and lldp link layer discovery protocol are used to get to know the network and it's neighbors
 ntp(network time protocol) used as a server to synchronize end points to the time depending on their location
+
 SNMP(Simple Network Monitor Protocol)
 Syslog: is a logging messages depending on a severity level:
 0.Emergency ==> 1.Alert ==> 2.Critical ==> 3.Error ==> 4.Warning ==> 5.Notice ==> 6.Informational ==> 7.Debug
 QoS(Quality of service):traffic discrimination which classifies the hosts on the network which is more critical on the internet as an phone, server or an endpoint
+
 DIA: Dynamic inspection arp in the switch to avoid fake mac addresses
+
 Port-Security:
 To prevent a CAM table overflow attack on a switch and limit the mac-addresses readable by ports.(Dynamic, Static, Sticky)
 Dynamic: whenever an endpoint is connected to the switch, it has the authorization to operate
@@ -58,10 +64,8 @@ Dynamic ARP Inspection to mitigate risk of arp spoofing and poisining using:
 - trusted ports should be the trunk ports and the untrusted ports should be the access ports
 
 Firewalls:
-
 Stateless firewall: primarly operates at layer3(network) and investigates each packet as a single individual based on rules and policies configured on the firewall. It's faster but less secure than the Statefull firewall.
 Statefull firewall: operates at layer 3 and 4(network and transport) takes decisions based on connections and unauthorized traffics. This type of firewall is faster but still lowers the speed of traffic.
-
 Firewalls configuration steps:
 Identify Zones(add interface)
 Identify Traffic(class maps)
@@ -69,57 +73,28 @@ Identify Action(Policy maps)
 Identify the zones involved(Zone pair)
 Specify the policy to use on the zone pair(Service policy)
 
-ASA Firewall:
-
-Adaptive Security Appliance Firewall 
+ASA Firewall:(Adaptive Security Appliance Firewall) 
 Security level goes from higher to lower only
 ASDM is the graphical user interface for the ASA
 
 NFP:
-
 Network foundation protection is implementing the best security measures on the network and mitigating risks and vulnerabilities
-- Management:
-  
-
-Allows admins to communicate with device and receive reports and logs(syslog, snmp)
-
-- Control:
-  
-
-Device has to devote personal attention (CPU), because something is needed directly from the device. Routing protocol updates/keep alives, Traffic directed to the IP address of the router.
-
-- Data:
-  
-
-Moving/forwarding packets for others (transit packets) such as from one end device to another. All the traffic that the device is forwarding between 2 hosts.
-
-
-Radius and TACACS+:
-
-
-Radius and TACACS are servers where to apply the AAA.
+- Management: Allows admins to communicate with device and receive reports and logs(syslog, snmp)
+- Control: Device has to devote personal attention (CPU), because something is needed directly from the device. Routing protocol updates/keep alives, Traffic directed to the IP address of the router.
+- Data: Moving/forwarding packets for others (transit packets) such as from one end device to another. All the traffic that the device is forwarding between 2 hosts.
+Radius and TACACS+: Radius and TACACS are servers where to apply the AAA.
 Radius uses udp as transport protocol, encrypts the password only, and is open source where every enterprise can have a radius server.
 TACACS+ uses tcp and encrypts the whole traffic and is cisco liscenced.
 
-
-
 Cryptography:
-
 Encryption: is the process of converting the plain text into unreadable text based on algorithm created for this encyption
-
 Keys: public key and private key are required in asymetrical encryption to be able to convert the cipher text into a plain so the data can be readable.
-
 Symetric encryption is an encryption that requires one key for decryption
-
 Hash: is used to check the integrity of data and no modifications has occured.
-
 HMAC: Hashed based message authentication code.
-
 Digital signature
 
-
 VPN:
-
 IPsec is a protocol securing communications by authenticating and encrypting each IP packet in data stream.
 IKE:Internet Key exchange
 IKE phase 1:
@@ -130,16 +105,12 @@ Authentication: PSK, RSA
 Group: 1, 2, 5
 Lifetime: nb of seconds
 Encryption: DES, 3DES, AES
-
 IKE phase 2:
 Negotiate phase2 ==>Encryption, hashing, lifetime, PFS, IKE phase2 SA tunnel ready called IPsec Tunnel
 Hashing: MD5/SHA HMAC (Already authenticated)
 Group/PFS (DH): 1, 2, 5
 Lifetime: time or data 
 Encryption: DES, 3DES, AES
-
-
-
 Wireguard Configuration:
 
 [Interface]

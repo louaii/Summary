@@ -1,3 +1,4 @@
+cisco documentation: https://www.cisco.com/cisco/web/psa/default.html?mode=prod
 CIA Triad:
 Confidentiality: encryption(Hiding data from unauthorized individuals/systems)
 Integrity: Aims to prevent data from being corrupted
@@ -93,10 +94,10 @@ Reputauions, messages filters, Antispam, Antivirus, Content Filters, Outbreak Fi
 ***Detection Evasion:
 _No single security solution is 100% effective at blocking malicious emails.
 _There are several, known techniques the malicious actors to use to avoid detection:
-	Obfuscation:techniques to stay hidden during infection and operation to prevent removal and analysis such as:
-		==> Obscuring filenames, modifying file attributes, operating under the pretense of legitimate programs and services
-	Polymorphism: a type of malware that constantly changes its identifiable features in order to evade detection
-	Sleep timers: Malware that intentionally induces lengthy delays between malicious instructions and responses so as to time-out detection techniques.
+Obfuscation:techniques to stay hidden during infection and operation to prevent removal and analysis such as:
+==> Obscuring filenames, modifying file attributes, operating under the pretense of legitimate programs and services
+Polymorphism: a type of malware that constantly changes its identifiable features in order to evade detection
+Sleep timers: Malware that intentionally induces lengthy delays between malicious instructions and responses so as to time-out detection techniques.
 
 
 *Obfuscation: Many antimalware programs will parse through any downloaded code, attachements, etc:
@@ -113,7 +114,6 @@ _Mutation Engine:Randomly creates a new decryption routine so that when the viru
 _May also generate a new filename for the malicious code.
 
 ***Email Encryption:
-
 _Emails are not encrypted by default.
 _When using a native email client (like MS Outlook) IMAP or POP3 transactions between you and the email server are unencrypted
 _When using a web-based email service(gmail) ==>IMAP transactions are encrypted by SSL/TLS ==> SMTP messages between mail exchange points and servers may-or-may-not be encrypted.
@@ -232,13 +232,9 @@ Firewalls, Routers, switches, antivirus, antispyware, malware analysis and prote
 ***Exploits:
 _Unintentional holes left in software that malicious actors can use to their advantage.
 _Exploits are classified by the type of vulnerability that can be exploited.
-
 _Spammer: Malware designed to create and distribute spam.
-
 _Keyloggers: Malware designed to capture, and transmit, all of your keystrokes on your keyboard with the intent of obtaining passwords, PINs, etc.
-
-_Rootkits: Malware designed to provide administrator access to your OS so it can
-:
+_Rootkits: Malware designed to provide administrator access to your OS so it can:
 Scan machine's traffic ==> install other programs ==> hijack computer resources ==> ensalve the computer in a botnet
 
 
@@ -284,13 +280,11 @@ Personal firewalls
 .Software packages that monitor a single host for suspicious activity by analyzing events occuring within that host.
 .Malware can be difficult to spot purely based on signatures.
 .HIPS Objective: To stop malware by monitoring the behavior of the code.
-
-
 ==> HIPS is typically configured to pause the activity of suspected code, and prompt the user for a decision based on configure rulesets.
 
 ***Utilizing VPN
 ==> Data-in-motion can be protected by sending it through VPNs.
-	==> Different types of vpn exist, some of which are designed to provide confidentiality and some don't
+==> Different types of vpn exist, some of which are designed to provide confidentiality and some don't
 		-------------------------------------------------
 		|VPN technologies(confidentials)		|
 		|-----------------------------------------------|
@@ -319,3 +313,29 @@ Personal firewalls
 Remote-access vpns
 ==> Enable end users to securely connect to remote , corporate resources when working from home
 ==> require special software for ipsec or be browser based (ssl/tls)
+
+
+******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+
+Cryptography:
+cryptography is for encrypting data
+cryptanalysis is for decrypting data
+Hashing is used to check the integrity of data(not modified) and functions in one way can't be restored
+HMAC(Hashed message authentication code): refers to a modified version of an existing hashing function[HMAC-MD5/ HMAC-SHA1], it prevents third party from modifying the hash itself and includes a shared key when calculating hash
+
+*Symetric encryption:
+Requires single key shared(static(same key used)/dynamic(each time used generates new key))
+The underlying algorithm can be Block or Stream cipher:
+_Block ==> encrypts word by word, fixed size(64b/128b).[DES, 3DES, AES]
+_stream ==> encrpted by bit or byte.[RC4, SEAL]
+
+*Asymmetric encryption:Requires 2 keys public and private keys[RSA, DSA, DH]
+
+*NGE(Next Generation Encryption): Cisco's set of cryptographic standards believed to be secure now and in the near future.\
+
+
+
+
+
+
+
