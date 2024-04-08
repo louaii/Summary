@@ -1,0 +1,450 @@
+Explanaition:
+
+$# 	This variable holds the number of arguments passed to the script.
+$@ 	This variable can be used to retrieve the list of command-line arguments.
+$n 	Each command-line argument can be selectively retrieved using its position. For example, the first argument is found at $1.
+$$ 	The process ID of the currently executing process.
+$? 	The exit status of the script. This variable is useful to determine a command's success. The value 0 represents successful execution, while 1 is a result of a failure.
+-z 	if the string is empty (null)
+-n 	if the string is not null
+-eq 	is equal to
+-ne 	is not equal to
+-lt 	is less than
+-le 	is less than or equal to
+-gt 	is greater than
+-ge 	is greater than or equal to
+-e 	if the file exist
+-f 	tests if it is a file
+-d 	tests if it is a directory
+-L 	tests if it is if a symbolic link
+-N 	checks if the file was modified after it was last read
+-O 	if the current user owns the file
+-G 	if the file’s group id matches the current user’s
+-s 	tests if the file has a size greater than 0
+-r 	tests if the file has read permission
+-w 	tests if the file has write permission
+-x 	tests if the file has execute permission
+
+My header:
+
+#!/bin/bash
+#Remote Operations Management Assistant Supported for IP version 4 addresses.
+# title         :header   
+# description   :This script will execute as header of RomaV4.
+# author        :Louay Serhal
+# created       :2016-10-24
+# updated       :2018-10-01
+# version       :0.2.1
+# usage         :RomaV4 Header will execute automatically
+# bash_version  :5.2.21(1)-release (x86_64-pc-linux-gnu)
+<============================
+
+
+
+
+Script channels:
+
+
+#!/bin/bash
+#title:		Channels
+#author:	Louay Serhal
+#created:	31/1/2024
+#usage:		/bin/bash/script <domain> <ip> <channel> <country/region> <wildcard mask>
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#command-line arguments
+domain=$1
+ip=$2
+channel=$3
+country=$4
+wildcard=$5
+
+#color shortcodes
+#readonly are constants
+readonly color_yellow='\033[1;33m'
+readonly color_green='\033[0;32m'
+readonly color_red='\033[0;31m'
+readonly color_none='\033[0m'
+
+#Directory paths
+readonly root_dir="/Users/Mac"
+readonly conf_dir="${root_dir}/etc" #/Users/Mac/etc/
+readonly view_dir="${conf_dir}/zones"
+readonly map_dir="${root_dir}/var/named"
+readonly channel_dir="${conf_dir}/channels"
+
+#Edit regions as needed
+readonly regions="au ca de dk fr gb no nz se all"
+
+#check for missing ip
+if [[ -z "${ip}" || "${ip}"  == " " ]];
+#if ip is empty
+then
+	printf "[${color_red}Error${color_none}] Missing IP argument\n"
+	exit 1
+fi
+
+#check if domain already exists in the config
+if grep -q "^${domain} 3600 IN A" ${map_dir}/*.map;
+#grep -q ==> greps silently without showing the output
+#looks for regex starting with domain (entered in command-line argument) 3600 as TTl which means IPv4 with a .map extension
+then
+	printf "[${color_red}ERROR${color_none}] Domain \"${domain}\" already exists int the DNS config\n"
+	exit 1
+else
+#add domain to rpz maps
+	for region in ${regions}; do
+ 		echo "${domain} 3600 IN A ${ip}" >> ${map_dir}/unlocator.${region}.map
+		#If fulldomain add a * to zone file
+		if [ "${wildcard}" == "wildcard" ]; then
+			echo "*.${domain} 3600 IN A strip ${ip}" >> ${map_dir}/unlocator.$[region].map
+			#write the domain in the mapping file with region and map extension
+		fi
+		printf "[${color_green}OK${color_none}] Domain \"${domain}\" added to RPZ map ${map_dir}/unlocator.${region}.map\n"
+	done
+fi
+
+#Add domain to channel list
+if [ ! -d "${channel_dir}/${country}" ];
+#Channel wasn't added before then isn't supported ==> adding a new channel
+	mkdir ${channel_dir}/${country}/
+fi
+
+echo "${domain}" >> ${channel_dir}/${country}/${channel}.list
+
+printf "[${color_yellow}INFO${color_none}] Run the following commands to apply the changes: \ncdvar ==> Go to working directory ' /Users/Mac/nlocator_dns/var/named'\ngit add . ==> To update what will be commited\ngit commit -m \ "Commit Note\ " ==> To commit changes\ngit push ==> To upload local repository content to CodeCommit on AWS\n"
+
+printf "[${color_yellow}INFO${color_none}]Run the following commands to revert the changes:\ncdvar ==> Go to working directory '/Users/Mac/unlocator_dns/var/named'\ngit restore . ==> To discard changes in working directory \n"
+
+Script 2:
+
+
+[0:19 pm, 31/01/2024] Louay: #!/bin/bash
+# title         :bootstrap
+# description   :This script will build a VPN server.
+# author        :Ahmad Abdul Al
+# created       :2016-10-24
+# updated       :2018-10-01
+# version       :0.2.1
+# usage         :/bin/bash bootstrap <host> <ip>
+# bash_version  :3.2.57(1)-release (x86_64-apple-darwin15)
+# =================================================================================================
+
+# Input parameters
+environment="production"
+
+# Color shortcodes
+readonly COLOR_YELLOW='\033[1;33m'
+readonly COLOR_GREEN='\033[0;32m'
+readonly COLOR_RED='\033[0;31m'
+readonly COLOR_NONE='\033[0m'
+
+# Puppet parameters
+readonly PUPPET_BIN='/opt/puppetlabs/bin/puppet'
+readonly PUPPET_SETUP_FILE='puppet_setup'
+readonly PUPPET_SETUP_DIR='/usr/local/bin'
+
+# RAMDISK parameters
+readonly RAMDISK_SETUP_FILE='ramdisk_setup'
+readonly RAMDISK_SETUP_DIR='/tmp/'
+
+# GLOBAL parameters
+AWS="$(which aws)"
+CUT="$(which cut)"
+AWK="$(which awk)"
+
+
+
+
+display_usage() {
+  echo -e "\nUsage:\n\n$(basename $0) -n <fqdn> -i <ip_address> [-e <environment>]"
+}
+
+display_help() {
+  display_usage
+  echo -e "\nOptions\n"
+  echo -e "\t-h | --help\t\t\tDisplay help."
+  echo -e "\t-r | --ramdisk\t\t\tRAMDisk Server."
+  echo -e "\t-n | --name <FQDN>\t\tThe server FQDN. (example: -n srv01.example.com)"
+  echo -e "\t-i | --ipaddress <IP>\t\tThe server IP Address. (example: -i 10.10.10.10)"
+  echo -e "\t-e | --environment <env>\tThe environment to deploy the server to. (example: -e production)"
+}
+
+# TODO: Run checks for all needed packages and modules
+
+while [[ $# > "0" ]]; do
+  key="$1"
+  case "${key}" in
+    -h|--help)
+      display_help
+      exit
+      ;;
+    -n|--name)
+      fqdn="$2"
+      host="$(echo "${fqdn}" | $CUT -d\. -f1)"
+      domain="$(echo "${fqdn}" | rev | $CUT -d\. -f-2 | rev)"
+
+      if [[ "${domain}" = "bulletvpn.com" ]]; then
+        # Cloudflare parameters
+        readonly CF_ZONE_ID='5bc07ad3f7aa9d9ca054072c63980511'
+        readonly CF_AUTH_EMAIL='systems@nixworks.ee'
+        readonly CF_AUTH_KEY='09edde2aeba01bb6f97fe1cefc38a977cb265'
+        # Jump server parameters
+        readonly JUMP_HOST='jump.bulletvpn.com'
+        readonly JUMP_PORT='8822'
+        readonly JUMP_USER='bvbootstrap'
+        readonly JUMP_SCRIPT='/usr/local/bin/deploy_radclient'
+        # Foreman parameters
+        readonly FOREMAN_HOSTGRP_ID='6'
+        readonly FOREMAN_PARAM_ID='113'
+      elif [[ "${domain}" = "unlocator.com" ]]; then
+        # Cloudflare parameters
+        readonly CF_ZONE_ID='1586aa4ea7afd9504b27790dd06a8586'
+        readonly CF_AUTH_EMAIL='a.abdulal@securealm.net'
+        readonly CF_AUTH_KEY='0d10055ae13b92345e283ebf950f950ff5a16'
+        # Jump server parameters
+        readonly JUMP_HOST='jump.unlocator.com'
+        readonly JUMP_PORT='2222'
+        readonly JUMP_USER='unlbootstrap'
+        readonly JUMP_SCRIPT='/usr/local/bin/deploy_vpn_server'
+        # Foreman parameters
+        readonly FOREMAN_HOSTGRP_ID='9'
+        readonly FOREMAN_PARAM_ID='630'
+      elif [[ "${domain}" = "qmohive.com" ]]; then
+        readonly okay='1'
+      else
+        echo "[${COLOR_RED}ERROR${COLOR_NONE}] You have not selected any recognized domain. Supported domains are only 'bulletvpn.com', 'unlocator.com', and 'qmohive.com'. Exiting."
+        exit 1
+      fi
+      shift
+      ;;
+    -r|--ramdisk)
+      readonly RAMDISK="YES"
+      shift
+      ;;
+    -i|--ipaddress)
+      ip="$2"
+      shift
+      ;;
+    -e|--environment)
+      environment="$2"
+
+      if [[ "${environment}" =~ ^(production|prod|prd)$ ]]; then
+        readonly environment='production'
+      elif [[ "${environment}" =~ ^(development|devel|dev)$ ]]; then
+        readonly environment='development'
+      else
+        echo -e "\n[${COLOR_RED}ERROR${COLOR_NONE}] You have not selected any recognized environment. Supported environments are 'production' (or 'prod', 'prd') and 'development' (or 'devel', 'dev'). Exiting."
+        exit 1
+      fi
+      shift
+      ;;
+    *)
+      echo -e "\n[${COLOR_RED}ERROR${COLOR_NONE}] Unrecognized option: $1"
+      display_help
+      exit 1
+      ;;
+  esac
+  shift
+done
+
+current_host_ip=$(host ${fqdn} | $AWK '{printf$4}')
+
+# DNS update
+if [[ "${domain}" = "qmohive.com" ]]; then
+        # AWS
+        $AWS route53 change-resource-record-sets \
+          --hosted-zone-id Z03515672A18W3R9FLMQE \
+          --profile qamo-vpn-prd \
+          --change-batch '
+          {
+            "Comment": "Record added during Bootstrap"
+            ,"Changes": [{
+              "Action"              : "CREATE"
+              ,"ResourceRecordSet"  : {
+                "Name"              : "'"$host"'.qmohive.com"
+                ,"Type"             : "A"
+                ,"TTL"              : 300
+                ,"ResourceRecords"  : [{
+                    "Value"         : "'"$ip"'"
+                }]
+              }
+            }]
+          }
+          '
+else
+        # Cloudflare
+        echo -e "[${COLOR_YELLOW}INFO${COLOR_NONE}] Checking DNS records for ${fqdn}"
+
+        cf_zone_id_name=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/dns_records?name=${fqdn}" \
+                          -H "X-Auth-Email: ${CF_AUTH_EMAIL}" \
+                          -H "X-Auth-Key: ${CF_AUTH_KEY}" \
+                          -H "Content-Type: application/json" \
+                          | python3 -m json.tool | grep -F \"id\"  | awk '{printf($2)}' | $CUT -d\" -f2)
+
+        if [[ ! -z "${cf_zone_id_name}" ]]; then
+          read -p $'[\033[1;33mWARNING\033[0m] DNS A record already exists. Do you want to delete it and create a new one? ' -n 1 -r
+          if [[ $REPLY =~ ^[Yy]$ ]]; then
+            echo -e "\n\n[${COLOR_YELLOW}INFO${COLOR_NONE}] Deleting record"
+            curl -s -X DELETE "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/dns_records/${cf_zone_id_name}" \
+                    -H "X-Auth-Email: ${CF_AUTH_EMAIL}" \
+                    -H "X-Auth-Key: ${CF_AUTH_KEY}" \
+                    -H "Content-Type: application/json" \
+                    | python3 -m json.tool
+
+            echo -e "\n[${COLOR_YELLOW}INFO${COLOR_NONE}] Adding updated record"
+            curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/dns_records" \
+                    -H "X-Auth-Email: ${CF_AUTH_EMAIL}" \
+                    -H "X-Auth-Key: ${CF_AUTH_KEY}" \
+                    -H "Content-Type: application/json" \
+                    --data '{"type":"A","name":"'${fqdn}'","content":"'${ip}'","ttl":1}' \
+                    | python3 -m json.tool
+          fi
+        else
+          echo -e "\n[${COLOR_YELLOW}INFO${COLOR_NONE}] Adding DNS record"
+          curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/dns_records" \
+                  -H "X-Auth-Email: ${CF_AUTH_EMAIL}" \
+                  -H "X-Auth-Key: ${CF_AUTH_KEY}" \
+                  -H "Content-Type: application/json" \
+                  --data '{"type":"A","name":"'${fqdn}'","content":"'${ip}'","ttl":1}' \
+                  | python3 -m json.tool
+        fi
+
+        cf_zone_id_name_new=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/dns_records?name=${fqdn}" \
+                                      -H "X-Auth-Email: ${CF_AUTH_EMAIL}" \
+                                      -H "X-Auth-Key: ${CF_AUTH_KEY}" \
+                                      -H "Content-Type: application/json" \
+                                      | python3 -m json.tool | grep -F \"id\"  | awk '{printf($2)}' | $CUT -d\" -f2)
+fi
+
+# Getting default foreman parameter
+foreman_rad_param="$(python3 foreman_param_fetch.py ${FOREMAN_HOSTGRP_ID} ${FOREMAN_PARAM_ID})"
+
+PL_UNL_VPN_NODES_ID="pl-0e73b0f01a9b127f1"
+
+# Adding VPN node IP to AWS prefix list
+if [[ "${domain}" = "unlocator.com" ]]; then
+ echo -e "\n[${COLOR_YELLOW}INFO${COLOR_NONE}] Whitelisting the new node on AWS Prefix List"
+
+ prefix_list_current_version="$(aws ec2 describe-managed-prefix-lists \
+                                --prefix-list-ids ${PL_UNL_VPN_NODES_ID} \
+                                | grep Version | $CUT -d ":" -f2 | $CUT -d " " -f2 | $CUT -d "," -f1)"
+ echo -e "\n[${COLOR_YELLOW}INFO${COLOR_NONE}] Current version of managed prefix list: ${prefix_list_current_version}"
+
+# If DNS record exists, but the DNS record is different from the bootstrap IP, delete the old record from managed-prefix-list on AWS and add the new one
+if [[ ! -z "${cf_zone_id_name}" ]]; then
+ if [[ ! -z "${current_host_ip}" ]] && [[ "${current_host_ip}" != "${ip}" ]];
+  then
+   echo -e "\n[${COLOR_YELLOW}INFO${COLOR_NONE}] Hostname already associated with: ${current_host_ip}"
+   echo -e "\n[${COLOR_YELLOW}INFO${COLOR_NONE}] Removing old record from managed prefix list: ${PL_UNL_VPN_NODES_ID}"
+   $AWS ec2 modify-managed-prefix-list --prefix-list-id ${PL_UNL_VPN_NODES_ID} \
+                                --remove-entries=Cidr=${current_host_ip}/32 \
+                                --current-version $prefix_list_current_version
+  fi
+fi
+
+ prefix_list_current_version="$(aws ec2 describe-managed-prefix-lists \
+                                --prefix-list-ids ${PL_UNL_VPN_NODES_ID} \
+                                | grep Version | $CUT -d ":" -f2 | $CUT -d " " -f2 | $CUT -d "," -f1)"
+
+ echo -e "\n[${COLOR_YELLOW}INFO${COLOR_NONE}] Current version of managed prefix list: ${prefix_list_current_version}"
+ echo -e "\n[${COLOR_YELLOW}INFO${COLOR_NONE}] Add VPN node ${ip} to ${PL_UNL_VPN_NODES_ID}"
+
+ $AWS ec2 modify-managed-prefix-list --prefix-list-id pl-0e73b0f01a9b127f1 \
+                                --add-entries=Cidr=${ip}/32,Description=${host} \
+                                --current-version $prefix_list_current_version
+fi
+
+# Provisioning node as a RADIUS client
+## TODO: Add ssh-copy-id to jump server. Exit the script if you cannot authenticate
+#echo -e "\n[${COLOR_YELLOW}INFO${COLOR_NONE}] Whitelisting the new node as RADIUS client"
+#ssh -q -p"${JUMP_PORT}" "${JUMP_USER}"@"${JUMP_HOST}" "${JUMP_SCRIPT} ${fqdn} ${ip} ${foreman_rad_param}"
+#
+# Setting up SSH keys
+echo -e "\n[${COLOR_YELLOW}INFO${COLOR_NONE}] Copying your SSH keys to the new host. Accept the host key and enter the root password."
+ssh-copy-id root@"${ip}"
+
+# Uploading configuration script
+# TODO: Add remote scp check, and install openssh-clients if not installed
+
+echo -e "\n[${COLOR_YELLOW}INFO${COLOR_NONE}] Installing openssh-clients for scp"
+ssh -q root@"${ip}" "apt install -y openssh-client"
+
+if [ "$RAMDISK" = "YES" ]; then
+        echo -e "\n[${COLOR_YELLOW}INFO${COLOR_NONE}] Uploading + Running the RAMDISK setup script"
+        scp "${RAMDISK_SETUP_FILE}" root@"${ip}":"${RAMDISK_SETUP_DIR}"
+        ssh -q root@"${ip}" "/bin/bash ${RAMDISK_SETUP_DIR}/${RAMDISK_SETUP_FILE} ${fqdn} ${ip}"
+fi
+
+
+
+echo -e "\n[${COLOR_YELLOW}INFO${COLOR_NONE}] Uploading and running the puppet setup script"
+scp "${PUPPET_SETUP_FILE}" root@"${ip}":"${PUPPET_SETUP_DIR}"
+ssh -q root@"${ip}" "/bin/bash ${PUPPET_SETUP_DIR}/${PUPPET_SETUP_FILE} ${fqdn} ${ip} ${environment} ${FOREMAN_HOSTGRP_ID}"
+
+
+
+Creating Shortcuts commands:
+
+sshbv() {
+host="$1.bulletvpn.com"
+port="8822"
+defuser="l.serhal"
+user=${2:-$defuser}
+ssh -p $port $user@$host
+}
+#loop_sshbv() {
+#host="$1.bulletvpn.com"
+#port="8822"
+#defuser="l.serhal"
+#user=${2:-$defuser}
+#while true; do ssh -p $port $user@$host; done
+#}
+sshun() {
+host="$1.unlocator.com"
+port="8421"
+defuser="l.serhal"
+user=${2:-$defuser}
+ssh -p $port $user@$host
+}
+sshprx() {
+host="$1.prx.unlocator.com"
+port="2222"
+defuser="l.serhal"
+user=${2:-$defuser}
+ssh -p $port $user@$host
+}
+sshqmo() {
+host="$1.qmohive.com"
+port="8228"
+defuser="l.serhal"
+user=${2:-$defuser}
+ssh -p $port $user@$host
+}
+sshnix() {
+host="fr.nixworks.ee"
+port="22"
+defuser="root"
+user=${2:-$defuser}
+ssh -p $port $user@$host
+}
+
+
+Ssh script:
+
+#!/bin/bash
+
+server_ip="64.31.63.177"
+username="root"
+port=22
+password=""
+
+if ping -c 1 "$server_ip" &> /dev/null; then
+    echo "Opening SSH session..."
+    ssh -p "$port" "$username@$server_ip"
+else
+    echo "Server is down"
+fi
+
+
+

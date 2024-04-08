@@ -1,0 +1,58 @@
+Systen control:
+
+systemctl start <service_name> #start service
+systemctl stop <service_name> #stop service
+systemctl restart <service_name>#restart
+systemctl reload <service_name>#reload
+systemctl enable <service_name>#enable
+systemctl disable <service_name>#disable
+systemctl status <service_name> #show status
+systemctl poweroff    # Shutdown the system
+systemctl reboot      # Reboot the system
+systemctl suspend     # Suspend the system
+systemctl hibernate   # Hibernate the system
+
+command -v to check the destination of files
+etc where the configuration files are located
+lsof -i  :80 #to check the running protocols and services on port 80
+systemctl list-units --type=service --state=running #to search for services
+sudo nano /etc/systemd/system/prometheus.service #for creating shortcut prometheus service
+vim sites-enabled/000-default.conf #to change ports for apache2
+curl ipconfig.co #to get the current ip of the service
+
+sudo fdisk -l //to check the /dev/... running
+mount /dev/... media/usb_driver //To access a usb
+to create an app.AppImage as desktop application
+existing application can be found and editable through:
+cp /usr/share/applications/teams-for-linux.desktop ~/.local/share/applications/teams.desktop
+To create commands
+─(louay㉿kali)-[/usr/local/bin]
+└─$ cat xampp_start 
+#!/bin/bash
+cd /opt/lampp
+sudo ./lampp start
+
+Start bleutooth:
+┌──(louay㉿kali)-[~]
+└─$ sudo systemctl start bluetooth
+
+#add username:
+sudo adduser <username> #adds user
+sudo id <username> #shows user info
+sudo passwd <username> #add password for the user
+echo $USER #shows the current user
+usermod -aG sudo <username> #add username to sudoers list
+ssh-copy-id ssh -p username #to add to the known-hosts list
+
+
+To create an .AppImage or .desktop as an application
+in the ~/.local/share/applications create <name>.desktop
+┌──(louay㉿kali)-[~/.local/share/applications]
+└─$ cat arduino-ide.desktop 
+[Desktop Entry]
+Type=Application
+Name=Arduino IDE
+Exec=/etc/arduino/arduino-ide_2.3.2_Linux_64bit.AppImage
+Icon=/etc/arduino/arduino_103028.png
+Terminal=false
+Categories=Development;

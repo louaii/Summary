@@ -1,0 +1,150 @@
+AWS: Amazon web services
+
+*Cloud computing is providing services through internet as computing, storage, networking, software. These resources are located on remote site. They are fast to get data, data recovery, in case of a disaster, stability, fault tolerence, global access and secure.
+
+_Vertical scale:
+Scale up/down: adding or removing rams and storage
+
+_Horizontal scale:
+Scale in/out: add/remove servers
+
+*Cloud Models:
+
+_Public cloud: cloud infrastructure owned by cloud provider which provides as services over the internet.
+
+_Private cloud: cloud infrastructure owned and exclusive to a company which able to use and manage.
+
+_Community cloud: cloud infrastructure owned by community of organizations managing and operations.
+
+_Hybrid cloud: mix of private and public organizations has some services running on private cloud and other services on public cloud
+
+_Iaas: Infrastructure as a service
+Customer rents servers, storage, networks and other computing resources with consumption based model(pay as you need/go), which makes him able to instantly deploy computing infrastructure provisioned and managed over the internet such as: Amazon EC2 and instances. The cloud provider is not responsible for application, data, runtime, middleware, os and takes of virtualization, servers, storage and networking
+
+Iaas includes:
+Physical data center, AWS EC2, AWS Instances, AWS servers, networking, storages
+
+_PaaS: Platform as a Service
+Customer rents a ready platform that enables him to deploy, run applications quickly. The customer doesn't manage the underlying cloud infrastructure. PaaS include the consumption based model which is pay as you need/go. Cloud provider takes responsibility of maintaining OS and web servers such as: Application, AWS elastic beanstalk), The customer is only responsible of the application and data.
+
+PaaS includes:
+Physical data center, AWS EC2, AWS Instances, AWS servers, networking, storages, Operating Systems, Application AWS elastic beanstalk, Database management and development tools
+
+_SaaS: Software as a Service
+Customer rents a ready software hosted and managed by the cloud service provider. Pricing is set per month, year, user, capacity. It uses: Amazon workspaces and Amazon chime, The cloud provider is responsible for everything.
+
+SaaS includes:
+Physical data center, AWS EC2, AWS instances, AWS servers, networking, storages, Operating Systems, Application AWS elastic beanstalk, Database management and development tools, Amazon workspaces and Amazon chime.
+
+_Xaas: X as a service
+Delivery of anything as a service such as:
+.Daas(Desktop as a Service)
+.Faas(Function as a service)
+
+_On-premises:
+The customer/company is responsible of everything such as application, data, runtime, middleware, os, virtualization, servers, storages and networking.
+
+*AWS Cloud:
+
+On-demand delivery of IT resources and apps via internet. Its characteristics are:
+.Agility: fast and easy to allocate and dealocate
+.Scalability: pay as you go based consumption.
+.Elasticity: Schedule to increase and decrease the service
+.Reability: Recover for failure and service(Redanduncy)
+.Security: Provide tools for sevices and servers.
+
+*AWS Interfaces:
+_AWS Management console: provide gui to create/manage resources through web
+_AWS CLI: CLI enables you to manage, automate and resources deployment via commands
+_SDK: SDK enables you to manage AWS resources using programming, customize. AWS features, integrate with you own tools/apps.
+_Identity and Access Management(IAM): web service that helps you securely control access to AWS resources, used to control who is authenticated and authorized to use resources. It operates through user, group, role and policy. Amazon Cloud trail user is the first email address to create. AWS account and access a service.
+
+*Tools: Amazon Cloud Trail
+_AWS Elastic Cloud Compute(EC2):
+Iaas Model (Cloud provider takes care of servers, storage, virtualization and networking).
+Compute refers to computer, servers, resources, cloud refers to these servers are cloud-hosted and elastic refers the ability to increase or decrease the amount of service required by an application according of the current demand. EC2 is AWS virtual server.
+_Security group: acts as a virtual firewall for the running instance to control inbound and outbound traffic
+
+_Elastic Book Store(EBS): Amazon EBS provides block level storage volumes for use with EC2 instances.
+
+_Amazon EFS(AWS elastic file system): used for on-premises resources, used to scale the storage without interrupting apps.
+
+_Amazon Simple Storage Services(Amazon S3):
+Object storage service based as web interfave that permits to store and retrieve files are called objects stored in directories called bucket.
+
+_Storage gateway(Hybrid storage):
+AWS storage gateway connects on-premises software appliance with cloud-based storage to provide seamless integration with data security features between your on-premises IT enviroment and the aws storage infrastructure.
+
+_AWS snow-ball device: uses physical storage devices to transfer large amounts of data between Amazon S3 and your onsite data storage location at faster-than-internet speed.
+
+_Amazon Virtual Private Cloud (VPC): enables to launch AWS resources into a virtual network defined or isolated network. (Amazon VPC)
+
+_Elastic Load Balancing(ELB): automatically distributes incoming application traffic across multiple targets, such as Amazon EC2 instances, containers, ip addresses and lamda functions. It can handle single availability zone.
+
+*Types of load balancers: application, network, classic
+
+_Classic Load Balancer: provides basic load balancing across multiple Amazon EC2 instances and operates at the both the request level(layer 7) and connection layer (layer 4) classic load balancer is intended for applications that were built within the EC2-classic network.
+Protocols: http, https, tcp
+components: Load balancer, listener, instances
+
+_Network Load Balancer: best suited for TCP and UDP and TLS traffic where extreme performance is required. Operating at the connection level (Layer 4) that targets with Amazon VPC and able to handle millions of requests per second, also optimized to handle valotile traffics.
+Protocols: TCP, UDP, TLS.
+Components: Load balancer, listener, target groups, targets(instances, ip)
+
+_Application Load Balancer: best suited for http and https traffic and provides advanced request routing targeted operating at layer 7 request level that works with Amazon VPC.
+Protocols: HTTP, HTTPS, websockets
+cloud watch vertics: _Additional load balance metrics
+		     _Target Group metric dimensions
+Access log: Ability to see connection details for web sockets connection
+Health check: Insight into targets and application health
+Path and host-based routing: forward requests to different on path or hostname
+Native: ipv6
+Components: Load Balancer, listeners, target groups, targets(instances, ips)
+
+*Autoscaling: enables you to configure automatic scaling for the AWS resources that are one part of your application.
+supports:
+.Amazon EC2
+.Amazon Dynamo DB
+.Amazon Aura
+
+*Connect user request to:
+.S3 website
+.Cloud front
+.VPC endpoint
+.Ip address
+.EC2 instances
+.Elastic beanstalk
+.API gateway
+
+*Database services on AWS:
+Organizations used to build their own Database servers in their own datacenters, they can build save Database server in AWS cloud using EC2 interfaces, but AWS offers a better option which is managed database services.
+
+*Amazon RDS: Relational Database service is a web service that makes it easier to set up, operates and scale a relational database in the AWS cloud.
+Customer Manage: Application
+AWS Manage: 
+_Operating systems install and patching
+_Database software instalation and patching
+_Automatic backups and high availability
+_Scaling
+_Hardware maintenance
+
+*Amazon RDS instances and DB express:
+isolated database that can contain multiple user created databases and can be accessed by using the same tools and applications that you use with a standalone database instance. The resources found in database instance are determined by it's database instance class. It supports: MySQL, PostgreSQL, Amazon Aurora, Microsoft SQl, MariaDB, Oracle. Also Amazon RDS provides high availability and fail over support for DB deployments.
+
+Amazon RDS Read Replica: uses the DB engines built-in replication functionality to create a special type of DB instance called a read replica from source DB instance.
+_Updates in master is asynchronously replicated to read replica
+_Reduce load on master db by routing read queries to read replica
+_Scaling out of capacity for read-heavy database workload.
+_Can be promoted to master when needed.
+
+Amazon RDS in VPC, Database instance using the Amazon VPC service. When you use Amazon VPC allows to take control over your virtual environment(select ip range, subnets creation and configure routing and access control lists)
+Limitations: Can't change DB after creation
+
+Amazon RDS proxy: fully managed, highly availble db proxy for Amazon RDS that makes applications more scalable, more resilient database failures and more secure. Amazon RDS Proxy sits between app and relational DB. Application is pointed to RDS proxy instead of DB instance.It supports: MySQL, PostgreSQL, Amazon aurora
+
+RDS benefits:
+_Pool and share database connections to improve scalability
+_if master db instance fails, it automatically connects to a standby db instance while preserving application connections
+_Reduce failover time up to 66%
+_Database accross control through IAM.
+

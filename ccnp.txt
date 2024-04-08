@@ -1,0 +1,321 @@
+CIA Triad:
+Confidentiality: encryption(Hiding data from unauthorized individuals/systems)
+Integrity: Aims to prevent data from being corrupted
+Availability: Ensures that data continues to be available at a required level
+
+Common Attack methods:
+Reconnaissance(network discovery)
+Social Engineering (fouling/tricking)
+Privilege Escalation(getting more access)
+Code Execution(activating malicious code)
+Backdoors(software installed to allow remote access in the future)
+Covert channels(hidden communication channel)
+
+Attack detection strategies:
+Signatures: Set of rules/conditions describing an attack(must be already known and signatures must be kept up-to-date)
+Anomaly Detection: Initially learns patterns of normal network activities(baseline profile) constantly compared to current activities
+Policy-Based: Traffic detected outside the configured policy triggers an alarm(configuring a policy might be challenging and time consuming)
+Reputatuion-Based: Traffic is evaluated based on reputation IP addresses, URLs domains
+
+ESA:Email Security Appliance (advanced solution designed to control SMTP traffic)
+Includes email security and policy enforcement
+Email security(Reputation filtering, outbreak filtering, Patterns with cisco talos AMP intelligence)
+policy enforcement:
+inbound email control and rate limiting
+outbound email control and high performance delivery(DLP and encryption)
+
+ESA Deployment:
+On-premise:
+C and X series appliances
+Recommended design: DMZ
+One or two interfaces(inside)
+Virtual ESA: ESAV
+Hybrid: Cloud for inbound, on-premise for outbound traffic
+SMTP: is to forward email's in case the destination configuration is the same as the SMTP configuration or it will forward it back to the internet
+
+WSA: Web Security Appliance
+combination of a fast web proxy and an advanced content filtering solution designed for http/s and ftp
+strong caching inspection policy enforcement and anti-malware capabilities.
+Relies on multiple engines and technologies.
+
+WSA Security Components: 
+URL filtering 
+AVC(application visibility and control)
+Anti-malware scanning
+L4 traffic monitor(L4TM)
+SSl/TLS Decrypting
+
+Web Proxy:
+Explicit Forward: Requires re-configuration of client's browser
+Transparent: hidden to the end user
+Traffic redirected by a router/firewall
+
+***Email Based Threats:
+*Spam is unsolicited email that might be:
+_Junkmail(harmless but unwanted)mails
+_Malicious(designed to trick you into giving private information to people you don't know)
+
+*Malware(Malicious Software) is broad term describing a wide variety of malicious programs, designed to compromise computer functions, steal data, bypass access controls, or cause harm to the host computer
+
+*Phishing: emails that look like they've come out from a legitimate entity but in reality they have not
+
+Cisco ESA(Cisco Email Security Appliance):
+_Cloud based
+_On-premesis
+_Hybrid
+It filters positively identified spam and quarantines or discards email that has been sent from untrusted or potentially hostile locations. Antivirus scanning is applied to emails and attachements from all servers to remove known malware
+ESA Methods:
+Filtening spam: reputation-based filtering, context based filtering
+ESA defends against ESA through:
+_Outbreak filters
+Antivirus signatures
+Outbound email scanning
+ESA uses AMP against viruses, malware and soam
+AMP(Advanced Malware Protection):
+Utilize the cloud security intelligence networks of cisco talos
+Assists before and after  destruction
+Features of AMP:File reputation, sandboxing, retrospection
+*Email Data loss prevention:
+_Content-Level scanning of email messages and attachements to detect inappropriate transport of sensitive information
+_Built-in rules help identify PII in outgoing email
+_Ability to create/edit rules
+
+***ESA Deployment:
+Cisco ESA listens on SMTP(TCP port 25)[doesn't support IMAP/POP3]
+MTA(Mail transfer agent)
+MSA(Mail Submission Agent)
+MDA(Mail Delivery Agent)
+Client email ==> (SMTP) ==> MSA server ==> MTA server ==> (SMTP) ==> MTA server ==> Destination
+
+*Incoming Email ESA pipeline:
+Reputauions, messages filters, Antispam, Antivirus, Content Filters, Outbreak Filters
+
+***Detection Evasion:
+_No single security solution is 100% effective at blocking malicious emails.
+_There are several, known techniques the malicious actors to use to avoid detection:
+	Obfuscation:techniques to stay hidden during infection and operation to prevent removal and analysis such as:
+		==> Obscuring filenames, modifying file attributes, operating under the pretense of legitimate programs and services
+	Polymorphism: a type of malware that constantly changes its identifiable features in order to evade detection
+	Sleep timers: Malware that intentionally induces lengthy delays between malicious instructions and responses so as to time-out detection techniques.
+
+
+*Obfuscation: Many antimalware programs will parse through any downloaded code, attachements, etc:
+_known, malicious URLs
+_Known, malicious words("bot")
+==> Obfuscation(in the context of software) is technique that makes binary and textual data unreadable and/or hard to understand
+==>Can be as simple as manipulating a few bits to as complex as employing cryptographic techniques.
+
+
+*Polymorphism:
+_Polymorphic Viruses contain two main elements: Encrypted payload, mutation engine
+_Encrypted payload: Hides the malicious payload from scanners and threat detection software, threat detection must resort to identify the virus by its decryption routine
+_Mutation Engine:Randomly creates a new decryption routine so that when the virus moves to the next target, it appears to be a different file to scanners.
+_May also generate a new filename for the malicious code.
+
+***Email Encryption:
+
+_Emails are not encrypted by default.
+_When using a native email client (like MS Outlook) IMAP or POP3 transactions between you and the email server are unencrypted
+_When using a web-based email service(gmail) ==>IMAP transactions are encrypted by SSL/TLS ==> SMTP messages between mail exchange points and servers may-or-may-not be encrypted.
+_Securing email messages and attachements with encryption provides email confidentiality end-to-end
+
+*Transport level encryption:
+_Mail transactions between email servers are encrypted
+_Email transactions between end-user and mail server may also be encrypted
+++++++++++++++++
+_No special user-interaction required
+_Mitigates an eavesdropper snooping on the communication between mail servers
+_Easy to implement automatic encryption/decryption on all emails between customer sites.
+----------------
+_Does not provide end to end encryption
+_If mail server is compromised , email confidentiality is compromised
+
+
+*End-To-End Encryption:
+_Data us encrypted and decrypted only on the end points.
+_Emails become unreadable to service providers in transit.
+_Examples of end-to-end email encryption protocols:(Bitmessage/GNU privacy guard/Pretty good privacy/OpenPGP)
+Requires exchange of public key
+
+*Email encryption with cisco ESA:
+_The Cisco email security appliance can be configured to encrypt/decrypt emails.
+_This is considered Transport Level encryption
+_Utilizes the Cisco Registered Envelope Service:
+-->Cloud-based encryption-key service
+-->Encrypted messages can be recieved by any user
+-->Does not require sender to pre-exchange encryption keys with recipients
+
+***WSA & CWS
+*Some examples of web-based threats include ==>
+_Requests for websites that break a stated Acceptable Use policy(AUP)
+_Known, malicious websites that install malware, spyware or viruses.
+_Legitimate websites that have been compromised and download malware.
+_Employees contributing to corporate Data Loss through unauthorized/unmonitored data uploads.
+
+*Cloud-based solutions are considered SaaS solutions (Security as a Service)
+_Negates the need for hardware maintenance or software upgrades
+_Can be accessed from corporates users(connected)
+
+*On-premises solutions using hardware (or virtual) appliances provide alternative benefits
+_Anonymity is preserved
+_Complete control over solution
+
+**WSA(Web security appliance)
+
+_Web proxy device ==> monitors and controls outbound web requests for web content ==> scrubs return traffic for unwanted or malicious content
+_Web traffic from clients, and responses from websites must be directed to WSA
+==> Explicit proxy configurations on clients ==> WCCP to redirect traffic from network devices (Firewalls, Routers).
+
+*URL filtering and blacklisting
+==>Category filtering with 79-predefined URL categories ==> custom urls ==> dynamic content analysis and/or filtering of URL strings
+==> Customized filters to control downloaded file-types
+==> Leverages cisco's AMP solution
+==> requires additional add-on license to the WSA
+==> Reputation database maintained by cisco talos
+==> Updated every 5 mins
+
+*Dynamic content analysis:
+==> Used to help determine category of newer websites that have not yet been categorized into Cisco's URl categorization Database.
+==>Determines nature of content in real time using Cisco's DCA(Dynamic content analysis) Engine.
+==>Findings sent back to SenderBase repository if customer elects to do so
+
+*WSA Data loss prevention:
+==>DLP by monitoring what is posted via HTTP, HTTPS or FTP
+==>Requires that the WSA work in partnership with another appliance, the Digital Guardian DLP appliance.
+
+**Connectors: 
+_web traffic is redirected from Web clients to the Cisco CWS service through the use of 'Connectors'
+_Cloud connectors are software components embedded in, hosted on, or integrated with platforms in order to enable or enhance a cloud service.
+CWS connectors:
+==> ASA/ASAv Connector
+==> ISR G2 Connector
+==> Web Security Appliance(WSA) connector
+==> Cisco anyconnect secure mobility client with the web security module
+
+
+**CWS(Cloud Web Security)
+==>cloud based web proxy device ==> similiar to WSA ==> web usage controls with category and reputation-based control, malware filtering and data protection
+
+**L4TM & HTTPS Decryption
+_Layer 4 traffic monitor(L4TM)
+==> Utilized to prevent malware, that has already infected internal clients from bypassing HTTP Port-80 and "Phoning-home"
+==> Maintains its own internal database
+
+_HTTP decryption
+==> Must enable the https-proxy service on WSA
+==> WSA creates the https session to the webserver and creates a new https session to the user
+==> The responses from the webserver are checked and scanned and delivered over the new https session to the user
+
+***Web Cache Communications Protocol(WCCP):
+_Utilized to redirect web request to another device (such as a Cisco content Engine or WSA)
+_Redirected packets encapsulated within GRE headers to prevent packet modification
+_Originally designed to localize traffic patterns in the network, enabling content requests to be fulfilled locally
+Cisco WSA considered a WCCP client, Router or firewall is considered WCCP server. 
+
+***Malware(Malicious software):
+------------------------------------------------------------------------------
+Computer Virus				|	Worms
+Mailer					|	Logic bombs
+Exploits				|	Backdoor
+Spammer					|	Keyloggers
+Rootkits				|	Ransomeware
+
+*Computer Virus:
+A malicious software that infects a host file or system area to perform undesirable outcomes such as erasing data, stealing info, corrupting integrity of the system, attached to executable file .exe and not activated until exec is run
+
+*Worm:
+Viruses that replicate themselves over the network infecting numerous vulnerable systems. In most occasions, a worm will execute malicious instructions on remote system without user interaction.
+
+***Endpoint protection:
+Firewalls, Routers, switches, antivirus, antispyware, malware analysis and protection, personal firewalls, data & email encryption, VPN.
+
+***Exploits:
+_Unintentional holes left in software that malicious actors can use to their advantage.
+_Exploits are classified by the type of vulnerability that can be exploited.
+
+_Spammer: Malware designed to create and distribute spam.
+
+_Keyloggers: Malware designed to capture, and transmit, all of your keystrokes on your keyboard with the intent of obtaining passwords, PINs, etc.
+
+_Rootkits: Malware designed to provide administrator access to your OS so it can
+:
+Scan machine's traffic ==> install other programs ==> hijack computer resources ==> ensalve the computer in a botnet
+
+
+**Anti: antivirus, antimalware, antispyware software
+the first line of defense within a host should be antivirus/malware program.
+Detection:
+==> signature detection based(known patterns for malwares)
+==> Heuristic detection(looking at the code of files for suspicious properties)
+==> Behavioral based detection (looking for suspicious behavior as files are allowed to run)
+
+
+*Cisco AMP: Cisco advanced malware protection
+uses a mix of preventive engines and cloud based intelligence updated by:
+==> Cisco Talos
+==> Cisco Threat grid
+Cisco AMP provides a central, administrator's dashboard to gain overall visibility into the health of your endpoints.
+
+**Personal Firewalls:
+Network firewalls are typically implemented as hardware appliances
+==>placed at network security boundaries
+==>Designed to protect traffic to/from entire network(subnets)
+Personal firewalls
+==> Implemented as a software solutions on hosts 
+==> Often come integrated into the OS
+==> Persuasive use across all hosts can constitute a "Distributed Firewall"
+
+
+***Personal Firewall Operation
+*Two main Objectives:
+==> Block unauthorized access to your computer
+==> Permit authorized data commuications to and from your computer
+
+*Process how?
+==> Rules and exception are applied to all inbound and outbound traffic
+==> Rules can configurable. New rules can be added.
+==> Rules can vary depending on the type of network you are connected to
+====> corporate network
+====>Public network
+====>home network
+
+
+***HIPS(Host Intrusion prevention system):
+.Software packages that monitor a single host for suspicious activity by analyzing events occuring within that host.
+.Malware can be difficult to spot purely based on signatures.
+.HIPS Objective: To stop malware by monitoring the behavior of the code.
+
+
+==> HIPS is typically configured to pause the activity of suspected code, and prompt the user for a decision based on configure rulesets.
+
+***Utilizing VPN
+==> Data-in-motion can be protected by sending it through VPNs.
+	==> Different types of vpn exist, some of which are designed to provide confidentiality and some don't
+		-------------------------------------------------
+		|VPN technologies(confidentials)		|
+		|-----------------------------------------------|
+		|PPTP(point to point tunneling)			|
+		|L2F(Layer 2 forwarding)			|
+		|L2TP(Layer 2 tunneling protocol)		|
+		|GRE(Generic routing encapsulation)		|
+		|(MPLS)Multiprotocol label switching		|
+		-------------------------------------------------
+
+
+		-------------------------------------------------
+		|VPN technologies(inherit confidentiality)	|
+		|-----------------------------------------------|
+		|(IPsec)VPN Internet Protocol Security		|
+		|(SSL)Secure Sockets Layer			|
+		|(TLS)Transport Layer Security			|
+		-------------------------------------------------
+
+	
+*Site to site vpn:
+==>Typically implemented on network infrastructure devices as the vpn endpoints  	
+==> Used to establish VPN tunnels between two or more organizations
+==> Transparent to end users
+
+Remote-access vpns
+==> Enable end users to securely connect to remote , corporate resources when working from home
+==> require special software for ipsec or be browser based (ssl/tls)

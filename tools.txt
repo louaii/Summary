@@ -1,0 +1,22 @@
+macof (tool to fluid mac addresses into a switch)
+Yersinia (tool for cdp attacks) cdp protocol to get the neighbors routers and networks
+arpspoof (tool for arp spoofing) arpspoof -i eth0 -t ip_machine ip_gateway
+nmap to scan network:
+nmap-v //load of data example: nmap -v 192.168…
+nmap -vv //data line by line
+
+Zabbix: network-based open source for monitoring and alerting solution designed to track performance of networks, servers, apps.
+
+prometheus: cloud native open source platform for monitoring and alerting toolkit and has it's own query language(PromQL)
+
+Grafana: open source platform for conjuction data sources with prometheus
+
+Wireguard: VPN Protocol that aims to provide efficient point to point connection
+
+Bastion: to access the configured computer from external network
+
+Puppet: to synchronize over the network and apply changes in an approval way
+
+Foreman: to deploy changes over the network
+
+

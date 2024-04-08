@@ -1,0 +1,52 @@
+to be able to push without entering your credentials:
+git remote set-url origin git@github.com:username/repository.git
+Create a new repo by cli:
+echo "# repo_name and description" >> README.md //add a file in the new repo
+git init //initialize the git hidden folder in the local directory so you can add and push
+git status //to check if their is new files to add or the local directory and the repo are up to date
+git add . //add all the new folders in the working directory
+git add <file_name> //to add a desired folder only
+git commit -m "<commit comment>" //to add a new commit to the repo as a checkpoint
+git branch -M main //to name and set the current branch as main
+git remote add origin https://github.com/username/reponame.git //to be able to pull and push on the repo 
+git push -u origin main //set the push on the branch main for the first time
+git push //to push the added files on the repo if branch is set before
+git pull //to pull the modified files by other collaborators on the repo to add them on the working directory
+git diff <filename> //to preview the changes between files before commiting
+git archive --format=zip --output=<file_name>.zip <branch_name> //to create a compressed file at a specific commit or branch
+git checkout <branch_name> //to switch to the desired branch
+git checkout -b <branch_name> //if the branch doesn't exist using this command you can create a new branch and switch to it
+git checkout <commit_name> . //to revert changes in the working directory
+!!!this command adds head to the files and they are with no branch so make sure to create a new branch after this command(git checkout -b new_branch_name)
+git checkout --<filename> //to switch the state of specific files in the directory or discard changes before commiting
+git clean //shows the files modified to the working directory that aren't added and would be removed
+git clean -n  //Show what files would be removed (dry run)
+git clean -f  //Remove untracked files
+git clean -df //Remove untracked files and directories
+git clone <url> //to clone the directory on the current path with it's current name
+git clone <url> <filename> //to clone the directory on the current path with the desired filename
+{ Explanaition: git reset options ==>
+1.Soft Reset (--soft):
+Moves the branch pointer to the specified commit.
+Leaves all changes staged.
+Does not modify the working directory or the index.
+Allows you to redo the commit with the staged changes.
+2.Mixed Reset (Default):
+Moves the branch pointer to the specified commit.
+Unstages all changes, resetting the staging area (index).
+Preserves changes in the working directory.
+Allows you to review the changes and stage them again for a new commit.
+3.Hard Reset (--hard):
+Moves the branch pointer to the specified commit.
+Resets both the staging area (index) and the working directory to match the specified commit.
+Discards all changes, reverting the working directory to the state of the specified commit.
+Irreversibly removes changes that were not committed, so use with caution.
+}
+git reset <file> //stage the specified file, but it won't discard any changes in the working directory
+git reset <commit> //move HEAD pointer and the current branch pointer to the specified commit. it doesn't modify the staging area of the working directory 
+git reset --hard HEAD~1 //will go back to the previous commit on the branch(head is the current commit and the number reffers to how many commits you're going back)
+git restore <file> //restores the specified file to the state it was in at the last commit. It effectively discards any changes made to the file in the working directory.
+git restore --staged <file> //restore changes made to files in the working directory but staged for the next commit to revert them to stage in the index(HEAD)
+git restore '*.txt' //restores all files with .txt extension
+git revert <commit> //create a new commit that undoes the changes introduced by the specified commit
+git revert <start-commit> <end-commit> //create a new commit that undoes the changes introduced by all the commits in the specified range

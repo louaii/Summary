@@ -1,0 +1,162 @@
+VTP Configuration
+SW1(config)# vtp mode server (or client)
+SW1(config)# vtp version 2
+SW1(config)# vtp domain cisco.com
+SW1(config)# vtp password class
+
+SW1# Show vtp status
+SW1# Show vtp password
+
+Spanning-Tree
+The default port costs are defined by the speed at which the port operates (ex: 100Mbps have a port
+cost of 19).
+To configure the port cost of an interface:
+SW1(config-if)# spanning-tree cost value
+value can be between 1 and 200,000,000. The port with the lowest value is selected.
+To restore the port cost back to the default value of 19, enter the below command on the interface
+configuration mode:
+no spanning-tree cost
+To change the port priority on a certain port:
+SW1(config)# interface f0/4
+SW1(config-if)# spanning-tree vlan 500 port-priority 64
+The port-priority value is an increment of 16 between 0 and 128, the default value is 128.
+To verify the port and path cost to the root bridge:
+SW1(config)# show spanning-tree
+To verify the various states of a port:
+SW1(config)# show spanning-tree summary
+
+To configure a RSTP or PVST+ PortFast edge port which immediately transitions to the forwarding state:
+SW1(config-if)# spanning-tree portfast
+To enable the portfast on all nontrunking interfaces:
+SW1(config)# spanning-tree portfast default
+To show the link type that determines whether the port can immediately transition to forwarding state:
+SW1(config)# spanning-tree link-type
+To configure a switch as root bridge:
+SW1(config)# spanning-tree vlan 10 root primary
+Or
+SW1(config)# spanning-tree vlan 10 priority 4,096
+value is configured in increments of 4,096 between 0 and 61,440. The default value is 32,768.
+To configure an alternate root bridge:
+SW1(config)# spanning-tree vlan vlanid root secondary
+To configure the BPDU guard that puts the port in an error-disabled state on receipt of a BPDU:
+SW1(config-if)# spanning-tree bpduguard enable
+To enable the bpduguard on all port-fast enabled ports:
+SW1(config)# spanning-tree portfast bpduguard default
+To show the spanning-tree of the active interfaces only:
+SW1(config)# show spanning-tree active
+Configure Rapid-pvst+ mode, specify an interface to configure with link type and clear all detected STP.
+S1(config)# spanning-tree mode rapid-pvst
+S1(config)# interface f0/2
+S1 (config-if)# spanning-tree link-type point-to-point
+S1 (config-if)# end
+S1# clear spanning-tree detected-protocols
+
+SW1(config)# show spanning-tree vlan 10
+To verify HSRP state:
+R1(config)# show standby
+R1(config)# int f0/0
+R1(config-if)# ip address 1.1.1.2 255.255.0.0
+R1(config)# standby 1 ip 1.1.1.1
+R1(config)# no shutdown
+To assign a priority to a router to become the active router noting that the standard value is 100:
+R1(config)# standby 1 priority 110
+To re-assign the initial router its initial role
+R1(config)# standby preempt
+R1# show glbp
+Link aggregation configuration:
+SW1(config)# interface range f0/1-4
+SW1(config-range)# channel-group 1 mode active
+SW1(config)# interface port-channel 1
+SW1(config-port)# switchport mode trunk
+SW1(config-port)# switchport trunk native vlan 90
+SW1(config-port)# switchport trunk allowed vlan 1, 10, 90
+To display the general status of the port channel interface
+S1# show interface port-channel1
+To display one line of information per port channel
+S1# show etherchannel summary
+To display information about a specific port channel interface
+S1# show etherchannel port-channel 
+
+To display information about the role of the interface in the EtherChannel
+S1# show interfaces f0/1 etherchannel 
+OSPF Configuration
+R1(config)# Router ospf 10
+R1(config-router)# Router-id 1.1.1.1
+R1(config-router)# Network 172.16.1.0 0.0.0.255 area 0
+R1(config-router)# Network 172.16.3.0 0.0.0.255 area 0
+R1(config-router)# auto-cost reference-bandwidth 1000
+R1(config-router)# passive-interface g0/0
+R1(config)# interface G0/0
+R1(config-if)# bandwidth 1000000
+R1(config-if)# ip ospf priority 255
+To verify that the router has formed an adjacency with its neighboring routers
+R1# show ip ospf neighbor
+To verify vital OSPF configuration information
+R1# show ip protocols
+To display the OSPF process ID and router ID as well as the OSPF SPF and OSPF area information
+R1# show ip ospf
+To display a summary and status of OSPF-enabled interfaces
+R1# show ip ospf interface brief
+To provide a detailed list for every OSPF-enabled interface
+R1# show ip ospf interface
+Reset the OSPF process
+R1# clear ip ospf process
+Distribute the static into the routing table
+
+R1(config)# ip route 0.0.0.0 0.0.0.0 209.165.10.10 g0/0
+R1(config)# default-information originate
+R1# show ip route
+OSPF Hello and Dead intervals can be modified manually using the following interface configuration
+mode commands:
+ip ospf hello-interval 10
+ip ospf dead-interval 40
+To reset the intervals to their default
+no ip ospf hello-interval
+no ip ospf dead-interval
+To enable OSPF MD5 authentication globally, configure:
+R1(config)# area 0 authentication message-digest
+R1(config)# int g0/0
+R1(config-if)# ip ospf message-digest-key 1 md5 password 
+To enable OSPF MD5 authentication on each interface, configure:
+R1(config)# int g0/0
+R1(config-if)# ip ospf message-digest-key 1 md5 password 
+R1(config-if)# ip ospf authentication message-digest
+R1# show ip ospf interface serial 0/0/0
+
+EIGRP Configuration:
+Router(config)# router eigrp autonomous-system
+Router(config-router)# eigrp router-id ipv4-address
+show ip protocols
+show ip eigrp neighbors
+show ip eigrp topology
+Router(config-router)# network network-address [wildcard-mask]
+Router(config-router)# passive-interface interface-type interface-number
+Enable, disable automatic summarization:
+Router(config-router)# auto-summary
+Router(config-router)# no auto-summary
+
+Manual Summarization:
+Router(config)# interface Serial0/0/0
+Router(config-if)# ip summary-address eigrp 1 172.31.8.0 255.255.252.0
+Propagation of a static route
+Router(config)# router eigrp 1
+Router(config-router)# redistribute static
+
+Changing the metrics
+R1(config)# interface s0/0/0
+R1(config-if)# ip hello-interval eigrp 1 10 // time in seconds
+R1(config-if)# ip hold-time eigrp 1 30
+Router(config)# interface g0/0
+Router(config-router)# delay 100 ///unit is ms
+Router(config-router)# bandwidth 1000 ///unit is kbps
+
+Authentication
+Router(config)#key chain mykey                         //configure key chain name mykey
+Router(config-keychain)#key 1                          // Specifies the key number  
+Router(config-keychain-key)#key-string cisco  //Specifies the authentication string for a
+key.           
+Router(config-keychain-key)#end
+Router(config)#interface fa0/0
+Router(config-if)#ip authentication mode eigrp 1 md5
+Router(config-if)#ip authentication key-chain eigrp 1 mykey
+Router(config-if)#end

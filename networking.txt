@@ -1,0 +1,177 @@
+AP(Access Points) layer 2 device exchanges frames wirelessly using channels(radio waves frequency)
+Network Architecture:
+Two Tier Network:
+Two core switches for redanduncy in case of failure point(only critical devices to be wired)
+Access or distribution switches where you can have access to that switch
+Three Tier Network:
+depends on core, distribution switches and at the end the access phase to connect devices
+Spine-leaf Network:
+Basically used for data centers, instead of going to the top core layer and then going back to the bottom access layer for two computers to communicate with each others, the spine leaf has introduced a routing way so the communication will be horizantal
+PoE:
+802.3 power over ethernet standard
+subnetting:
+1.convert the nb of networks to binary
+==> 192.168.5.0 ===> 11000000.10101000.00000101.00000000
+subnetting based on network recuirement if 192.168.0.5 for 5 hosts count the bits to reach 5
+subnetting based on hosts recuirement if 25 hosts then count the bits on subnet mask to be able to form the number required.
+cdp cisco discovery protocol and lldp link layer discovery protocol are used to get to know the network and it's neighbors
+ntp(network time protocol) used as a server to synchronize end points to the time depending on their location
+SNMP(Simple Network Monitor Protocol)
+Syslog: is a logging messages depending on a severity level:
+0.Emergency ==> 1.Alert ==> 2.Critical ==> 3.Error ==> 4.Warning ==> 5.Notice ==> 6.Informational ==> 7.Debug
+QoS(Quality of service):traffic discrimination which classifies the hosts on the network which is more critical on the internet as an phone, server or an endpoint
+DIA: Dynamic inspection arp in the switch to avoid fake mac addresses
+Port-Security:
+To prevent a CAM table overflow attack on a switch and limit the mac-addresses readable by ports.(Dynamic, Static, Sticky)
+Dynamic: whenever an endpoint is connected to the switch, it has the authorization to operate
+Static: Port are defined manually to each mac address
+Sticky: Whenever an endpoint is connected to the switch, it's mac address will be copied to the switch and no other mac address can connect to that port
+Violation actions:
+In case of violation the switch will take action for the malicious port between these:
+Protect: Whenever the number of mac addresses exceded by the number given to the switch, the switch will drop these frames
+Restrict: The same as Protect but also takes care of logs and information about these violation(SNMP, SYSLOG, counter)
+Shutdown port:In default setup, shutdown is selected whenever a restriction occurs and also takes care of logs just like the Restrict option
+Shutdown VLAN:Same as shutdown port but instead of turning off the port, it will turn off the vlan for this port
+It should be either trunk port or access port(Not both at the same time as dynamic port)
+
+DHCP Starvation attack: to get all the requests from the dhcp servers so the network can't have other devices on the network and their is no free lease.
+DHCP snoopig:
+The action of preventing any dhcp server except the trusted server and it's packets
+DHCP SNOOPING is a protocol to prevent sending DORA requests over the network except from the authorized ports
+
+Private Vlans(PVLANs):
+Vlans involved: Primary and Secondary
+Primary VLAN is considered as a dock to let the ports be distributed into the secondary private vlans(isolated or community)
+Their is only one isolated vlan and it's member won't talk to each other. Moreover, their can be many community and has members and each community is able to talk to the members within the same community
+Ports Types:
+Community: for ports on community vlans
+Isolated: for ports on isolated vlans
+promiscuous: for the primary vlan
+
+DAI:
+Dynamic ARP Inspection to mitigate risk of arp spoofing and poisining using:
+- leverage to L3 to check the dhcp snooping table
+- use static arp acl to map
+- Header to payload validation to check if the mac addresses in the header matches the mac addresses in the payload
+- Able to accept 15 packets per second or the port is down on untrusted port
+- trusted ports doesn't check for arp poisining 
+- trusted ports should be the trunk ports and the untrusted ports should be the access ports
+
+Firewalls:
+
+Stateless firewall: primarly operates at layer3(network) and investigates each packet as a single individual based on rules and policies configured on the firewall. It's faster but less secure than the Statefull firewall.
+Statefull firewall: operates at layer 3 and 4(network and transport) takes decisions based on connections and unauthorized traffics. This type of firewall is faster but still lowers the speed of traffic.
+
+Firewalls configuration steps:
+Identify Zones(add interface)
+Identify Traffic(class maps)
+Identify Action(Policy maps)
+Identify the zones involved(Zone pair)
+Specify the policy to use on the zone pair(Service policy)
+
+ASA Firewall:
+
+Adaptive Security Appliance Firewall 
+Security level goes from higher to lower only
+ASDM is the graphical user interface for the ASA
+
+NFP:
+
+Network foundation protection is implementing the best security measures on the network and mitigating risks and vulnerabilities
+- Management:
+  
+
+Allows admins to communicate with device and receive reports and logs(syslog, snmp)
+
+- Control:
+  
+
+Device has to devote personal attention (CPU), because something is needed directly from the device. Routing protocol updates/keep alives, Traffic directed to the IP address of the router.
+
+- Data:
+  
+
+Moving/forwarding packets for others (transit packets) such as from one end device to another. All the traffic that the device is forwarding between 2 hosts.
+
+
+Radius and TACACS+:
+
+
+Radius and TACACS are servers where to apply the AAA.
+Radius uses udp as transport protocol, encrypts the password only, and is open source where every enterprise can have a radius server.
+TACACS+ uses tcp and encrypts the whole traffic and is cisco liscenced.
+
+
+
+Cryptography:
+
+Encryption: is the process of converting the plain text into unreadable text based on algorithm created for this encyption
+
+Keys: public key and private key are required in asymetrical encryption to be able to convert the cipher text into a plain so the data can be readable.
+
+Symetric encryption is an encryption that requires one key for decryption
+
+Hash: is used to check the integrity of data and no modifications has occured.
+
+HMAC: Hashed based message authentication code.
+
+Digital signature
+
+
+VPN:
+
+IPsec is a protocol securing communications by authenticating and encrypting each IP packet in data stream.
+IKE:Internet Key exchange
+IKE phase 1:
+Negotiate phase1 ==> Setup keys ==> Authenticate ==> SA tunnel ready(IKE phase 1)
+Options IKE phase1:
+Hashing: MD5/SHA
+Authentication: PSK, RSA
+Group: 1, 2, 5
+Lifetime: nb of seconds
+Encryption: DES, 3DES, AES
+
+IKE phase 2:
+Negotiate phase2 ==>Encryption, hashing, lifetime, PFS, IKE phase2 SA tunnel ready called IPsec Tunnel
+Hashing: MD5/SHA HMAC (Already authenticated)
+Group/PFS (DH): 1, 2, 5
+Lifetime: time or data 
+Encryption: DES, 3DES, AES
+
+
+
+Wireguard Configuration:
+
+[Interface]
+PrivateKey = <contents-of-server-privatekey>
+Address = 10.0.0.1/24
+PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+ListenPort = 51820
+
+[Peer]
+PublicKey = <contents-of-client-publickey>
+AllowedIPs = 10.0.0.2/32
+
+SSL VPNS steps:
+1 ==> SYN (server)
+2 ==> SYN,ACK (client)
+3 ==> ACK (server)
+4 ==> Client SSL Hello, lists of ciphers (server)
+5 ==> Server ssl hello certificate done (client)
+6 ==> Ack(server)
+7 ==> client key exchange change cipher spec(begin to encrypt) (server)
+8 ==> change cipher spec (begin to encrypt)(client)
+9 ==> encrypted ssl session established (client)(server)
+
+VPN: Virtual private network ==> which can connect multiple networks to one LAN network within an encrypted tunnel
+*Types:
+_PPTP(Point to Point Tunneling Protocol): creates a secure tunnel between two endpoints over a public network allowing data to be transmitted securely.
+_IPsec:(Internet Protocol Security) used to secure ip communications by authenticating and encrypting each packet
+_IKev:(Internet Key Exchange)<version 1 or 2> designed to establish security associations and negotiate cryptographic keys between two parties(client and server VPN)
+
+Proxy: server acts intermediary between the device and the desired device, router.It forwards the requests to the proxy server.
+*Types:
+_Dedicated/forward proxy: assigned to a single client
+_Reverse proxy: acts intermediary between clients and backend servers that forwards requests to the desired server and returns the response to the client, to protect servers from direct exposure to the internet and mitigate security threats.
+_Transparent proxy: proxy server that intercepts and handles network traffic without configuration. 
