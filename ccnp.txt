@@ -333,6 +333,146 @@ _stream ==> encrpted by bit or byte.[RC4, SEAL]
 
 *NGE(Next Generation Encryption): Cisco's set of cryptographic standards believed to be secure now and in the near future.\
 
+**********************************************************************************************************************************************************
+
+Firewalls:
+firewall is a software/hardware system that acts as a barrier between trusted and untrusted networks.
+_Stateless ==> packet filtering
+_Stateful ==> session information is maintained in a connection/stable table, return traffic is automatically allowed, capable of detecting certain attacks.
+
+*Firewall technologies:
+.Application layer gateways:
+==>Designed to control certain type of traffic
+==>full protocol visibility(packet inspection)[WSA, ESA]
+
+*Transparent:
+==>Operates at layer 2
+
+*Next Generation:
+_A combination stateful firewall and IPS
+_Prevents threats[ASA]
+
+**ASA firewall:
+_next-generation firewall stateful filtering and application layer inspection
+_VPN gateway: IKEv1/IKEv2 L2L and SSL remote access
+_Next-generation IPS: ASA with FirePOWER, Advanced malware protection and reputation URL filtering
+_Virtualization: Contexts
+_High availability: Failover and clustering
+
+*ASA Interfaces:
+_physical(physifname): single port
+_redundant(redundant nr): two ports(active/standby)
+_etherchannel(interface port-channel nr): two or more ports(active/active)
+
+*ASA NAT:
+Typically to hide private IP addresses(RFC 1918)
+types:
+_Static(one to one, fixed pre-configured mapping)
+_Dynamic(one to one, new IP address is allocated dynamically from a pool)
+_PAT(many-to-one, source IP address and source port is changed dynamically)
+_Static PAT(many-to-one, address & port mapping is pre-configured)
+_Policy NAT(any condition-based translation)
+
+NAT rule describes the packet before and after the translation:
+_When a translation occurs(original packet)
+_How it occurs(new/translated packet)
+
+XLATEs:
+_Stores current translations
+_Primarily used to de-translate(restore the original) packet
+
+AUTO NAT:
+_Supports source IP address translation only(with an optional source port)
+_Does not support Policy NAT or destination IP address translation
+_Configured within a network object(object network) with NAT
+
+Manual NAT:
+_Commonly used for policy nat or twice nat(source & destination on IP translation)
+_Implemented through global configuration mode nat(applied on objects and objects-group)
+
+ASA modes of operation:
+_Firewall Mode controls ASA's forwarding behavior
+_Context Mode enables/disables firewall virtualization
+_Both Modes affect features supported on the ASA
+
+Firewall Mode: Routed Layer 3
+_ASA acts as a Layer 3 hop, each interface connects to a different layer 3 subnet
+
+Firewall Mode:Transparent
+ASA acts as a L2 switch, bridged interfaces are grouped and put into one L3 network
+.Multiple bridge-groups can be configured that cannot communicate to each other
+_Unsupported features: VPNs, dynamic routing protocols, multicast routing and QoS
+_Advantages:
+.Can be easily placed into the network without having to re-address existing devices
+.Allows to control non-IP packets
+_Configure with firewall transparent:
+.Configure a BVI interface for management(interface bvi nr)
+.Associate interfaces with a bridge-group (bridge-group nr)
+
+_Context Mode: Single(default)
+.No virtualization: one firewall and one policy
+.Supports all regular features
+
+_Context Mode: Multiple
+.Enables virtualization
+ ==> Multiple logical firewall instances can co-exist on a single physical unit
+ ==> Each of the virtual firewalls is configured with a set interfaces and policy 
+.Does not support certain VPN protocols and features, QoS, multicast routing and some routing protocols
+.Configure with mode multiple and then context 
+
+_Failover:
+.Requires two physical firewalls
+.Active forwards traffic
+.Works in one of two modes: Active-Standby or Active-Active(Availble in multiple context only)
+.Stateful failover can be configured regardless of the failover mode
+
+_Clustering:
+.Combines multiple ASA into a single unit 
+==> Results in increased throughput and redundancy
+.Upstream and downstream routers are responsible for traffic load-balancing
+==> Spanned Etherchannel / Policy-Based routing / Equal-cost multi-path (ECMP) routing
+
+_MPF configuration rules control many of the ASA's features:
+.Inspection engines, TCP Normalization, QoS and more
+.Work on traffic permited by the firewall policy(access rules, default policy)
+.Managed by MQC-like framework:
+ ==> classification(class-map) / policy config(policy-map) / policy activation(service-policy) 
+
+_Classification
+.All traffic(match any)
+.Access-list(match access-list)
+.TCP/UDP ports (match[tcp|udp])
+.ToS(match[dscp | precedence])
+.RTP(match rtp)
+.Tunnel group(match tunnel-group)
+.Default protocols(match default inspection traffic)
+ ==> Special condition used in a default mpf policy to match multiple protocols in a single class
+
+_Policy configuration
+.Classes are evaluated top-down and in certain cases more than one class can be a match
+==> MPF policies are processed in a complex way including internal ASA rules
+==> Using one policy with non-overlapping classes results in MQC-like processing
+.Class-default match otherwise unclassified packets.
+
+_Policy feature types(Actions)
+.Inspection engines(inspect protocol [L7_policy_name])
+.Connection settings and timeouts (set connection)
+.TCP Normalization and state bypass (set connection advanced-options)
+.QoS(police, priority, shape)
+.Legacy IPS(ips) and FirePower(sfr)
+
+_Policy activation:
+.Per-interface (service-policy interface)
+.Globally (service-policy global)
+ ==> enables the policy for all interfaces
+.Interface-level policies take precedence for overlapping classes
+
+_Default MPF Policy(global_policy)
+.Enabled globally
+.Has one class(inspection_default) matching default ports (default-inspection-traffic)
+ ==> this special class allows to use multiple inspection engines
+.Enables inspection for several protocols, including DNS, FTP, TFTP, ESMTP...
+
 
 
 
