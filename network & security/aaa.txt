@@ -1,0 +1,5 @@
+AAA stands for Authentication, Authorization and Accounting
+Radius and TACACS+ are servers where to apply the AAA.
+Radius uses udp as transport protocol, encrypts the password only, and is open source where every enterprise can have a radius server.
+TACACS+ uses tcp and encrypts the whole traffic and is cisco liscenced.
+

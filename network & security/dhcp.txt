@@ -1,0 +1,5 @@
+DHCP stands for dynamic host configuration protocol which is a network management protocol to automatically assign ips. this allows devices to connect to the network and communicate the devices with each others without manual configuration through the DORA(Discover from the client, offer from the protocol server, request the ip offered from the client, acknowledge from the protocol server)
+DHCP Starvation attack: to get all the requests from the dhcp servers so the network can't have other devices on the network and their is no free lease.
+DHCP snoopig:
+The action of preventing any dhcp server except the trusted server and it's packets
+DHCP SNOOPING is a protocol to prevent sending DORA requests over the network except from the authorized ports

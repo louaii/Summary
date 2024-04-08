@@ -1,0 +1,53 @@
+Email Security Appliance used for advanced design to control SMTP(Simple Mail Transfer Protocol) protocol used to forward email's in case the destination configuration is the same as the SMTP configuration or it will forward it back to the internet,for email security as Reputation filtering, outbreak filtering, Patterns with cisco talos AMP(Advanced Malware Protection) intelligence.
+
+Cisco AMP: Cisco advanced malware protection uses a mix of preventive engines and cloud based intelligence updated by Cisco Talos and Cisco Threat grid
+Cisco AMP provides a central, administrator's dashboard to gain overall visibility into the health of your endpoints.
+
+
+ESA Deployment:
+On-premise:
+C and X series appliances
+Recommended design: DMZ
+One or two interfaces(inside)
+Virtual ESA: ESAV
+Hybrid: Cloud for inbound, on-premise for outbound traffic
+Cisco ESA listens on SMTP(TCP port 25)[doesn't support IMAP/POP3]
+MTA(Mail transfer agent)
+MSA(Mail Submission Agent)
+MDA(Mail Delivery Agent)
+Client email ==> (SMTP) ==> MSA server ==> MTA server ==> (SMTP) ==> MTA server ==> Destination
+
+
+Email Based Threats:
+Spam is unsolicited email that might be:
+_Junkmail(harmless but unwanted)mails
+_Malicious(designed to trick you into giving private information to people you don't know)
+
+Email Encryption:
+_Emails are not encrypted by default.
+_When using a native email client (like MS Outlook) IMAP or POP3 transactions between you and the email server are unencrypted
+_When using a web-based email service(gmail) ==>IMAP transactions are encrypted by SSL/TLS ==> SMTP messages between mail exchange points and servers may-or-may-not be encrypted.
+_Securing email messages and attachements with encryption provides email confidentiality end-to-end
+
+Transport level encryption:
+_Mail transactions between email servers are encrypted
+_Email transactions between end-user and mail server may also be encrypted
+_No special user-interaction required
+_Mitigates an eavesdropper snooping on the communication between mail servers
+_Easy to implement automatic encryption/decryption on all emails between customer sites.
+_Does not provide end to end encryption
+_If mail server is compromised , email confidentiality is compromised
+
+End-To-End Encryption:
+_Data us encrypted and decrypted only on the end points.
+_Emails become unreadable to service providers in transit.
+_Requires exchange of public key
+
+Email encryption with cisco ESA:
+_The Cisco email security appliance can be configured to encrypt/decrypt emails.
+_This is considered Transport Level encryption
+_Utilizes the Cisco Registered Envelope Service:
+	-->Cloud-based encryption-key service
+	-->Encrypted messages can be recieved by any user
+	-->Does not require sender to pre-exchange encryption keys with recipients
+

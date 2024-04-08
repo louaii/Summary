@@ -1,0 +1,15 @@
+Cloud Web Security is a cloud based web proxy device which is similiar to WSA web usage controls with category and reputation-based control, malware filtering and data protection
+
+Connectors: 
+_web traffic is redirected from Web clients to the Cisco CWS service through the use of 'Connectors'
+_Cloud connectors are software components embedded in, hosted on, or integrated with platforms in order to enable or enhance a cloud service.
+
+CWS connectors:
+	==> ASA/ASAv Connector
+	==> ISR G2 Connector
+	==> Web Security Appliance(WSA) connector
+	==> Cisco anyconnect secure mobility client with the web security module
+
+
+
+

@@ -1,0 +1,1 @@
+QoS(Quality of service):traffic discrimination which classifies the hosts on the network which is more critical on the internet as an phone, server or an endpoint

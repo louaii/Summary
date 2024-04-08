@@ -1,0 +1,39 @@
+Web Security Appliance is a proxy device that monitors and controls outbound web requests for web content and scrubs return traffic for unwanted or malicious content. Web traffic from clients, and responses from websites must be directed to WSA. Explicit proxy configurations on clients through WCCP(Web Cache Communication Protocol) to redirect traffic from network devices (Firewalls, Routers).
+
+Some examples of web-based threats include:
+_Requests for websites that break a stated Acceptable Use policy(AUP)
+_Known, malicious websites that install malware, spyware or viruses.
+_Legitimate websites that have been compromised and download malware.
+_Employees contributing to corporate Data Loss through unauthorized/unmonitored data uploads.
+
+URL filtering and blacklisting
+	==>Category filtering with 79-predefined URL categories 
+	==> custom urls 
+	==> dynamic content analysis and/or filtering of URL strings
+	==> Customized filters to control downloaded file-types
+	==> Leverages cisco's AMP solution
+	==> requires additional add-on license to the WSA
+	==> Reputation database maintained by cisco talos
+	==> Updated every 5 mins
+
+Dynamic content analysis:
+	==> Used to help determine category of newer websites that have not yet been categorized into Cisco's URl categorization Database.
+	==>Determines nature of content in real time using Cisco's DCA(Dynamic content analysis) Engine.
+	==>Findings sent back to SenderBase repository if customer elects to do so
+
+WSA Data loss prevention:
+	==>DLP by monitoring what is posted via HTTP, HTTPS or FTP
+	==>Requires that the WSA work in partnership with another appliance, the Digital Guardian DLP appliance.
+
+WSA and CWS(Cloud web security) are synchronized through connectors through embedded softwares in Cisco CWS services
+
+Web Cache Communications Protocol(WCCP):
+_Utilized to redirect web request to another device (such as a Cisco content Engine or WSA)
+_Redirected packets encapsulated within GRE headers to prevent packet modification
+_Originally designed to localize traffic patterns in the network, enabling content requests to be fulfilled locally
+Cisco WSA considered a WCCP client, Router or firewall is considered WCCP server.
+
+Layer 4 traffic monitor(L4TM) is utilized to prevent malware, that has already infected internal clients from bypassing HTTP Port-80 and "Phoning-home" and maintains its own internal database
+
+HTTP decryption must enable the https-proxy service on WSA that creates the https session to the webserver and creates a new https session to the user and the responses from the webserver are checked and scanned and delivered over the new https session to the user
+

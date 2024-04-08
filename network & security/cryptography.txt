@@ -1,0 +1,22 @@
+Encryption: is the process of converting the plain text into unreadable text based on algorithm created for this encyption
+Keys: public key and private key are required in asymetrical encryption to be able to convert the cipher text into a plain so the data can be readable.
+Symetric encryption is an encryption that requires one key for decryption
+Hash: is used to check the integrity of data and no modifications has occured.
+HMAC: Hashed based message authentication code.
+
+cryptography is for encrypting data
+cryptanalysis is for decrypting data
+Hashing is used to check the integrity of data(not modified) and functions in one way can't be restored
+HMAC(Hashed message authentication code): refers to a modified version of an existing hashing function[HMAC-MD5/ HMAC-SHA1], it prevents third party from modifying the hash itself and includes a shared key when calculating hash
+
+*Symetric encryption:
+Requires single key shared(static(same key used)/dynamic(each time used generates new key))
+The underlying algorithm can be Block or Stream cipher:
+_Block ==> encrypts word by word, fixed size(64b/128b).[DES, 3DES, AES]
+_stream ==> encrpted by bit or byte.[RC4, SEAL]
+
+*Asymmetric encryption:Requires 2 keys public and private keys[RSA, DSA, DH]
+
+*NGE(Next Generation Encryption): Cisco's set of cryptographic standards believed to be secure now and in the near future.
+
+

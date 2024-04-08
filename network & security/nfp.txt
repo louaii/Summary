@@ -1,0 +1,5 @@
+NFP:
+Network foundation protection is implementing the best security measures on the network and mitigating risks and vulnerabilities
+- Management: Allows admins to communicate with device and receive reports and logs(syslog, snmp)
+- Control: Device has to devote personal attention (CPU), because something is needed directly from the device. Routing protocol updates/keep alives, Traffic directed to the IP address of the router.
+- Data: Moving/forwarding packets for others (transit packets) such as from one end device to another. All the traffic that the device is forwarding between 2 hosts.

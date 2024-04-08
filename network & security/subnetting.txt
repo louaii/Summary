@@ -1,0 +1,5 @@
+subnetting:
+1.convert the nb of networks to binary
+==> 192.168.5.0 ===> 11000000.10101000.00000101.00000000
+subnetting based on network recuirement if 192.168.0.5 for 5 hosts count the bits to reach 5
+subnetting based on hosts recuirement if 25 hosts then count the bits on subnet mask to be able to form the number required.

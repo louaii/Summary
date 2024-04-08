@@ -1,0 +1,76 @@
+VPN(Virtual private network) can connect to multiple networks to one LAN network within an encrypted tunnel. Data-in-motion can be protected by sending it through VPNs. Different types of vpn exist, some of which are designed to provide confidentiality and some don't
+
+Types:
+		-------------------------------------------------
+		|VPN technologies(confidentials)		|
+		|-----------------------------------------------|
+		|PPTP(point to point tunneling)			|
+		|L2F(Layer 2 forwarding)			|
+		|L2TP(Layer 2 tunneling protocol)		|
+		|GRE(Generic routing encapsulation)		|
+		|(MPLS)Multiprotocol label switching		|
+		-------------------------------------------------
+
+
+		-------------------------------------------------
+		|VPN technologies(inherit confidentiality)	|
+		|-----------------------------------------------|
+		|(IPsec)VPN Internet Protocol Security		|
+		|(SSL)Secure Sockets Layer			|
+		|(TLS)Transport Layer Security			|
+		-------------------------------------------------
+
+_PPTP(Point to Point Tunneling Protocol): creates a secure tunnel between two endpoints over a public network allowing data to be transmitted securely.
+_IPsec:(Internet Protocol Security) used to secure ip communications by authenticating and encrypting each packet
+_IKev:(Internet Key Exchange)<version 1 or 2> designed to establish security associations and negotiate cryptographic keys between two parties(client and server VPN)
+
+IPsec is a protocol securing communications by authenticating and encrypting each IP packet in data stream.
+IKE:Internet Key exchange
+IKE phase 1:
+Negotiate phase1 ==> Setup keys ==> Authenticate ==> SA tunnel ready(IKE phase 1)
+Options IKE phase1:
+Hashing: MD5/SHA
+Authentication: PSK, RSA
+Group: 1, 2, 5
+Lifetime: nb of seconds
+Encryption: DES, 3DES, AES
+IKE phase 2:
+Negotiate phase2 ==>Encryption, hashing, lifetime, PFS, IKE phase2 SA tunnel ready called IPsec Tunnel
+Hashing: MD5/SHA HMAC (Already authenticated)
+Group/PFS (DH): 1, 2, 5
+Lifetime: time or data 
+Encryption: DES, 3DES, AES
+
+Site to site vpn:
+	==>Typically implemented on network infrastructure devices as the vpn endpoints  	
+	==> Used to establish VPN tunnels between two or more organizations
+	==> Transparent to end users
+
+Remote-access vpns
+	==> Enable end users to securely connect to remote , corporate resources when working from home
+	==> require special software for ipsec or be browser based (ssl/tls)
+
+
+SSL VPNS steps:
+1 ==> SYN (server)
+2 ==> SYN,ACK (client)
+3 ==> ACK (server)
+4 ==> Client SSL Hello, lists of ciphers (server)
+5 ==> Server ssl hello certificate done (client)
+6 ==> Ack(server)
+7 ==> client key exchange change cipher spec(begin to encrypt) (server)
+8 ==> change cipher spec (begin to encrypt)(client)
+9 ==> encrypted ssl session established (client)(server)
+
+Wireguard Configuration:(Example)
+[Interface]
+PrivateKey = <contents-of-server-privatekey>
+Address = 10.0.0.1/24
+PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+ListenPort = 51820
+[Peer]
+PublicKey = <contents-of-client-publickey>
+AllowedIPs = 10.0.0.2/32
+
+

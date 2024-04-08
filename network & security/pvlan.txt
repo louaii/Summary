@@ -1,0 +1,9 @@
+Private Vlans(PVLANs):
+Vlans involved: Primary and Secondary
+Primary VLAN is considered as a dock to let the ports be distributed into the secondary private vlans(isolated or community)
+Their is only one isolated vlan and it's member won't talk to each other. Moreover, their can be many community and has members and each community is able to talk to the members within the same community
+Ports Types:
+Community: for ports on community vlans
+Isolated: for ports on isolated vlans
+promiscuous: for the primary vlan
+

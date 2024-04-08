@@ -1,0 +1,5 @@
+Proxy: server acts intermediary between the device and the desired device, router.It forwards the requests to the proxy server.
+*Types:
+_Dedicated/forward proxy: assigned to a single client
+_Reverse proxy: acts intermediary between clients and backend servers that forwards requests to the desired server and returns the response to the client, to protect servers from direct exposure to the internet and mitigate security threats.
+_Transparent proxy: proxy server that intercepts and handles network traffic without configuration. 

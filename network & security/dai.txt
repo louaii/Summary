@@ -1,0 +1,11 @@
+DIA: Dynamic inspection arp in the switch to avoid fake mac addresses
+
+DAI:
+Dynamic ARP Inspection to mitigate risk of arp spoofing and poisining using:
+- leverage to L3 to check the dhcp snooping table
+- use static arp acl to map
+- Header to payload validation to check if the mac addresses in the header matches the mac addresses in the payload
+- Able to accept 15 packets per second or the port is down on untrusted port
+- trusted ports doesn't check for arp poisining 
+- trusted ports should be the trunk ports and the untrusted ports should be the access ports
+

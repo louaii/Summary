@@ -1,0 +1,2 @@
+ntp(network time protocol) used as a server to synchronize end points to the time depending on their location
+

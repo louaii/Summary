@@ -1,0 +1,12 @@
+Port-Security: on switches
+To prevent a CAM table overflow attack on a switch and limit the mac-addresses readable by ports.(Dynamic, Static, Sticky)
+Dynamic: whenever an endpoint is connected to the switch, it has the authorization to operate
+Static: Port are defined manually to each mac address
+Sticky: Whenever an endpoint is connected to the switch, it's mac address will be copied to the switch and no other mac address can connect to that port
+Violation actions:
+In case of violation the switch will take action for the malicious port between these:
+Protect: Whenever the number of mac addresses exceded by the number given to the switch, the switch will drop these frames
+Restrict: The same as Protect but also takes care of logs and information about these violation(SNMP, SYSLOG, counter)
+Shutdown port:In default setup, shutdown is selected whenever a restriction occurs and also takes care of logs just like the Restrict option
+Shutdown VLAN:Same as shutdown port but instead of turning off the port, it will turn off the vlan for this port
+It should be either trunk port or access port(Not both at the same time as dynamic port)

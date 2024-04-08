@@ -1,0 +1,1 @@
+cdp cisco discovery protocol and lldp link layer discovery protocol are used to get to know the network and it's neighbors
