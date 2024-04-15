@@ -1,5 +1,17 @@
-Systen control:
+Linux commands:
+passwd: change the password
+pwd: to get the working directory
+cd: change directory(to navigate between directories)
+ls: list
+mkdir: make directory
+rm -rf: remove by force
+hello > new.txt: adds a new file named new.txt and written inside it hello
+cp file/ path
+mv file/ path
+locate filename: shows the path of the file name
+grep: filters
 
+System control:
 systemctl start <service_name> #start service
 systemctl stop <service_name> #stop service
 systemctl restart <service_name>#restart
@@ -12,7 +24,7 @@ systemctl reboot      # Reboot the system
 systemctl suspend     # Suspend the system
 systemctl hibernate   # Hibernate the system
 
-command -v to check the destination of files
+command -v #to check the destination of files
 etc where the configuration files are located
 lsof -i  :80 #to check the running protocols and services on port 80
 systemctl list-units --type=service --state=running #to search for services
