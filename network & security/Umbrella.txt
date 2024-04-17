@@ -1,0 +1,71 @@
+Umbrella offers an advanced recursive DNS service: Secure, DNS inspection, cloud based, consolidates security services at one place despite of the recent "decentralized network" trend, fast and highly resilient, extensive BGP peerings and anycast routing.
+_Packages: Cisco Umbrella(DNS Security Essentials, DNS Security Advantage), Cisco Umbrella SIG(Secure Internet Gateway essentials)
+
+Deployment Options:
+
+DNS traffic can be redirected to Umbrella in several ways:
+On-network:
+_internal DHCP ==> locations with no internal domain(s)
+_internal DNS ==> Some endpoints may need to be configured manually
+_Umbrella Virtual Appliance
+_Network devices
+
+Roaming & Mobile:
+_Umbrella Roaming Client
+_AnyConnect Umbrella module
+_Cisco Security Connector(iOS agent)
+
+Umbrella Virtual Appliance(VA):
+
+Lightweight virtual machine for VMware, AWS, Azure..., works as a conditional DNS forwarder, recieves all client DNS queries, only public/external DNS queries go to Umbrella
+
+Virtual Appliance Advantages:
+
+Extended DNS (EDNS):
+Device & Organization ID, client's IP enhanced visibility & granular policies (public IP address does not matter)
+
+Easy AD integration:
+Adds user/group information
+Encryption (DNSCrypt) & Authentication
+
+Policies:
+
+Umbrella enforces security & access controls through Policies:
+_A policy points to at least one identity
+_Policies are evaluated top-down: only the first policy matching the identity gets executed.
+_Default Policy is a catch-all (applies to all identities)
+
+Policy engines:
+DNS Layer Security / Content Inspection / Application Inspection / File Analysis / Destination Lists.
+
+Umbrella seperates DNS traffic to categories:
+Malware / Newky seen domains / Command Control Callbacks / Phishing Attacks / Dynamic DNS / Potentially harmful domains / DNS tunneling VPN / Cryptomining
+
+Content & Application Inspection:
+Allows to block traffic to non-malware sites based on content or application category, Content category levels, high moderate low & custom.
+Application Categories: Social Networking, games, P2P ...
+
+Allows to scan files hosted on 'risky' websites:
+
+_Umbrella resolves a 'risky' website to the ip of intelligent proxy, intelligent proxy must be enabled
+_The proxy passes the file to AMP & anti-virus engines for inspection (only files deemed to be clean are returned to the user)
+
+Using SSL decryption enhances file inspection(certain websites won't be proxied (and inspected) without it).
+
+Intelligent proxy:
+
+_Extends DNS-layer protection to the session level, allows for selective traffic interception(standard ports), gray/risked domains, proxied website resolves to the ip address of the intelligent proxy.Traffic to known good/bad sites is handled at the DNS level.
+
+_Addresses important concerns related to traditional proxies:
+Scalability, Cloud based service
+Off-network protection
+Speed and user experience, selective proxying
+
+SSL Decryption:
+Recommended for Intelligent Proxy deployments:
+
+_works for proxy-intercepted traffic only
+_allows to inspect HTTPS traffic, certain domains my be bypassed through selective decryption
+_Improves behavior of other features: Custom URL Blocking or File inspection
+
+SSL Decryption requires installation of the Cisco's Root certificate

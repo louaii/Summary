@@ -1,0 +1,8 @@
+Internet of things describes a system where items in the physical world, and sensors within or attached to these items, are connected to the internet via wireless or wired internet connections.
+
+IoT mobility is enabled by sensors that utilize various types of technology:
+_LAN/PAN technologies: RFID, NFC, WI-FI, Bluetooth
+_WAN technologies: GSM, GPRS, 3G, LTE
+
+IoT architectural framework:
+_IoT combines a number of emerging technologies into its generalized network architecture. The architecture consists primarily of four layers: Data Center Cloud, Core Networking and Services, Multi-Service Edge, Embedded Systems

@@ -33,4 +33,106 @@ _Scalability and Interoperability: Rapid elasticity
 
 _Workload migration
 
+How cutomers connect to the cloud:
+_Private WAn
+_Internet Exchange Point
+_Internet VPN
+
+Compute Virtualization, hyper-convergence and disaggregation:
+_Containers(Docker, linux containers[LXC])
+_Virtual Machines
+_Hyper-Convergence
+_Disaggregation
+
+Connectivity in virtualized networks: 
+_Ethernet VLAN's using 802.1q encapsulation
+_VRF
+_MPLS VPN's
+_Virtual Extensible Area Network(VXLAN)
+_NVGRE
+_OTV
+
+Virtual Switches:
+
+_Types:
+Standlone/Basic
+Distributed
+Vender-specific software
+
+Software-Defined Wide Area Network:
+it has four main components:
+_vSmart Controller
+_vEdge
+_vManage
+_vBond
+
+Software-Denied Access:
+
+_Cisco's SDA architecture is a holistic, intent-based networking solution designed for enterprises to operate, maintain, and secure their access layer networks.
+
+_Campus fabric is one of the core components of this design.
+
+_Cisco's campus fabric is a main component of the digital network architecture(DNA), a major Cisco networking initiative.
+
+Software-Denied data center:
+
+_SD-DC as a generic term describes a data center design model whereby all DC resources are virtualized and on-demand
+
+_SD-DC brings cloud-like provisioning of all DC resources (compute, network and storage) to support specific applications in automated fashion.
+
+Application centric infrastructure(ACI) is built on a leaf/spine network fabric which has a number of interesting characteristics:
+
+_Adding bandwidth is achieved by adding spines and linking the leaves to it.
+
+_Adding access density is achieved by adding leaves and linking them to the spines.
+
+_Border leaves are identified as the egress point from the fabric, not the spines
+
+_Nothing connects to the spines other than leaves, and spines are never connected laterally.
+
+Network Function Virtualization(NVF):
+
+_NVF is generally synonymous with creating virtual instances of things which were once physical.
+_Many vendors offer virtual routers (Cisco CSR1000v, Cisco IOS-XR9000v, etc), security appliances (Cisco ASAv, Cisco NGIPSv, etc), telephony and collaboration components (Cisco UCM, CUC, IM&P, UCCX,etc) and many other virtual products that were once physical appliances.
+_NFV provides abstraction at the first four layers of the OSI model, starting from the bottom layers: Physical ==> Data link ==> Network ==> Transport
+
+Virtualization Functions:
+
+_Application Function Virtualization(AFV): taking the functionality of an application, that would normally be implemented in a single device, and spreading it across multiple devices for more accurate results.
+
+Automation and Orchestration tools:
+
+_Automation refers to completing a single task, such as deploying virtual machine, shutting down an interface, or generating a report
+_Orchestration refers to assembling/coordinating a process/workflow, which is effectively an ordered set of tasks glued together with conditions.
+_Example of automation and orchestration:
+Deploy this virtual machine, and if it fails shutdown this interface and generate a report.
+_Programming or scripting languages used to automate: Java, C, Python, Perl, Ruby
+
+Software-Defined Networking(SDN): Move the intelligence of the network(control plane) from individual devices into a central device.
+
+_Controller: the device/application providing this control:Network monitoring, configuration, troubleshooting and resolution, software updates and policy application for data plane
+_There are four main SDN models:Distributed, augmented, hybrid, centralized
+_API(Application Program Interface)s used to facilitate communication
+_Concept of an API id critical to understanding functionality of SDN.
+_Defines how software components should interact with each other by using defined sets of protocols, routines and rules.
+_To summarize, an API is just a piece of code that helps other pieces of code talk to each other.
+_APIs as gRPC(google Remote Procedure Call), NetConf, RestConf, Rest API
+
+Interfaces:
+_Interface in context of SDN = communications channel between two devices.
+_One-or-more protocols used to facilitate this interface
+_SBI(Southbound interface): Communications to/from controller and infrastructure equipement.
+_NBI(Northbound interface): communications to/from controller and upstream SDN-aware Applications.
+_Interface Drivers & Agents:Agent represents the southern, bottom or infrastructure facing side, Driver represents the nothern, top or application facing side.
+
+Southbound Interface protocols:
+OpenFlow, NetConf, PCEP, BGP-LS, OVSDB(messages in these protocols carry API instructions to/from devices)
+
+Data Modeling Languages: YANG, YAML, JSON, XML
+Agent based: Puppet, chef
+Agentless based: Ansible
+Version control systems: git with github / git with aws / subVersion(SVN)
+
+  
+
 
