@@ -1,0 +1,4 @@
+Domain Name System(DNS)
+
+DNS is an application layer protocol created to allow to use names rather than addresses when referring to TCP/IP hosts or applications
+

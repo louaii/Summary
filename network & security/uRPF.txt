@@ -1,0 +1,14 @@
+Unicast Reverse Path Forwarding
+Dynamic L3 anti-spoofing filtering tool:
+_Commonly deployed at the network edge to replace/complement ACLs
+_Requires working CEF
+_Filters packets based on their source ip addresses and FIB, packets with sources for which there is no entry in the FIB are dropped, packetss with sources recursing to Null0 are dropped, Used along with remotely triggered black hole filtering(RTBH)
+
+Loose: A source-matching FIB entry is all what's needed to allow the packet
+
+Strict: Only allows packets received on the interface used to reach the source, does not work in environments where routing is assymetrical, packets are received on one interface, sent through another
+
+VRF: 
+Also known as uRPFv3, normally used by SPs along with BGP
+
+

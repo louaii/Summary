@@ -1,0 +1,13 @@
+SNM(Secure Network Management)
+
+Management Plane Security Oprions:
+
+_Device Access (Local-Console/Remote Telnet-SSH-HTTPS)using secure management protocols, password security
+_Secure file access
+_Disabling Unnecessary Services
+_Secure SNMP, NTP and Logging, Time synchronization, network management event correlation
+_Authentication, Authorization, Accounting(AAA)
+
+Secure management protocols should be always preferred
+Don't use Telnet, use SSH instead and HTTPS(ip http secure-server) over HTTP (ip http server)
+

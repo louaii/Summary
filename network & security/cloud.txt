@@ -1,0 +1,36 @@
+Services provided from external network as Servers and endpoints and provided on-demand and at scale in a multitenant environment.
+_"On-demand" means that resources can be provisioned immediately when needed, released when no longer required, and billed only when used
+_"At-scale" means the service provides the illusion of infinite resource availability in order to meet whatever demands are made of it.
+_"Multitenant environment" means that the resources are provided to many consumers from a single implementation, saving the provider significant costs.
+
+Cloud Deployment modes:
+_Private Cloud
+_Public Cloud
+_Hybrid Cloud(Virtual Private)
+
+Private Cloud: Could be argued to be the most secure model as all resources(Compute, Network, Storage) remain entirely under the administrative control of the single company, this doesn't address concerns of remote access for vpn, web and app access. This model is like on-premises DC except it must supply the three key ingredients identified by cisco to be considered a "private cloud - automation/orchestration, workload mobility, and compartmentalization"
+
+Public cloud: Offers their customers very high levels of security from Storage encryption to protect private data, to Encrypted VPN to protect data in motion, customer pays a subscription fee for a given amount of compute/storage, time, data transferred, or any other metric that meaningfully represents the customer's use of the cloud provider's shared infrastructure.It reduces CAPEX since purchasing new DC equipment is unnecessary and reduces OPEX since the cost of maintaining an on-premise DC, along with trained staff, could be more expensive than a public cloud solution
+
+Hybrid cloud:is a combination of private and public cloud, an organization may decide to use this to offload some of its DC resources into the public cloud, while retaining some things in-house, this allows a business to objectively assess whether the cloud is the "right business decision", it reduces OPEX to an extent, since the cost of maintaining an on-premise DC, along with trained staff can be reduced.
+
+Service layers of cloud computing:
+XaaS: X as a Service(Database, vm, ...)
+IaaS: Infrastructure as a Service
+Delivered Service ==> OS, virtualization, servers, storage, networking
+PaaS: Platform as a Service ==> runtime, middleware, OS, virtualization, servers, storage, networking
+SaaS: Software as a Service ==> Applications, Data, Runtime, Middleware, OS, Virtualization, Servers, Storage, Networking
+
+Advantages of cloud computing:
+
+_Performance and reliability: Acceptable and consistent end-user experience irrespective of location and device type, most reputable providers will have plenty of compute, network, and storage performance as well as many levels of reliability.
+
+_Automation
+
+_Security and Privacy: Consistent security enforcement of enterprise security policies across multiple cloud services.
+
+_Scalability and Interoperability: Rapid elasticity
+
+_Workload migration
+
+

@@ -72,5 +72,3 @@ ListenPort = 51820
 [Peer]
 PublicKey = <contents-of-client-publickey>
 AllowedIPs = 10.0.0.2/32
-
-

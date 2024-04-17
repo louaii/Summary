@@ -1,0 +1,48 @@
+--> Routing Protocol Authentication:
+
+_Used to prevent injection of false routes and some DoS/DDoS attacks:
+
+Clear-text authentication is not a security tool.
+Stronger authentication methods rely on HMAC functions
+A calculated hash is appended to the routing protocol packet
+
+_RIPv2:
+
+Supported authentication methods include clear-text and MD5
+Requires a Key Chain (key-chain). Apply with ip rip authentication[key-chain|mode]
+
+_Key chains allow for simplified key rotation:
+
+Updates will be only accepted during accept-lifetime period
+Updates will be sent within send-lifetime period
+
+_EIGRP:
+
+Supports MD5 and SHA-256(Named Mode)authentication
+Similar to RIP, a Key Chain is used to define a shared key
+Configure with [ip] authentication [key-chain|mode]
+
+_OSPF:
+
+Supports MD5 and SHA-256 authentication
+Configuration syntax depends on IOS version
+ip ospf authentication message-digest + ip ospf message-digest-key
+Key chain defines a crypto algorithm and key: cryptographic-algorithm
+Enable authentication with ip ospf authentication key-chain
+
+_BGP:
+
+The only available authentication method is MD5(neighbor ipv4 addr password)
+
+
+--> Route Filtering:
+_The ability to control routes advertised to a neighbor or routing process:
+
+Reduces the size of routing tables(save memory)
+Used as a security tool(traffic separation)
+Allows for traffic engineering
+
+_Hiding routing info is not always beneficial:
+Lack of redundancy
+
+

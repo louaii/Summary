@@ -1,0 +1,4 @@
+Management Plane Protection(MPP):
+Simplifies device access control on IOS: 
+
+_Restricts management traffic to the management port(s) only, other interfaces drop to the box management traffic
