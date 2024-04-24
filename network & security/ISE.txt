@@ -314,4 +314,100 @@ _Configure identity stores & AuthC policy
 _Create authorization elements/profiles
 
 
+802.1x Configuration(Wireless):
+
+.WLC:
+_Add interface and WLAN
+_Define RADIUS Server
+_Secure WLAN(authentication method, other advanced options)
+_Create ACL(s) and additional interface(s) if needed
+
+.RADIUS server:
+_Add network devices
+_Configure Identity Stores & AuthC policy
+_Create authorization elements/profiles
+_Configure AuthZ policy
+
+Guest Services Overview:
+
+_ISE provides a complete solution for guest users:
+.Limitations on accessing network
+.Deployed through Local Web authentication(LWA) or Central web authentication(CWA)
+
+_CWA vs LWA
+.Centralized configuration
+.CoA support
+.AuthZ with dACLs & VLANs
+
+_Guests can be authenticated or not:
+.Authenticated guests require special accounts
+.Created by sponsors or via self-registration
+
+_Default guest portals:
+.Sponsor(Grants access through sponsored accounts)
+.Self-registered(Allows access with accounts created by guests themselves 'self-register')
+.Hotspot(Provides non-authenticated guest access)
+
+_CWA Workflow(applied for wired and wireless deployments):
+.User connects to a 802.1x/MAB port or open SSID with MAC filtering on 
+.Successful MAB authentication triggers authorization (set continue for user not found to account for unknown endpoints)
+.A matching AuthZ rule (typically default) returns a profile with CWA ==> Redirection ACL & Guest Portal URl
+.Authenticated host gets an IP (DHCP) & its web traffic reaches ISE portal
+.Successful web authentication (guest user/endpoint) triggers CoA ==> Re-Auth (authenticated guests) or Termination (non-authenticated guests) ==> Results in a hit in a different AuthZ policy rule.
+
+.Authorization Policy: 
+
+_Authenticated guest sessions can be matched through a special condition(Network access: usecase equals guestflow)
+
+_If automatic guest device registration is on, guest endpoint groups can be used(GuestEndPoints, GuestType_Daily, GuestType_Weekly) and their must for Hotspot connections
+
+_Redirection ACl:
+.Swtich 'permit' and WLC 'deny' ACL entries define traffic to redirect
+.DHCP, DNS & IP traffic to ISE servers should be never redirected
+
+Distributed ISE:
+
+.ISE terminology:
+_Node ==> Single ISE instance
+_Persona ==> A role describing the main function of a Node(Service refers to individual features Persona provides)
+
+.Deployment Models:
+_Standalone
+_Distributed(Redundancy & improved performance)
+
+.Policy Administration Node(PAN):
+_Handles all system & policy related configuration
+_Synchronizes databases of all other nodes
+Redundancy:
+_Primary & Secandary PAN (active/standby) ==> standby unit(secandary)is not used - it gets all config from the active unit
+_Failover(manual/automatic) ==> health checks of the primary are made by an additional node
+
+.Policy Service Node(PSN):
+_Delivers all configured services
+Redundancy:
+_Multiple PSNs
+_Since all PSNs have the same database, NADs can pick any of them ==> sessions can be load-balanced with radius-server load-balance
+_Larger designs might be simplified by 'hiding' PSNs behind one IP ==> Load balancer / anycast
+
+.Node Groups:
+An optimization mechanism for PSN deployments:
+_Improved convergence of services based on URL redirection(A failure of a group member triggers CoA on another node) ==> allows to reestablish all disconnected sessions through another PSN
+_Reduced replication ==> Less significant attributes can be shared directly instead of via PAN
+
+Best PSN that are on LAN or behind load balancer
+
+.Monitoring and Troubleshooting(MnT):
+_Enables ISE to function as a log collector ==> stores logs from all other nodes(PAN/PSN)
+Redundancy:
+_Primary & Secondary MnT
+_Active/standby but logs from PAN and PSN are sent both to units
+_Failover happens automatically but databases are not synced on node recovery
+
+.pxGrid:
+_Shares context-sensitice data with other systems
+_NGFW, stealthwatch, non-Cisco ISE partner systems
+Redundancy:
+_Primary & Secondary pxGrid
+_Active/standby with automatic failover
+
 
