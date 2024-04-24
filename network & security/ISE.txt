@@ -250,4 +250,68 @@ _Closed Mode:
 
 _Using Network Device Group(NDGs) may help in any deployment, one for each mode and seperated policy sets(Low-impact, monitor, closed).
 
+802.1x Configuration:
+_Switch:
+.Enable AAA(aaa new-model)
+.Define RADIUS server (radius-server host or radius server name)
+.Enable 802.1x method list (aaa authentication/accounting dot1x default, aaa authorization network default)
+
+.Configure a switchport{
+	Enable access mode(switchport mode access)
+	Activate 802.1x(authentication port-control auto)
+	Make it act as Authenticator(dot1x pae authenticator)
+}
+
+.Port Settings(authentication port-control){
+	force-authorized (default)
+	force-authorized 
+	auto
+}
+
+.Port Modes (authentication host-mode){
+	controls a number & type of devices allowed to connect through a port
+	Single-host
+	multiple-host
+	multi-domain
+	multi-auth
+}
+
+.Port violations (authentication violation) {
+	Port-security behavior applies to single-host & multi-domain modes:
+	shutdown(default)
+	restrict
+	protect
+	replace
+}
+
+.MAC Move(authentication mac-move permit): allows to move already authenticated devices between the ports
+
+.Guest VLAN:
+_Assigned to clients without supplicant
+_Compatible with MAB(assigned if MAB fails)
+_Not supported on multi-auth ports
+_Enabled with authentication event no-response action authorize vlan
+
+.Auth-Fail(Restricted) VLAN
+_Assigned to clients that failed 802.1x authentication
+_Not compatible with MAB or WebAuth
+_For single-host ports only
+_Enabled with authentication event fail action authorize vlan
+
+.Critical VLAN:
+_Assigned to clients if AAA server is not reachable
+_Enabled with authentication event server dead action authorize vlan
+
+.Other
+_RADIUS VSAs(radius-server vsa send [authentication | accounting], radius-server attribute)
+_CoA
+_Device Tracking
+_Pre-authentication ACL
+
+.RADIUS server:
+_Add network devices
+_Configure identity stores & AuthC policy
+_Create authorization elements/profiles
+
+
 
