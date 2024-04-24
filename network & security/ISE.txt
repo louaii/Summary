@@ -1,0 +1,253 @@
+Identity Services Engine(ISE): Next-generation Identity Management system similar to ACS but much more powerful such as:
+_Context-based access
+_Network visibility
+_Centralied policy enforcement
+_Guest & endpoint management
+
+ISE available as a physical or virtual appliance as a:
+_ 1 RU 3600-series Secure Network Server (SNS)
+_VMware ESXi/Red Hat KVM/Microsoft Hyper-V software image
+
+ISE Main Features (2.4):
+_Centralized Management & AAA: (Flexible rule-based, Radius & Tacacs+ as AAA protocols, external databases)
+_Profiling
+_BYOD
+_Guest Services
+_Posture Assessment
+_TrustSec
+_Platform Exchange Grid (pxGrid) Integration
+_Internal Certificate Authority(CA)
+
+*Policies:
+ISE services are controlled through policies:
+_Authentication, Authorization, Posture, Profile, etc...
+_Policies consist of rules that are generally processed top-down*
+_Default Rule (if exists) acts as a catch-all
+
+Policies and/or Policy Rules are made of two types of Policy Elements:
+_Conditions: matching critirea
+_Results: Actions
+
+ISE offers a large set of predefined Policy Elements:
+_Policy ==> Policy Elements(Vary depending on the policy type)
+_The structure of most elements is well-defined through Dictionaries:
+Policy ==> Policy Elements ==> Dictionaries
+Catalogs of objects ISE understands, their attributes & allowed values (System vs User)
+Some elements come from external sources: Posture Updates
+Useful Policy Conditions can be stored in the Library (Condition studio)
+Policy ==> Policy Elements ==> Conditions ==> Library Conditions
+
+Policy Sets:
+Logical grouping of Authentication & Authorization policies:
+_Default in ISE 2.3+
+_Simplify policy structure: seperate sets for wired/wireless/guest/etc. access
+_Processing:
+Policy-set-level rule are evaluated first (top-down) until a match ==> the default set is checked last
+For the set to be processed, Allowed Protocols must be met ==> Rules within the processed set follow top-down first-match evaluation
+_Available for network access & device administration
+
+Authentication Policy:
+_Successful Authentication (PASS) leads to Authorization
+_Failure Scenarios(FAIL):(Authentication failed, User not found, Process failed)
+_Failover options: Reject/Drop/Continue
+
+Authorization (AuthZ)Policy:
+_Determines access to the network/device:
+Authorization Policy Types:(Standard/Exception)
+_Exception rules take precedence over Standard rules:
+Top-down, first-match
+The 'Multiple Matched' options is deprecated since 2.3
+_A matching rule returns an Authorization Profile: set of permissions to be enforced on the session
+
+Authorization Policy:
+_Policy Enforcement Methods:
+Downloadable ACL(dACL)
+VLAN Segmentation
+Web authentication: Central/Loan
+Security Group Tag (SGT)
+Any other RADIUS AV Pairs(including VSAs): MACsec Policy, Reauthentication, Smartport Macros & more
+
+*Integrating Active Directory
+_Prerequisites:
+ISE Super/System User account
+Time synchronization(NTP)
+Port openings(DNS, MS-RPC, Kerberos, LDAP&LDAP[GC], NTP, IPC)
+
+*AAA
+Authentication:Verifying and providing Identity(password, token, biometric)
+Authorization:Privileges, access level/ scope, etc...
+Accounting is a process of tracking and recording activities(logs and timestamps)
+
+AAA Security:
+_AAA could be deployed directly on Network Access Devices(NADs)
+Not scalable, limited AAA functionality
+Centralized AAA is only possible with RADIUS or TACACS+
+A client device (NAD) does AAA with a RADIUS/TACACS+ server
+
+_TACACS and RADIUS
+Primary Purpose: network access(R) <-> device administration(T)
+Transport: UDP 1812/1813 or 1645/1646(R) <-> TCP 49 (T)
+Security: user password (R) <-> entire payload (T) encryption
+Protocol Design: authC + authZ(R) <-> seperate AAA functions (T)
+Standardization: industry standard (R) <-> Cisco proprietary (T)
+EAP support: yes(R) <-> no (T)
+
+AAA security Protocols
+RADIUS & TACACS+ exchange the client-server info using Attributes:
+_Each attribute is designed to carry a certain type of info (Value is the data)
+_TACACS+ attributes & values (AVs) are both strings defined by cisco
+
+RADIUS Attributes:
+_Supports 255 possible main numbered attributes (most IETF pre-defined)
+_Vendor Specific Attribute (VSA) allows vendors to carry proprietary data{
+	_VSA is IETF attribute 26 & consists of a Vendor Type, ID & Length
+	_Cisco AV-Pair(Vendor ID 9, Type 1) is a well-known Cisco's VSA originally created to extend basic RADIUS functionality with some TACACS+ capabilities
+protocol: attribute=value
+shell:priv-level=15
+}
+
+Authentication(AuthC):
+
+_A process of verifying an identity:
+Commonly authenticated services:
+IEEE 802.1x(dotx)
+Enable password (enable)
+Login (login) to activate a custom list use login authentication under a line
+
+_Fallback Authentication:
+More than one method can be defined (backup): 
+aaa authentication login default group tacacs+ local
+
+Authorization (AuthZ):
+A process of enforcing a policy:
+_Commonly authorized services(network/exec/shell/commands)
+_Console access is not authorized unless aaa authorization console
+
+EXEC Authorization:
+Controls access to the CLI Shell: YES/NO
+Shell attributes(Privilege Level, CLI view, Autocommand)
+
+*Profiling: ISE uses Profiling for endpoint detection & classification and relies on Probes & Policies to collect endpoint attributes and profiling policies to analyze attributes to determine the endpoint's profile
+
+Process:
+Analysis of the recieved network traffic(RADIUS, SNMP, DHCP) and extraction of profiling data(Attributes/ Addresses/ MAC, IP), updates database and evaluates the attributes against profiling policies
+
+Profiling Policies:
+Similar to IPS signatures and consist of Rules, if condition then actions(Increase certainty factor[CF], Network Scan, Exception)
+Policy selection based on the highest total certainty factor and rules increase with CF(for the child policy to be selected its parent must match as well)
+
+Policy match and profile assignment, if none policy was matched, the endpoint gets profiled as 'UNKNOWN', Identity group assignment for mac addresses management and blacklisting
+
+CoA(change of authorization):
+Standards-based(RFC 3576) RADIUS improvement: allows a radius server to send unsolicited messages to its clients (NDAs), critical for profiling, posture, etc...(new endpoint attributes may result in re-profiling & different AuthZ rule)
+
+Configuration:
+_Wired: client under aaa radius dynamic-author
+_Wireless: support for CoA under Security ==> RADIUS ==> Authentication
+
+CoA & Profiling:
+_ISE profiler issues CoA(if enabled) under certain events: endpoint profiled for the first time, endpoint deleted from the database.
+
+CoA Profiling Settings:
+_Global ==> Enable/Disable CoA for profiling(off by default)
+_Per-profile ==> Overrides the global CoA action in a given policy(requires CoA to the globally enabled)
+
+CoA Actions:
+_Port Bounce simulates a link change(shutdown, no shutdown)
+_Reauthenticate when a new authentication with the same session IDalso used instead of 'Port Bounce' when 2+ MACs were detected on a port
+
+Profiling Probes:
+_Software collecting & analyzing network data for profiling also several probes exist to collect different attributes(RADIUS, SNMP, HTTP, etc...). Most Probes are passive and traffic must be delivered to ISE
+_Probes are useful if the collected data can be bound to an endpoint as full mac-ip address bindings are always desirable(http, dns and netflow)
+
+RADIUS Probe:
+_Originally used to gather Mac & ip address information(calling-station-id, MAC)
+_Framed-IP-Address(Accounting packets) ==> IP
+_RADIUS Probe is commonly deployed along with Device Sensor
+
+Device Sensor:
+_Enables a switch/WLC to include additional profiling attributes
+_inside of RADIUS accounting packets(cdp, lldp, dhcp) recommended for scaling the development
+_configuration(switch):turn on RADIUS accounting, accounting VSA, CDP/LLDP & DHCP snooping, enable with device-sensor accounting & device-sensor notify all-changes, verify with show device-sensor cache
+
+SNMP Probe:Recommended if Device Sensor is not supported
+_TRAP: Sent by NAD to ISE on a link up/down event and capable of collecting MAC address if MAC Notifications were enabled
+_QUERY:Sent by ISE to NAD to fetch CDP/LLDP/ARP data, in response to SNMP TRAp or RADIUS accounting packet, periodically, during network scan(NMAP)
+
+DHCP Probe:Useful to capture IP-MAC address bindings & OS information
+_DHCP(no SPAN):
+Requires DHCP packets to be sent to ISE and accomplished using a relay agent[ip helper-address]
+_DHCP(SPAN): might be hard to deploy and cause replication issues
+
+HTTP probe:Main source of the OS information HTTP request (User agent)
+_HTTP(no SPAN): Requires HTTP packet to be sent to ISE portals and traffic will be profiled even if the Probe is disabled
+_HTTP SPAN: Commonly deployed in the Internet Edge and be too resource-intensive
+
+_DNS: Acquires FQDN based on a reverse DNS lookup
+
+_Active Directory: Extracts AD-related information(windows systems)
+
+_Netflow:Profiles endpoints based on flow characteristics rather than attributes, netflow data may quickly oversubscribe a PSN, Only use flexible netflow v9 along with a filtering solution
+
+_NMAP:Active mechanism communicating directly with an endpoint, TCP/UDP ports scans including snmp walk, activation is either manual or dynamic. Manual(ip host, subnet), Dynamic(Profiling policy 'Take network scan')
+
+802.1x:
+L2 authentication standard (IEEE) for wired & wireless networks used for identity-based networking and implemented through EAP (EAP over LAN 'EAPOL') and framework for exchanging arbitrary authentication data
+
+_802.1x components
+supplicant and client software
+authenticator and policy enforcement(switch/access point/wlc)
+authentication server (RADIUS)
+
+_802.1x authentication
+Authenticator drops non-EAPOL frames before/during AuthC, cisco switches add exceptions for STP, CDP & LLDP
+Authentication process starts on reception of a EAP request identity frame and sent on link up/wireless connection or upon reception of EAP start, Authenticator acts as a proxy between supplicant & RADIUS server, EAP data is extracted & encapsulated using two RADIUS EAP-specific attributes.
+Authentication method is negotiated followed by authentication
+Authentication results determine network access rights, success allow access + return optional AuthZ data (dACL/VLAN), Failure(Access-reject-EAP failure)
+==> wireless no access
+==> wired no access(reauthenticate after dot1x timeout quiet-period, next authentication method, auth-fail vlan)
+
+MAB(MAC authentication bypass):
+_An alternative authentication method for 802.1x environments needed for non-supplicant devices(ip cameras, printers, etc)
+_MAB details if enabled (mab), triggers after 802.1x times out (dot1x timeout tx-period) in wireless for WLANs configured with MAC filtering, Processed as 'Host Lookup', No password verification, authC based on presence of MAC address, Identified via RADIUS service-type 10 (Call-check) & NAS-Port-Type (15eth) (19 wireless)
+
+Flexible Authentication:
+Cisco's 802.1x enhancement for wired deployments:
+single configuration that fits all 802.1x authentication scenarios, authentication method list (ordered), authentication order [dot1x][mab][webauth]
+==>failed authentication fallback
+authentication event fail action next-method
+==>Authentication method preference
+authentication priority [dot1x][mab][webauth]
+
+Deploying 802.1x:
+.Cisco allows to deploy 802.1x in modes(phases) such as monitoring mode and Low Impact and/or closed
+.Wireless 802.1x is 'binary' and cannot be phased(no monitor or low impact modes)
+_Monitor Mode: Enables 802.1x authentication but without affecting users/endpoints, provides full visibility to the devices connecting to the network, allows to address any authentication issues prior to moving the next deployment
+_Monitor Mode components: Flexible authentication & MAB, Multi-Auth Port Mode, RADIUS accounting(802.1x), Open Authentication, profiling
+.Low impact mode:
+_Provides partial network access prior to authentication, useful for preboot execution environments(PXEs), diskless workstations, etc...
+_Low-impact mode builds on top of the monitor mode:
+Open authentication is still critical, Pre-authentication ACL, DHCP and DNS, Microsoft ports for machine authentication (kerberos, LDAP, etc...)
+
+_closed Mode:
+Works like original 802.1x: No data traffic is allowed before successful authentication, Perfect for VLAN-based segmentation(No ip address is assigned prior to authentication)
+Changes from the monitor mode: Open authentication must be disabled, VLANs must exist prior to assignment(Including WLC subinterfaces)
+
+Main Configuration consideration(ISE):
+
+_For Monitor mode: 
+.Successful authentication for unknown endpoints('Continue' action)
+.User/device specific authorization rules
+.No authorization profiles (dACL, VLAN)
+
+_Low-Impact Mode:
+.Authorization rule tuning
+.Authorization profiles
+
+_Closed Mode:
+.Authentication rules for wireless MAB & 802.1x
+.Authorization rule tuning(Authorization profiles)
+
+_Using Network Device Group(NDGs) may help in any deployment, one for each mode and seperated policy sets(Low-impact, monitor, closed).
+
+
