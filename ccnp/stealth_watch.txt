@@ -1,0 +1,17 @@
+Network telemetry: An automated communications process by which measurements and other data are collected at remote or inaccessible points and transmitted to recieving equipment for monitoring
+
+Cisco stealthwatch: is a collector and aggregator of network telemetry for the purposes of security analysis and monitoring
+
+Stealthwatch Management Console(SMC):
+_A physical or virtual appliance that aggregates, organizes, and presents analysis from Flow Collectors, Identity services engine (ISE), and other sources
+_User interface to stealthwatch
+
+Flow Collector(FC):
+_A physical or virtual appliance that aggregates and normalizes NetFlow and application data collected from exporters such as routers, switches and firewalls
+_High performance netflow / sflow / ipfix collector
+
+Flow Rate License:
+_Collection, management, and analysis of telemetry by stealthwatch enterprise
+_The flow rate license is simply determined by the number/type of switches, routers, firewalls and probes present on the network
+
+
