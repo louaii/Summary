@@ -19,4 +19,6 @@ Puppet: to synchronize over the network and apply changes in an approval way
 
 Foreman: to deploy changes over the network
 
+dirtycow: linux privilege escalation
+
 
