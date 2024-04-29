@@ -1,0 +1,411 @@
+version() {
+    echo "linux-exploit-suggester "$VERSION", mzet, http://z-labs.eu, October 2016"
+}
+
+usage() {
+    echo "Usage: linux-exploit-suggester.sh [OPTIONS]"
+    echo
+    echo " -V | --version               - print version of this script"
+    echo " -h | --help                  - print this help"
+    echo " -k | --kernel <version>      - provide kernel version"
+    echo " -u | --uname <string>        - provide 'uname -a' string"
+    echo " -p | --pkglist-file <file>   - provide file with 'dpkg -l' or 'rpm -qa' command output"
+    echo " -s | --fetch-sources         - automatically downloads source for matched exploit"
+    echo " -b | --fetch-binaries        - automatically downloads binary for matched exploit if available"
+    echo " -f | --full                  - show full info about matched exploit"
+    echo " -g | --grepable              - show grep friendly info about matched exploit"
+    echo " --kernelspace-only           - show only kernel vulnerabilities"
+    echo " --userspace-only             - show only userspace vulnerabilities"
+    echo " -d | --show-dos              - show also DoSes in results"
+}
+
+exitWithErrMsg() {
+    echo "$1" 1>&2
+    exit 1
+}
+
+# extracts all information from output of 'uname -a' command
+parseUname() {
+    local uname=$1
+
+    KERNEL=$(echo "$uname" | awk '{print $3}' | cut -d '-' -f 1)
+    ARCH=$(echo "$uname" | awk '{print $(NF-1)}')
+
+    OS=""
+    echo "$uname" | grep -q -i 'deb' && OS="debian"
+    echo "$uname" | grep -q -i 'ubuntu' && OS="ubuntu"
+    echo "$uname" | grep -q -i '\.el' && OS="redhat"
+
+    # 'uname -a' output doesn't contain distribution number (at least not in case of all distros)
+    #DISTRO=""
+}
+
+getPkgList() {
+    local distro=$1
+    local pkglist_file=$2
+    
+    # take package listing from provided file & detect if it's 'rpm -qa' listing or 'dpkg -l' listing or not recognized listing
+    if [ "$opt_pkglist_file" = "true" ]; then
+
+        # ubuntu/debian package listing file
+        if [ $(cat "$pkglist_file" | head -1 | grep 'Desired=Unknown/Install/Remove/Purge/Hold') ]; then 
+            PKG_LIST=$(cat "$pkglist_file" | awk '{print $2"-"$3}' | sed 's/:amd64//g')
+        # redhat package listing file
+        elif [ $(cat "$pkglist_file" | head -1 | grep -E '\.el[1-9]+\.') ]; then
+            PKG_LIST=$(cat "$pkglist_file")
+        # file not recognized - skipping
+        else
+            PKG_LIST=""
+        fi
+
+    elif [ "$distro" = "debian" -o "$distro" = "ubuntu" ]; then
+        PKG_LIST=$(dpkg -l | awk '{print $2"-"$3}' | sed 's/:amd64//g')
+    elif [ "$distro" = "redhat" ]; then
+        PKG_LIST=$(rpm -qa)
+    else
+        # packages listing not available
+        PKG_LIST=""
+    fi
+}
+
+# from: https://stackoverflow.com/questions/4023830/how-compare-two-strings-in-dot-separated-version-format-in-bash
+verComparision() {
+
+    if [[ $1 == $2 ]]
+    then
+        return 0
+    fi
+
+    local IFS=.
+    local i ver1=($1) ver2=($2)
+
+    # fill empty fields in ver1 with zeros
+    for ((i=${#ver1[@]}; i<${#ver2[@]}; i++))
+    do
+        ver1[i]=0
+    done
+
+    for ((i=0; i<${#ver1[@]}; i++))
+    do
+        if [[ -z ${ver2[i]} ]]
+        then
+            # fill empty fields in ver2 with zeros
+            ver2[i]=0
+        fi
+        if ((10#${ver1[i]} > 10#${ver2[i]}))
+        then
+            return 1
+        fi
+        if ((10#${ver1[i]} < 10#${ver2[i]}))
+        then
+            return 2
+        fi
+    done
+
+    return 0
+}
+
+doVersionComparision() {
+    local reqVersion="$1"
+    local reqRelation="$2"
+    local currentVersion="$3"
+
+    verComparision $currentVersion $reqVersion
+    case $? in
+        0) currentRelation='=';;
+        1) currentRelation='>';;
+        2) currentRelation='<';;
+    esac
+
+    if [ "$reqRelation" == "=" ]; then
+        [ $currentRelation == "=" ] && return 0
+    elif [ "$reqRelation" == ">" ]; then
+        [ $currentRelation == ">" ] && return 0
+    elif [ "$reqRelation" == "<" ]; then
+        [ $currentRelation == "<" ] && return 0
+    elif [ "$reqRelation" == ">=" ]; then
+        [ $currentRelation == "=" ] && return 0
+        [ $currentRelation == ">" ] && return 0
+    elif [ "$reqRelation" == "<=" ]; then
+        [ $currentRelation == "=" ] && return 0
+        [ $currentRelation == "<" ] && return 0
+    fi
+}
+
+checkRequirement() {
+    #echo "Checking requirement: $1"
+    local IN="$1"
+    local pkgName="${2:4}"
+
+    if [[ "$IN" =~ ^pkg=.*$ ]]; then
+
+        # always true for Linux OS
+        [ ${pkgName} == "linux-kernel" ] && return 0
+
+        # verify if package is present 
+        pkg=$(echo "$PKG_LIST" | grep -E -i "^$pkgName-[0-9]+" | head -1)
+        if [ -n "$pkg" ]; then
+            return 0
+        fi
+
+    elif [[ "$IN" =~ ^ver.*$ ]]; then
+        version="${IN//[^0-9.]/}"
+        rest="${IN#ver}"
+        operator=${rest%$version}
+
+        if [ $pkgName == "linux-kernel" ]; then
+            doVersionComparision $version $operator $KERNEL && return 0
+        else
+            # extract package version and check if requiremnt is true
+            pkg=$(echo "$PKG_LIST" | grep -E -i "^$pkgName-[0-9]+" | head -1)
+
+            # TODO: consider adding --skip-pkg-version option then version won't be checked for userspace pkgs
+            #[ -n "$pkg" ] && return 0
+
+            # versioning:
+            #echo "pkg: $pkg"
+            pkgVersion=$(echo "$pkg" | grep -E -i -o -e '-[\.0-9\+:p]+[-\+]' | cut -d':' -f2 | sed 's/[\+p-]//g')
+            #echo "version: $pkgVersion"
+            #echo "operator: $operator"
+            #echo "required version: $version"
+            #echo
+            doVersionComparision $version $operator $pkgVersion && return 0
+        fi
+    elif [[ "$IN" =~ ^x86_64$ ]] && [ "$ARCH" == "x86_64" -o "$ARCH" == "" ]; then
+        return 0
+    elif [[ "$IN" =~ ^x86$ ]] && [ "$ARCH" == "i386" -o "$ARCH" == "i686" -o "$ARCH" == "" ]; then
+        return 0
+    fi
+
+    return 1
+}
+
+# parse command line parameters
+ARGS=$(getopt --options $SHORTOPTS  --longoptions $LONGOPTS -- "$@")
+[ $? != 0 ] && exitWithErrMsg "Aborting."
+
+eval set -- "$ARGS"
+
+while true; do
+    case "$1" in
+        -u|--uname)
+            shift
+            UNAME_A="$1"
+            opt_uname_string=true
+            ;;
+        -V|--version)
+            version
+            exit 0
+            ;;
+        -h|--help)
+            usage 
+            exit 0
+            ;;
+        -f|--full)
+            opt_full=true
+            ;;
+        -g|--grepable)
+            opt_summary=true
+            ;;
+        -b|--fetch-binaries)
+            opt_fetch_bins=true
+            ;;
+        -s|--fetch-sources)
+            opt_fetch_srcs=true
+            ;;
+        -k|--kernel)
+            shift
+            KERNEL="$1"
+            opt_kernel_version=true
+            ;;
+        -d|--show-dos)
+            opt_show_dos=true
+            ;;
+        -p|--pkglist-file)
+            shift
+            PKGLIST_FILE="$1"
+            opt_pkglist_file=true
+            ;;
+        --kernelspace-only)
+            opt_kernel_only=true
+            ;;
+        --userspace-only)
+            opt_userspace_only=true
+            ;;
+        *)
+            shift
+            if [ "$#" != "0" ]; then
+                exitWithErrMsg "Unknown option '$1'. Aborting."
+            fi
+            break
+            ;;
+    esac
+    shift
+done
+
+# exit if both --kernel and --uname are set
+[ "$opt_kernel_version" = "true" ] && [ $opt_uname_string = "true" ] && exitWithErrMsg "Switches -u|--uname and -k|--kernel are mutua
+lly exclusive. Aborting."
+
+# exit if both --full and --grepable are set
+[ "$opt_full" = "true" ] && [ $opt_summary = "true" ] && exitWithErrMsg "Switches -f|--full and -g|--grepable are mutually exclusive.
+ Aborting."
+
+# extract kernel version and other OS info like distro name, distro version, etc. 3 possibilities here:
+# case 1: --kernel set
+if [ "$opt_kernel_version" == "true" ]; then
+    # TODO: add kernel version number validation
+    [ -z "$KERNEL" ] && exitWithErrMsg "Unrecognized kernel version given. Aborting."
+    ARCH=""
+    OS=""
+
+    # do not consider current OS
+    getPkgList "" "$PKGLIST_FILE"
+
+# case 2: --uname set
+elif [ "$opt_uname_string" == "true" ]; then
+    [ -z "$UNAME_A" ] && exitWithErrMsg "uname string empty. Aborting."
+    parseUname "$UNAME_A"
+
+    # do not consider current OS
+    getPkgList "" "$PKGLIST_FILE"
+
+# case 3: neither --uname nor --kernel set: take input from current OS
+else
+    UNAME_A=$(uname -a)
+    [ -z "$UNAME_A" ] && exitWithErrMsg "uname string empty. Aborting."
+    parseUname "$UNAME_A"
+
+    # extract package listing from current OS or from specified file (if --pkglist-file used)
+    getPkgList "$OS" "$PKGLIST_FILE"
+fi
+
+echo
+echo "Kernel version: $KERNEL"
+echo "Architecture: $ARCH"
+echo "Distribution: $OS"
+
+if [ -n "$PKGLIST_FILE" -a -n "$PKG_LIST" ]; then
+    pkgListFile="$PKGLIST_FILE"
+elif [ -n "$PKGLIST_FILE" ]; then
+    pkgListFile="unrecognized file provided"
+elif [ -n "$PKG_LIST" ]; then
+    pkgListFile="from current OS"
+fi
+
+echo "Package list: $pkgListFile"
+
+echo
+echo "Possible Exploits:"
+echo
+
+# handle --kernelspacy-only & --userspace-only filter options
+if [ "$opt_kernel_only" = "true" -o -z "$PKG_LIST" ]; then
+    unset EXPLOITS_USERSPACE
+    declare -A EXPLOITS_USERSPACE
+fi
+
+if [ "$opt_userspace_only" = "true" ]; then
+    unset EXPLOITS
+    declare -A EXPLOITS
+fi
+
+# start analysis
+for EXP in "${EXPLOITS[@]}" "${EXPLOITS_USERSPACE[@]}"; do
+
+    # create array from current exploit here doc and fetch needed lines
+    i=0
+    # ('-r' is used to not interpret backslash used for bash colors)
+    while read -r line
+    do
+        arr[i]="$line"
+        i=$((i + 1))
+    done <<< "$EXP"
+
+    REQS="${arr[1]}" && REQS="${REQS:6}"
+    NAME="${arr[0]}" && NAME="${NAME:6}"
+
+    # split line with requirements & loop thru all reqs one by one & check whether it is met
+    IFS=',' read -r -a array <<< "$REQS"
+    REQS_NUM=${#array[@]}
+    PASSED_REQ=0
+    for REQ in "${array[@]}"; do
+        if (checkRequirement "$REQ" "${array[0]}"); then
+            PASSED_REQ=$(($PASSED_REQ + 1))
+        else
+            break
+        fi
+    done
+
+    # execute for exploits with all requirements met
+    if [ $PASSED_REQ -eq $REQS_NUM ]; then
+
+        EXPLOIT_DB=$(echo "$EXP" | grep "exploit-db: " | awk '{print $2}')
+        analysis_url=$(echo "$EXP" | grep "analysis-url: " | awk '{print $2}')
+        comments=$(echo "$EXP" | grep "Comments: " | cut -d' ' -f 2-)
+        tags=$(echo "$EXP" | grep "Tags: " | awk '{print $2}')
+        reqs=$(echo "$EXP" | grep "Reqs: " | cut -d' ' -f 2)
+        
+        # exploit name without CVE number and without commonly used special chars
+        name=$(echo "$NAME" | cut -d' ' -f 2- | tr -d ' ()/')
+
+        src_url=$(echo "$EXP" | grep "src-url: " | awk '{print $2}')
+        [ -z "$src_url" ] && [ -n "$EXPLOIT_DB" ] && src_url="https://www.exploit-db.com/download/$EXPLOIT_DB"
+        [ -z "$src_url" ] && exitWithErrMsg "Both 'src-url' and 'exploit-db' entries are empty for '$NAME' exploit - fix that. Aborti
+ng."
+
+        if [ -n "$analysis_url" ]; then
+            details="$analysis_url"
+        elif $(echo "$src_url" | grep -q 'www.exploit-db.com'); then
+            details="https://www.exploit-db.com/exploits/$EXPLOIT_DB/"
+        elif [[ "$src_url" =~ ^.*tgz|tar.gz|zip$ && -n "$EXPLOIT_DB" ]]; then
+            details="https://www.exploit-db.com/exploits/$EXPLOIT_DB/"
+        else
+            details="$src_url"
+        fi
+
+        # skip DoS by default
+        dos=$(echo "$EXP" | grep -o -i "(dos")
+        [ "$opt_show_dos" == "false" ] && [ -n "$dos" ] && continue 
+
+        # handles --fetch-binaries option
+        if [ $opt_fetch_bins = "true" ]; then
+            for i in $(echo "$EXP" | grep "bin-url: " | awk '{print $2}'); do
+                [ -f "${name}_$(basename $i)" ] && rm -f "${name}_$(basename $i)"
+                wget -q -k "$i" -O "${name}_$(basename $i)"
+            done
+        fi
+
+        # handles --fetch-sources option
+        if [ $opt_fetch_srcs = "true" ]; then
+            [ -f "${name}_$(basename $src_url)" ] && rm -f "${name}_$(basename $src_url)"
+            wget -q -k "$src_url" -O "${name}_$(basename $src_url)" &
+        fi
+
+        # display result (grepable)
+        if [ "$opt_summary" = "true" ]; then
+            [ -z "$tags" ] && tags="-"
+            echo -e "$NAME || $reqs || $tags || $src_url"
+            continue
+        fi
+
+        # display result (standard)
+        echo -e "[+] $NAME"
+        echo -e "\n   Details: $details"
+        [ -n "$tags" ] && echo -e "   Tags: $tags"
+        echo -e "   Download URL: $src_url"
+        [ -n "$comments" ] && echo -e "   Comments: $comments"
+
+        # handles --full filter option
+        if [ "$opt_full" = "true" ]; then
+            [ -n "$reqs" ] && echo -e "   Requirements: $reqs"
+
+            [ -n "$EXPLOIT_DB" ] && echo -e "   exploit-db: $EXPLOIT_DB"
+
+            author=$(echo "$EXP" | grep "author: " | cut -d' ' -f 2-)
+            [ -n "$author" ] && echo -e "   author: $author"
+        fi
+
+        echo
+    fi
+done
