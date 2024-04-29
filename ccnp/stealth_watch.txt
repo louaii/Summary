@@ -14,4 +14,49 @@ Flow Rate License:
 _Collection, management, and analysis of telemetry by stealthwatch enterprise
 _The flow rate license is simply determined by the number/type of switches, routers, firewalls and probes present on the network
 
+Host Groups: Contains only IP address
+_IP formats permitted:
+.Single IP address such as 10.1.2.3
+.Hyphenated range such as 192.168.1.1-57
+.CIDR notation such as 10.245.0.0/16
+.Combined CIDR and Hyphenated such as 10.100-201.6.0/24
+
+ _______________________________________________________________________
+|									|
+|DNS server			|10.10.30.15, 10.10.30.16		|
+|Vulnerability Scanner		|10.203.0.207				|
+|Mail Server			|10.10.30.23				|
+|Time Server			|10.10.30.10				|
+|Public IP Address Space	|209.182.184.0/24			|
+|Atlanta			|10.201.0.0				|
+|PCI Devices			|10.201.3.0				|
+|_______________________________________________________________________| 
+
+User Management:
+
+_Stealthwatch default users:
+.admin
+.sysadmin
+.root
+
+_Role based access control:
+.Data Roles
+.Functions Roles
+
+ _______________________________________________________________________
+|Username		|Data			|Functions		|
+|_______________________________________________________________________|
+|Soc			|Read access to all	|Access to all non-	|
+|			|data.			|config functions	|
+|_______________________________________________________________________|
+|helpdesk		|Read access only to	|Access to traffic 	|
+|			|Atlanta IP addresses	|graphs, top 		|
+|			|			|conversations, host	|
+|			|			|snapshot, and flow	|
+|			|			|table			|
+|_______________________________________________________________________|
+|swadmin		|Full access		|Full admin access to	|
+|			|			|all product configs	|
+|_______________________________________________________________________|
+
 
