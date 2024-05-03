@@ -156,3 +156,72 @@ while True: #infinite loop
 	except:
 		print "fuzzing crashed at %s bytes" %(str(len(buffer))) #if crashed shows the number of bytes that crashed the targeted device at
 		sys.exit() #end the code
+
+sys works as subprocess but for pipes and uses subprocess.run() to execute external commands as if they were executed directly from the command line.
+argparse used for parsing command-line arguments and options.
+Scapy is a library used for network packet generation and sniffing
+ARP stands for arp request
+Ether stands for ethernet to construct, manipulate and analyze ethernet frames
+src for source mac address
+dst for destination mac address
+srp function used for sending and receiving frames at the ethernet and it's socket dependant
+
+Script:
+from scapy.all import ARP, Ether, srp
+import socket
+
+def get_local_ip_address():
+	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+	try:
+		sock.connect(('8.8.8.8', 80))
+		local_ip_address = sock.getsocketname()[0]
+	except:
+		local_ip_address = sock.gethostname(socket.gethostname())
+	finally:
+		sock.close()
+	return local_ip_address
+
+#geocoder to get location
+
+from pygeocoder import Geocoder
+
+if __name__ == '__main__':
+	address = '10 Doming ST, London SW1A 2AB, UK'
+	print(Geocoder.geocoder(address)[0].coordinates)
+
+
+#developing Nmap scanner
+#!/usr/bin/python3
+#-sS for 3 way handshake secretly
+#-sU for UDP
+#-sV for service fingerprint
+#-sC for default scripts
+#-A for aggresive
+#-O for operating system
+import nmap
+Scanner = nmap.PortScanner()
+ip_addr = input("Enter your ip address")
+type(ip_addr)
+resp = input("Scan type\n1-SYNACK\n2-UDP\n3-Comprehensive")
+type(resp)
+if resp == '1':
+	Scanner.scan(ip_addr, '1-1024', '-v -sS')
+	print(Scanner.scaninfo())
+	print("Ip status", Scanner[ip_addr].state())
+	print(Scanner[ip_addr].all_protocols())
+	print("Open ports:", Scanner[ip_addr]['tcp'].Keys())
+
+elif resp == '2':
+	Scanner.scan(ip_addr, '1-1024', '-v -sU)
+	print(Scanner.scaninfo())
+	print("Ip status", Scanner[ip_addr].state())
+	print("Open ports: ", Scanner[ip_addr]['udp'].Keys())
+
+elif resp == '3':
+	Scanner.scan(ip_addr, '1-1024', ' -v -sS -sV -sC -A -O)
+	print(Scanner.scaninfo())
+	print("Ip status", Scanner[ip_addr].state())
+	print(Scanner[ip_addr].all_protocols())
+	print("Open ports: ", Scanner[ip_addr]['tcp'].Keys())
+else
+	print("Invalid")
