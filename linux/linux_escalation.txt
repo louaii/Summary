@@ -4,4 +4,5 @@ https://blog.g0tmilk.com/2011/08/basic-linux-privilege-escalation/
 https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology and Resources/Linux - Privilege Escalation.md
 https://book.hacktricks.xyz/linux-unix/linux-privilege-escalation-checklist
 https://sushant747.gitbooks.io/total-oscp-guide/privilege_escalation_-_linux.html
-
+https://youtu.be/ZTnwg3qCdVM?si=w_tTZ-t7GN2_U4CA
+https://tryhackme.com/r/room/linuxprivescarena

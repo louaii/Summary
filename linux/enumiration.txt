@@ -1,0 +1,20 @@
+hostname: to get machine's distribution(kali)
+uname -a: to get the machine's kernel version(Linux kali 6.6.15-amd64 #1 SMP PREEMPT_DYNAMIC Kali 6.6.15-2kali1 (2024-04-09) x86_64 GNU/Linux)
+cat /proc/version: similar to uname -a ==> get kernel's version (Linux version 6.6.15-amd64 (devel@kali.org) (gcc-13 (Debian 13.2.0-13) 13.2.0, GNU ld (GNU Binutils for Debian) 2.42) #1 SMP PREEMPT_DYNAMIC Kali 6.6.15-2kali1 (2024-04-09))
+cat /etc/issue: detailed version(Kali GNU/Linux Rolling \n \l)
+lscpu: list cpu details to get to know the architecture and the bytes as 32 or 64 
+ps aux: to check every process on the system
+sudo -l: if  no  command  is  specified,  list the privileges for the invoking user(User louay may run the following commands on kali:(ALL : ALL) ALL)
+to check the users: cat /etc/passwd | cut -d : -f 1 to get all the users and the sudoers application on the machine
+cat /etc/shadow: hashed passwords location file machine
+cat /etc/group: to get the groups on the machine
+ifconfig: to check your ip and the used interface or ip a
+route: shows the routing table
+ip route: routing table management
+arp -a: Address Resolution Protocol used to find the media access control address of a network neighbour for a given IPv4 Address
+ip neigh: to manage the arp table and check the neighbors if reachable or stale
+netstat: Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
+
+
+
+
