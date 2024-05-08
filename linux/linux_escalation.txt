@@ -1,4 +1,4 @@
-Time: 23:12
+Time: 48:24
 References:
 https://blog.g0tmilk.com/2011/08/basic-linux-privilege-escalation/
 https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology and Resources/Linux - Privilege Escalation.md
