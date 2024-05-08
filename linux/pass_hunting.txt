@@ -1,0 +1,9 @@
+grep --color=auto -rnw '/' -ie "PASSWORD" --color=always 2> /dev/null  ==> checks in the whole system the word password
+try it with PASSWORD=
+locate password | more (shows files contains sensitive data)
+find / -name authorized_keys 2> /dev/null ==> /home/usr/.ssh/authorized_keys
+find / -name id_rsa 2> /dev/null ==> public keys on the machine
+find / -name id_rsa.pub 2> /dev/null ==> the public key on used to establish ssh for the working machine
+
+
+
