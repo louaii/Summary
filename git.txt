@@ -50,3 +50,8 @@ git restore --staged <file> //restore changes made to files in the working direc
 git restore '*.txt' //restores all files with .txt extension
 git revert <commit> //create a new commit that undoes the changes introduced by the specified commit
 git revert <start-commit> <end-commit> //create a new commit that undoes the changes introduced by all the commits in the specified range
+
+undo a pushed commit:
+
+git reset HEAD~1 // to revert the last commit to put you behind the last commit on github
+git push --force //if we push regulary we'll get an error
