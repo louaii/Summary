@@ -1,0 +1,19 @@
+DevOps is a set of tools and practices, designed to shorten the software development lifecycle process.
+The DevOps way of working: faster deployment, stabilized work environment, significant improvement product quality, automation of repetitive tasks.
+Tools for DevOps: Git, CI/CD jenkis, Selenium, Ansible, Docker, Nagios, Kubernetes.
+Requirements for DevOps:
+.Basic linux commands useful for the project development.
+
+.Git(version control system) software for tracking changes in any set of files usually used for coordinating work among programmers collaboratively developing source code.
+
+.Jenkis is an open-source automation server, that helps automate parts of software development and support continuous integration and delivery.
+
+.Selenium which is a portable framework to conduct automation testing for web applications to embed different test cases.
+
+.Ansible is an open-source IT automation engine to automate cloud provisioning, configuration management, application deployment, intra-service orchestration, and a variety of other IT tasks enabling infrastructure as a code.
+
+.Docker is a platform as a service to create and deploy files more quickly and securely. Docker is a platform as a service product that delivers software in containers using OS-level virtualization. Containers are self-contained, containing their own software libraries and configuration files. They communicate with each other via well-defined channels.
+
+.Nagios is an open-source continuous monitoring tool used to monitor system, network, IT infrastructure.
+
+.Kubernetes is open-source orchestration platform designed to manage containerized applications.
