@@ -1,0 +1,47 @@
+Version Control System maintains track of files, helps working on a big software development project that consists of: Technical concepts, Collaborations between different team members, Frequent changes.
+
+A version control system allows users to keep track of the changes in software development projects and enables them to collaborate on those projects
+
+Purpose of Using version control system:
+.Records changes to a set of files
+.Tracks every individual change by each contributor 
+.Supports a developer's preference and is flexible to use
+.Facilitates a smooth and continuous flow of changes of the code
+
+Centralized version control system uses a central server to store all the files and all the changes in the files are also tracked under the centralized server
+
+Distributed Version Control system moves from the client-server approach of the centralized version control system to a peer-to-peer approach
+
+Git is a VCS(Version Control System) that make it easier to track changes to files, Git allows multiple developers to work together and supports non-linear development, it runs locally and uses for example as github to store a copy of the files and their revision history.Git can merge the branches so that different people can work on different parts of the same file and later merge them.
+
+Benefits of git:
+.Tracks changes in the source code
+.Uses distributed version control tool for source code management
+.Allows multiple developers to work together
+.Supports non-linear development because of its several parallel branches
+.Flexible environment
+.Keep files on secure server
+.Facilitates branching and merging
+.Creates and manage remote repositories
+
+Git repository contains all the project files and the entire revision history
+
+_Git vs GitHub:
+
+.git manage and track source code whereas github is a cloud-based hosting service that lets you manage git repositories
+.git is installed and maintained on the local system whereas github is hosted on the web
+.git is command line tool github is a gui
+.git is a tool to manage different versions or a file in a git repository, github provides a web-based git repository to upload files
+
+git commands:
+git config --global user.name username //to set username
+git config --global user.email email@example.com //to set email
+git init //to initiate .git file in new file with in a new repository
+git clone repository //to clone an existing remote repository
+git status //to check the status and the difference between the working directory and the commited area
+git add filename //to add the file in the commiting area before commiting the changes
+git rm filename //to remove the file in the commiting area before commiting the changes
+git commit -m "message" //to commit the changes in the commiting area before pushing with a note
+git pull // to get all the changes from the commiting area to the working directory
+git push //to push the commited file to the repository
+git remote add origin <server_name> //to connect working directory to the repository
