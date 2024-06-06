@@ -111,3 +111,45 @@ _DevOps Tools:
 .Monitoring: help in ensuring the product's correct functioning, detecting anomalies, and negating their effects before they bother the consumers.(Nagios and Splunk)
 
 .Containerization: form of os virtualization in which applications runs in an isolated user space called containers(Docker, Kubernetes)
+
+_Benefits of DevOps:
+.Repetitive task is automated
+.Drastic Improvement over quality
+.Balanced working environment
+.Assured Rapid Deployment
+.Proactive Growth of the Business
+.Continuous Delivery
+.Minimal Cost of Production
+.Higher Productivity
+
+_DevSecOps:Development Security Operations emerged from DevOps to integrate the management of security throughout the development process.
+
+Benefits of DevSecOps: 
+.Rapid, cost-effective software delivery: Both time and costs can be reduced by minimizing the repetitive process of addressing security issues after delivery.
+.Improved, proactive security: The cybersecurity process is involved in the development cycle.
+.Accelerated security vulnerability patching: The restricts the threats during the development cycle
+.Automation compatible with modern development: Automation can be adopted in cybersecurity testing.
+.Repeatable and adaptive process: applied constantly across the environments, changing adaptive requirements to dynamic ones.
+
+_DevOps on cloud: DevOps and cloud infrastructure helps in the software development life cycle and divided into three phases build, test, run
+.Build:The cloud provides seamless access to build advanced applications
+.Test: The cloud is cost-effective and the scope of production can be developed quickly for conducting the tests
+.Run:The cloud provides high speed in developing operational environments that are scalable, flexible, and efficient of resources.
+
+Benefits of cloud:
+.Scalability
+.Elasticity
+.Availability
+.Reliability
+.Manageability
+.Interoperability
+.Accessibility
+.Portability
+.Performance
+.Optimization
+
+Cloud categories:
+.IaaS(Infrastructure as a Service): instant computing infrastructure service that provides virtualized computing resources over the internet
+.PaaS(Platform as a service): a method where users are allowed to build, test, debug, deploy, host and update their applications in the same environment
+.SaaS(Software as a service): a method of delivering applications as a service, so that users are free from complex software and hardware management
+
