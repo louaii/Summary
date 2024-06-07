@@ -1,0 +1,76 @@
+A CI(Continuous Integration)/CD(Continuous Delivery) pipeline automates the software delivery process. Their is many tools for this job to build code, run tests and deploy them such as jenkis, teamcity, circleCI and gitlab.
+Jenkis has different roles such as building, integrating, deploying, reporting and testing. To achieve CI with Jenkis the best compiling tools are git and maven as source code management and build tools.
+
+Automated pipelines remove manual errors and provide standardized feedback loopsto enable fast product iterations.
+
+CI(Continuous Integration): is a development practice in which all development work is integrated as early as possible.
+
+_Some key points while implementing CI:
+.The developers need to commit the changes to the source code, to a shared repo at regular intervals, every commit made in the repository is then built.
+.Implementation of CI requires developers to have regular builds.
+.The general practice is that whenever a code commit occurs, a build should be triggered, this process helps to identify the errors in the early stages of a project.
+
+_List of tasks:
+.Generating and analyzing reports
+.Developing and compiling
+.Performing functional test and labelling code
+.Performing unit test
+.Preproduction deployment
+.Database Integration
+
+
+_Advantages of CI:
+.Monitors the health of your code coverage metrics
+.Reduces technical debts and maintenance cost
+.Publicly visible code quality metrics
+.Automated end-to-end acceptance tests
+.Reduces risk by providing faster feedback 
+.Helps identify and fix integration and regression
+.Helps simplify and accelerate delivery
+.Automates deployment process
+
+CD(Continuous Delivery): is an extension of CI(Continuous Integration)
+CD automatically deploys all the code changes to the testing or production environments after the build stage, any successful build can potentially be deployed into production and be in the hands of the end user, CD process is not automatic, in the implementation of CD, the goal is to make the deployments.
+
+Continuous Deployment is a step up from continuous delivery in which every change in the source code is deployed to production automatically without explicit approval from a developer. It is a strategy for software releases, where in any code commit that passes the automated testing phase is automatically released into the production environment making changes that are visible to the software's users.
+
+Benefits of Continuous Deployment:
+.Faster return
+.Faster feedback
+
+_Jenkis:
+Jenkis is an open source powerful automation tool that is java built. It lets you execute a series of actions to achieve the continuous integration and continuous delivery of software projects.
+
+Benefits of Jenkis:
+.Free and cost-effective tool
+.Highly portable application
+.It can be easily installed and configured as per the need.
+.Has a very rich plugin library and global community support
+.It can be integrated with limitless other applications and tools
+
+CI process with Jenkis:
+.All commits are built
+.Jenkis CI will check the build
+.The build is fine, the executable code is ready for deployment
+.Tne team of developers who will commit changes at regular intervals are notified.
+
+_Multiple tools that can be integrated with Jenkis to implement each stage of the CI/CD pipeline:
+.Git, Stash and VS to implement Code and Commit
+.Docker, Ansible and others can be used to Build and Configure the application
+.JUnit, Cucumber, and others can be used to scan the application for bugs and perform tests
+.uDeploy and Serena can be used to release application tools
+
+To deploy the application, Cloud services like AWS, Azure or platforms like Openstack can be used.
+
+_Setting Up Jenkis:
+Java is a prerequisite before installing jenkis
+wget -q -O - https://pkg.jenkis.io/debian/jenkis.io.key | sudo apt-key add -
+Run the below command to add the jenkis repository to the system:
+sudo sh -c 'echo deb http://jenkis.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkis.list'
+sudo apt-get install jenkis
+sudo service jenkis status
+sudo systemctl start jenkis
+navigate to 127.0.0.1:8080 on web
+sudo cat /var/lib/jenkis/secrets/initialAdminPassword and copy the code
+Install suggested plugins
+
