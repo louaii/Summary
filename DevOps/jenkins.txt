@@ -75,4 +75,38 @@ sudo cat /var/lib/jenkis/secrets/initialAdminPassword and copy the code
 Install suggested plugins
 
 
+go to jenkins local host to manage jenkins ==> manage plugins ==> available search maven plugin ==> install without restart ==> git plugin install 
 
+go to jenkins local host to manage jenkins ==> global tool configuration ==> add jdk , maven , git
+
+_Job types in Jenkins:(By clicking new item in jenkins)
+.Freestyle project
+.Maven Project
+.External job
+.Multi-configuration project
+.pipeline
+.folder
+.github organization
+.multibranch pipeline
+
+Jenkins build job:
+.Poll SCM: polls the source code management which involves checking the version control server at regular intervals for any changes that have been committed since the last build and build the project if new commits have been pushed since the last build
+.Webhook: are one of few methods for web apps to communicate with one another. When a specific event occurs, it lets you transfer real time data from application to another. They provide your application a way of consuming new event data from an endpoint and instead of sending repeated requests for new events, you provide the end point with a url, which your application monitors
+.Periodic builds: it builds the project periodically even if nothing has changed. It might have tests that should be run periodically or a DB clean up jenkins or any other jenkins job
+
+_Scheduling Jenkins Jobs:
+.Scheduled builds simply trigger your build job at regular intervals
+.This strategy can be used for regular nightly builds
+.They can be done with something as simple as a Unix cronjob
+.Continuous Integration requires faster feedback than scheduled builds
+.Scheduled builds can be used for long running build jobs where quick feedback is less critical
+
+Scheduling syntax:
+min(0-59) hour(0-23) day of month(1-31) month(1-12) day of week(0-6)
+
+Notation:
+.* : represents all possible values for a field(* * * * *) means once a minute
+.M-N: defines range(1-5) in day of week mean monday to friday
+./: defines skips through a range: */15 in the minute field would mean every fifteen minutes
+.Comma-separated list: indicates a list of valid values : 15,45 in the min field would mean at 15 and 45 minutes past every hour 
+.Shorthand values: @yearly, @annually, @monthly, @weekly, @daily, @midnight, @hourly
