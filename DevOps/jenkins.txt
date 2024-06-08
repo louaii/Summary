@@ -67,10 +67,12 @@ Java is a prerequisite before installing jenkis
 wget -q -O - https://pkg.jenkis.io/debian/jenkis.io.key | sudo apt-key add -
 Run the below command to add the jenkis repository to the system:
 sudo sh -c 'echo deb http://jenkis.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkis.list'
-sudo apt-get install jenkis
-sudo service jenkis status
+sudo apt-get install jenkins
+sudo service jenkins status
 sudo systemctl start jenkis
 navigate to 127.0.0.1:8080 on web
 sudo cat /var/lib/jenkis/secrets/initialAdminPassword and copy the code
 Install suggested plugins
+
+
 
