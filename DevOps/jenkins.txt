@@ -110,3 +110,27 @@ Notation:
 ./: defines skips through a range: */15 in the minute field would mean every fifteen minutes
 .Comma-separated list: indicates a list of valid values : 15,45 in the min field would mean at 15 and 45 minutes past every hour 
 .Shorthand values: @yearly, @annually, @monthly, @weekly, @daily, @midnight, @hourly
+
+_Build tools and their usage:
+Jenkins requires build tools to integrate the changes made in the source code
+
+Popular build tools:
+.Apache Ant
+.Maven
+
+Advantages of build tools are:
+.Easy Configuration
+.Easy Support
+.Easy Integration
+
+Apache Ant is a Java-based build tool. Ant stands for Another Neat Tool. The main purpose of using Ant is to build Java-based applications. Ant can run many built-in tasks like compile, assemble and test, these tasks are defined in a build.xml file and reads the XML file and executes them. Also it executes shell commands.
+
+Maven is a build tool for managing software dependencies and life cycles. It automatically pulls code from a repository, compiles and packages it, and prepares it for the next stage of development.
+
+Maven Advantages:
+.Easily create a project
+.Consistent across all the projects
+.Connect a project to a source control system
+.Handle multiple projects simultaneously
+.Follows a standard strategy
+ 
