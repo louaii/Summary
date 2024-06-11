@@ -1,0 +1,47 @@
+Required to automate an infrastructure to manage all the running services from one place.
+
+CM(configuration management): is a system engineering method that ensures a product's characteristics remain consistent during its life cycle, it provides a configuration model of the services, assets, and infrastructure by recording the relationships between service assets and configuration items(CI)
+It also ensures that releases into controlled environments and operational use are completed on the basis of formal approvals. Configuration management may cover non-IT assets, work products used to develop the services, and configuration items required to support the services that are not formally classified as assets. Any change in configuration can dramatically impact: Peformance, Security, Functionality. Any component that requires management to deliver an IT service is considered part of the scope of configuration management. This process maintains information about any CI required to deliver an IT service, including its relationships and this information is managed throughout the life cycle of the CI. 
+Configuration Management is to define and control the components of an IT service and its infrastructure, and maintain accurate configuration information. The configuration management application identifies, defines and tracks an organization's configuration items by creating and managing records for those items. Other service manager applications can then access these records from a central repository
+
+_Roles of configuration management tools:
+Configuration management tools allow modifications and deployments to be faster, repeatable, scalable, predictable and able to maintain the desired state, ehich brings controlled assets into an expected states.
+
+Advantages of using configuration management tools include:
+
+.Increase the efficiency with a well-defined configuration process that improves visibility and provides control with the help of tracking. 
+
+.Optimize cost by having detailed knowledge of all the IT elements, which helps to avoid unnecessary duplication.
+
+.Track requirements from specification to testing
+
+.Identify and control software versions
+
+.Enhances system and process reliability by detecting effects
+
+.Manage the information about the configuration items
+
+.Provides faster restoration of your service if a process failure occurs
+
+.Facilitate the conduct of functional configuration audits
+
+_Popular configuration management tools:
+.Saltstack: Python-based open source configuration management tool used to remotely manage configuration items
+.Ansible: Python-based configuration management tool considered as agentless configuration management tool
+.Chef: Ruby-based configuration management tool having integration with most of the cloud-based platforms
+.Puppet: Ruby DSL-based configuration management tool used for managing software, systems and network configuration items
+
+_Ansible Overview:
+.Ansible is an IT automation engine that automates cloud provising, configuration management, application deployment, intra-service orchestration, and a variety of other IT tasks.
+
+.Ansible was built from the ground up for multi-tiered deployments and instead of controlling one system at a time, it models your IT architecture by defining how all of your systems interact.
+
+.Ansible uses playbook to describe automation jobs, which are written in YAML(human-readable data serialization language which is mainly used for configuration files)
+
+.Ansible designed for multi-tiered deployment.
+
+.Ansible models IT infrastructure by interrelating all the systems, It was constructed for multi-level use from the ground up.
+
+
+
+
