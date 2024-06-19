@@ -165,3 +165,36 @@ _Docker hub features:
 .Publisher images: It also allows users to pull and use high quality container provided by external vendors
 .Webhooks: It enables users to trigger actions after a successful push to a repository to integrate Docker hub with other services
 
+_Docker compose:
+
+Docker compose is a tool for defining and running multi-container Docker applications. Compose uses a YAML file to configure your application services. Then with a single command, you create and start all the services from your configuration. Compose is compatible with all environments, including production, staging, development, testing, and continuous integration workflows. 
+
+Three-step process of using Compose:
+
+.Create a Docker file to define your apps environment, so it can be replicated everywhere
+
+.In docker-compose.yml file, define the services that make up your app, so that they can be run in a seperate environment
+
+.Run docker-compose up, and it will start and run your entire app. You can alternatively run docker-compose up using the Docker compose.
+
+Docker compose characteristics:
+
+.Multiple isolated environments on single host
+.Preserve volume data when containers are created
+.Recreate containers that have changed
+.Moving a composition between environments and variables
+
+Commands:
+.docker compose build: Build or rebuild services
+.docker compose create: Create containers for a service
+.docker compose down: Stop and remove containers and networks
+.docker compose kill: Force stop service containers
+.docker compose ls: List running compose projects
+.docker compose pause: Pause services
+.docker compose ps: List containers
+.docker compose restart: Restart containers
+.docker compose rm: remove stopped service containers
+.docker compose start: start services
+.docker compose stop: stop services
+.docker compose up: Create and start containers
+
