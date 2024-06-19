@@ -104,3 +104,64 @@ _Network: Docker networking is a way for all the isolated containers to communic
 .RestAPI: It is used to instruct Docker daemon what to do
 
 .Docker CLI(Command-line interface): used to enter Docker commands.
+
+
+_Docker containers and images:
+
+Image is a read-only template for building a Docker container that is based on another image that has been modified in some way.
+To create and use image, create a Docker file using a simple syntax for defining the steps required. A layer in the image is created for each instruction in a Docker file. When change the Docker file and rebuild the image, only those layers which have changed are rebuilt. When compared to other virtualization technologies, this is part of what makes images so light, tiny and fast.
+
+Images can be divided into two categories:
+
+.Parent image: The FROM directive in the image's Docker file specifies the image is parent image. The image servers as the foundation for all the commands. The FROM scratch directive in a Docker file builds a basic image without using any parents images.
+
+.Base image: does not have a parent image in its Docker file. The FROM scratch directive is used in a Docker file to construct it. 
+
+Docker image commands:
+.docker image build: used to create an image from a Docker file.
+.docker image history: used to display an image's history
+.docker image inspect: used to display extensive information about one or more images
+.docker image ls: used to list images
+.docker image prune: used to remove unused images
+.docker image pull: Pulls image or repository from a registry
+.docker image push: Push an image or repository to a registry
+.docker image rm: used to delete one or more images from a container
+.docker image save: Save one or more images to a tar file
+
+Containers: A container is a runnable instance of an image, which is isolated from other containers and its host machine to a large extent. The user have control over how isolated a container's network, storage, and other underlying subsystems are from other containers and the host machine.
+
+The container when created or started it's defined by its image and any configuration options given. Any changes to the state of a container that is not saved in persistent storage are lost when the container is removed.
+
+The Docker container is the tool used to create, test, an deploy applications. It can be created, started, stopped, moved or destroyed using the Docker API or CLI. A storage can be attached to a container, connected to one or more networks, or even construct a new image based on existing state
+
+_Docker Networking:
+
+Networking allows Docker containers to communicate with each other and the outside world via the host machine.
+The networking subsystem in Docker is driver-based and pluggable, by default Docker provides a few network drivers with basic functionalities mentioned below: bridge, host, overlay, macvlan, none.
+
+.Bridge: (When multiple containers need to communicate on the same Docker host)containers running on the same Docker Daemon server are connected by bridge networks. A software bridge is used in a bridge network to allow containers connected to the same bridge network to communicate, while isolating them from containers not connected to the bridge network. The Docker bridge driver implements rules in the host machine to prevent containers from communicating directly with each other.
+
+.Host: (When the network stack should not be isolated from the Docker host, but other components of the container should be)the network stack of the container is not isolated from the Docker host. The container shares the host's networking namespace and the container is not assigned its own IP address
+
+.Overlay: (When containers running on different Docker hosts need to communicate or when multiple apps require swarm services)The overlay network driver connects many Docker Daemon hosts to form a distributed network. When encryption is enabled, this network sits on top of overlay's host-specific networks allowing containers connected to it including swarm servers containers to communicate securely.
+
+.macvlan: (When containers are required to look like physical hosts on the network each with its own MAC address)Some applications, particulary legacy applications or network traffic monitoring apps, demand to be connected directly to the physical network, in this case the macvlan network driver can be used to assign a MAC address to each container's virtual network interface making it appear to be a physical network interface linked directly to the physical network
+
+.None: If you want to completely disabled the networking stack on a container you can use the network none flag when starting the container. 
+
+_Docker Registry and Docker Hub(Docker's official cloud-based registry):
+
+Docker Registry is a system for storing and distributing named DOcker images. Multiple versions of the same image may exist, each of which is distinguished by its tags.
+
+The Docker registry is organized into Docker repositories, where the repos holds all the versions of a specific image. The registry allows Docker users to pull images locally, as well as push new images to the registry, given adequate access permissions when applicable. The user should use the registry if they want to ensure that their images are saved in a secure location, control over their image distribution, completely integrate image, storage, and distribution tightly into their in-house development workflow.Requires Docker engine 1.6.0 or higher version.
+
+Docker Hub is the world's largest container image library and community, it is a Docker hosted-repository that allows to search and share containers images with the team
+
+_Docker hub features:
+.Private repositories: It allows users to push and pull container images
+.Automated builds: A user can automatically build container images from Github and Bitbucket and push them to Docker hub
+.Teams and organizations: A user can also manage access to private repositories
+.Official images: Docker hub allows users to pull and use high quality container images provided by Docker
+.Publisher images: It also allows users to pull and use high quality container provided by external vendors
+.Webhooks: It enables users to trigger actions after a successful push to a repository to integrate Docker hub with other services
+
