@@ -1,0 +1,62 @@
+Container Orchestration automates the deployment, management, scaling, and networking of containers that is useful for enterprises that need to deploy and manage hundreds or thousands of containers and hosts.
+
+Purpose of using Container orchestration:
+
+.A container orchestrator automatically deploys and manages containerized apps
+
+.It responds dynamically to changes in the environment to increase or decrease the deployed instances of the managed app
+
+.It ensures all deployed container instances get updated if a new version of a service is released(it allows to deploy the same application across different environments)
+
+Container orchestration is essential to automate and manage tasks such as: 
+
+.Provisioning and deployment
+.Configuration and scheduling
+.Resource allocation
+.Container availability
+.Scaling or removing containers
+.Load balancing and traffic routing
+.Monitoring containers
+.Secure containers interaction
+
+The configuration of an application is written using either YAML or JSON file. The configuration file tells the management tool where to find the containers images, how to establish a network, and where to store logs. While deploying a new container, the orchestration tool automatically schedules the deployment to a cluster and chooses the best host for it, taking into consideration any defined requirements or constraints. Container orchestration then manages the container's lifecycle based on the specifications in the config files, it can also be used in any enivornment that runs containers, including on-premise servers and public cloud or private cloud environments. Container orchestration tools provide a framework for managing containers and microservices architecture at scale, it manages several containers as one entity, for availability, scaling and networking
+
+Popular tools used for containers lifecycle management:
+.Kubernetes
+.Docker swarm
+.Apache mesos
+.Openshift
+.HashiCorp nomad
+
+_Introduction to Kubernetes:
+Kubernetes plays a crucial role in adoption of containers in both enterprises and emerging startups, it's a powerful open source system for managing containerized applications in a clustered environment, it aims to provide better ways of managing related distributed components and services across varied infrastructure, Kubernetes acts as a cloud service in major cloud providers, such as EKS in AWS and Kubernetes Engine in GCP
+
+Kubernetes features:
+
+_Roll out changes to the application or its configuration while monitoring application health, if error occured Kubernetes can roll back the changes
+
+_Load balancing and Service discovery since Kubernetes pods have their own IPs and DNS name is given for a set of pods
+
+_Horizontal scaling enables you to scale to your application up and down with a simple command, depending on the requirements 
+
+_Self-healing allows to replace and reschedule containers when nodes die
+
+_Automatic bin packing: kubernetes places containers based on their resource requirements and other constraints, without impacting the availability, it strikes a balance between critical and best effort workloads
+
+_Batch execution can manage batch and CI workloads using kubernetes by replacing containers that fail
+
+_Storage orchestration: Kubernetes allows you to mount a storage system of your choice as local storage, public cloud provider, or use a shared network storage system
+
+_IPv4 and IPv6 dual-stack: Kubernetes allocates IPv4 and IPv6 addresses to pods and services
+
+Kubernetes benefits:
+
+_Open source and modular: Kubernetes is a fully open source
+
+_Portability and flexibility: Kubernetes is highly portable and flexible because it can be used on a variety of different infrastructure and environment configurations
+
+_Multi-cloud capability: Kubernetes can host workloads running on a single cloud as well as workloads that are spread across multiple clouds
+
+_Easy service organization with pods: The service organization offers pods to create and manage in Kubernetes.
+
+_Increased developer productivity: teams can deploy multiple times a day
