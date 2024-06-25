@@ -33,30 +33,99 @@ Kubernetes plays a crucial role in adoption of containers in both enterprises an
 
 Kubernetes features:
 
-_Roll out changes to the application or its configuration while monitoring application health, if error occured Kubernetes can roll back the changes
+.Roll out changes to the application or its configuration while monitoring application health, if error occured Kubernetes can roll back the changes
 
-_Load balancing and Service discovery since Kubernetes pods have their own IPs and DNS name is given for a set of pods
+.Load balancing and Service discovery since Kubernetes pods have their own IPs and DNS name is given for a set of pods
 
-_Horizontal scaling enables you to scale to your application up and down with a simple command, depending on the requirements 
+.Horizontal scaling enables you to scale to your application up and down with a simple command, depending on the requirements 
 
-_Self-healing allows to replace and reschedule containers when nodes die
+.Self-healing allows to replace and reschedule containers when nodes die
 
-_Automatic bin packing: kubernetes places containers based on their resource requirements and other constraints, without impacting the availability, it strikes a balance between critical and best effort workloads
+.Automatic bin packing: kubernetes places containers based on their resource requirements and other constraints, without impacting the availability, it strikes a balance between critical and best effort workloads
 
-_Batch execution can manage batch and CI workloads using kubernetes by replacing containers that fail
+.Batch execution can manage batch and CI workloads using kubernetes by replacing containers that fail
 
-_Storage orchestration: Kubernetes allows you to mount a storage system of your choice as local storage, public cloud provider, or use a shared network storage system
+.Storage orchestration: Kubernetes allows you to mount a storage system of your choice as local storage, public cloud provider, or use a shared network storage system
 
-_IPv4 and IPv6 dual-stack: Kubernetes allocates IPv4 and IPv6 addresses to pods and services
+.IPv4 and IPv6 dual-stack: Kubernetes allocates IPv4 and IPv6 addresses to pods and services
 
 Kubernetes benefits:
 
-_Open source and modular: Kubernetes is a fully open source
+.Open source and modular: Kubernetes is a fully open source
 
-_Portability and flexibility: Kubernetes is highly portable and flexible because it can be used on a variety of different infrastructure and environment configurations
+.Portability and flexibility: Kubernetes is highly portable and flexible because it can be used on a variety of different infrastructure and environment configurations
 
-_Multi-cloud capability: Kubernetes can host workloads running on a single cloud as well as workloads that are spread across multiple clouds
+.Multi-cloud capability: Kubernetes can host workloads running on a single cloud as well as workloads that are spread across multiple clouds
 
-_Easy service organization with pods: The service organization offers pods to create and manage in Kubernetes.
+.Easy service organization with pods: The service organization offers pods to create and manage in Kubernetes.
 
-_Increased developer productivity: teams can deploy multiple times a day
+.Increased developer productivity: teams can deploy multiple times a day
+
+_Kubernetes Components:
+
+The working Kubernetes deployment is called a cluster.
+Kubernetes cluster has two components: the control plane and the compute machines or nodes
+
+.Control plane:
+The control plane is responsible for maintaining the desired state of the cluster and compute machines run the applications and workloads. Control plane is the first component of a cluster, the control planes components make global decisions about the cluster like scheduling. It also helps in detecting and responding to cluster events.
+
+Control plane components:
+.kube-apiserver: is designed to scale horizontally by deploying more instances, several instances can run of kube-apiserver and balance traffic between those instances
+
+.kube scheduler: watches for newly created pods with no assigned node and selects a node for them to run on
+
+.kube-controller-manager: runs controller processes, each controller is a seperate process, but to reduce complexity, they are all compiled into a single binary and run in a single process.
+
+.etcd: It is a consistent and highly available key value store, used as Kubernetes backing store for all cluster data.
+
+The cloud controller manager is also a control plane component, it helps when one wants to run Kubernetes with a specific cloud provider, it incorporates cloud-specific control logic and helps to link your Kubernetes cluster with the cloud provider's API, it runs the controllers that are specific to your cloud provider
+
+.Node:
+
+A Kubernetes cluster needs at least one compute node, Pods are scheduled and orchestrated to run on
+
+Node components:
+
+.kubelet: Kubelet is an agent that makes sure the containers are running in a Pod.
+
+.kube-proxy: implements network proxy and acts as a load balancer in Kubernetes cluster, it also helps in redirecting traffic to a specific container in a pod, based on the incoming port and IP details
+
+.Container runtime: is the underlying software that runs containers on a Kubernetes cluster, it is responsible for fetching, starting, and stopping container images. 
+
+.Pod: is the smallest and simplest unit in the Kubernetes object model. It represents a single instance of an application, it is the component of the application workload that runs on the worker node
+
+_Kubernetes Architecture:
+
+Kubernetes brings together individual physical or virtual machines into a cluster using a shared network to communicate between each server. This cluster is the physcial platform where all kubernetes components, capabilities, and workloads are configured.
+
+_Kubernetes Basics:
+
+Components are: pods, labels, sectors, controllers, replicaset, deployments and services
+
+.Pod: is a collection of one or more containers with shared storage and network resources and a specification to run its containers. It is the smallest unit of a Kubernetes application. Pod containers can have multiple applications, Pod templates define the process of creating and deploying pods. Pods share the physical resources of the host machine(CPU, RAM, storage). Pods can be run on the same or several containers together.
+
+.Labels: are the key value pairs that Kubernetes attaches to various objects, such as services, pods, and nodes. They are use to organize and select subsets of objects. 
+
+.Selectors: are the core grouping primitives. These are used to select a group of objects. The kubernetes API currently supports two types of selectors, namely equality-based selector and set-based selector.
+
+Equality-based selectors use label keys and values to allow filtering. 
+
+Set-based selector allows filtering keys according to set of values 
+
+.Controllers: are control loops that monitor the state of your Kubernetes cluster and make a request changes wherever needed. Controllers track at least one Kubernetes resource type, these objects have a specific field that represents the desired state. Controllers are responsible for making the current state come closer to that desired state. Controllers take care of the availability of the pod and if it fails, a replacement pod gets created automatically. Controllers manage pods using labels and selectors to identify resources. There exist several controllers types Replication Controller, Daemon set Controller, Job Controller
+
+.Replica Set: A replica set ensures that a set of replica pods is running at any given time. It is commonly used to guarantee the availability of a specified number of identical pods. The replica set uses the selector to identify the pods running and based on the result, it creates or deletes the pods, It acquires the pod if the pod does not have an owner reference and matches the selector of replica set. The replica set are used when we require custom update orchestration, when it doesn't require updates at all.
+
+.Deployment: is a controller that changes the actual state to the desired state as specified. It is used to provide updates for pods and replica sets. It is used to clean up older replica sets, roll out a replica set, declare the new state of pods, indicate that a rollout is stuck, apply multiple fixes to pods, facilitate more load.
+Deployment Operations are creating, scaling, updating, cleaning up a policy, rolling back a deployment, pausing and resuming a deployment
+
+.Services: is an abstraction that defines a logical set of pods as well as a policy for accessing them, a Kubernetes service allows internal and external users of your app to communicate with: cluster's nodes, pods, and users.
+Ways of accessing a Service:
+.DNS method: when a new service is established, the DNS server watches the Kubernetes API and its name becomes available for a quick resolution for requesting apps.
+.Environment Variable method: the kubelet adds environment variables for each active service for each node a pod is operating on this approach
+
+Services types:
+.ClusterIP: the default service type exposes the service within the Kubernetes cluster.
+.NodePort: a static port exposes the service on each node's IP
+.LoadBalancer: a cloud provider's load balancer exposes the service externally
+.ExternalName: returns a C name record with the value for mapping a service to a present external name field
