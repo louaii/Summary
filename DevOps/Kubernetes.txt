@@ -129,3 +129,14 @@ Services types:
 .NodePort: a static port exposes the service on each node's IP
 .LoadBalancer: a cloud provider's load balancer exposes the service externally
 .ExternalName: returns a C name record with the value for mapping a service to a present external name field
+
+_Kubernetes networking and storage
+
+Kubernetes networking is a service that enables Kubernetes components to connect with one another as well as with other applications. Kubernetes networking is primarly concerned with: 
+.Containers in a pod communicating via loopback utilizing networking.
+.Cluster networking, that allows communication across distinct pods.
+.The service resource that allows you to expose a pod-based application so that it can be accessed from outside your cluster
+.Services exclusively published for use within your cluster
+
+Kubernetes provides a convenient persistent storage mechanism called Persistent Volumes. Volumes serve as a crucial abstraction in the Kubernetes storage architecture. Containers storage usage should be limited to represent the amount of storage available in the local data center or the budget provided for cloud storage services, their exist two ways of limiting storage consumption:
+.Resource Quotas which limits the amount of resources, including storage, CPU and memory, that can be used by all containers within a Kubernetes namespace, and the second is Storage Classes which limits the amount of storage provisioned to containers in response to a PersistentVolumeClaim.
