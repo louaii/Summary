@@ -1,0 +1,41 @@
+Continuous monitoring is the ability to detect risk, compliance, and security issues in an operational environment. It mainly involves monitoring and identifying compliance issues and security risks in each phase of the DevOps life cycle. 
+Continuous monitoring acts as an auditing tool where it can navigate through old monitoring data to analyze and improve the performance of the system
+
+Roles of Continuous Monitoring:
+.Assists in the design of a reliable system 
+.Displays application behavior during peak business hours
+.Reduces costs by acquiring precise knowledge of software asset duplication
+.Reduces the chance of an application going down
+.Notifies you if there is a problem with your application service
+.Retrieves and analyzes historical data
+
+Types of continuous monitoring:
+.Real-time monitoring: deals with the monitoring of servers CPU statistics, disk usage, and memory stats, spikes in CPU performance, and input and output count on the server
+.Infrastructure monitoring: deals with the monitoring of CPU and memory, network and routers, app servers, web servers, database servers, IT hardware and software
+.Application monitoring: deals with the monitoring of API success or failure, performance metrics count, API accessibility, and API HTTP error codes.
+.Network monitoring
+
+_Nagios Overview:
+Nagios is an open source, continuous monitoring tool used to monitor the system, network, and IT infrastructure. Nagios is available in two variants, namely Nagios Core and Nagios XI. Nagios core is an open source, whereas Nagios XI is a licensed version. It can find any type of network or server issue, it monitors the infrastructure actively, it can facilitate automatic problem resolution, infrastructure, upgrade and planning, it troubleshoots server performance issues.
+
+(Features)Nagios facilitates customized service checks because of the simple plugin design, monitors host resources processor load, and disk usage. It monitors network services(SMTP, POP3, HTTP and ping), it facilitates parallelized service checks, it enables automatic log file rotation, it facilitates proactive problem resolution by event handlers, it enables implementation of monitoring hosts and enables contact notifications on problem resolution
+
+(Architecture)Nagios uses a client server architecture. The Nagios server usually runs on a host and the plugins run on remote hosts, which are specified for monitoring. Nagios architecture is comprised of three components namely process scheduler, plugins, and user interface. The scheduler is a component of the server part of Nagios. It sends a signal to execute the plugins at the remote host. The plugin gets the status from the remote host and then sends the data to the process scheduler, it updates the user interface and notifications are sent to the admin.
+
+_Nagios Plugins
+
+Plugins are compiled executable scripts, Pearl scripts, and shell scripts, that can be run from the command line to check the status of a host for service.
+
+Plugins allow the user to monitor databases, operating systems, applications, network equipment, and protocols. Plugins are standalone extensions to Nagios core.
+
+Types of Nagios Plugins:
+.Official Plugins: developed and maintained by the official Nagios plugins team.
+.Community Plugins: developed by hundreds of Nagios community members
+.Custom Plugins: developed by the users in order to suit their environment
+
+Configure plugins on remote nodes:
+Nagios plugins monitor hosts, devices, services, protocols and applications with Nagios and send the report to NRP.
+NRP sends those reports to the Nagios server based on the Nagios server request.Nagios and NRp can perform all the processes only with Nagios plugins.
+
+To monitor the remote host on the Nagios server, two installations are required; remote host NRP plugin and Nagios plugins, Nagios server NRP plugin
+
