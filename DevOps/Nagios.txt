@@ -39,3 +39,27 @@ NRP sends those reports to the Nagios server based on the Nagios server request.
 
 To monitor the remote host on the Nagios server, two installations are required; remote host NRP plugin and Nagios plugins, Nagios server NRP plugin
 
+_Monitoring with Nagios
+
+Nagios performs monitoring by using the default plugins, there are some default plugins available to monitor devices and services, including Unix, Linux, Windows, network servers, routers, switches, CPU load, Disk and memory usage and current users.
+
+The Nagios exchange website, offers a number of additional plugins developed by users that can be used as per their requirement these are check_http used for monitoring web servers, check_ftp used for monitoring FTP servers, check_ssh used for monitoring ssh servers, check_smtp used for monitoring email servers, check_pop used for monitoring POP3 service, check_imap used for monitoring IMAP4 service
+
+_ELK Stack:
+ELK Stack is an Open-Source, distributed monitoring solution with centralized logging, metric, and application performance monitoring suitable for almost any structured and unstructured data source.
+
+ELK is the acronym for three open source projects: Elasticsearch, Logstash and Kibana and a new component called Beats was included in the ELK stack.
+
+.Elasticsearch: is a distributed search and analytics engine that provides real-time search and analytics for data, structured and unstructured. It can store complex data structures that are serialized as JSON documents. It can index documents almost in real time. It supports searches through an inverted index and it detects and adds new fields through dynamic mapping, which makes schema-less possible. 
+
+.Logstash: It is the data processing component of ELK stack. It collects data from various sources and feeds the Elasticsearch or normalizes it to other destinations.
+
+.Kibana: is the data visualization tool that provides the graphical user interface for Elasticsearch, it offers these advantages to its users, simple and easy for beginners to understand, ease of conversion of visualization and dashboard into reports, Canvas visualization help to analyze complex data in an easy way
+
+.Beats: are lightweight data collectors that are installed directly on the data source and collect data for specific purposes, which are then sent to Elasticsearch or Logstash
+
+Filebeat: Sends local file records
+Winlogbeat: it sends Windows event logs
+Metricbeat: it sends system or application performance metrics
+
+It can view stats to detect application defects, collects logs from servers and applications that can be analyzed for improvement, it can provide backup of monitoring stats and able to store the monitoring system. It is the combination of Elasticsearch for searching data, Logstash to process and store various stats, and Kibana to visualize stats on front end application, It has a set of utilities which can provide the most powerful business analytics
