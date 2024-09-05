@@ -1,3 +1,498 @@
+Version Control System maintains track of files, helps working on a big software development project that consists of: Technical concepts, Collaborations between different team members, Frequent changes.
+
+A version control system allows users to keep track of the changes in software development projects and enables them to collaborate on those projects
+
+Purpose of Using version control system:
+.Records changes to a set of files
+.Tracks every individual change by each contributor 
+.Supports a developer's preference and is flexible to use
+.Facilitates a smooth and continuous flow of changes of the code
+
+Centralized version control system uses a central server to store all the files and all the changes in the files are also tracked under the centralized server
+
+Distributed Version Control system moves from the client-server approach of the centralized version control system to a peer-to-peer approach
+
+Git is a VCS(Version Control System) that make it easier to track changes to files, Git allows multiple developers to work together and supports non-linear development, it runs locally and uses for example as github to store a copy of the files and their revision history.Git can merge the branches so that different people can work on different parts of the same file and later merge them.
+
+Benefits of git:
+.Tracks changes in the source code
+.Uses distributed version control tool for source code management
+.Allows multiple developers to work together
+.Supports non-linear development because of its several parallel branches
+.Flexible environment
+.Keep files on secure server
+.Facilitates branching and merging
+.Creates and manage remote repositories
+
+Git repository contains all the project files and the entire revision history
+
+_Git vs GitHub:
+
+.git manage and track source code whereas github is a cloud-based hosting service that lets you manage git repositories
+.git is installed and maintained on the local system whereas github is hosted on the web
+.git is command line tool github is a gui
+.git is a tool to manage different versions or a file in a git repository, github provides a web-based git repository to upload files
+
+git commands:
+git config --global user.name username //to set username
+git config --global user.email email@example.com //to set email
+git init //to initiate .git file in new file with in a new repository
+git clone repository //to clone an existing remote repository
+git status //to check the status and the difference between the working directory and the commited area
+git add filename //to add the file in the commiting area before commiting the changes
+git rm filename //to remove the file in the commiting area before commiting the changes
+git commit -m "message" //to commit the changes in the commiting area before pushing with a note
+git pull // to get all the changes from the commiting area to the working directory
+git push //to push the commited file to the repository
+git remote add origin <server_name> //to connect working directory to the repository
+
+Steps to connect to the lab:
+============================================
+
+Go to DevOps Certification Training and click onlabs
+On the left side --> select practice labs
+Select the tab DevOps Updated VM 
+Click on launch lab --> again click on launch lab
+Click on RDP ACCESS
+Click on start Instance
+Once is the lab has started .. click on RDP access and click on blue button which is there for Auth Url
+Lab will start in the new tab.
+Click on Terminal button at the bottom(black square) in the lab desktop
+
+
+Demo Steps:
+================================================
+
+1. Become root user:
+
+# sudo su -
+
+3. Create a Local repository using GIT
+
+#  mkdir myproject
+
+# cd myproject
+
+# touch index1.html index2.html
+
+# ls
+
+# git init
+
+A local repository will be created
+
+# ls -al
+
+.git folder will be available, which is your local repository.
+
+
+4. Add the configuration parameters in git, which will later update author and email details in the git commit history
+
+2 variables need to be set
+
+user.name
+user.email
+
+
+# git config --global user.name sonal0409
+
+# git config --global user.email admin@gmail.com
+
+List the configurations:
+
+git config --list
+
+try it latter
+==========================
+git config --global --unset user.name
+
+git config --global --unset user.email
+
+
+
+5. Add the files to the stagging area and commit them to Local repo
+=========================================
+
+# git status
+
+# git add <filename> <filename2>
+
+or
+
+git add --all
+
+or
+
+git add .
+
+or
+
+git add *.java *.php
+
+# git status
+
+# git commit -m "adding file index1.html"
+
+Commit all the changes/files in the stagging area
+
+If we want to Choose a file to be commited
+
+git commit -m "adding file index1.html" <filename>
+
+================================================
+
+Modify exisitng files and add those changes to local repo
+====================================================
+
+Take a file which is in local repo
+
+# git ls-files
+
+# vim index1.html
+
+add any data & save the file
+
+# git status
+
+status of file is modified
+
+To add all the modification and commit them to local repo
+
+# git commit -a -m "added modifications"
+
+=================================================
+1. Check the log for commit history
+
+# git log
+
+in this HEAD it is an object in git which represents the latest/recent commit id
+
+# git log --oneline
+
+Check commit history of every commit in a single line
+
+# git show <commid id>
+Shows what happened in that commit.
+
+See commits of a particular file:
+
+ git log --graph --all -- index1.html
+
+==============================================================
+
+Delete a file form LR and WD
+===================================================================
+# git rm index1.html
+
+==> this command deletes file from WD and LR
+As we have deleted somethign on LR/made chnage on LR , we need to track that. So commit the deletion
+
+# git commit -m "deleted file"
+
+# git ls-files
+# ls
+File will not be in localrepo and WD
+
+========================================================
+
+Revert command in GIT
+=========================================================
+> This command is applicable only to commit id
+> using this command we cna revert the chnages of the commit to its previous state
+> but when a revert command is executed, it is chnage something on the LR, so there needs to be a commit again
+> When revert command is executed, immediatly a nano editor where user will eneter a message why we are reverting
+> save the file. Revert will be complete and a new commit id will be generated
+
+# git revert <deletioncommitid>
+
+=========================================================
+
+
+GIT REST
+===============================================
+
+Git reset operation:
+===============================
+Demo:
+
+Create a new file --> commit on it
+
+# touch resetdemo
+# git add .
+# git commit -m "added a new file resetdemo"
+
+Make some small modification on the file --> commit on it
+Make some small modification on the file --> commit on it
+Make some small modification on the file --> commit on it
+Make some small modification on the file --> commit on it
+Make some small modification on the file --> commit on it
+
+Which mean I will have a very length git commit history
+
+Every small change I have committed it
+
+We always want a clean and crisp commit history
+
+Git says, you can RESET your commit history
+
+   that means:
+     > we can Change the HEAD of the log
+     > we can delete commit ids
+     > we can move the changes from LR to Staging area
+     > we can move the changes from LR to Working area
+     > we can also permanently delete commits and changes in LR and working directory
+
+the command is : git reset <commit id>
+
+What is it that we have to reset, > we want to reset the HEAD to the given <commit id>
+
+#  git reset d573778
+
+So what about the commits before the given the <commit id> --> they will get deleted
+
+So what about the changes we did as part of those commits?
+
+There 3 options that can be given with git reset command
+
+
+--soft:
+
+    Observation: 
+     > In the git log, the commit history is reset -> all the commits which are above the given <commitID> get deleted
+     > Now the HEAD is the  <Commitid> given in the command
+     > All the changes of the deleted commits will be back to staging area.
+
+
+--mixed
+
+Observation: 
+ > In the git log, the commit history is reset -> all the commits which are above the given <commitID> get deleted
+ > Now the HEAD is the  <Commitid> given in the command
+ > All the changes of the deleted commits will be back to working directory
+
+--hard
+=============================
+Observation: 
+ > In the git log, the commit history is reset -> all the commits which are above the given <commitID> get deleted
+ > Now the HEAD is the  <Commitid> given in the command
+ > All the changes of the deleted commits will also be permanently deleted
+
+
+
+# git log --oneline
+
+Select the commit id which is at the bottom of your log.
+
+
+
+# git reset --hard <commit id>
+
+Example : git reset --hard 04f432e
+
+
+
+
+
+When you execute 
+
+# git status
+
+If you have Untracked files, modified files.
+
+# git add .
+
+# git commit -m "done"
+
+
+
+
+Assignment:
+======================
+
+# git log --oneline
+
+# git reset --soft <commit id>
+
+# git status
+
+# git commit -m “added all changes”
+
+=====================
+
+
+# git log --oneline
+
+# git reset --mixed <commit id>
+
+# git status
+
+# git add .
+
+# git commit -m “added all changes”
+
+=================================================
+
+
+Create a feature branch in git  and switch to the branch
+
+========================================
+
+# git branch
+
+Create a new branch
+
+# git branch feature1
+
+Switch to the new branch
+
+# git checkout feature1
+
+[OR]
+
+Create a new branch and switch to the branch also
+
+# git checkout -b feature2
+
+3. Merge the commits/files of new branch to master
+
+Before merging always switch to the destination branch
+
+# git checkout master
+
+# git merge feature1 master
+
+< git merge sourcebranch destinationbranch>
+
+
+Check which branches are merged to master
+
+git branch -a --merged master
+
+Check which branches are not merged to master
+
+git branch -a --no-merged master
+
+
+4. Delete a branch which is not merged with master branch
+
+# git branch -D <branchname>
+
+Delete a branch whose commits have been merged with the master branch
+
+# git branch -d feature1
+
+
+=================================================
+
+Working on Remote repository:
+================================
+
+
+Create a Personal Access token on github
+It is a authentication method which very secure
+This is used whenever we have to push files or changes from Local to remote repo
+There is no concept of using password, instead we have to use Personal access token in git locally
+
+Demo:
+
+In the main menu Go to settings of github → on the left side →scroll down to developer settings → go to Personal Access tokens →Click on tokens (classic)---> Generate New token→ select token classic
+Note→ give a name to the token
+Expiration -> 30 days
+Select scope : repo (1 checkbox) 
+Click on generate token
+
+Make sure to copy your personal access token now. You won’t be able to see it again! 
+
+
+
+> click on New button to create a remote repo
+> Name to the repository
+> select public repo
+> click on Create repository
+
+
+
+
+
+
+
+
+
+Demo 3: Connect Local repo to remote repo
+
+Go to git and execute this command
+
+  $ git remote add origin <your remote repo Path>
+
+Example like this:
+…
+ git remote add origin https://github.com/Sonal0409/myproject06nov.git
+…
+
+Execute the command to check local and remote repo is set:
+
+  $ git remote -v
+
+
+
+Assignment
+
+To remove local repo and remote repo connection:
+
+$ git remote rm origin
+
+Command that can be used to update existing remote origin:
+
+$ git remote set-url origin <url>
+
+
+=======================================
+
+PUSH the master branch to remote repo
+===========================
+
+On the remote repo we have no code, no files no commits and no branches
+
+
+# git checkout master
+
+# git push origin master
+
+Here origin means variable storing path of remote repo 
+
+
+It will now ask to enter username
+
+Username for 'https://github.com':
+
+Here enter the token and press enter key
+
+Again it will ask for password
+
+Here enter the token and press enter key
+
+JUST PRESS ENTER KEY
+
+It will send the files and commits to remote.
+==========================
+
+Pulling file from remote github repo  to local repo
+****************************************
+
+In your git hub repo , add some new files:
+
+And commit them in github
+
+Pull those files to your local
+…
+ git pull origin master
+…
+
+
+Pull the files from remote and merge with local repo and working directory
+
+
+
 to be able to push without entering your credentials:
 git remote set-url origin git@github.com:username/repository.git
 Create a new repo by cli:
