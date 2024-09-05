@@ -1,0 +1,17 @@
+IP(Internet Protocol) is made up of 32 bits which means:(128 64 32 16 8 4 2 1)
+192.168.1.1 is ==> xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx
+		   11000000.01000000.00000001.00000001
+
+Public and Private ips:
+Public ips are assigned from internet service providers(ISP)s to be able to connect to the internet meanwhile,
+ this public ip is set for each house as a single ip and translated through network address translation(nat) or
+ port address translation(pat) to provide an ip for each ip on the network as private ip and each one of those
+ refers a single ip address which is the public ip.
+
+IP Classes:
+Each IP address refers to a class depending of the needs of alive hosts which means if an enterprise of
+ 700 employees, will nat their network to a class a network ==> 10.xxxxxxxx.xxxxxxxx.xxxxxxxx
+								    1=>255   1=>255   1=>255
+ otherwise if there is 500 employees in a firm, the IT department will choose the class B translation as:
+			172.16.xxxxxxxx.xxxxxxxx
+				1=>255   1=>255
