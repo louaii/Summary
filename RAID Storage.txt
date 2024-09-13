@@ -1,0 +1,25 @@
+Storage is a very important part of fault tolerance, and to prevent the data loss is RAID(Redundant Array of Independent Disks)
+
+In a RAID setup, the data is copied on multiple disks, so in the event of a disk failure, no data would be lost.\
+
+RAID Types:
+
+***RAID 0***(Stripping):Seperates Data over 2 disks
+
+RAID 0 is not fault tolerant and increases the chance for data loss since the data is seperated(stripped) over 2 disks.
+Whenever one of these 2 disks fails the whole data is lost.
+The advantage of using RAID0 is speed.
+
+***RAID 1***(Duplexing):Mirroring Data over 2 disks
+
+RAID 1 is copies the data on 2 disks. So disk 2 will have a copy of data the same as disk 1.
+No data loss is prevented unless the both disks 
+
+***RAID 5***(Striping with Parity): 
+!!!!!Requires 3 disks or more
+Advantage: Fast and store a large amount of data
+Parity is used to rebuild the data in case of disk failure.
+
+
+***RAID 10***(Stripping & Mirroring):
+RAID 0 + 1

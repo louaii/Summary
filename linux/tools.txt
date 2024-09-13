@@ -1,5 +1,0 @@
-Clone these repos:
-1 ==> https://github.com/peass-ng/PEASS-ng.git
-2 ==> https://github.com/rebootuser/LinEnum.git
-3 ==> https://github.com/The-Z-Labs/linux-exploit-suggester.git
-4 ==> https://github.com/sleventyeleven/linuxprivchecker.git
