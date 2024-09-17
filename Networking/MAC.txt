@@ -1,0 +1,4 @@
+MAC Address stands for media access control and it's the second layer(Data link) of the osi model,
+ which is the physical address and it's the key to communicate over switches(switches are layer 2 devices), 
+ the first three pairs of a mac address refair to the manufacturing and the other three pairs refair
+ to the device you are using as it's identity.
