@@ -1,0 +1,11 @@
+TCP stands for transmission control protocol that sends 
+ the packet in an ordered way and makes sure that the packet is fully sent, otherwise UPD stands for 
+ User Datagram Protocol and it's used for live streaming and calls to send the packet in a faster way
+ regardless if sent properly with it's data.
+
+The main work of tcp is the three way handshake between two devices
+The first step is sending a SYN packet from the device trying to establish connection on the other device.
+After recieving the second device the SYN packet, it's turn now to send back a SYN/ACK packet as an acknowledge
+for the transmission of packets.
+The last step to establish a tcp connection is sending back from the first device an ACK packet to acknowledge
+that the SYN/ACK packet is recieved.
