@@ -63,6 +63,15 @@ def multiply(x,y):
 def square_root(x):
 	return x**5
 
+#boolean expressions:
+bool1 = True
+bool2 = 3*3 == 9 #True
+bool3 = False
+bool4 = 3*3 != 9 #false
+
+
+
+
 #lists:
 name = ["John", "Jason", "Ali"]
 print(name[0]) #John
@@ -76,6 +85,10 @@ name.append("Louay") add Louay to the end of the array
 name.pop() #remove the last index of the array (Louay)
 zip(array1, array2) #to combine two arrays
 
+#tuples are the same concept as the lists but in one single difference, they are constant.
+grades = ("a", "b", "c", "d", "f")
+print(grades[1])
+#since grades is a tuple and is immutable (unchangeable) grades.append() or pop() doesn't work
 loops:
 for n in name:
 	print(n)
@@ -135,7 +148,8 @@ class person:
 	def get_name():
 		return self.name
 
-
+================================================================================================================================================================================================================================================
+================================================================================================================================================================================================================================================
 #Libraries:
 
 Script 1:
