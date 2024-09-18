@@ -47,6 +47,14 @@ systemctl reboot      # Reboot the system
 systemctl suspend     # Suspend the system
 systemctl hibernate   # Hibernate the system
 
+Network commands:
+ifconfig is used to display the parameters of wired connection interface
+iwconfig is used to display the parameters of wireless connection interface
+ip a(address) is used to display the system's IP networking information 
+ip n(neighbour) is used to display the neighbour hosts on the network
+ip r(routing) is used to display routing table showing the route packets your network will take
+
+
 command -v #to check the destination of files
 etc where the configuration files are located
 lsof -i  :80 #to check the running protocols and services on port 80
