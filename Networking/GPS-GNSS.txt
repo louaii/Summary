@@ -1,0 +1,10 @@
+GNSS (or Global Navigation Satellite System) is a collective term for different types of satellite navigation systems used globally like 
+GPS, GLONASS, Galileo and BeiDou etc. GNSS based systems can access multiple satellite systems at all times for better accuracy, redundancy and availability. 
+
+While GPS (or Global Positioning System) is the Global Navigation Satellite System launched and owned by the United States.
+GPS based systems can only access satellites launched by the United States Department of Defense (DoD).
+GPS was originally built for military use, but was made available for civilian use in the 1980s. 
+Even though GPS was created by the United States, it is used for various positioning applications all over the world. 
+The other GNSS technologies are relatively new and will take some time for widespread adoption.
+
+GPS is a single satellite system that utilize 31 satellites, GNSS utilizes 89 satellites from all 4 systems.
