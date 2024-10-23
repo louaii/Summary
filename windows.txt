@@ -1,2 +1,12 @@
 /etc/NetworkManager/system-connections/
 ncpa.cpl (Network status)
+Take admin privilege on file through cmd:
+C:\Windows\System32\DriverStore\FileRepository>takeown /f "C:\Windows\System32\DriverStore\FileRepository\anydeskprintdriver.inf_amd64_07b22d0a6997cb3a"
+
+SUCCESS: The file (or folder): "C:\Windows\System32\DriverStore\FileRepository\anydeskprintdriver.inf_amd64_07b22d0a6997cb3a" now owned by user "I\s.serhal".
+
+C:\Windows\System32\DriverStore\FileRepository>icacls "C:\Windows\System32\DriverStore\FileRepository\anydeskprintdriver.inf_amd64_07b22d0a6997cb3a" /grant %username%:F
+processed file: C:\Windows\System32\DriverStore\FileRepository\anydeskprintdriver.inf_amd64_07b22d0a6997cb3a
+Successfully processed 1 files; Failed processing 0 files
+
+C:\Windows\System32\DriverStore\FileRepository>del /f /q /a "C:\Windows\System32\DriverStore\FileRepository\anydeskprintdriver.inf_amd64_07b22d0a6997cb3a\*"

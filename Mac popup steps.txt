@@ -1,0 +1,1 @@
+sudo spctl --master-disable: removing popup from system preferences privacy & security (System software from application was blocked from loading)
