@@ -1,0 +1,8 @@
+s1:
+S1>en
+S1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#
+S1(config)#int range g0/1-2
+S1(config-if-range)#switchport mode trunk 
+S1(config-if-range)#switchport trunk native vlan 99

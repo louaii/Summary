@@ -1,0 +1,12 @@
+SW1(config)#int g0/2 //go through the interface to fix it's port security
+SW1(config-if)#switchport port-security //enable the feature of port security
+SW1(config-if)#switchport mode access //set the port != dynamic
+SW1(config-if)#switchport access vlan 10 //choose the vlan for this port
+SW1(config-if)#switchport port-security maximum 5 //choose the number of addresses on port is eq to 5
+SW1(config-if)#switchport port-security aging type inactivity //turn inactivity on
+SW1(config-if)#switchport port-security aging time 5 //after 5 min turn inactive
+SW1(config-if)#switchport port-security violation restrict/shutdown/protect //to set the violation policy
+SW1(config-if)#switchport port-security mac-address sticky
+SW1(config-if)#switchport port-security mac-address 0000.1111.2222 //to set a mac address statically
+SW1(config-if)#do show run int g0/2 //to check the configuration
+SW1(config-if)#do show port-security address //to check the addresses configured with port security

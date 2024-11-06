@@ -1,0 +1,47 @@
+R1>
+R1>en
+R1#conf t
+R1(config)#ip nat inside source static 172.16.16.1 64.100.50.1
+R1(config)#int g0/0
+R1(config-if)#ip nat inside
+R1(config-if)#exit
+R1(config)#int s0/0/0
+R1(config-if)#ip nat outside
+
+R2>en
+R2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#ac
+R2(config)#access-list 1 permit 172.16.0.0 0.0.255.255
+R2(config)#ip nat pool any-name-here 209.165.76.196 209.165.76.199 netmask 255.255.255.252
+R2(config)#ip nat inside source list 1 pool any-name-here
+R2(config)#int s0/0/0
+R2(config-if)#ip nat outside
+R2(config-if)#exit
+R2(config)#int s0/0/1
+R2(config-if)#ip nat inside
+
+R2>en
+R2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#ip acc
+R2(config)#ip access-list standard R2NAT
+R2(config-std-nacl)#permit 192.168.10.0 0.0.0.255
+R2(config-std-nacl)#permit 192.168.20.0 0.0.0.255
+R2(config-std-nacl)#permit 192.168.30.0 0.0.0.255
+R2(config-std-nacl)#exit
+R2(config)#ip nat pool R2POOL 209.165.202.129 209.165.202.129 netmask 255.255.255.252 
+R2(config)#ip nat inside source list R2NAT pool R2POOL overload
+R2(config)#int f0/0
+R2(config-if)#ip nat inside
+R2(config-if)#exit
+R2(config)#int s0/0/0
+R2(config-if)#ip nat inside
+R2(config-if)#exit
+R2(config)#int s0/0/1
+R2(config-if)#ip nat inside
+R2(config-if)#exit
+R2(config)#int s0/1/0
+R2(config-if)#ip nat outside
+R2(config-if)#exit
+R2(config)#ip nat inside source static 192.168.20.254 209.165.202.130

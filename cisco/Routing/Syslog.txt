@@ -1,0 +1,12 @@
+R1>en
+R1#conf t
+R1(config)#int s0/0/0
+R1(config-if)#ip ospf message-digest-key 1 md5 MD5pa55
+R1(config-if)#exit
+R1(config)#ntp server 192.168.1.5
+R1(config)#ntp update-calendar 
+R1(config)#ntp authenticate
+R1(config)#ntp trusted-key 1
+R1(config)#ntp authentication-key 1 md5 NTPpa55
+R1(config)#service timestamps log datetime msec
+R1(config)#logging host 192.168.1.6

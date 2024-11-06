@@ -1,0 +1,8 @@
+Access
+int GigaEthernet 1/0/1 // to enter interface gigaethernet 1/0/1
+switchport mode access //to make port access
+switchport access vlan 10 //to access only vlan 10 through this port
+duplex full //to make the port actively full duplex
+speed 100
+no negotiation auto //in case of vtp and stp
+

@@ -1,0 +1,42 @@
+R1(config)# Router ospf 10
+R1(config-router)# Router-id 1.1.1.1
+R1(config-router)# Network 172.16.1.0 0.0.0.255 area 0
+R1(config-router)# Network 172.16.3.0 0.0.0.255 area 0
+R1(config-router)# auto-cost reference-bandwidth 1000
+R1(config-router)# passive-interface g0/0
+R1(config)# interface G0/0
+R1(config-if)# bandwidth 1000000
+R1(config-if)# ip ospf priority 255
+To verify that the router has formed an adjacency with its neighboring routers
+R1# show ip ospf neighbor
+To verify vital OSPF configuration information
+R1# show ip protocols
+To display the OSPF process ID and router ID as well as the OSPF SPF and OSPF area information
+R1# show ip ospf
+To display a summary and status of OSPF-enabled interfaces
+R1# show ip ospf interface brief
+To provide a detailed list for every OSPF-enabled interface
+R1# show ip ospf interface
+Reset the OSPF process
+R1# clear ip ospf process
+Distribute the static into the routing table
+
+R1(config)# ip route 0.0.0.0 0.0.0.0 209.165.10.10 g0/0
+R1(config)# default-information originate
+R1# show ip route
+OSPF Hello and Dead intervals can be modified manually using the following interface configuration
+mode commands:
+ip ospf hello-interval 10
+ip ospf dead-interval 40
+To reset the intervals to their default
+no ip ospf hello-interval
+no ip ospf dead-interval
+To enable OSPF MD5 authentication globally, configure:
+R1(config)# area 0 authentication message-digest
+R1(config)# int g0/0
+R1(config-if)# ip ospf message-digest-key 1 md5 password 
+To enable OSPF MD5 authentication on each interface, configure:
+R1(config)# int g0/0
+R1(config-if)# ip ospf message-digest-key 1 md5 password 
+R1(config-if)# ip ospf authentication message-digest
+R1# show ip ospf interface serial 0/0/0

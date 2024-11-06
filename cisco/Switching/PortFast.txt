@@ -1,0 +1,26 @@
+SW1(config-if)# spanning-tree portfast
+To enable the portfast on all nontrunking interfaces:
+SW1(config)# spanning-tree portfast default
+To show the link type that determines whether the port can immediately transition to forwarding state:
+SW1(config)# spanning-tree link-type
+To configure a switch as root bridge:
+SW1(config)# spanning-tree vlan 10 root primary
+Or
+SW1(config)# spanning-tree vlan 10 priority 4,096
+value is configured in increments of 4,096 between 0 and 61,440. The default value is 32,768.
+To configure an alternate root bridge:
+SW1(config)# spanning-tree vlan vlanid root secondary
+To configure the BPDU guard that puts the port in an error-disabled state on receipt of a BPDU:
+SW1(config-if)# spanning-tree bpduguard enable
+To enable the bpduguard on all port-fast enabled ports:
+SW1(config)# spanning-tree portfast bpduguard default
+To show the spanning-tree of the active interfaces only:
+SW1(config)# show spanning-tree active
+Configure Rapid-pvst+ mode, specify an interface to configure with link type and clear all detected STP.
+S1(config)# spanning-tree mode rapid-pvst
+S1(config)# interface f0/2
+S1 (config-if)# spanning-tree link-type point-to-point
+S1 (config-if)# end
+S1# clear spanning-tree detected-protocols
+
+SW1(config)# show spanning-tree vlan 10

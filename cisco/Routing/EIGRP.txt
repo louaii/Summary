@@ -1,0 +1,36 @@
+Router(config)# router eigrp autonomous-system
+Router(config-router)# eigrp router-id ipv4-address
+show ip protocols
+show ip eigrp neighbors
+show ip eigrp topology
+Router(config-router)# network network-address [wildcard-mask]
+Router(config-router)# passive-interface interface-type interface-number
+Enable, disable automatic summarization:
+Router(config-router)# auto-summary
+Router(config-router)# no auto-summary
+
+Manual Summarization:
+Router(config)# interface Serial0/0/0
+Router(config-if)# ip summary-address eigrp 1 172.31.8.0 255.255.252.0
+Propagation of a static route
+Router(config)# router eigrp 1
+Router(config-router)# redistribute static
+
+Changing the metrics
+R1(config)# interface s0/0/0
+R1(config-if)# ip hello-interval eigrp 1 10 // time in seconds
+R1(config-if)# ip hold-time eigrp 1 30
+Router(config)# interface g0/0
+Router(config-router)# delay 100 ///unit is ms
+Router(config-router)# bandwidth 1000 ///unit is kbps
+
+Authentication
+Router(config)#key chain mykey                         //configure key chain name mykey
+Router(config-keychain)#key 1                          // Specifies the key number  
+Router(config-keychain-key)#key-string cisco  //Specifies the authentication string for a
+key.           
+Router(config-keychain-key)#end
+Router(config)#interface fa0/0
+Router(config-if)#ip authentication mode eigrp 1 md5
+Router(config-if)#ip authentication key-chain eigrp 1 mykey
+Router(config-if)#end

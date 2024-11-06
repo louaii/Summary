@@ -1,0 +1,11 @@
+R1>en
+R1#conf t
+R1(config)#access-list 100 permit tcp 172.22.34.64 0.0.0.31 host 172.22.34.62 eq ftp
+R1(config)#access-list 100 permit icmp 172.22.34.64 0.0.0.31 host 172.22.34.62
+R1(config)#ip access-list extended HTTP_ONLY
+R1(config-ext-nacl)#permit tcp 172.22.34.96 0.0.0.15 host 172.22.34.62 eq www
+R1(config-ext-nacl)#permit icmp 172.22.34.96 0.0.0.15 host 172.22.34.62
+R1(config-ext-nacl)#exit
+R1(config)#interface g0/1
+R1(config-if)#ip acc
+R1(config-if)#ip access-group HTTP_ONLY in

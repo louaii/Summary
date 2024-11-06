@@ -1,0 +1,16 @@
+R>en
+R#conf t
+R(config)#no ip domain-lookup
+R(config)#hostname Router1
+Router1(config)#service password-encryption
+Router1(config)# line consol 0 
+Router1(line-config)#password  ... 
+Router1(line-config)# login 
+Router1(line-config)#logging synchronous
+Router1(line-config)#exit
+Router1(config)#interface g0/0/0 //to enter interface
+Router1(config-if)#ip address 172.16.99.1 255.255.255.0 //to assign the host ip
+Router1(config-if)#no shutdown //to turn on ports
+Router1(config-if)#exit
+Router1(config)#exit
+Router1# wr

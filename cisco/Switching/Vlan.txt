@@ -1,0 +1,12 @@
+S1>en
+S1#conf t
+S1(config)#vlan 10
+S1(config-vlan)#name Faculty/Staff
+S1(config-vlan)#vlan 20
+S1(config-vlan)#name Students
+S1(config-vlan)#vlan 30	
+S1(config-vlan)#name Guest(Default)
+S1(config-vlan)#vlan 99
+S1(config-vlan)#name Management&Native
+S1(config-vlan)#vlan 150 
+S1(config-vlan)#name VOICE

@@ -1,0 +1,16 @@
+SW1# show ip dhcp snooping table //arp inspection uses the dhcp snooping table
+SW1#conf t
+SW1(config)#ip arp inspection vlan 123 //enable DAI on vlan 123
+SW1(config)#do show ip arp inspection vlan 123 //to check the config for dai on vlan 123
+SW1(config)#int g0/1
+SW1(config-if)#ip arp inspection trust //set the interface g0/1 on the switch as trusted
+SW1(config-if)#exit
+SW1(config)#int g0/2
+SW1(config-if)#ip arp inspection limit rate 10 //untrusted port
+SW1(config-if)#exit
+SW1(config)# do show ip dhcp snooping binding //to check the dhcp snooping tables configured
+SW1(config)# arp access-list our-acl //to create arp acl 
+SW1(config-arp-nacl)#permit ip host 10.123.0.1 mac ... //adding policies to ACL
+SW1(config-arp-nacl)#exit
+SW1(config)#do show arp access-list our-acl //to check the acl created configuration
+SW1(config)#ip arp inspection filter our-acl vlan 123 //to apply the acl created on vlan 123

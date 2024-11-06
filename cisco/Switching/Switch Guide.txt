@@ -1,0 +1,11 @@
+no switchport trunk encapsulation dot1q
+no switchport trunk native vlan 200
+no switchport trunk allowed vlan 1,200
+no switchport mode trunk
+no srr-queue bandwidth share 10 10 60 20
+no queue-set 2
+no priority-queue out
+no mls qos trust cos
+no macro description cisco-switch
+no auto qos voip trust
+no spanning-tree link-type point-to-point

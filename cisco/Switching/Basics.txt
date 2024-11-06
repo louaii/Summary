@@ -1,0 +1,70 @@
+hostname - banner - password - console config - telnet config
+enable //get from user mode to privilege mode
+configure terminal //leverage from privilege mode to global mode
+hostname "name" //to rename switch
+banner motd """Message WHatever uou want """
+enable password (password) //as password
+service password-encryption
+enable secret level 5 (password)
+line con 0 // to enter console 0
+password ciscoconsole //set console password
+login //to enable logging with password
+history size 15 
+exec-timeout 6 45
+logging synchronous
+
+line vty 0 15 //enable telnet on ports remotely
+password ciscotelnet
+login
+input transport telnet/ssh
+history size 15
+exec-timeout 8 20
+logging synchronous
+
+int vlan 1 // to enable ip address on switch 
+ip address 192.168.1.2 255.255.255.0
+no shutdown
+
+ip default-gateway 192.168.1.1
+
+copy running-config startup-config //save in priv mode
+
+S>en //to enter privilege mode
+S#conf t //to enter global mode
+S(config)#hostname Switch1 //to change name of switch
+Switch1(config)# line consol 0 //to enter console 0 to create password for user mode 
+Switch1(line-config)#password  ... //to create password
+Switch1(config-line)# exec timeout 5 0 //5 min 0 sec while configuring while no activity will end the session
+Switch1(line-config)# login // to make sure to enter passworrd to login
+Switch1(line-config)#logging synchronous
+Switch1(line-config)#exit
+Switch1(config)#enable secret ... //to create password on privilege mode
+Switch1(config)#service password-encryption //to encrypt the passwords
+Switch1(config)# banner motd "..."
+Switch1(config)#vlan 99 //to create a vlan
+Switch1(config-vlan)#name Management //to name vlan created
+Switch1(config)#int vlan 99 //to give the vlan ip
+Switch1(config-if)#ip address 172.16.99.11 255.255.255.0
+Switch1(config)#int f0/6
+Switch1(config-if)# switchport mode access //to make the switch port access
+Switch1(config-if)# switchport access vlan 99 //to access on vlan 99
+Switch1(config-if)#exit
+Switch1(config)# ip domain-lookup liu.com
+Switch1(config)# line vty 0 15
+Switch1(config-line)# username louay privilege 15 secret admin
+Switch1(config)# login local
+Switch1(config)# transport input ssh
+Switch1(config)# crypto key generate rsa
+Switch1(config)# ip ssh time-out 75 //in 75 seconds if there is no activity the session will end
+Switch1(config)# ip ssh authentication-retries 2 //you can retry twice after the failure of entering password 
+Switch1(config)# int range f0/1-4 //to choose a range of interfaces
+Switch1(config-if)# shutdown //to turn the choosesn interfaces off
+Switch1(config)# int f0/5
+Switch1(config-if)# switchport port-security
+Switch1(config-if)# switchport port-security (maximum 1) or (mac-address ...)
+Switch1(config-if)# switchport port-security sticky
+Switch1(config-if)# switchport port-security violation(restrict|protect|shutdown)
+Switch1(config)# security passwords min-length 10 
+Switch1#wr //to save
+Switch1# copy running-config startup-config
+Switch1# clock set 17:00:00 18 Feb 2014 //to set time

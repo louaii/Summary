@@ -1,0 +1,7 @@
+VTP Configuration
+SW1(config)# vtp mode server (or client)
+SW1(config)# vtp version 2
+SW1(config)# vtp domain cisco.com
+SW1(config)# vtp password class
+SW1# Show vtp status
+SW1# Show vtp password

@@ -1,0 +1,15 @@
+SW1(config)# interface range f0/1-4
+SW1(config-range)# channel-group 1 mode active
+SW1(config)# interface port-channel 1
+SW1(config-port)# switchport mode trunk
+SW1(config-port)# switchport trunk native vlan 90
+SW1(config-port)# switchport trunk allowed vlan 1, 10, 90
+To display the general status of the port channel interface
+S1# show interface port-channel1
+To display one line of information per port channel
+S1# show etherchannel summary
+To display information about a specific port channel interface
+S1# show etherchannel port-channel 
+
+To display information about the role of the interface in the EtherChannel
+S1# show interfaces f0/1 etherchannel 

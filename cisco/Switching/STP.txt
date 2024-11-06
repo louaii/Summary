@@ -1,0 +1,17 @@
+Spanning-Tree
+The default port costs are defined by the speed at which the port operates (ex: 100Mbps have a port
+cost of 19).
+To configure the port cost of an interface:
+SW1(config-if)# spanning-tree cost value
+value can be between 1 and 200,000,000. The port with the lowest value is selected.
+To restore the port cost back to the default value of 19, enter the below command on the interface
+configuration mode:
+no spanning-tree cost
+To change the port priority on a certain port:
+SW1(config)# interface f0/4
+SW1(config-if)# spanning-tree vlan 500 port-priority 64
+The port-priority value is an increment of 16 between 0 and 128, the default value is 128.
+To verify the port and path cost to the root bridge:
+SW1(config)# show spanning-tree
+To verify the various states of a port:
+SW1(config)# show spanning-tree summary

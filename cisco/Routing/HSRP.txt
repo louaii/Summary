@@ -1,0 +1,10 @@
+R1(config)# show standby
+R1(config)# int f0/0
+R1(config-if)# ip address 1.1.1.2 255.255.0.0
+R1(config)# standby 1 ip 1.1.1.1
+R1(config)# no shutdown
+To assign a priority to a router to become the active router noting that the standard value is 100:
+R1(config)# standby 1 priority 110
+To re-assign the initial router its initial role
+R1(config)# standby preempt
+R1# show glbp

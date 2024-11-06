@@ -1,0 +1,17 @@
+R1(config)# ip access-list extended OUT //to create an extended access list named OUT
+R1(config-ext-nacl)# permit tcp any any reflect REMEMBER //policies
+R1(config-ext-nacl)# permit udp any any reflect REMEMBER
+R1(config-ext-nacl)# permit icmp any any reflect REMEMBER
+R1(config-ext-nacl)#deny ip any any log
+R1(config-ext-nacl)#exit
+R1(config)#int f0/4
+R1(config-if)#ip access-group OUT out
+R1(config)# do show access-list //to show access lists
+R1(config)#ip access-list extended IN
+R1(config-ext-nacl)#evaluate REMEMBER
+R1(config-ext-nacl)#deny ip any any log
+R1(config-ext-nacl)#exit
+R1(config)#int f0/4
+R1(config-if)# ip access-group IN in
+R1(config-if)#exit
+R1(config)# do show access-list 
