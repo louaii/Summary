@@ -1,0 +1,74 @@
+Characteristics of Network:
+Topology, Speed, cost, security, availability, reliability
+
+Routing is essential to connect networks together and to determine the best path to reach destination networks
+
+Router: 
+.small device using cpu,ram that interconnects network
+.memories: ROM, RAM, NVRAM, Flash
+.booting:
+_POST(Power-on self test)
+_Bootstrap: Load IOS from the Flash to RAM
+_Load configuration fies from NVRAM to RAM
+_Maintain the configuration in the RAM
+.packet forwarding  
+
+.Network which has only one network it's named as a stub network
+.Network between two routers it's called as interconnecting network
+
+Protocols:
+.Discovers remote networks
+.Updating routing information
+.Choosing the best path depending on either distance vector or on link state
+.Redundant in case of fail over
+.Each routing protocol has speific administrative distance and cost based on metric
+.Direct networks: connected to the same router
+.Remote networks: connected to an interconnected network (2 routers or more)
+
+Protocol Types:
+IGP(Interior Gateway Protocols) ==> within a single ISP
+EGP(Exterior Gateway Protocols) ==> between ISPs
+Static routing protocol: remote networks are configured statically on each router to be reached either by next hop address or exit interface
+Dynamic routing protocol: discovers automatically the nearby networks and it works based on two types either (distance vector or link state)
+ 				and either (classless or classfull).
+Distance Vector reachs destinations networks based on the shortest distance(hop count, bandwidth), vector is the direction toward the destination network
+Distance Vector Dynamic Protocols: RIPv1, RIPv2, IGRP, EIGRP.
+Link State uses the state of the links provided from other routers to create the topology map. Link State Dynamic Protocols: OSPF and IS_IS.
+Class-full routing protocols don't send subnet mask information in routing updates otherwise Class-less routing protocols include subnet mask 
+				information in the routing updates.
+ 
+Administritive Distance:
+	--------------------------------------------------------------------------------
+       |	Routing Protocol		|	Administritive distance		|
+        _______________________________________________________________________________
+       
+       |	Directly connected		|		   0                    |
+        _______________________________________________________________________________
+       
+       |	  Static Route			|		   1			|
+        _______________________________________________________________________________
+       
+       |             EIGRP			|		   5                    |
+        _______________________________________________________________________________
+       
+       |	   External BGP			|		   20      		|
+        _______________________________________________________________________________
+       
+       |	     OSPF			|	          110			|
+        _______________________________________________________________________________
+       
+       |	     IS-IS			|		  115			|
+        _______________________________________________________________________________
+       
+       |	      RIP			|	          120			|
+        _______________________________________________________________________________
+
+Routing table:
+The routing table is a data structured table stored in the RAM holding the below information:
+.Directly Connected Routes
+.Remote Routes
+.Protocol Used with their AD
+.Cost and Metric
+.Exit Interfaces
+.Next Hop Addresses
+
