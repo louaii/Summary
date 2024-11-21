@@ -1,0 +1,17 @@
+Dynamic Protocols ==> Interior Gateway Protocol ===> (RIP, EIGRP, OSPF, IS_IS)
+		     		  Exterior Gateway Protocol ===> BGP
+
+Dynamic Routing Protocol Purpose:
+.Discovery of remote networks
+.Maintaining up to date routing information
+.Choosing the best path to destination networks
+.Ability to find a new best path if the current path is no longer available
+
+Dynamic routing is the best choice for large networks
+
+Dynamic routing protocol components:
+.Data Structures: tables or databases kept in RAM
+.Routing protocols messages: to discover neighnoring routers, exchange routing information, and
+ maintain accurate information about the network.
+.Algorithms: to facilitate learning routing information and for best path determination
+

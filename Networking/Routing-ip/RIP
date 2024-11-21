@@ -1,0 +1,8 @@
+(RIP)Routing Information Protocol:
+.Distance Vector Protocol
+.Bellman-Ford Algorithm
+.Hello Keep Alive Packets(30s)
+.Metric: Hop Count as max 15 if 16 considered as network unreachable
+.Administrative Distance 120
+.RIPv1 => Classful(doesn't share the subnet mask of the current network to neighbour routers)
+.RIPv2 => Classless(shares the subnet mask of the current network to neighbour routers) 
