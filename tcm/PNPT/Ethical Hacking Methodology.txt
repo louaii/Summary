@@ -1,6 +1,0 @@
-The Five Stages of Ethical Hacking:
-.Reconnaisance(Active/Passive)
-.Scanning & Enumeration(Nmap, Nessus, Nikto)
-.Gaining Access - Exploitation
-.Maintaining Access
-.Covering Tracks
