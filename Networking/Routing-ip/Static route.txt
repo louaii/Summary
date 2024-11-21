@@ -1,0 +1,36 @@
+Static routing is used in small, stub networks and Default route.
+A router access other remote networks in two ways:
+.Manually: Less Overhaed, increase with network size, More secure
+.Dynamically: More Overhead, Independent from network size
+
+Default Static Route:
+.used to forward traffic that doesn't have an entry in the routing
+table(Internet) and also used on Stub Router.
+
+Stub routers and Stub networks:
+.A router with one exit interface is called stub router
+.A network with one interface to the routed topology is called a stub
+network
+
+Notes of static routing:
+.Multiple static routes can be summarized into a 
+single network address
+.Destination networks must be contiguous
+.Multiple static routes must use the same exit interface or next hop
+
+Floating Static Routes:
+.Backup path used when primary route is not available
+.Primary route is determined by the one with the lowest 
+ Administrative Distance by default 1.
+.Any higher Administritive Distance route pointing to same destination
+ network will be considered as floating route. 
+ip route 192.168.6.0 255.255.255.0 fa0/1 2
+ip route: command of static routing
+192.168.6.0: ip of next network
+255.255.255.0: subnet mask of next network
+fa0/1: exit interface facing the next network's router is fa0/1
+2: is the floating route in case primary route failed
+for primary route keep it empty:
+ip route 192.168.5.0 255.255.255.0 fa0/0
+
+
