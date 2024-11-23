@@ -1,0 +1,8 @@
+Intervlan routing is the key of communication between devices on different vlans
+Layer 2 switches cannot forward traffic between vlans without the assistance of a router
+Intervlan routing is a process for forwarding network traffic from one vlan to another using router
+Intervlan routing options:
+.Legacy intervlan routing: router connected to 2 interfaces each interface belongs to the different vlan
+.Router on a stick: router connected to a single interface and seperates the vlans in sub interfaces
+.Layer 3 switching using SVIs: layer 3 switches can have ip address for vlans so they can access each other over ip
+

@@ -26,4 +26,9 @@ _Maps between Ingress port and Destination physical address
 _Store and Forward(Error checking)
 _Cut through(No error checking)
 
+Switch Port Modes:
+.Access
+.Trunk
+.Dynamic Auto
+.Dynamic Desirable
 

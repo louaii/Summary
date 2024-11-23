@@ -18,4 +18,15 @@ Vlans types:
  _Delay of less than 150ms across the network to ensure voice quality
  _Transmission priority over other types of network traffic
  _Ability to be routed around congested areas on the network
- 
+
+Vlans Trunk is a point to point link that carries more than one Vlan, usually established between switches to support intra Vlan communication,
+ a Vlan trunk or trunk ports are not associated to any Vlans
+
+Tagging Ethernet frames for Vlan identification
+.Before a frame is forwarded across a trunk link, it must be tagged with its Vlan information
+.IEEE 802.1q is a very popular Vlan trunking protocol that defines the structure of the tagging header added to the frame
+
+Native Vlans and 802.1q tagging
+.Control traffic sent on the native Vlan should not be tagged
+.Frames received untagged, remain untagged and are placed in the native Vlan when forwarded
+.Native Vlans must match between switches

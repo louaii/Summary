@@ -1,0 +1,16 @@
+ACL(Access control list) contains a sequential list of permit and deny statements, 
+ known as access controls entries either by protocol, direction, or interface
+
+Two types of ACLs that can be configured either by number(standard 1->99/\extended 100->199) or by name:
+.Standard
+.Extended
+
+Standard Access List:
+.Based on source address only
+.Used on the inbound interface
+
+Extended Access List:
+.Based on source, destination, port, protocol
+.Used on the outbound interface
+
+ACLs uses wild card mask (opposite of subnet mask)
