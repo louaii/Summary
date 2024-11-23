@@ -1,0 +1,29 @@
+Switched network is a converged network as data, voice over ip, video as NVR to have:
+ security, reliability, availability and borderless network to extand range.
+
+Cisco has 3 layers in switching:
+.Core layer: Layer that traverses data between internet and below layers from users
+.Distribution layer: Layers that distributes data from the core layer to the below 
+ layer reaching the destinated users
+.Access layer: Layer that directly connected to users
+
+Hierarchy switched network:
+.Hierarchial: Facilitates understanding the role of each device at every tire
+.Modularity: Allows seamless network expansion and integrated services
+.Resiliency: Provides an always available network
+.Flexibility: Allows intelligent traffic load sharing
+
+The switching process:
+
+.A LAN switch makes decisions based on two criteria:
+_Ingress port(where a frame enters the device)
+_Destination address
+
+.A LAN switch maintains a table that it uses to determine how to forward traffic:
+_Maps between Ingress port and Destination physical address
+
+.Forwarding methods:
+_Store and Forward(Error checking)
+_Cut through(No error checking)
+
+

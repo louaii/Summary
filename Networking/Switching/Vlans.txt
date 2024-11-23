@@ -1,0 +1,21 @@
+Vlans can segment LAN devices (Layer2) without regard for the physical location of the user-device.
+
+Benefits of Vlans:
+.Security 
+.Cost reduction
+.Smaller Broadcast Domains
+.Simpler Projects
+
+Vlans types:
+.Default Vlan: Known as Vlan 1, that all switch ports are member of Vlan 1 by default
+.Data Vlans: are commonly created for specific groups of users or devices which they carry user generated traffic
+ _Normal range Vlans: from 1 to 1005, configs stored in the vlan.dat in the flash memory
+ _Extended range Vlans: vlan numbers from 1006 to 4096, configs stored in the running configs in NVRAM
+.Native Vlan: carries all untagged user generated traffic(STP,BPDU), Vlan 1 is the native Vlan set by default 
+.Management Vlan: created to carry network management traffic including SSH,SNMP,Syslog also Vlan 1 is the default management network Vlan
+.Voip Vlan: To support time-sensitive voice traffic
+ _Assured bandwidth
+ _Delay of less than 150ms across the network to ensure voice quality
+ _Transmission priority over other types of network traffic
+ _Ability to be routed around congested areas on the network
+ 
