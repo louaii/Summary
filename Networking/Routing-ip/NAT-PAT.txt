@@ -1,0 +1,2 @@
+Network Address Translation is translating from the internet public ip to the local private ip.
+Port Address Translation is translating from internet public ip to one private ip on the local network and differentiating each device depending on the port given by the pat protocol
