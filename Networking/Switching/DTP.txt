@@ -1,0 +1,17 @@
+Dynamic trunking protocol: used to negogiate between switches ports automatically
+Access link is created from two access, dynamic auto ports on different switches
+On trunk ports DTP frames won't be transfered only when one port is dynamic desirable
+    ____________________________________________________
+    |       S1              |           S2              |  Negotiated link
+    |      Access           |          Access           |  ==> Access
+    |    Dynamic Auto       |       Dynamic Auto        |  ==> Access
+    |    Dynamic Auto       |         Access            |  ==> Access
+    |       Trunk           |        Trunk              |  ==> Trunk
+    |    Dynamic Desirable  |     Dynamic Desirable     |  ==> Trunk
+    |    Dynamic Desirable  |        Trunk              |  ==> Trunk
+    |    Dynamic Desirable  |     Dynamic Auto          |  ==> Trunk
+    |      Access           |        Trunk              |  ==> Limited
+    |_______________________|___________________________|
+
+
+

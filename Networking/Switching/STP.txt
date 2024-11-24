@@ -1,0 +1,2 @@
+Spanning Tree Protocol: is used to stop network failing in case a switch down and have a failover (redundant) link
+!Block redundant ports to avoid loops using STP

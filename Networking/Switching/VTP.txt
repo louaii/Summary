@@ -1,0 +1,10 @@
+Vlan Trunking Protocol is a normal range vlan management from switch that has three types:
+.VTP server: where the configs are set
+.VTP client: automatically pulls the configs from the VTP server
+.VTP transparent: trunk port and works to transfer data between vtp server and client
+and all the above switches require the same VTP Domain and Domain name, version and password to access each other
+
+VTP revision number:
+.With each update(Creating new Vlans, Deleting Vlans) the revision number will be increased
+.Server Switch with high revision number will impose its Vlan database to other switches to the same domain
+.Make sure to reset the revision number of a newly joining switch before adding it to the domain
