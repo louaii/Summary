@@ -1,2 +1,66 @@
 Spanning Tree Protocol: is used to stop network failing in case a switch down and have a failover (redundant) link
-!Block redundant ports to avoid loops using STP
+Block redundant ports to avoid loops using STP
+
+Reasons of using STP:
+.MAC Database instability
+.Multiple frame transmission
+.Broadcast Storms
+
+STP:Avoiding loops
+.STP created one logical path to all other switches in the network
+.This creation is done by sending BPDU frames(802.1D) between switches to create these logical links
+.The creation of the logical links is done based on:
+ _Root Bridge Election
+ _Port Designation
+
+Type of switches in an STP domain:
+.Root Bridge
+.Secondary Root Bridge
+.Non Root Bridge
+
+Root Bridge Election:
+.The election of the Root Bridge switch is done based on the one that has the lowest Bridge ID (BID)
+.The BID consists of 2 parts ==> Priority(32,768[Default]) | Mac Address
+
+
+.Root Path:
+The root path is the path that has the lowest cost to other switches from the Root Bridge
+
+Root Path Cost:
+The cost of a path is determined based on the interfaces ports types and speed
+.10Gb/s ==> 2
+.1Gb/s ==> 4
+.100Mb/s ==> 19
+.10Mb/s ==> 100
+
+Port Roles:
+.Designated Ports
+.Root Port
+.Alternate Port(Non-Designated Port)
+
+Port Roles
+.All ports of the root bridge facing other switches in the stp domain are considered as Designated Ports
+.All ports facing of the switches in the ingress direction over the root path are considered as Root ports
+.All ports facing a port in a blocking state are considered as designated ports.
+.All ports that belongs to the switch that has the highest BID on a blocked link are considered as Alternate Ports.
+.3 missed BPDUs indicates lost connectivity
+
+Types of STP:
+STP Type            Standard        Resources Needed        Convergence         Tree Calculation
+STP                  802.1D              Low                  Slow                  All VLANs
+PVST+                 Cisco              High                 Slow                  Per VLAN 
+RSTP                 802.1W             Meduim                Fast                  All VLANs
+Rapid PVST+           Cisco            Very High              Fast                  Per VLAN
+MSTP                 802.1s            Very high              Fast                  Per instance
+
+Opertation allowed                   Blocking       Listening       Learning        Forwarding      Disabled
+Can receive/process BPDUs               Yes             Yes             Yes             Yes             No
+Can Forward data frames recieved
+  on a interface                         No              No              No             Yes             No
+Can forward data frames switched
+  from another interface                 No              No              No             Yes             No
+Can learn MAC addresses                  No              No              Yes            Yes             No
+
+Edge Ports:
+.PBDU Guard
+.Port Fast
