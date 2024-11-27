@@ -1,0 +1,26 @@
+First Hop Redundancy Protocols
+Router Redundancy:
+.To prevent a single point of failure at the default gateway, implement a virtual router
+.ARP resolution returns the MAC address of the virtual router
+.Ability of network to dynamically recover from the failure of a device acting as a default gateway is known as first hop redundancy 
+
+    Active Router                                           Backup Router                   
+                                    Virtual Router
+                                192.168.1.254(example)
+                                        | |
+                                        | |
+                                       \   /
+                                        \ /
+                                       Switch
+                                        | |
+                                        | |
+                                       \   /
+                                        \ /
+                                     PCs(users)
+
+Switch connected to virtual router and then packets are redirected to the working router in case of Active or Backup
+Active router is choosed based on election(the active router can become a backup router in case of adding or changing router on the network)
+Virtual Router Redundancy Protocol(VRRP) version 1 and 3
+Gateway Load Balancing Protocol(GLBP)
+Hot Standby router Protocol(HSRP) version 1 and 2
+

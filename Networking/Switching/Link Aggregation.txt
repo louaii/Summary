@@ -1,0 +1,36 @@
+Etherchannel: To increase bandwidth to a port and make it Etherchannel both ports should have same speed and interface
+
+Link Aggregation Constraints:
+.Interface types cannot be mixed
+.Same Duplexing mode
+.Same link speed
+.Ports must belong to the same VLAN or must be trunk
+.Cisco IOS switch can support 6 Etherchannel
+
+Link Aggregation Types:(LACP and PAgP)
+
+LACP(used on variety switches)
+Modes:
+.On:Channel member without negotiation
+.Active: Asking actively
+.Passive: Passively waiting
+SW1                 SW2             Establishment
+On                  On              Yes
+Active/Passive      Active          Yes
+On/Active/Passive   No config       No
+On                  Active          No
+On/Passive          Passive         No
+
+PAgP(Cisco Properitery Protocol)
+Modes:
+.On:Channel member without negotiation
+.Desirable: Asking actively
+.Auto: Passively waiting
+
+SW1                 SW2             Establishment
+On                  On              Yes
+Auto/Desirable      Desirable       Yes
+On/Auto/Desirable   No config       No
+On                  Desirable       No
+On/Auto             Auto            No
+
