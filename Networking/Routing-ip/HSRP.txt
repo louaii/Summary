@@ -1,0 +1,28 @@
+Hot Standby Router Protocol is a Cisco proprietary redundancy protocol designed to ensure high availability and reliability of network services in a local area network
+ (LAN). It multiple routers to work together to present the appearance of a single virtual router to the network. The protocol provides automatic failover and load balancing between routers,
+ which helps maintain uninterrupted network service in case one of the routers fails.
+
+ Version              HSRP v1 (Default)            HSRP v2
+ Group numbers          0 --> 255                 0 --> 4095
+ 
+ Multicast              
+ Address                224.0.0.2             224.0.0.102 or FFD2::66
+
+Virtual MAC address                             IPv4 0000.0C9F.F000 to 0000.0C9F.FFFF IPv6 0005.73A0.0000-0005.73A0.0FFF
+                0000.0C07.AC00-0000.0C07.ACFF 
+Support for MD5
+ authentication             No                          Yes
+
+
+HSRP priority and preemption
+.Role of active and standby routers determined by election process
+.By default, the router with the numerically highest IPv4 address is elected as the active router
+.Control HSRP election with priority and do not use highest address
+
+_Priority:
+ .used to determine active router
+ .Default HSRP priority is 100
+ .Range is 0 to 255 and router with highest priority will become active
+
+_HSRP Preemption:
+ .ability of HSRP router to trigger the re-election process
