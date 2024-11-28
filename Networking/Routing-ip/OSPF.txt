@@ -1,0 +1,26 @@
+Open Shortest Path First(OSPF): protocol that uses a mathematical algorithm to calculate the most efficient path to direct traffic on IP networks
+OSPF characteristics:
+.IGP(Works within a single ISP)
+.Link State Protocol
+.It uses Dijkstra Algorithm to choose the best path
+.Default Administrative Distance 110
+.Single Area and Multi Area OSPF
+.Classless, Secure, Efficient, Scalable, Fast convergence
+
+OSPF Messages:
+.OSPF uses Multicast Address 224.0.0.5 or 224.0.0.6
+.Type of OSPF Messages (packets)
+  .Hello Packets: used to discover OSPF neighbors, election, sent every 10s to links, router OSPF considered dead if no hello packets recieved 4 times. 
+  .Database Description(DBD): Checks for database synchronization between routers(LSDB)
+  .Link State Request(LSR): Requests specific link-state records from router to router
+  .Link State Update(LSU): Consists of 11 LSAs
+	LSA Type	|	Description
+	   1			Router LSAs
+	   2		        Network LSAs
+	 3 or 4                 Summary LSAs
+	   5               Autonomous System External
+				   LSAs
+	   6                  Multicast OSPF LSAs
+
+  .Link State Acknowledgment(LSAck): Link state acknowledgment acknowledges the reception of LSDB and LSU packets
+
