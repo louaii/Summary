@@ -33,5 +33,36 @@ EIGRP Packets: Hello, Update, Query, Reply, Acknowledge
  .Used to respond to a query
  .Sent RELIABILITY as unicasts
 
+EIGRP Metric:
+.Each dynamic routing protocol consider the path that has the lowest cost to reach the destination network
+.The cost is determined based on metric considered by the routing protocol
+.EIGRP consider a composite metric to determine the path cost:
+  _Min Bandwidth: The lowest bandwidth between source and destination
+  _Delay: The cumulative interface delay along the path
+  _Reliability(Optional): Worst reliability between source and destination
+  _Load(Optional): Worst load on a link between source and destination
+
+EIGRP Metric calculation formula = {[(10^7)/Min Bandwidth] + [(Sum delays out interfaces)/10]}
+
+EIGRP DUAL:
+EIGRP uses the Diffusing Update Algorithm (DUAL) to provide best and backup loop
+Feasible Distance: It is the path that has the lowest Metric to reach the destination network, used in the routing table
+Reported Distance: It is reported metric from the neighbor advertising the route
+Successor: It is a neighboring router that is used for packet forwarding that has the least cost route to the destination network.
+Feasible successor: These are the Backup paths taht are a loop-free. Must comply to a feasibility condition:
+Reported Distance(neighbor) < Feasible Distance(selected router).
+
+EIGRP Tuning:
+ 
+.EIGRP Auto-Summarization:
+ .EIGRP automatically recognizes subnets as a single class A, B or Cnetworks creates only one entry in the routing table for the summary route.
+ .Automatic summarization is disabled by default for EIGRP ipv4
+
+.Routing loops(Auto summary enabled)
+ .Always be aware of contiguous networks while enabling Automatic summarization to avoid routing loops.
+ .EIGRP uses the NULL0 interface to prevent types of routing loops
+ 
+.Bandwidth Utilization:
+ .EIGRP uses only up to 50 percent of an interface's bandwidth for EIGRP information(changeable through config)
 
 
