@@ -1,0 +1,37 @@
+Enhanced Interior  Gateway Routing Protocol(EIGRP)
+.Cisco proprietary
+.Classless Protocol
+.RTP protocol to exchange EIGRP packets
+.DUAL protocol as routing algorithm
+.Ideal for large networks
+.Supports ipv4 and ipv6
+.EIGRP administrative distance is equal to 5
+.EIGRP uses multicast address to send traffic
+.EIGRP packet 224.0.0.5 or 224.0.0.6
+.EIGRP frame 01-00-5E-00-00-0F
+.All routers exchanging routing information between them belong to a unique Autonomous System(AS)
+
+EIGRP Packets: Hello, Update, Query, Reply, Acknowledge
+.Hello Packets:
+ .used to discover other EIGRP routers in the network
+ .Hello packet are sent each 5 seconds, over ethernet and serial links
+ .Sent UNRELIABLY to multicast address
+
+.Acknowledgement Packets:
+ .Used to acknowledge the receipt of any EIGRP packet:Update, Query, Reply
+ .Sent UNRELIABLY as unicasts
+
+.Update Packets:
+ .Convey routing information to know destinations
+ .Sent RELIABLY as unicasts or multicasts
+
+.Query Packets:
+ .Used to get specific information from a neighbor router
+ .Sent RELIABLY as umicasts or multicasts
+
+.Reply Packets:
+ .Used to respond to a query
+ .Sent RELIABILITY as unicasts
+
+
+
