@@ -99,3 +99,8 @@ Exec=/etc/arduino/arduino-ide_2.3.2_Linux_64bit.AppImage
 Icon=/etc/arduino/arduino_103028.png
 Terminal=false
 Categories=Development;
+
+
+
+To access .exe through wine:
+WINEPREFIX=~/wineprefix wine /media/lserhal/16.0.15330.20266/OInstall.exe
