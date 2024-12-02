@@ -1,0 +1,1 @@
+printf "\033[s": This uses an escape sequence to save the cursor position. This is useful to update the progress bar in place without clearing the screen.
