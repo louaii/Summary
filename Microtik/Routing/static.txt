@@ -1,0 +1,20 @@
+Exercise 1:
+1.-Put IP addresses as shown below
+                        192.168.21.1        192.168.21.0      192.168.21.2
+                                |              Eth4              |
+                                x    .______________________.    x
+	Network_____________x   R   x_________________________x  R  x________Network
+	1.1.1.1                 X           192.168.12.0/24      x           2.2.2.2
+			     Router1			      Router2
+			  192.168.12.1                     192.168.12.2
+
+
+2.-Ping from R1 to R2 connected interface. Do you have a reply? Then ping to 2.2.2.2 do you have a reply?
+
+3.-From R1, configure static route to reach the network 2.2.2.0/24
+4.-From R2, configure static route to reach the network 1.1.1.0/24
+5.Ping from R2 ping 1.1.1.1 with a source address 2.2.2.2 do you have reply?
+6.Put a cable between Eth4 interfaces
+7.Assign on Eth4 of R1 an IP of 192.168.21.1/24 and on Eth4 of R2 an IP of 192.168.21.2/24
+8.On R1 and R2 create 2 static routes to reach destination networks using the new link
+9.Make the link on Eth4 as the preferable routing to be used
