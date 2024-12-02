@@ -5,7 +5,7 @@ Exercise 1:
                                 x    .______________________.    x
 	Network_____________x   R   x_________________________x  R  x________Network
 	1.1.1.1                 X           192.168.12.0/24      x           2.2.2.2
-			     Router1			      Router2
+			     Router1		Eth2          Router2
 			  192.168.12.1                     192.168.12.2
 
 
@@ -18,3 +18,91 @@ Exercise 1:
 7.Assign on Eth4 of R1 an IP of 192.168.21.1/24 and on Eth4 of R2 an IP of 192.168.21.2/24
 8.On R1 and R2 create 2 static routes to reach destination networks using the new link
 9.Make the link on Eth4 as the preferable routing to be used
+
+--------------------------------------------------------------------------------------
+					Solution
+--------------------------------------------------------------------------------------
+Router 1
+To add IP addresses on microtik:
+go to:
+  ||
+  ||
+    \\
+      ==> IP ==> Addresses ==> + ==> Address:192.168.12.1/24 ==> Network: 192.168.12.0/24 ==> interface:ether2
+
+To Create a network use the bridge:
+go to:
+  ||
+  ||
+   \\
+     ==> Bridge ==> add bridge 1 if not existing 
+    //
+  ||
+  ||
+go to:
+  ||
+  ||
+   \\
+     ==> IP ==> Addresses ==> + ==> Address:1.1.1.1/24 ==> Network: 1.1.1.0/24 ==> interface: bridge1
+To create route to 2.2.2.2
+go to:
+  ||
+  ||
+   \\
+     ==> IP ==> Routes ==> + ==> Dst.address: 2.2.2.0/24 ==> Gateway: 192.168.12.2
+To add address:
+go to:
+  ||
+  ||
+    \\
+      ==> IP ==> Addresses ==> + ==> Address:192.168.21.1/24 ==> Network: 192.168.21.0/24 ==> interface:ether4
+Router 2:
+
+To add IP addresses on microtik:
+go to:
+  ||
+  ||
+    \\
+      ==> IP ==> Addresses ==> + ==> Address:192.168.12.2/24 ==> Network: 192.168.12.0/24 ==> interface:ether2
+
+To Create a network use the bridge:
+go to:
+  ||
+  ||
+   \\
+     ==> Bridge ==> add bridge 1 if not existing 
+    //
+  ||
+  ||
+go to:
+  ||
+  ||
+   \\
+     ==> IP ==> Addresses ==> + ==> Address:2.2.2.2/24 ==> Network: 2.2.2.0/24 ==> interface: bridge1
+
+To create route to 1.1.1.1
+go to:
+  ||
+  ||
+   \\
+     ==> IP ==> Routes ==> + ==> Dst.address: 1.1.1.0/24 ==> Gateway: 192.168.12.1
+To add address:
+go to:
+  ||
+  ||
+    \\
+      ==> IP ==> Addresses ==> + ==> Address:192.168.21.2/24 ==> Network: 192.168.21.0/24 ==> interface:ether4
+
+
+---------------------------------------------------------------------------------------
+					Remarks
+---------------------------------------------------------------------------------------
+
+If two interfaces are routed to the same gateway automatically one will be activated and the other one will be dropped
+
+In routing list:
+DAC: Directly Access Connection
+AS: Active static
+S: Static
+
+
