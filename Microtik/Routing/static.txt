@@ -105,4 +105,30 @@ DAC: Directly Access Connection
 AS: Active static
 S: Static
 
+Exercise 2:
+
+
+
+
+                               .1          192.168.21.0/24      .2
+                                |              Eth4              |
+                                x    .______________________.    x
+					
+                                               Eth3
+	Network_____________x   R   x_________________________x  R  x________Network
+	1.1.1.1                            192.168.12.0/16                   2.2.2.2
+				
+                                x    .______________________.    x
+                                               Eth2
+					   10.0.0.0/8
+
+
+1. A link between Eth3 has been added and all IP addresses are set as per the graph
+2. Make static routes on both routers to reach the destination networks on all interfaces using /24 on Eth4, /16 on Eth2 and /8 on Eth3
+3. Check the routing table. Which of the routes is active?
+4. Check that you can reach the destinations networks on all links
+5. Which of the routes is being used? Justify using Torch
+6. 
+ 
+					
 
