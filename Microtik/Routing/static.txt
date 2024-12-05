@@ -128,7 +128,15 @@ Exercise 2:
 3. Check the routing table. Which of the routes is active?
 4. Check that you can reach the destinations networks on all links
 5. Which of the routes is being used? Justify using Torch
-6. 
+6.Increase the distance on the used route. Which route is being used? Justify using Torch
+
+Torch is to check from which interface the network is working and it depends on the subnet prefix:
+if pinging 2.0.0.0 then it goes through the /8
+if pinging 2.2.0.0 then from /16
+if pinging 2.2.2.0 from /24
+regardless of the administrative distance
+
+ 
  
 					
 
