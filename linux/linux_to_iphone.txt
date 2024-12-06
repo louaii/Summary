@@ -1,0 +1,16 @@
+┌──(lserhal㉿linux)-[~]
+└─$ sudo apt install ifuse
+
+┌──(lserhal㉿linux)-[~]
+└─$ mkdir ~/iphone
+
+┌──(lserhal㉿linux)-[~]
+└─$ ifuse ~/iphone
+
+┌──(lserhal㉿linux)-[~]
+└─$ cd iphone/
+
+┌──(lserhal㉿linux)-[~/iphone]
+└─$ ls
+AirFair  Airlock  Books  DCIM  Downloads  EnhancedAudioSharedKeys  ManagedPurchases  MediaAnalysis  Music  PhotoData  Purchases  Recordings  iTunesRestore  iTunes_Control
+
