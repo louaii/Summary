@@ -119,3 +119,8 @@ crontab -e
 example:
 0 9 * * * /home/lserhal/scripts/Anydesk-crack.sh
 
+To check disk:
+sudo fdisk -l
+
+To check RAM:
+top
