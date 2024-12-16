@@ -130,4 +130,5 @@ systemctl list-units --type=service
 systemctl list-units --type=service --all
 service --status-all
 systemctl status <service-name>
+systemctl list-units --type=service | grep <service-name>
 
