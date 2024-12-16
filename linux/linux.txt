@@ -124,3 +124,10 @@ sudo fdisk -l
 
 To check RAM:
 top
+
+to check services:
+systemctl list-units --type=service
+systemctl list-units --type=service --all
+service --status-all
+systemctl status <service-name>
+
