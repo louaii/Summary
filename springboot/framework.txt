@@ -24,5 +24,7 @@ Controller responsible about requests
 
 roles:
 View ==> Controller ==> Model or Model ==> Controller ==> View
+
+to use spring boot: https://start.spring.io/
 Video 7
 
