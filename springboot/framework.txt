@@ -28,7 +28,6 @@ roles:
 View ==> Controller ==> Model or Model ==> Controller ==> View
 
 to use spring boot: https://start.spring.io/
-Video 7
 
 Difference between .properties and .yaml:
 #In application.properties
