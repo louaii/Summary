@@ -1,0 +1,6 @@
+.mvn ==> mini apache maven to run maven commands through the IDE without installing tool on device
+
+to configure main():
+run the main from src and don't edit it manually
+
+Springboot has Apache Tomcat to run web server localhost for java as xampp for php
