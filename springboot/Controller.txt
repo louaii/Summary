@@ -1,1 +1,9 @@
-Video 12 start
+Controller used to handle incoming HTTP requests, process them and return HTTP response. It is responsible for defining the routes and the logic to handle client requests.
+
+@GetMapping ==> GET requests
+@PostMapping ==> POST requests
+@PutMapping ==> PUT requests
+@DeleteMapping ==> DELETE requests
+@RequestMapping ==> mapping for any HTTP method
+
+Handle Input Validation: The controller can also validate the input data before processing it through @Valid and @NotNull
