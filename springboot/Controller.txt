@@ -1,5 +1,4 @@
-Controller used to handle incoming HTTP requests, process them and return HTTP response. It is responsible for defining the routes and the logic to handle client requests.
-
+Controller used to handle incoming HTTP requests, process them and return HTTP response. It is responsible for defining the routes and the logic to handle client requests and returns views as responses used in MVC(Model-View-Controller)
 @GetMapping ==> GET requests
 @PostMapping ==> POST requests
 @PutMapping ==> PUT requests
