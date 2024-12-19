@@ -54,3 +54,8 @@ ________________________|_______________________|________________________|
 Annotation		|Requires @ResponseBody |	    -		 |
 			| for data responses.	|	    		 |
 ________________________|_______________________|________________________|
+
+
+USAGE:
+.If application serves HTML pages abd building a web application with a front-end templating engine ====> @Controller
+.If application provides RESTful API and need to expose JSON or XML endpoints for clients consumption ====> @RestController
