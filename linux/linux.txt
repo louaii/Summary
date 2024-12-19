@@ -132,3 +132,10 @@ service --status-all
 systemctl status <service-name>
 systemctl list-units --type=service | grep <service-name>
 
+
+
+to check drivers:
+lscpi
+
+to check usb /dev/sda:
+sudo fdisk -l
