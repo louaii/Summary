@@ -21,8 +21,9 @@ public class myController {
 	}
 }
 
-*RESTController is used to define RESTful web service controller, it combines @Controller and @ResonseBody returning data (XML, JSON, ...) directly instead of view and simplifies the development of REST APIs by removing the need for @ResponseBody on each method
+*RESTController is used to define RESTful web service controller, it combines @Controller and @ResponseBody returning data (XML, JSON, ...) directly instead of view and simplifies the development of REST APIs by removing the need for @ResponseBody on each method
 
+RESTController = Controller + ReponseBody
 Example:
 @RestController
 public class myController {
