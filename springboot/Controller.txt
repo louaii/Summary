@@ -6,3 +6,5 @@ Controller used to handle incoming HTTP requests, process them and return HTTP r
 @RequestMapping ==> mapping for any HTTP method
 
 Handle Input Validation: The controller can also validate the input data before processing it through @Valid and @NotNull
+
+

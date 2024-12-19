@@ -1,0 +1,22 @@
+*Controller is used to define a standard Spring MVC to render views in web applications, Methods in a @Controller return view names, which are resolved by a ViewResolver to render an HTML Page, for returning data you need to annotate methods with @ResponseBody
+
+@Controller //MVC controller to handle web requests
+public class myController {
+	
+	@GetMapping("/hello") //maps http GET request to the /hello page on web
+	public String sayHello(Model model) {
+		/*
+			Adds an attribute "message" with the value "Hello" to the Model
+			This data will be accessible in the view
+		*/
+		model.addAttribute("message", "Hello");
+		return "hello"; //returns the name of the view
+	}
+
+	@GetMapping("/api/data") //Maps http GET requests for "/api/data" page on web
+	@ResponseBody //Indicates that the return value should be written directly to the HTTP response
+	public String getData() {
+		//Returns plain text or JSON as the response body as string
+		return "Data as plain text or JSON";
+	}
+}
