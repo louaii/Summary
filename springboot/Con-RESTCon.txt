@@ -20,3 +20,37 @@ public class myController {
 		return "Data as plain text or JSON";
 	}
 }
+
+*RESTController is used to define RESTful web service controller, it combines @Controller and @ResonseBody returning data (XML, JSON, ...) directly instead of view and simplifies the development of REST APIs by removing the need for @ResponseBody on each method
+
+Example:
+@RestController
+public class myController {
+	
+	@GetMapping("/api/greeting")
+	public String getGreeting() {
+		return "Hello, with RESTful";
+	}
+}
+
+*Key Differences
+			 ________________________________________________
+			|			|			 |
+			|	@Controller     |    @RESTController     |
+________________________|_______________________|________________________|
+ 			|			|			 |
+View Rendering		|  Returns view names   |  Returns data directly |
+			|	  {Yes}		|	  {No}           |
+________________________|_______________________|________________________|
+			|			|			 |
+Default Response Type   |  View(except annoted  |    JSON or XML (data,  |
+			|   with @ResponseBody) |      not views)        |
+________________________|_______________________|________________________|
+			|			|			 |
+Primary Use Case	| Traditional web apps  |   REST APIs and web    |
+			|       with views      |        services        |
+________________________|_______________________|________________________|
+			|			|			 |
+Annotation		|Requires @ResponseBody |	    -		 |
+			| for data responses.	|	    		 |
+________________________|_______________________|________________________|
