@@ -1,0 +1,16 @@
+A component is a class that is managed by the Spring Inversion of Control Container.
+
+@Component marks a class as a Spring-managed bean that will be detected and registered as a bean during classpath scanning and it's a generic component(general) that has no specific role indicated(any custom logic that doesn't fall under a specific layer can be marked as component)
+
+.Spring creates, configures, and manages the lifecycle of component instances
+.Components can be injected into other components using annotations like @Autowired or constructor injection 
+.Once registered, components become accessible to other beans in the Spring Container
+
+
+							Components
+							/   |   \
+						       /    |    \
+						Controller  |  Repository
+							    |
+							    |
+							 Service

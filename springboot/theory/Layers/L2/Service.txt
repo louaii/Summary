@@ -1,6 +1,6 @@
 {Logic Component}
-@Servcie
+@Service used to indicate that a class is a Service component(component scanning and dependency injection)
+
 A Service is a business logic layer responsible for implementing the core logic of application, between Controller and Repository Layers.
 
-//Service layer
-//Bean
+
