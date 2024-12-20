@@ -1,10 +1,11 @@
+{Controller Layer(Request)}
 REST(Respresentational State Transfer) is not a standard or a protocol, it's an architectural style for distributed systems that relies on stateless communication, typically over HTTP that allows systems to be scalable, simple and loosely coupled.
 
 .HTTP Methods:
-GET: Retrieve a resource or collection of resources.
-POST: Create a new resource
-PUT: Update an existing resource or create it if it doesn't exist
-DELETE: Remove a resource
+GET: Retrieve data - get data.
+POST: Submit data
+PUT: Update data
+DELETE: Remove data
 
 .Statelessness:
 Each request from a client to a server must contain all the information needed to understand and process the request, the server doesn't store any client context between requests.

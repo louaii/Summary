@@ -1,3 +1,4 @@
+{Controller Layer(Request)}
 *Controller is used to define a standard Spring MVC to render views in web applications, Methods in a @Controller return view names, which are resolved by a ViewResolver to render an HTML Page, for returning data you need to annotate methods with @ResponseBody
 
 @Controller //MVC controller to handle web requests

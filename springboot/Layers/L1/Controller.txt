@@ -1,0 +1,5 @@
+{Layer 1 ==> Controller}
+
+Controller used to handle incoming HTTP requests, process them and return HTTP response. It is responsible for defining the routes and the logic to handle client requests and returns views as responses used in MVC(Model-View-Controller)
+Controller Layer acts as the entry point for the application and communicates with the Service Layer to process the logic 
+
