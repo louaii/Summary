@@ -1,0 +1,2 @@
+To create a Laravel project:
+composer create-project laravel/Laravel example-app

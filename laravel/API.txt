@@ -1,0 +1,9 @@
+API(Application Programming Interface) allows communication between the client-side and the server-side which the database is stored into
+Through GET/POST/PUT/DELETE http requests
+GET: to retrieve data(shown in http request)
+POST: to create - retrieve - update - delete (hidden and used for security when validating password)
+PUT: update data
+DELETE: delete data
+
+restAPI uses the CRUD requests:
+CREATE - READ - UPDATE - DELETE
