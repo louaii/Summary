@@ -139,3 +139,20 @@ lscpi
 
 to check usb /dev/sda:
 sudo fdisk -l
+
+
+to check packages:
+dpkg -l | grep <package-name>
+
+to install mysql go to mysql-dep and install package
+sudo get-apt install mysql-server
+			  -community-server
+			  -community-core-server
+
+
+to install composer:
+sudo apt install php php-cli php-mbstring unzip curl -y
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+composer --version
+
