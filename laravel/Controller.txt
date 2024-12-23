@@ -1,0 +1,1 @@
+Controller is used to write the api functions instead of writing the same functions within the routing directory and api page itself.
