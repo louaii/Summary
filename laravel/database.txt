@@ -1,0 +1,12 @@
+to create table:
+php artisan make:migration create_table-name_table
+
+go to databases ==> migrations
+
+create database entities and modification in the table
+
+check .env file for database
+
+to add the table to your database:
+php artisan migrate
+
