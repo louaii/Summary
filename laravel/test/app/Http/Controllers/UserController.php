@@ -27,7 +27,7 @@ class UserController extends Controller
     //public function CheckUser(int $id){}
     public function CheckUser($id){
         if($id > 10){
-            return response()->json(['message' => 'Access denied .$id excceded allowed limit']);
+            return response()->json(['message' => 'Access denied .$id excceded allowed limit'], 403);
         } else
         return response()->json(['message' => 'Welcome your id is valid']);
         //return response()->json(['message' => $id]);
