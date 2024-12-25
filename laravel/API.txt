@@ -26,3 +26,15 @@ Route::get('welcome', function (){
 });
 
 GET http://127.0.0.1:8000/api/page_in_route
+
+imports:
+use App\Http\Controllers\nameController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+each time controller added make sure to import it's class
+
+to make api count the rows used
+Route::http_request('page/{counter}', [Controller_name::class, 'function_in_Conrtoller']);
+
+Route::get('user/{id}', [UserController::class,'CheckUser']);
