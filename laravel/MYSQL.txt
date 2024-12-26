@@ -12,3 +12,15 @@ show tables;
 //to see elements in tables
 describe table_name;
 show columns from table_name;
+
+//to check table rows
+select * from table_name;
+
+//to delete row from table
+delete from table_name where condition
+//example
+delete from table_name where id = 2;
+
+//to clear command line
+\! cls (windows)
+\! clear (linux)
