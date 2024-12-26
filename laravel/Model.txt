@@ -1,0 +1,24 @@
+php artisan make:model Singular_name_Entity
+
+namespace App\Models;
+
+//database through tables routed by eloquent ORM
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Task extends Model
+{
+    use HasFactory;
+    //to ensure model and migration are linked
+    protected $table = 'table_name';
+    //to make primary_key
+    protected $primaryKey = 'primary_key_name';
+}
+
+to create a migration and a model in the same command
+php artisan make:model Singular_name_of_entity -m
+php artisan make:model Singular_name_of_entity --migration
+
+to create migration, controller and model in the same command
+php artisan make:model Singular_name_of_entity -mc
+php artisan make:model Singular_name_of_entity --migration --controller

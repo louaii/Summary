@@ -5,8 +5,6 @@ POST: to create - retrieve - update - delete (hidden and used for security when 
 PUT: update data
 DELETE: delete data
 
-restAPI uses the CRUD requests:
-CREATE - READ - UPDATE - DELETE
 
 in Laravel:
 php artisan install:api
@@ -34,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 
 each time controller added make sure to import it's class
 
-to make api count the rows used
-Route::http_request('page/{counter}', [Controller_name::class, 'function_in_Conrtoller']);
+to make api counter_id the rows used
+Route::http_request('page/{counter_id}', [Controller_name::class, 'function_in_Conrtoller']);
 
 Route::get('user/{id}', [UserController::class,'CheckUser']);

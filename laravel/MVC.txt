@@ -1,15 +1,18 @@
 Model View Controller helps to organize the project in an easier way
 
 				
-					
+					      Database
+						 ||		
 						Model
 					      //     \\
 					    //         \\
-					  View     Controller
+				   json = View     Controller   = routes
 					    \\         //
                                               \\     //
                                                  User
 
 User to create a profile should insert his information as name email password ...
 these infos are sent as a request from the fields filled by the user to the controller through routes
-model is the
+model deals with the database creation, show, update, delete
+view show if the user entries succeeded in the database or not
+user sees the page if found or not 
