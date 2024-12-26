@@ -1,0 +1,15 @@
+Model View Controller helps to organize the project in an easier way
+
+				
+					
+						Model
+					      //     \\
+					    //         \\
+					  View     Controller
+					    \\         //
+                                              \\     //
+                                                 User
+
+User to create a profile should insert his information as name email password ...
+these infos are sent as a request from the fields filled by the user to the controller through routes
+model is the
