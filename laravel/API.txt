@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 
 each time controller added make sure to import it's class
 
-to make api counter_id the rows used
-Route::http_request('page/{counter_id}', [Controller_name::class, 'function_in_Conrtoller']);
-
+//to make api takes and argument after the path in the url to add,remove or update
+Route::http_request('page/{arg}', [Controller_name::class, 'function_in_Conrtoller']);
+//example
 Route::get('user/{id}', [UserController::class,'CheckUser']);

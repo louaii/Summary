@@ -11,3 +11,6 @@ Route::get('/user', function (Request $request) {
 Route::get('tasks', [TaskController::class, 'index']);
 //route for store function
 Route::post('tasks', [TaskController::class, 'store']);
+//route for update function
+//{id} is an argument to look 
+Route::put('tasks/{id}', [TaskController::class, 'update']);

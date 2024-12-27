@@ -25,4 +25,9 @@ class TaskController extends Controller
         ]);
         return response()->json($task, 200);
     }
+
+    //Updating function that update database based on id
+    public function update(Request $request, $id){
+        // 
+    }
 }
