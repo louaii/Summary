@@ -156,3 +156,20 @@ curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 composer --version
 
+to install postman:
+https://dl.pstmn.io/download/latest/linux_64
+tar -xvzf postman.tar.gz
+sudo mv Postman /opt/postman
+sudo ln -s /opt/postman/Postman /usr/bin/postman
+postman
+
+to create icon desktop:
+sudo nano /usr/share/applications/postman.desktop
+
+[Desktop Entry]
+Name=Postman
+Exec=/opt/postman/Postman
+Icon=/opt/postman/app/resources/app/assets/icon.png
+Type=Application
+Categories=Development;
+
