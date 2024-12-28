@@ -36,3 +36,5 @@ each time controller added make sure to import it's class
 Route::http_request('page/{arg}', [Controller_name::class, 'function_in_Conrtoller']);
 //example
 Route::get('user/{id}', [UserController::class,'CheckUser']);
+
+php artisan install:api ==> for api activation

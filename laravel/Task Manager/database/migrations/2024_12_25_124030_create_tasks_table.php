@@ -15,7 +15,7 @@ return new class extends Migration
             //here to add entities
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->integer('priority');
             $table->timestamps();
         });

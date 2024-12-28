@@ -20,6 +20,5 @@ php artisan cache:table
 php artisan migrate
 php artisan serve
 
-php artisan install:api ==> for api activation
 
-php artisan migrate:fresh //to drop tables from database
+

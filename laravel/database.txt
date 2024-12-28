@@ -10,3 +10,5 @@ check .env file for database
 to add the table to your database:
 php artisan migrate
 
+//to drop tables in database
+php artisan migrate:fresh

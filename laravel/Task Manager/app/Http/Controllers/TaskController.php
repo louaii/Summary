@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 //import model task
+use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -16,22 +18,16 @@ class TaskController extends Controller
     }
 
     //Create function named store to add data to the database
-    public function store(Request $request)
-    {
-        $task = Task::create([
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'priority'=>$request->priority
-        ]);
+    public function store(StoreTaskRequest $request){
+        $task = Task::create($request->validated());
         return response()->json($task, 201);
     }
 
     //Updating function that update database based on id
-    public function update(Request $request, $id){
+    public function update(UpdateTaskRequest $request, $id){
         $task=Task::findOrFail($id);
-        $task->update($request->only('title', 'description', 'priority'));
+        $task->update($request->validated());
         return response()->json($task, 200);
-
     }
 
     //Show to retrieve data and show it's content based on id
@@ -40,6 +36,7 @@ class TaskController extends Controller
         return response()->json($id, 200);
     }
 
+    //Delete row from database based on id
     public function destroy($id){
         $task = Task::findOrFail($id);
         $task->delete();
