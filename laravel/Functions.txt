@@ -1,0 +1,1 @@
+findOrFail(): looks for the argument(condition set) and if not found returns not find == fail

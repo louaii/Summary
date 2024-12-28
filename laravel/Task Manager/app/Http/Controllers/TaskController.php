@@ -23,11 +23,26 @@ class TaskController extends Controller
             'description'=>$request->description,
             'priority'=>$request->priority
         ]);
-        return response()->json($task, 200);
+        return response()->json($task, 201);
     }
 
     //Updating function that update database based on id
     public function update(Request $request, $id){
-        // 
+        $task=Task::findOrFail($id);
+        $task->update($request->only('title', 'description', 'priority'));
+        return response()->json($task, 200);
+
+    }
+
+    //Show to retrieve data and show it's content based on id
+    public function show($id){
+        $task = Task::find($id);
+        return response()->json($id, 200);
+    }
+
+    public function destroy($id){
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return response()->json(null, 204);
     }
 }
