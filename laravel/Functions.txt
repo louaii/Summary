@@ -5,3 +5,8 @@ $fillable to fill the fields
 $guarded to unable to fill fields
 
 firstOrFail(): looks for the first argument(condition set) and returns it whenever found if not found returns fail
+
+in the model files to create relation
+One to One relation
+file with primary key: hasOne()
+file with foreign key: belongs to()

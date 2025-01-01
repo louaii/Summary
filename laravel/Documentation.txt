@@ -1,0 +1,109 @@
+Introduction:
+-------------
+
+Laravel is a PHP framework
+A framework is a guide to build the project based on a language with community libraries and functions to make it smoother for devs
+
+Laravel Features:
+Eloquent ORM: Simple use with database
+Artisan Console: Laravel command line 
+MVC architecture: Model View Controller
+Security tools to stop vulnerabilities
+
+to apply Laravel on device
+download xampp(php, mysql)
+download composer
+
+go to php.ini
+uncomment remove semicolon(;)
+;extension=zip
+;extension=fileinfo
+;extension=pdo_mysql
+;extension=MySQL
+
+http status code:
+-----------------
+200: OK
+201: Created
+204: No content
+400: Bad request
+401: Unauthorized
+403: Forbidden
+404: Not found
+500: Internal Server Error
+
+API-CRUD:
+---------
+API(Application Programming Interface) allows communication between the client-side and the server-side which the database is stored into
+Through GET/POST/PUT/DELETE http requests
+GET: to retrieve data(shown in http request)
+POST: to create - retrieve - update - delete (hidden and used for security when validating password)
+PUT: update data
+DELETE: delete data
+CRUD(Create Retrieve Update Delete) used in the controllers as store, index, show, update and destroy
+
+Controller:
+-----------
+Controller is used to write the api functions instead of writing the same functions within the routing directory and api page itself.
+
+Controller main task to take the request from users and add to the database
+
+MVC:
+---
+Model View Controller helps to organize the project in an easier way
+
+				
+					      Database
+						 ||		
+						Model
+					      //     \\
+					    //         \\
+				   json = View     Controller   = routes
+					    \\         //
+                                              \\     //
+                                                 User
+
+User to create a profile should insert his information as name email password ...
+these infos are sent as a request from the fields filled by the user to the controller through routes
+model deals with the database creation, show, update, delete
+view show if the user entries succeeded in the database or not
+user sees the page if found or not
+
+json:
+-----
+JavaScript Object Notation is based on JavaScript used in several languages to transfer data from client to server side
+
+Advantages of JSON:
+.Lightwight and fast
+.Easy to read
+.Compatible with several programming languages
+
+Why using JSON:
+.Data transfer
+.Building APIs
+
+Relations:
+----------
+
+.One to One relation:
+a user can have one profile(one to one relationship)
+
+
+ -----------------                                  -----------------
+|      User       |                                |     Profile     |
+ -----------------                                  -----------------
+|PK| id           |  ---\                          |PK| id           |
+ -----------------        \                         -----------------
+|    name         |         \                      |    name         |
+ -----------------            \                     -----------------
+|    email        |             \                  |    address      |
+ -----------------                \                 -----------------
+|    password     |                 \              |    date_birth   |
+ -----------------                    \             -----------------
+                                        \          |    bio          |
+                                          \         -----------------
+                                            \----- |FK| user_id      |
+                                                    -----------------
+
+PK: Primary_Key
+FK: Foreign_Key

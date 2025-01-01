@@ -4,21 +4,38 @@ composer create-project laravel/Laravel example-app
 To start Laravel:
 php artisan serve
 
-go to php.ini:
-remove ;
-extension=zip
-extension=fileinfo
-extension=pdo_mysql
-extension=MySQL
-
 create database to MySQL
-
 edit in .env file in Laravel project
 
-php artisan key:generate
-php artisan cache:table
+to create table:(databases\migrations)
+php artisan make:migration create_table-name_table
+
+to add table to database:(databases\migrations)
 php artisan migrate
-php artisan serve
 
+to drop tables in database
+php artisan migrate:fresh
 
+to create a new request:(app\http\requests)
+php artisan make:request RequestName
+
+to create a new api:(routes)
+php artisan install:api
+
+To create controller in Laravel:(app\http\controllers)
+php artisan make:controller controller_name
+
+To create a controller with route's CRUD functions:(app\http\controllers)
+php artisan make:controller controller_name --api
+
+to create a model:(app\models)
+php artisan make:model Singular_name_Entity
+
+to create a migration and a model in the same command
+php artisan make:model Singular_name_of_entity -m
+php artisan make:model Singular_name_of_entity --migration
+
+to create migration, controller and model in the same command
+php artisan make:model Singular_name_of_entity -mc
+php artisan make:model Singular_name_of_entity --migration --controller
 

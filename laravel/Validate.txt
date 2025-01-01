@@ -1,3 +1,0 @@
-Create validation request to write validation rules outside the controller function
-
-php artisan make:request request_name

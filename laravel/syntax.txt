@@ -1,0 +1,54 @@
+api.php ==> routes
+syntax
+//class.http_request_api_method_function_inclass('web_page/', function(){return;});
+
+Route::https_request_api_method('web_page/', function(){
+	return 'string to print';
+});
+
+//example
+Route::get('welcome', function (){
+	return 'Welcome to API';
+});
+
+imports:
+use App\Http\Controllers\nameController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+//to make api takes and argument after the path in the url to add,remove or update
+Route::http_request('page/{arg}', [Controller_name::class, 'function_in_Conrtoller']);
+//example
+Route::get('user/{id}', [UserController::class,'CheckUser']);
+
+to use controller created in api:
+Route::http_request('page_name', [Controller_name::class, 'function_name']);
+
+model.php
+namespace App\Models;
+
+//database through tables routed by eloquent ORM
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Task extends Model
+{
+    use HasFactory;
+    //to ensure model and migration are linked
+    protected $table = 'table_name';
+    //to make primary_key
+    protected $primaryKey = 'primary_key_name';
+}
+
+//to create relation between profile and user One to One use hasOne
+    public function profile(){
+        return $this->hasOne(Profile::class);
+    }
+
+//to create relation between user and profile One to One that belongs to user
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+use json in controller file by typing Response::json :
+return response_function()->json(variable_used,status,headers)
