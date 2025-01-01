@@ -1,2 +1,5 @@
 CRUD(Create Read Update Delete)
 Update in video CRUD
+
+php artisan make:controller controller_name --api
+to create a controller with routes function
