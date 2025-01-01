@@ -24,3 +24,6 @@ delete from table_name where id = 2;
 //to clear command line
 \! cls (windows)
 \! clear (linux)
+
+to insert values manually
+ insert into users(name,email,password) values ('Louay Serhal', 'louayserhal@gmail.com', 'password123');

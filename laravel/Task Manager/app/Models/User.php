@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    //to create relation between profile and user One to One use hasOne
+    public function profile(){
+        return $this->hasOne(Profile::class);
+    }
 }

@@ -1,0 +1,2 @@
+to create a new request:
+php artisan make:request RequestName

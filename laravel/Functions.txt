@@ -1,1 +1,7 @@
 findOrFail(): looks for the argument(condition set) and if not found returns not find == fail
+
+in Profile.php
+$fillable to fill the fields
+$guarded to unable to fill fields
+
+firstOrFail(): looks for the first argument(condition set) and returns it whenever found if not found returns fail

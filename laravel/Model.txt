@@ -22,3 +22,18 @@ php artisan make:model Singular_name_of_entity --migration
 to create migration, controller and model in the same command
 php artisan make:model Singular_name_of_entity -mc
 php artisan make:model Singular_name_of_entity --migration --controller
+
+in the model files to create relation
+One to One relation
+file with primary key: hasOne()
+file with foreign key: belongs to()
+
+//to create relation between profile and user One to One use hasOne
+    public function profile(){
+        return $this->hasOne(Profile::class);
+    }
+
+//to create relation between user and profile One to One that belongs to user
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
