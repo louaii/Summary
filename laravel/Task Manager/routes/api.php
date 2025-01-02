@@ -30,5 +30,5 @@ Route::get('users/{id}/profiles', [UserController::class, 'getProfile']);
 Route::get('users/{id}/tasks', [UserController::class, 'getUserTasks']);
 Route::get('task/{id}/user', [TaskController::class, 'getTaskUser']);
 Route::post('tasks/{task_id}/categories', [TaskController::class, 'addCategoriesToTask']);
-//Route::get('tasks/{task_id}/categories', [TaskController::class, 'getTaskCategories']);
-//Route::get('categories/{category_id}/tasks', [TaskController::class, 'getCategoryTasks']);
+Route::get('tasks/{task_id}/categories', [TaskController::class, 'getTaskCategories']);
+Route::get('categories/{category_id}/tasks', [TaskController::class, 'getCategoryTasks']);

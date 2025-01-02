@@ -10,6 +10,16 @@ use App\Http\Requests\UpdateTaskRequest;
 class TaskController extends Controller
 {
  
+    public function getCategoryTasks($category_id){
+        $tasks = Task::findOrFail($category_id)->tasks;
+        return response()->json($tasks, 200);
+    }
+
+    public function getTaskCategories($task_id){
+        $categories = Task::findOrFail($task_id)->categories;
+        return response()->json($categories, 200);
+    }
+    
     public function addCategoriesToTask(Request $request,$task_id){
         $task = Task::findOrFail($task_id);
         //attach($request->category_id) inserts a new record into the pivot table used in many to many pivot table
