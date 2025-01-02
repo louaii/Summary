@@ -7,3 +7,9 @@ to send data to the database when fresh
 php artisan db:seed --class=<seeder_class_name>
 
 database seeder used to run all the other seeders in it
+
+to run database seeder:
+php artisan db:seed
+
+to fresh database and seed:
+php artisan migrate:fresh --seed
