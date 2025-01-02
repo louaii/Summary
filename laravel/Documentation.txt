@@ -107,3 +107,24 @@ a user can have one profile(one to one relationship)
 
 PK: Primary_Key
 FK: Foreign_Key
+
+.One to Many relation:
+a user can have one or many tasks
+
+
+ ------------------                          -----------------
+|      Users       |                        |      Tasks      |
+ ------------------                          -----------------
+|PK|      id       | ---------------\       |PK|     id       |
+ ------------------                   \      -----------------
+|       name       |                    \__ |FK|   user_id    |
+ ------------------                          -----------------
+|       email      |                        |      title      |
+ ------------------                          -----------------
+|     password     |                        |   description   |
+ ------------------                          -----------------
+                                            |     priority    |
+                                             -----------------
+
+
+
