@@ -9,6 +9,13 @@ use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 class TaskController extends Controller
 {
+ 
+    public function addCategoriesToTask(Request $request,$task_id){
+        $task = Task::findOrFail($task_id);
+        //attach($request->category_id) inserts a new record into the pivot table used in many to many pivot table
+        $task->categories()->attach($request->category_id);
+        return response()->json('Category attached successfully', 200);
+    }
 
     public function getTaskUser($id){
         $user = Task::findOrFail($id);

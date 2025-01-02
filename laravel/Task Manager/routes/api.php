@@ -9,6 +9,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+
 //legacy usage
 // //route for index function
 // Route::get('tasks', [TaskController::class, 'index']);
@@ -23,8 +24,11 @@ Route::get('/user', function (Request $request) {
 
 //This route here concludes the work of all function above
 Route::apiResource('tasks', TaskController::class);
+
 Route::apiResource('profiles', ProfileController::class);
 Route::get('users/{id}/profiles', [UserController::class, 'getProfile']);
 Route::get('users/{id}/tasks', [UserController::class, 'getUserTasks']);
 Route::get('task/{id}/user', [TaskController::class, 'getTaskUser']);
-//Route::apiResource('users', UserController::class);
+Route::post('tasks/{task_id}/categories', [TaskController::class, 'addCategoriesToTask']);
+//Route::get('tasks/{task_id}/categories', [TaskController::class, 'getTaskCategories']);
+//Route::get('categories/{category_id}/tasks', [TaskController::class, 'getCategoryTasks']);
