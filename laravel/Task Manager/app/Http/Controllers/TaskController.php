@@ -4,10 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\User;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 class TaskController extends Controller
 {
+
+    public function getTaskUser($id){
+        $user = Task::findOrFail($id);
+        //$tasks = $user->$tasks;
+        return response()->json($user, 200);
+    }
+
+    /**
+     * public function getTaskUser($id){
+     *      $user = Task::findOrFail($id)->user;
+     *      return response()->json($task, 200);
+     * }
+     */
+
     /**
      * Display a listing of the resource.
      */

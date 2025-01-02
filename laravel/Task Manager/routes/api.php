@@ -25,4 +25,6 @@ Route::get('/user', function (Request $request) {
 Route::apiResource('tasks', TaskController::class);
 Route::apiResource('profiles', ProfileController::class);
 Route::get('users/{id}/profiles', [UserController::class, 'getProfile']);
+Route::get('users/{id}/tasks', [UserController::class, 'getUserTasks']);
+Route::get('task/{id}/user', [TaskController::class, 'getTaskUser']);
 //Route::apiResource('users', UserController::class);

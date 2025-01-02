@@ -50,4 +50,9 @@ class User extends Authenticatable
     public function profile(){
         return $this->hasOne(Profile::class);
     }
+
+    //To create relation between tasks and user many tasks to one user
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
 }
