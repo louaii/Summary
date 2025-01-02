@@ -2,3 +2,6 @@ Seeders are used to make data available even when database is freshed(removed al
 
 to create a new seeder
 php artisan make:seeder seeder_name
+
+to send data to the database when fresh
+php artisan db:seed --class=<seeder_class_name>
