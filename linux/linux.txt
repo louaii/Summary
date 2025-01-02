@@ -173,3 +173,14 @@ Icon=/opt/postman/app/resources/app/assets/icon.png
 Type=Application
 Categories=Development;
 
+to install buds manager:
+flatpak install flathub me.timschneeberger.GalaxyBudsClient
+
+to access buds manager:
+flatpak run me.timschneeberger.GalaxyBudsClient
+
+install flathub:
+sudo apt install flatpak
+sudo apt install gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+reboot
