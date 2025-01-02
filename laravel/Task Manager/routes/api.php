@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+//login token
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
@@ -32,3 +33,6 @@ Route::get('task/{id}/user', [TaskController::class, 'getTaskUser']);
 Route::post('tasks/{task_id}/categories', [TaskController::class, 'addCategoriesToTask']);
 Route::get('tasks/{task_id}/categories', [TaskController::class, 'getTaskCategories']);
 Route::get('categories/{category_id}/tasks', [TaskController::class, 'getCategoryTasks']);
+Route::post('register', [UserController::class, 'register']);
+Route::post('login', [UserController::class, 'login']);
+Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
