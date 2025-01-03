@@ -7,6 +7,8 @@ use App\Models\Task;
 use App\Models\User;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use Illuminate\Support\Facades\Auth;
+
 class TaskController extends Controller
 {
  
@@ -46,7 +48,7 @@ class TaskController extends Controller
     //Create function to read data named index
     public function index()
     {
-        $task = Task::all();
+        $task = Auth::user()->tasks;
         return response()->json($task, 200);
     }
 
@@ -56,7 +58,10 @@ class TaskController extends Controller
     //Create function named store to add data to the database
     public function store(StoreTaskRequest $request)
     {
-        $task = Task::create($request->validated());
+        $user_id = Auth::user()->id;
+        $validate = $request->validated();
+        $validate['user_id']=$user_id;
+        $task = Task::create($validate);
         return response()->json($task, 201);
     }
 
