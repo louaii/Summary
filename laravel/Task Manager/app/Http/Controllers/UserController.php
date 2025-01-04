@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     //when using a function ->
-    //when applying a rule within an attribute
+    //when applying a rule within an attribute =>
     public function register(Request $request)
     {
         $request->validate([

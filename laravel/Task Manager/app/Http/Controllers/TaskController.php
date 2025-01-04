@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
- 
+
     public function getCategoryTasks($category_id){
         $tasks = Task::findOrFail($category_id)->tasks;
         return response()->json($tasks, 200);
@@ -21,31 +21,32 @@ class TaskController extends Controller
         $categories = Task::findOrFail($task_id)->categories;
         return response()->json($categories, 200);
     }
-    
+
     public function addCategoriesToTask(Request $request,$task_id){
         $task = Task::findOrFail($task_id);
-        //attach($request->category_id) inserts a new record into the pivot table used in many to many pivot table
         $task->categories()->attach($request->category_id);
         return response()->json('Category attached successfully', 200);
     }
 
-    public function getTaskUser($id){
-        $user = Task::findOrFail($id);
-        //$tasks = $user->$tasks;
-        return response()->json($user, 200);
-    }
+    //basic changes if this is the find used:
+    //$task = Task::with('user')->findOrFail($id); eager load
+    //change the return to $task
+    //the current used is faster as time complexity just retrieving the tasks and fetching all users data
 
-    /**
-     * public function getTaskUser($id){
-     *      $user = Task::findOrFail($id)->user;
-     *      return response()->json($task, 200);
-     * }
-     */
+    //lazy load
+    public function getTaskUser($id){
+        $user_id = Auth::user()->id;
+        $task = Task::findOrFail($id);
+        if($task->user_id != $user_id)
+            return response()->json(['message' => 'Unauthorized'], 403);
+        return response()->json($task->user, 200);
+    }
 
     /**
      * Display a listing of the resource.
      */
     //Create function to read data named index
+    //only not to modify
     public function index()
     {
         $task = Auth::user()->tasks;
@@ -71,8 +72,11 @@ class TaskController extends Controller
     //Show to retrieve data and show it's content based on id
     public function show(int $id)
     {
-        $task = Task::find($id);
-        return response()->json($id, 200);
+        $user_id = Auth::user()->id;
+        $task = Task::findOrFail($id);
+        if($task->user_id != $user_id)
+            return response()->json(['message' => 'Unauthorized'], 403);
+        return response()->json($task, 200);
     }
 
     /**
@@ -81,7 +85,10 @@ class TaskController extends Controller
     //Updating function that update database based on id
     public function update(UpdateTaskRequest $request, int $id)
     {
+        $user_id = Auth::user()->id;
         $task=Task::findOrFail($id);
+        if($task->user_id != $user_id)
+            return response()->json(['message'=> 'Unauthorized'],403);
         $task->update($request->validated());
         return response()->json($task, 200);
     }
@@ -92,7 +99,10 @@ class TaskController extends Controller
     //Delete row from database based on id
     public function destroy(int $id)
     {
+        $user_id = Auth::user()->id;
         $task = Task::findOrFail($id);
+        if($task->user_id != $user_id)
+            return response()->json(['message'=> 'Unauthorized'], 403);
         $task->delete();
         return response()->json(null, 204);
     }

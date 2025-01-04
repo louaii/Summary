@@ -16,3 +16,5 @@ constrained('table's primary key): used in the table that has a foreign key
 cascadeOnDelete(): delete everything related to user if deleted (usage: contrained('users')->cascadeOnDelete();)
 
 call(): used in seeders to call the seeders in the database to run them all
+
+attach(): attach($request->category_id) inserts a new record into the pivot table used in many to many pivot table
