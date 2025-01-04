@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\User;
@@ -13,17 +14,29 @@ class TaskController extends Controller
 {
 
     public function getCategoryTasks($category_id){
-        $tasks = Task::findOrFail($category_id)->tasks;
+        $user_id = Auth::user()->id;
+        $category= Category::findOrFail($category_id);
+        $tasks = $category->tasks;
+        //filter tasks by the authenticated user
+        if($tasks->user_id != $user_id)
+            return response()->json(['message' => 'Unauthorized'], 403);
         return response()->json($tasks, 200);
     }
 
     public function getTaskCategories($task_id){
-        $categories = Task::findOrFail($task_id)->categories;
+        $user_id = Auth::user()->id;
+        $task = Task::findOrFail($task_id);
+        if($task->user_id != $user_id)
+            return response()->json(['message' => 'Unauthorized', 403]);
+        $categories = $task->categories;
         return response()->json($categories, 200);
     }
 
     public function addCategoriesToTask(Request $request,$task_id){
+        $user_id = Auth::user()->id;
         $task = Task::findOrFail($task_id);
+        if($task->user_id != $user_id)
+            return response()->json(['message' => 'Unauthorized'], 403);
         $task->categories()->attach($request->category_id);
         return response()->json('Category attached successfully', 200);
     }
