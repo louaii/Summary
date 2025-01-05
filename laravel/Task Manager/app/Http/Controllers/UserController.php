@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    //when using a function ->
-    //when applying a rule within an attribute =>
     public function register(Request $request)
     {
         $request->validate([
@@ -47,84 +45,24 @@ class UserController extends Controller
         return response()->json(['message'=>'Logged out']);
     }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-
-    //error
-    // //function created to use the relationship
-    // public function getProfile1($id){
-    //     $profile = User::findOrFail($id)->profile();
-    //     return response()->json($profile, 200);
-    // }
-
     public function getProfile($id)
     {
         $user_id = Auth::user()->id;
-        // Fetch user and related profile
         $user = User::findOrFail($id);
-        // Access the profile via the relationship property
         $profile = $user->profile;
         if($profile->user_id != $user_id)
             return response()->json(['message' => 'Unauthorized'], 403);
-        // Return profile as JSON
         return response()->json($profile, 200);
     }
 
     public function getUserTasks($id)
     {
         $user_id = Auth::user()->id;
-        // Find the user by ID, or fail if not found
         $user = User::findOrFail($id);
-
-        // Access the user's tasks using the relationship
         $tasks = $user->tasks;
         if($tasks->user_id != $user_id)
             return response()->json(['message' => 'Unauthorized'], 403);
-        // Return the tasks as a JSON response
         return response()->json($tasks, 200);
     }
 
-    /**
-     * public function getUserTasks($id){
-     *      $tasks = User::findOrFail($id)->tasks;
-     *      return response()->json($tasks, 200);
-     * }
-     */
 }

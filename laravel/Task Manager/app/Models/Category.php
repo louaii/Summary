@@ -9,8 +9,6 @@ class Category extends Model
 {
     use HasFactory;
 
-    //categories tasks relation many tasks to many categories 
-    //added category_task for pivot table
     public function tasks(){
         return $this->belongsToMany(Task::class, 'category_task');
     }

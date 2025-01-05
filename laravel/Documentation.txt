@@ -151,3 +151,8 @@ A task can has many categories, although a category can has many tasks to have 2
 Seeders:
 --------
 Seeders are used to make data available even when database is freshed(removed all rows)
+
+
+Middleware:
+----------
+middleware is gateway between request and it's function

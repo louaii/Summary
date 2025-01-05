@@ -17,7 +17,6 @@ class TaskController extends Controller
         $user_id = Auth::user()->id;
         $category= Category::findOrFail($category_id);
         $tasks = $category->tasks;
-        //filter tasks by the authenticated user
         if($tasks->user_id != $user_id)
             return response()->json(['message' => 'Unauthorized'], 403);
         return response()->json($tasks, 200);
@@ -41,11 +40,6 @@ class TaskController extends Controller
         return response()->json('Category attached successfully', 200);
     }
 
-    //basic changes if this is the find used:
-    //$task = Task::with('user')->findOrFail($id); eager load
-    //change the return to $task
-    //the current used is faster as time complexity just retrieving the tasks and fetching all users data
-
     //lazy load
     public function getTaskUser($id){
         $user_id = Auth::user()->id;
@@ -55,21 +49,12 @@ class TaskController extends Controller
         return response()->json($task->user, 200);
     }
 
-    /**
-     * Display a listing of the resource.
-     */
-    //Create function to read data named index
-    //only not to modify
     public function index()
     {
         $task = Auth::user()->tasks;
         return response()->json($task, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    //Create function named store to add data to the database
     public function store(StoreTaskRequest $request)
     {
         $user_id = Auth::user()->id;
@@ -79,10 +64,6 @@ class TaskController extends Controller
         return response()->json($task, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    //Show to retrieve data and show it's content based on id
     public function show(int $id)
     {
         $user_id = Auth::user()->id;
@@ -92,10 +73,6 @@ class TaskController extends Controller
         return response()->json($task, 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    //Updating function that update database based on id
     public function update(UpdateTaskRequest $request, int $id)
     {
         $user_id = Auth::user()->id;
@@ -106,10 +83,6 @@ class TaskController extends Controller
         return response()->json($task, 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    //Delete row from database based on id
     public function destroy(int $id)
     {
         $user_id = Auth::user()->id;

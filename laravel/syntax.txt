@@ -40,15 +40,125 @@ class Task extends Model
     protected $primaryKey = 'primary_key_name';
 }
 
+//one to one relation (one user -> one profile)
 //to create relation between profile and user One to One use hasOne
+//user model
     public function profile(){
         return $this->hasOne(Profile::class);
     }
 
 //to create relation between user and profile One to One that belongs to user
+//profile model
     public function user(){
         return $this->belongsTo(User::class);
     }
 
+//one to many relation(one user -> many task)
+//To create relation between tasks and user many tasks to one user
+//user model    
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
+//user tasks relation one user many tasks
+//task model
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+//many to many relation creates new pivot table(many tasks -> many category)
+//tasks categories relation many categories to many tasks
+//task model
+    public function categories(){
+        return $this->belongsToMany(Category::class, 'category_task');
+    }
+
+//category model
+//categories tasks relation many tasks to many categories 
+//category model
+    public function tasks(){
+        return $this->belongsToMany(Task::class, 'category_task');
+    }
+
+//pivot table databases->migrations
+ public function up(): void
+    {
+        Schema::create('category_task', function (Blueprint $table) {
+            $table->id();
+
+            // Define the task_id and category_id columns
+            $table->foreignId('task_id')->constrained('tasks')->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
+
+            $table->timestamps();
+        });
+    }
+
+
+
 use json in controller file by typing Response::json :
 return response_function()->json(variable_used,status,headers)
+
+when using a function ->
+when applying a rule within an attribute =>
+
+basic changes if this is the find used:
+$task = Task::with('user')->findOrFail($id); eager load
+change the return to $task
+the current used is faster as time complexity just retrieving the tasks and fetching all users data
+lazy load is fast when not retrieving the whole data
+
+//This route here concludes the work of all functions(index, show, update, store, destroy)
+Route::apiResource('tasks', TaskController::class);
+
+//legacy usage
+// //route for index function
+// Route::get('tasks', [TaskController::class, 'index']);
+// //route for store function
+// Route::post('tasks', [TaskController::class, 'store']);
+// //route for update function {id} is an argument to look
+// Route::put('tasks/{id}', [TaskController::class, 'update']);
+// //route for show function {id} as argument
+// Route::get('tasks/{id}', [TaskController::class, 'show']);
+// //route to delete from table
+// Route::delete('tasks/{id}', [TaskController::class, 'destroy']);
+
+//Routing prefix:
+//Route::prefix('profile')->group(function(){
+    //all profile routes without adding profile for url; //works as api resource
+//});
+
+example:
+Route::middleware('auth:sanctum')->group(function () {
+Route::apiResource('tasks', TaskController::class);
+Route::apiResource('profiles', ProfileController::class);
+Route::get('users/{id}/profiles', [UserController::class, 'getProfile']);
+Route::get('users/{id}/tasks', [UserController::class, 'getUserTasks']);
+Route::get('task/{id}/user', [TaskController::class, 'getTaskUser']);
+Route::post('tasks/{task_id}/categories', [TaskController::class, 'addCategoriesToTask']);
+Route::get('tasks/{task_id}/categories', [TaskController::class, 'getTaskCategories']);
+Route::get('categories/{category_id}/tasks', [TaskController::class, 'getCategoryTasks']);
+});
+
+Authentication token:
+public function getUserTasks($id)
+    {
+        $user_id = Auth::user()->id;
+        // Find the user by ID, or fail if not found
+        $user = User::findOrFail($id);
+
+        // Access the user's tasks using the relationship
+        $tasks = $user->tasks;
+        if($tasks->user_id != $user_id)
+            return response()->json(['message' => 'Unauthorized'], 403);
+        // Return the tasks as a JSON response
+        return response()->json($tasks, 200);
+    }
+
+for clean code references:
+https://medium.com/@eloufirhatim/solid-principles-in-laravel-1418be178346
+
+to delete one the other is deleted in pivot table:
+            // Define the task_id and category_id columns
+            $table->foreignId('task_id')->constrained('tasks')->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
+

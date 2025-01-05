@@ -11,7 +11,6 @@ class Profile extends Model
     protected $guarded = ['id'];
     protected $table = 'profiles';
 
-    //to create relation between user and profile One to One that belongs to user
     public function user(){
         return $this->belongsTo(User::class);
     }
