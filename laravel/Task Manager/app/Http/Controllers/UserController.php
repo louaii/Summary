@@ -96,22 +96,27 @@ class UserController extends Controller
 
     public function getProfile($id)
     {
+        $user_id = Auth::user()->id;
         // Fetch user and related profile
         $user = User::findOrFail($id);
         // Access the profile via the relationship property
         $profile = $user->profile;
+        if($profile->user_id != $user_id)
+            return response()->json(['message' => 'Unauthorized'], 403);
         // Return profile as JSON
         return response()->json($profile, 200);
     }
 
     public function getUserTasks($id)
     {
+        $user_id = Auth::user()->id;
         // Find the user by ID, or fail if not found
         $user = User::findOrFail($id);
 
         // Access the user's tasks using the relationship
         $tasks = $user->tasks;
-
+        if($tasks->user_id != $user_id)
+            return response()->json(['message' => 'Unauthorized'], 403);
         // Return the tasks as a JSON response
         return response()->json($tasks, 200);
     }
