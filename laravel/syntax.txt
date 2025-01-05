@@ -162,3 +162,18 @@ to delete one the other is deleted in pivot table:
             $table->foreignId('task_id')->constrained('tasks')->cascadeOnDelete();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
 
+to add seeders whenever a database is fresh to be directly added:
+//to add these categories even when deleting data from database
+    //send it through php artisan db:seed --class=CategorySeeder
+    public function run(): void
+    {
+        $categories=['Work', 'Personal', 'Projects', 'Education', 'Finance', 'Health', 'Fitness'];
+        foreach($categories as $category)
+            Category::create(['name'=>$category]);
+    }
+
+add them in the Database seeder:
+ public function run(): void
+    {
+        $this->call(CategorySeeder::class);//call(CategorySeeder:class, UserSeeder:class)
+    }
