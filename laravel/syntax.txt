@@ -122,12 +122,14 @@ Route::apiResource('tasks', TaskController::class);
 // //route to delete from table
 // Route::delete('tasks/{id}', [TaskController::class, 'destroy']);
 
-//Routing prefix:
+Routing prefix:
 //Route::prefix('profile')->group(function(){
-    //all profile routes without adding profile for url; //works as api resource
+    //all profile routes without adding profile for url -- works as api resource
+    Route::post('', [ProfileController::class, 'store']); //'' ==> profile
+    Route::get('/{id}', [ProfileController::class, 'show']); //'/{id}' ==> profile/{id} ==> profile/21
 //});
 
-example:
+Routing middleware:
 Route::middleware('auth:sanctum')->group(function () {
 Route::apiResource('tasks', TaskController::class);
 Route::apiResource('profiles', ProfileController::class);
