@@ -1,0 +1,6 @@
+//if not saving startup config file ==> no system ignore startupconfig switch #in_stack
+//delete startup config ==> erase startupconfig
+//delete vlans ==> delete flash:vlan.dat
+
+//don't copy running config startup config
+
