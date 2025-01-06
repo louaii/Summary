@@ -56,3 +56,5 @@ php artisan db:seed
 to fresh database and seed:
 php artisan migrate:fresh --seed
 
+to create a middleware:
+php artisan make:middleware
