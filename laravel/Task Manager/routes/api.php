@@ -22,8 +22,11 @@ Route::get('tasks/{task_id}/categories', [TaskController::class, 'getTaskCategor
 Route::get('categories/{category_id}/tasks', [TaskController::class, 'getCategoryTasks']);
 });
 
-
+//user routes
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
+
+//admin routes
+Route::get('task/all', [TaskController::class, 'getAllTasks'])->middleware('CheckUser');
 

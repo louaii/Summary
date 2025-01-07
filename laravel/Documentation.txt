@@ -156,3 +156,27 @@ Seeders are used to make data available even when database is freshed(removed al
 Middleware:
 ----------
 middleware is gateway between request and it's function
+
+create a middleware and modify it:
+php artisan make:middleware <middleware_name> \app\http\middleware
+class CheckUserRole
+{
+    public function handle(Request $request, Closure $next): Response
+    {
+        if(Auth::user()->role === 'admin')
+            return $next($request);
+        return response()->json(['message' => 'Unauthorized'], 403);
+    }
+}
+
+
+
+add the middleware in \bootstrap\app.php
+   ->withMiddleware(function (Middleware $middleware) {
+        $middleware->alias([
+            'CheckUser' => CheckUserRole::class
+        ]);
+    })
+
+add route in api routes\api
+Route::get('task/all', [TaskController::class, 'getAllTasks'])->middleware('CheckUser');

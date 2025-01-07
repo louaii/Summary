@@ -92,4 +92,9 @@ class TaskController extends Controller
         $task->delete();
         return response()->json(null, 204);
     }
+
+    public function getAllTasks(){
+        $tasks = Task::all();
+        return response()->json($tasks, 200);
+    }
 }
