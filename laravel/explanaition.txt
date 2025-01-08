@@ -1,0 +1,13 @@
+1.install composer ==> composer install
+2.To create laravel project ==> composer create-project laravel/laravel project_name
+3.edit .env file (/.env)
+4.Test project by running ==> php artisan serve
+5.Make API for routing ==> php artisan install:api  (/routes/api.php)
+6.Start with models create model and migration of User{created by default} used for precising tables, guarding/filling entities, making relations(/app/Models) ==> php artisan make:model User -m
+7.create controller with api resources to create function to be routed in the api file (app/Http/Controllers)==> php artisan make:controller UserController --api
+8.create requests to create validations and rules for entities(app/Http/Requests) ==> php artisan make:request StoreProfileRequests
+9.Migrations tables used for creating entities in a database table(/database/migrations) ==> refer no.#6
+10.Create seeder to when dropping database automatically these data will be added (/database/seeders)==> php artisan make:seeder CategorySeeder
+11.Add the last seeder to DatabaseSeeder (/database/seeders) ==> php artisan migrate:fresh --seed
+12.Create a middleware as an authentication gateway (/app/Http/Middleware) ==> php artisan make:middleware CheckUserRole
+13.Add the middleware as an alias to the app.php file (/bootstrap/app.php)
