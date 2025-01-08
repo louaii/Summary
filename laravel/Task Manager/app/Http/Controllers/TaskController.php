@@ -55,6 +55,12 @@ class TaskController extends Controller
         return response()->json($task, 200);
     }
 
+    public function getTaskByPriority(){
+        //error from VS needs extensions and not actual error
+        $task = Auth::user()->tasks()->orderByRaw("FIELD(priority, 'High', 'Medium', 'Low')")->get();
+        return response()->json($task, 200);
+    }
+
     public function store(StoreTaskRequest $request)
     {
         $user_id = Auth::user()->id;

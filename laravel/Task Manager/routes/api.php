@@ -30,3 +30,5 @@ Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanct
 //admin routes
 Route::get('task/all', [TaskController::class, 'getAllTasks'])->middleware('CheckUser');
 
+//priority order
+Route::get('task/order', [TaskController::class, 'getTaskByPriority']);

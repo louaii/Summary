@@ -23,7 +23,7 @@ class StoreTaskRequest extends FormRequest
             //  'user_id' => 'required|exists:users,id',
             'title'=>'required|string|max:40',
             'description'=>'nullable|string',
-            'priority'=>'required|integer|min:1|max:5'
+            'priority'=>'required|in:High, Medium, Low'
         ];
     }
 
