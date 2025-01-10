@@ -1,12 +1,11 @@
-/etc/NetworkManager/system-connections/
-ncpa.cpl (Network status)
-Take admin privilege on file through cmd:
-C:\Windows\System32\DriverStore\FileRepository>takeown /f "C:\Windows\System32\DriverStore\FileRepository\anydeskprintdriver.inf_amd64_07b22d0a6997cb3a"
+Smart Array Upgrade from ESXi:
+https://support.hpe.com/hpesc/public/docDisplay?docLocale=en_US&docId=sf000075447en_us
 
-SUCCESS: The file (or folder): "C:\Windows\System32\DriverStore\FileRepository\anydeskprintdriver.inf_amd64_07b22d0a6997cb3a" now owned by user "I\s.serhal".
+Key home to pro: VK7JG-NPHTM-C97JM-9MPGT-3V66T
 
-C:\Windows\System32\DriverStore\FileRepository>icacls "C:\Windows\System32\DriverStore\FileRepository\anydeskprintdriver.inf_amd64_07b22d0a6997cb3a" /grant %username%:F
-processed file: C:\Windows\System32\DriverStore\FileRepository\anydeskprintdriver.inf_amd64_07b22d0a6997cb3a
-Successfully processed 1 files; Failed processing 0 files
+activations through powershell:
+irm https://get.activated.win | iex
 
-C:\Windows\System32\DriverStore\FileRepository>del /f /q /a "C:\Windows\System32\DriverStore\FileRepository\anydeskprintdriver.inf_amd64_07b22d0a6997cb3a\*"
+windows connecting to internet before sign in:
+oobe\bypassnro
+
