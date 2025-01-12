@@ -9,3 +9,5 @@ irm https://get.activated.win | iex
 windows connecting to internet before sign in:
 oobe\bypassnro
 
+to restrict browser:
+win+r: inetcpl.cpl ==> proxy local and exceptions with domains
