@@ -1,0 +1,16 @@
+* text=auto
+
+# Ensure PHP files have LF line endings
+*.php text eol=lf
+
+# Explicitly handle diffs for specific file types
+*.blade.php diff=html
+*.css diff=css
+*.html diff=html
+*.md diff=markdown
+*.php diff=php
+
+# Ignore certain files from export
+/.github export-ignore
+CHANGELOG.md export-ignore
+.styleci.yml export-ignore
