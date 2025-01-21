@@ -49,10 +49,29 @@
                         2.79v.102zm-1.976-.143c0-.689-.123-1.22-.369-1.593-.242-.374-.595-.56-1.06-.56-.62
                         0-1.045.236-1.236-1.278.71v3.028c.242.488.672.732 1.292.732.944 0 1.415-.773 1.415-2.317z"
                           fill="#fff"/></svg>
-                    </a>
-                    
+                    </a>    
+                </li>
+                <li class="ml-16">
+                    <a href="#" class="hover:text-gray-300">Movies</a>
+                </li>
+                <li class="ml-6">
+                    <a href="#" class="hover:text-gray-300">TV Shows</a>
+                </li>
+                <li class="ml-6">
+                    <a href="#" class="hover:text-gray-300">Actors</a>
                 </li>
             </ul>
+            <div class="flex items-center">
+                <div class="relative">
+                    <input type="text" class="bg-gray-800 text-sm rounded-full w-64 px-4 pl-8 py-1
+                    focus:outline-none focus:shadow-outline" placeholder="Search">
+                    <div class="absolute top-0">
+                        <svg class="fill-current w-4 text-gray-500 mt-2 ml-2" viewBox="0 0 24 24"><path class="
+                        heroicon-ui" d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0
+                        111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
     @yield('content')
