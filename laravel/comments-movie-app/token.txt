@@ -1,0 +1,5 @@
+In controller to write the token directly without .env file:
+//to write token directly without .env file
+    //     $popularMovies = Http::withToken('your_api_read_access_token')
+    // ->get('https://api.themoviedb.org/3/movie/popular')
+    // ->json();
