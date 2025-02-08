@@ -1,0 +1,6 @@
+Feature	IMAP (Internet Message Access Protocol)				POP3 (Post Office Protocol)
+Storage	Emails stay on the server. Syncs across devices.		Emails are downloaded to one device and usually deleted from the server.
+Access	Access from multiple devices (Outlook, phone, webmail).		Emails are stored only on the device that downloaded them.
+Syncing	Changes (read, delete, move) sync across all devices.		Changes do NOT sync across devices.
+Offline Access	Emails are cached but need internet to sync.		Full access offline, but emails may be lost if the device crashes.
+Best Use Case	If you use multiple devices and want email backups.	If you want to save storage on the server and only use one device.
