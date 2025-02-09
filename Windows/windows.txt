@@ -11,3 +11,6 @@ oobe\bypassnro
 
 to restrict browser:
 win+r: inetcpl.cpl ==> proxy local and exceptions with domains
+
+to open network adapters:
+win+r: ncpa.cpl

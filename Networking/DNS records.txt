@@ -1,0 +1,21 @@
+_A Record (Address Record): Points your domain to your email server’s IP address.
+mail.example.com → 192.168.1.10
+
+_CNAME Record: for webmail or mail services
+webmail.example.com → mail.example.com
+
+_MX Record (Mail Exchanger Record): Specifies the mail server responsible for receiving emails for your domain.
+example.com → mail.example.com (priority: 10)
+
+_PTR Record (Reverse DNS - optional but recommended): Maps your IP back to your domain (needed for outgoing mail to avoid spam filters).
+192.168.1.10 → mail.example.com
+
+_SPF Record (Sender Policy Framework - TXT Record): Defines which mail servers are allowed to send emails on behalf of your domain
+v=spf1 ip4:192.168.1.10 -all
+
+_DKIM Record (DomainKeys Identified Mail - TXT Record): Adds a cryptographic signature to verify email authenticity.
+default._domainkey.example.com → "v=DKIM1; k=rsa; p=PUBLIC_KEY_HERE"
+
+_DMARC Record (Domain-based Message Authentication, Reporting, and Conformance - TXT Record):
+Protects against spoofing by enforcing SPF and DKIM policies.
+_dmarc.example.com → "v=DMARC1; p=quarantine; rua=mailto:admin@example.com"
