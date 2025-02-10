@@ -19,3 +19,18 @@ default._domainkey.example.com → "v=DKIM1; k=rsa; p=PUBLIC_KEY_HERE"
 _DMARC Record (Domain-based Message Authentication, Reporting, and Conformance - TXT Record):
 Protects against spoofing by enforcing SPF and DKIM policies.
 _dmarc.example.com → "v=DMARC1; p=quarantine; rua=mailto:admin@example.com"
+
+for mail:
+Ensure your MX, SPF, DKIM, and DMARC records are correct
+
+
+DKIM is an email security standard designed to make sure that an email is not altered in transit between the sender and recipient server.
+
+It uses an approach called “public-key cryptography” to verify that an email message was sent from an authorized mail server, and makes sure that the email delivered is an authentic one and no alterations were made to it in transit.
+
+steps for mail:
+1.mx
+2.spf as txt
+3.dkim as txt
+
+https://www.godaddy.com/resources/skills/dns-records-a-beginners-guide
