@@ -1,0 +1,22 @@
+controller server firmware update through esxi:
+https://support.hpe.com/hpesc/public/docDisplay?docLocale=en_US&docId=sf000075447en_us
+
+mac on ESXi:
+https://www.nakivo.com/blog/run-mac-os-on-vmware-esxi/
+
+Dropbox administrative:
+https://help.dropbox.com/installs/download-dropbox#admin
+
+Smart Array Upgrade from ESXi:
+https://support.hpe.com/hpesc/public/docDisplay?docLocale=en_US&docId=sf000075447en_us
+
+macOS ISO:
+https://androstalker.com/how-to-download-and-install-apple-macos-catalina/
+
+Key home to pro: VK7JG-NPHTM-C97JM-9MPGT-3V66T
+
+activations through powershell:
+irm https://get.activated.win | iex
+
+windows connecting to internet before sign in:
+oobe\bypassnro

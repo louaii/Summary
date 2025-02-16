@@ -1,0 +1,305 @@
+MOB-ASR920-1#show run
+Building configuration...
+
+Current configuration : 5562 bytes
+!
+version 16.9
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no platform punt-keepalive disable-kernel-core
+platform bfd-debug-trace 1
+platform xconnect load-balance-hash-algo mac-ip-instanceid
+platform tcam-parity-error enable
+platform tcam-threshold alarm-frequency 1
+!
+hostname MOB-ASR920-1
+!
+boot-start-marker
+boot system flash bootflash:asr920-universalk9_npe.16.09.06.SPA-1.bin
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+enable secret 5 $1$X9H8$.l8byS7wAvsJkfu0/.2E9.
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+license udi pid ASR-920-24SZ-M sn CAT2402V3UX
+license accept end user agreement
+license boot level advancedmetroipaccess
+no license smart enable
+!
+!
+spanning-tree extend system-id
+sdm prefer default
+diagnostic bootup level minimal
+!
+!
+username admin privilege 15 secret 5 $1$FJ1K$wdSSovVBUhurndRAxwIRw1
+!
+redundancy
+!
+!
+!
+!
+!
+transceiver type all
+ monitoring
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.1.1.1 255.255.255.255
+ ip router isis mob
+!
+interface GigabitEthernet0/0/0
+ description cab18
+ ip address 20.0.8.67 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/1
+ description cab 019
+ ip address 20.0.11.131 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/2
+ description cab 045
+ ip address 20.0.9.99 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/3
+ description cab102
+ ip address 20.0.0.99 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/4
+ description cab47
+ ip address 20.0.11.3 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/5
+ description cab 035
+ ip address 20.0.11.35 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/6
+ description cab95
+ ip address 20.0.4.195 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/7
+ description cab36
+ ip address 20.0.9.67 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/8
+ description cab 040
+ ip address 20.0.10.163 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/9
+ description cab17
+ ip address 20.0.8.3 255.255.255.224
+ negotiation auto
+!
+interface GigabitEthernet0/0/10
+ description cab98
+ ip address 20.0.3.163 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/11
+ description cab41
+ ip address 20.0.11.99 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/12
+ description cab106
+ ip address 20.0.3.195 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/13
+ description cab 046
+ ip address 20.0.5.195 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/14
+ description cab 044
+ ip address 20.0.11.68 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/15
+ description cab 037
+ ip address 20.0.12.195 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/16
+ description cab22
+ ip address 20.0.8.195 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/17
+ description cab23
+ ip address 20.0.8.227 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/18
+ description cab21
+ ip address 20.0.21.35 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/19
+ description cab20
+ ip address 20.0.9.131 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/20
+ description cab 043
+ ip address 20.0.9.3 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/21
+ description cab 288
+ ip address 20.0.10.67 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface GigabitEthernet0/0/22
+ description cab0
+ ip address 20.0.12.131 255.255.255.224
+ negotiation auto
+!
+interface GigabitEthernet0/0/23
+ description cab105
+ ip address 20.0.5.99 255.255.255.224
+ ip router isis mob
+ negotiation auto
+!
+interface TenGigabitEthernet0/0/24
+ description Datacenter
+ ip address 40.0.0.1 255.255.255.0
+ ip router isis mob
+ mpls traffic-eng tunnels
+!
+interface TenGigabitEthernet0/0/25
+ mtu 1600
+ no ip address
+!
+interface TenGigabitEthernet0/0/26
+ description MOB-ASR920-2
+ ip address 30.0.0.98 255.255.255.224
+ ip router isis mob
+!
+interface TenGigabitEthernet0/0/27
+ description ogero-phase0
+ ip address 70.0.57.1 255.255.255.224
+ ip router isis mob
+!
+interface GigabitEthernet0
+ vrf forwarding Mgmt-intf
+ ip address 192.168.100.1 255.255.255.0
+ negotiation auto
+!
+router isis mob
+ net 49.0001.0000.0000.0001.00
+ is-type level-1
+ metric-style wide
+ nsf ietf
+ mpls traffic-eng router-id Loopback0
+ mpls traffic-eng level-1
+!
+router isis lab
+ metric-style narrow
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+ip tftp source-interface GigabitEthernet0
+ip route 192.168.3.0 255.255.255.0 70.0.57.3
+ip route 192.168.60.200 255.255.255.255 70.0.57.2
+!
+logging alarm informational
+ip access-list extended 100
+ permit ip any any
+!
+route-map SDM_RMAP_1 permit 1
+ match ip address 100
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ password lunanfr2012
+ logging synchronous
+ login
+ transport input telnet ssh
+!
+!
+
+!
+end

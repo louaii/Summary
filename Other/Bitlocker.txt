@@ -1,0 +1,2 @@
+Bitlocker: gen key and recovery key
+	edit group policy ==> computer config ==> admin templates ==> windows components ==> Bitlocker ==> operating system drives ==> 3 & 4 required
