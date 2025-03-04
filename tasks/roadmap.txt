@@ -1,0 +1,8 @@
+Git ==> Docker ==> Ansible ==> Kubernetes ==> Terraform ==> Jenkins CI/CD ==> GitHub Actions ==> ArgoCD ==> Nagios
+
+For projects abishek veeramalla
+
+
+Certified cloud practitioner ==> Stephan Maarek
+
+CI/CD using GitHub actions
