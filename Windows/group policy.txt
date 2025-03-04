@@ -1,0 +1,10 @@
+usb:
+'Computer Configuration'-->Policies-->Windows Settings-->Administrative Templates-->System-->Removable Storage Access. Double click the All Removable Storage classes: Deny all access policy. Select Enabled and click OK.
+
+prohibit access to settings and control panel:
+user configuration --> administration templates --> control panel --> prohibit access --> enabled
+
+remote disable copy paste
+Computer Configuration -> Administrative Templates -> Windows Components -> Remote Desktop Services -> Remote Desktop Session Host -> Device and Resource Redirection
+
+
