@@ -1,0 +1,11 @@
+ppp
+l2tp server
+enabled
+use IPsec
+use IPsec secret
+apply
+
+go to secrets
+l2tp
+name ==> profile username
+password ==> profile password

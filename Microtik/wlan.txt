@@ -1,67 +1,9 @@
-Step 1: Configure the Wireless Interface
+wireless
+wireless
+enable wlan
+right click add virtual guest
 
-    Open Wireless Settings:
-        In WinBox, go to Wireless from the left menu.
-        Enable the wireless interface (wlan1) by clicking on the checkbox next to it.
-    Set Wireless Mode:
-        Double-click wlan1.
-        Under the Wireless tab:
-            Mode: Select ap bridge (to broadcast Wi-Fi).
-            SSID: Enter a name for your Wi-Fi network (e.g., MyWiFi).
-            Frequency: Select a frequency (default: auto or a specific one like 2412 MHz for 2.4 GHz).
-        Click OK.
-
-Step 2: Secure the Wi-Fi
-
-    Create a Security Profile:
-        Go to Wireless → Security Profiles → Click +.
-        Name: Enter a name for the profile (e.g., WiFiSecure).
-        Mode: Select WPA2 PSK.
-        Enter the Pre-Shared Key (Wi-Fi password).
-        Click OK.
-    Apply Security Profile to WLAN:
-        Go back to wlan1 settings.
-        Under the Wireless tab:
-            Security Profile: Select WiFiSecure.
-        Click OK.
-
-Step 3: Bridge Wireless with LAN
-
-    Add wlan1 to the Bridge:
-        Go to Bridge → Ports → Click +.
-            Interface: Select wlan1.
-            Bridge: Select bridge1 (or the bridge you previously created).
-        Click OK.
-
-Step 4: Configure IP and DHCP for Wi-Fi
-
-    Ensure bridge1 Has an IP:
-        Go to IP → Addresses.
-        Confirm bridge1 has an IP (e.g., 192.168.1.1/24).
-    Ensure DHCP Server Covers Wi-Fi:
-        Go to IP → DHCP Server.
-        Confirm the DHCP server is already set up for bridge1. If not:
-            Follow the DHCP setup wizard for bridge1 (as described in Step 4 of the earlier guide).
-
-Step 5: Test the Wi-Fi
-
-    Connect a Device:
-        Search for the Wi-Fi network (MyWiFi) from a phone or laptop.
-        Enter the Wi-Fi password.
-    Verify Connection:
-        Ensure the device receives an IP (e.g., 192.168.1.x) and has internet access.
-
-Step 6: Save Configuration
-
-    Go to System → Backup → Save the configuration to ensure changes are not lost.
-
-Optional Enhancements
-
-    Set Bandwidth Limits:
-        Use Queues to limit upload/download speeds per device.
-    Separate Guest Wi-Fi:
-        Create a virtual AP for guests with isolated access.
-    Advanced Firewall Rules:
-        Configure rules to control or secure traffic.
-
-This configuration ensures that your MikroTik router provides Wi-Fi access seamlessly.
+security profiles:
+name: 
+password: wpa2 psk dynamic keys
+make bridge if 2.4 and 5ghz wlan interfaces
