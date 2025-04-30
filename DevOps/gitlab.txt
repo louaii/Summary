@@ -1,0 +1,11 @@
+sudo apt-get install -y curl openssh-server ca-certificates tzdata perl
+   11  sudo apt-get install -y postfix
+   12  clear
+   13  ls
+   14  clear
+   15  curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+   16  ip a
+   17  sudo EXTERNAL_URL="http://ip_address" apt-get install gitlab-ee
+   18  apt-mark hold gitlab-ee
+   19  apt-mark showhold
+   20  sudo ufw allow http
