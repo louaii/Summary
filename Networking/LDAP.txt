@@ -1,1 +1,1 @@
-Lightweight Directory Access Protocol (LDAP)
+Lightweight Directory Access Protocol (LDAP) between cucm-nas and active directory
