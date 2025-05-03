@@ -1,0 +1,22 @@
+Git is a version control system that enables you to take snapshots of your project, track changes over time, and revert to previous commits when needed.
+
+Types of version control system: Centralized and Distributed
+
+***Centralized Version Control:
+
+			Main Server
+			 ----------
+			|          |
+			|  Server  |
+			|          |
+			 ----------
+                             commit
+			/     /
+		       /     /
+		      /     /
+		 update    /
+		     -------	
+	            |       |
+		    | file  |
+		    |	    |
+		     -------
