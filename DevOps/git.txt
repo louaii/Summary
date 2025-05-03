@@ -1,6 +1,7 @@
 Git is a version control system that enables you to take snapshots of your project, track changes over time, and revert to previous commits when needed.
 
-Types of version control system: Centralized and Distributed
+.Types of version control system: Centralized and Distributed
+------------------------------------------------------------
 
 ***Centralized Version Control: used for personal as GitHub profile
 
@@ -58,6 +59,110 @@ Types of version control system: Centralized and Distributed
               |              |                   |              |
                --------------                     --------------            
 
+
+.Git Architecture
+-----------------
+
+
+
+ --------------------------------------------------------------------------------------
+|                                          PC                                          |
+|     ----------------              -----------------                    ------------- |
+|    |                |            |                 |                  |             ||
+|    |  Working       |    add     |   Staging       |      commit      | Local       ||
+|    |       Directory| ---------  |         Area    | ---------------  |  repository ||
+|    |                |            |                 |                  |             ||
+|     ----------------              -----------------                    ------------- |
+|           |                                                                  |       |
+|           |                                                                  |       |
+|           |                                                                  |       |
+|            --------------------------Checkout--------------------------------        |
+ --------------------------------------------------------------------------------------
+                    Pull                                  |
+                      |                                   |
+                      |                                   |
+                      |           -------------          Push
+                      |          |             |          |
+                       ----------|Remote       |----------
+                                 |   repository|                                                                           
+                                 |             |
+                                  -------------
+
+
+
+
+
+.Git Tree
+---------
+Commit 1:
+
+
+                               master(branch)   
+                                 /
+                 -------------- /
+git init        | commit 1 sha |  
+                |     74f35    |
+                 -------------- \
+                                 \
+                                HEAD(pointer)
+
+Commit 2:
+
+  
+                                 
+                 -------------- 
+git init        | commit 1 sha |  
+                |     74f35    |
+                 -------------- 
+                       |
+                       |
+                       |
+                       |        master(branch)
+git add .                        /
+git commit       -------------- /
+                | commit 2 sha |
+                |    28er88    |
+                | commit 2 tree|
+                |     74f35    |
+                 -------------- \
+                                 \
+                                HEAD(pointer)
+
+Commit 3:
+
+  
+                                 
+                 -------------- 
+git init        | commit 1 sha |  
+                |     74f35    |
+                 -------------- 
+                       |
+                       |
+                       |
+                       |        
+git add .              |          
+git commit       -------------- 
+                | commit 2 sha |
+                |    28er88    |
+                | commit 2 tree|
+                |     74f35    |
+                 -------------- 
+                       |
+                       |
+                       |
+                       |       master(branch)
+git add .              |         /
+git commit       -------------- /
+                | commit 3 sha |
+                |     71en6    |
+                | commit 2 tree|
+                |    28er88    |
+                 -------------- \
+                                 \
+                                HEAD(pointer)
+
+
+             
 
 	
 				
