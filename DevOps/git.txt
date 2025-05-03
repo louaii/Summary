@@ -2,7 +2,7 @@ Git is a version control system that enables you to take snapshots of your proje
 
 Types of version control system: Centralized and Distributed
 
-***Centralized Version Control:
+***Centralized Version Control: used for personal as GitHub profile
 
 			Main Server
 			 ----------
@@ -20,3 +20,46 @@ Types of version control system: Centralized and Distributed
 		    | file  |
 		    |	    |
 		     -------
+
+
+***Distributed Version Control: used for enterprises and companies as GitLab or GitHub branches for better performance between collaborators
+			
+				Main Server
+				 ----------
+				|          |
+				|  Server  |
+				|          |
+				 ----------
+			      Push         Push
+			       /             \
+			      /               \
+			     /                 \
+			    /                   \
+			   /                     \
+			 Pull                   Pull
+                         /                         \
+                        /                           \
+              ----------------                  ----------------
+             |                |                |                |
+             |  Collaborator1 |                |  Collaborator2 |
+             |                |                |                |
+              ----------------                  ----------------
+                 |      commit                     |      commit
+		 |        |                        |         |
+                 |        |                        |         |
+                 |        |                        |         |
+                update    |                       update     |
+                 |        |                        |         |
+                 |        |                        |         |
+                 |        |                        |         |
+               --------------                     --------------
+              |              |                   |              |
+              |    File C1   |                   |    File C2   |
+              |              |                   |              |
+               --------------                     --------------            
+
+
+	
+				
+
+					
