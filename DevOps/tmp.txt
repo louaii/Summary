@@ -1,7 +1,5 @@
 
 git commands:
-git config --global user.name username //to set username
-git config --global user.email email@example.com //to set email
 git init //to initiate .git file in new file with in a new repository
 git clone repository //to clone an existing remote repository
 git status //to check the status and the difference between the working directory and the commited area
@@ -10,17 +8,14 @@ git rm filename //to remove the file in the commiting area before commiting the 
 git commit -m "message" //to commit the changes in the commiting area before pushing with a note
 git pull // to get all the changes from the commiting area to the working directory
 git push //to push the commited file to the repository
-git remote add origin <server_name> //to connect working directory to the repository
 
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 -
+ 
 
 
-
-to be able to push without entering your credentials:
-git remote set-url origin git@github.com:username/repository.git
 Create a new repo by cli:
 echo "# repo_name and description" >> README.md //add a file in the new repo
 git init //initialize the git hidden folder in the local directory so you can add and push

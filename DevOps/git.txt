@@ -168,7 +168,13 @@ git config --global user.email <email> //set email for git user on device
 git config --global core.editor = <vim>(linux) / <notepad>(windows) //set the editor in case of errors and editing to open as vim using Linux or notepad using windows
              
 
+
+.Git SSH on GitHub:
+-------------------
+git remote add origin <server_name> //to connect working directory to the repository	
+git remote set-url origin git@github.com:username/repository.git //to be able to push without entering your credentials
+
+
 	
-				
 
 					
