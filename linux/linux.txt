@@ -188,3 +188,4 @@ reboot
 to renew gpg trusted key in kali:
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ED444FF07D8D0BF6
 
+nmtui // works as netplan to assign ip address
