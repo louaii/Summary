@@ -161,7 +161,11 @@ git commit       -------------- /
                                  \
                                 HEAD(pointer)
 
-
+.Git configuration:
+-------------------
+git config --global user.name <username> //set username for git on device
+git config --global user.email <email> //set email for git user on device
+git config --global core.editor = <vim>(linux) / <notepad>(windows) //set the editor in case of errors and editing to open as vim using Linux or notepad using windows
              
 
 	
