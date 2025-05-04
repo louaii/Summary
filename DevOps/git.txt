@@ -163,10 +163,11 @@ git commit       -------------- /
 
 .Git configuration:
 -------------------
+git -v / git --version //to check version of installed git
 git config --global user.name <username> //set username for git on device
 git config --global user.email <email> //set email for git user on device
 git config --global core.editor = <vim>(linux) / <notepad>(windows) //set the editor in case of errors and editing to open as vim using Linux or notepad using windows
-             
+git config --global --list //to chek the configuration made on device      
 
 
 .Git SSH on GitHub:
@@ -179,14 +180,14 @@ git remote set-url origin git@github.com:username/repository.git //to be able to
 .Git init with new repository:
 ------------------------------
 echo "# repo_name and description" >> README.md //add a file in the new repo
-git init //initialize the git hidden folder in the local directory so you can add and push
+git init //initialize the git hidden folder in the local directory so you can push on remote repository
 git status //to check if their is new files to add or the local directory and the repo are up to date
 git add . //add all the new folders in the working directory
 git add <file_name> //to add a desired folder only
 git commit -m "<commit comment>" //to add a new commit to the repo as a checkpoint
-git branch -M main //to name and set the current branch as main
+git branch -M main //to name and set the current branch named as main
 git remote add origin https://github.com/username/reponame.git //to be able to pull and push on the repo 
-git push -u origin main //set the push on the branch main for the first time
+git push -u origin main //set the push on the branch main for the first time on main branch
 
 
 	
