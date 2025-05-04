@@ -190,6 +190,9 @@ git remote add origin https://github.com/username/reponame.git //to be able to p
 git push -u origin main //set the push on the branch main for the first time on main branch
 
 
+
+.Git add/rm:
+------------
 	
 
 					
