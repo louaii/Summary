@@ -175,6 +175,20 @@ git remote add origin <server_name> //to connect working directory to the reposi
 git remote set-url origin git@github.com:username/repository.git //to be able to push without entering your credentials
 
 
+
+.Git init with new repository:
+------------------------------
+echo "# repo_name and description" >> README.md //add a file in the new repo
+git init //initialize the git hidden folder in the local directory so you can add and push
+git status //to check if their is new files to add or the local directory and the repo are up to date
+git add . //add all the new folders in the working directory
+git add <file_name> //to add a desired folder only
+git commit -m "<commit comment>" //to add a new commit to the repo as a checkpoint
+git branch -M main //to name and set the current branch as main
+git remote add origin https://github.com/username/reponame.git //to be able to pull and push on the repo 
+git push -u origin main //set the push on the branch main for the first time
+
+
 	
 
 					
