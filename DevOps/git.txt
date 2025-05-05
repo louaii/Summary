@@ -181,8 +181,6 @@ git remote set-url origin git@github.com:username/repository.git //to be able to
 ------------------------------
 echo "# repo_name and description" >> README.md //add a file in the new repo
 git init //initialize the git hidden folder in the local directory so you can push on remote repository
-git status //to check if their is new files to add or the local directory and the repo are up to date
-git add . //add all the new folders in the working directory
 git add <file_name> //to add a desired folder only
 git commit -m "<commit comment>" //to add a new commit to the repo as a checkpoint
 git branch -M main //to name and set the current branch named as main
@@ -193,6 +191,15 @@ git push -u origin main //set the push on the branch main for the first time on 
 
 .Git add/rm:
 ------------
+git add . //add all the new folders in the working directory
+git add <file_name> //to add a desired folder only
+git status //check if the files are up to date or need to be added on the staging area or added to it from the working directory
+git rm --cached <filename> //remove the added file from staging area to working directory
+git rm --cached -r //remove all files from staging area to working directory
+git restore --staged <file_name> //in case staging area has files commited to the local repository and a new file added to staging area that should not be commited to local repository, it reverts the new file back to working directory
+git commit -m "message" //commit to add files to the local repository before pushing to remote repository
+git commit -am "message" //commit to add files to staging area before pushing to remote repository
+
 	
 
 					
