@@ -189,7 +189,7 @@ git push -u origin main //set the push on the branch main for the first time on 
 
 
 
-.Git add/rm:
+.Git add/rm/commit:
 ------------
 git add . //add all the new folders in the working directory
 git add <file_name> //to add a desired folder only
@@ -200,6 +200,10 @@ git restore --staged <file_name> //in case staging area has files commited to th
 git commit -m "message" //commit to add files to the local repository before pushing to remote repository
 git commit -am "message" //commit to add files to staging area before pushing to remote repository
 
-	
 
-					
+
+.Git log:
+---------
+git log //to check if the HEAD is pointing to the last commit on working branch
+git log --oneline //same as git log but summarized
+git log --oneline --name-only //returns commits and the changes commited
