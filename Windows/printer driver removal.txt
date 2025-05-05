@@ -1,0 +1,9 @@
+Press Windows + R, type printui /s /t2, and press Enter.
+
+In the Print Server Properties window:
+
+Find HP LaserJet P2035n or HP Universal Printing PCL6 in the list.
+
+Select it, then click Remove.
+
+Choose “Remove driver and driver package” when prompted.
