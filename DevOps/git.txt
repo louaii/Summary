@@ -208,9 +208,41 @@ git diff --staged //shows the difference between an existing file modified betwe
 
 
 
-
 .Git log:
 ---------
 git log //to check if the HEAD is pointing to the last commit on working branch
 git log --oneline //same as git log but summarized
 git log --oneline --name-only //returns commits and the changes commited
+
+
+
+.gitignore file:
+----------------
+gitignore file used to write the file_name or directory_name that has credentials and critical that won't be push in the remote repository
+example in the .gitignore file a *.css this will ignore all the files with css extension which won't be pushed on the remote repository = no push no pull
+
+
+
+
+.Git reset/checkout:
+--------------------
+		----------------		----------------		----------------		
+               |                |              |                |              |                |                        (Master= commit 1 =HEAD) removed
+               | Working        |              |  Staging       |              |  Local         |                         Master= commit 2 =HEAD               
+               |    Directory   |              |         Area   |              |    Repository  |                                    |
+               |                |              |                |              |                |                                    |
+                ----------------                ----------------                ----------------                                     | 
+                        |                              ||                              |                                             |
+                        |            		       ||				--------------------------------------git reset --soft
+                        |                              ||                                                                            |
+			|			       ||									     |
+              		|			       ||									     |
+                        |                              | -------------------------------------------------------------------------git reset
+                        |                               ----------------------------------------------------------------------git reset --mixed
+                        |                                                                                                      	     |
+			|													     |
+			|													     |
+			|													     |
+			 -----------------------------------------------------------------------------------------------------git reset --hard
+
+To revert from the last commit to the previous one you can use git reset without changing in the HEAD pointer
