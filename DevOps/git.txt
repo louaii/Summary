@@ -189,16 +189,23 @@ git push -u origin main //set the push on the branch main for the first time on 
 
 
 
-.Git add/rm/commit:
-------------
+.Git basics (add/rm/commit/diff):
+---------------------------
 git add . //add all the new folders in the working directory
 git add <file_name> //to add a desired folder only
 git status //check if the files are up to date or need to be added on the staging area or added to it from the working directory
+git rm <file_name> //to remove a file from working directory and stage area, still needs a commit 
+git rm -f <file_name> //to remove a file from the staging area before it's added to the local repo
 git rm --cached <filename> //remove the added file from staging area to working directory
 git rm --cached -r //remove all files from staging area to working directory
 git restore --staged <file_name> //in case staging area has files commited to the local repository and a new file added to staging area that should not be commited to local repository, it reverts the new file back to working directory
+git mv <existing_file_name> <new_file_name> //to rename a file - only commit is needed
 git commit -m "message" //commit to add files to the local repository before pushing to remote repository
 git commit -am "message" //commit to add files to staging area before pushing to remote repository
+git commit --amend -m "commit new message" //to undo changes before pushing the new version on the local repository(commit)
+git diff //shows the difference between an existing file modified between the working directory and staging area not added
+git diff --staged //shows the difference between an existing file modified between the staging area and local repository not commited
+
 
 
 
