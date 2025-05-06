@@ -245,4 +245,7 @@ example in the .gitignore file a *.css this will ignore all the files with css e
 			|													     |
 			 -----------------------------------------------------------------------------------------------------git reset --hard
 
-To revert from the last commit to the previous one you can use git reset without changing in the HEAD pointer
+To revert to a previous commit dropping all above it moving the HEAD pointer and keeping on the same branch
+git reset <sha_commit> || git reset --mixed <sha_commit> //revert to the destinated commit changing the staging area (commit needed)
+git reset --soft <sha_commit> //revert to the destinated commit changing in the local repository only
+git reset --hard <sha_commit> //revert to the destinated commit in all areas(working directory - staging area - local repository)
