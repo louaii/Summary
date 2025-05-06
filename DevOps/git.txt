@@ -249,3 +249,15 @@ To revert to a previous commit dropping all above it moving the HEAD pointer and
 git reset <sha_commit> || git reset --mixed <sha_commit> //revert to the destinated commit changing the staging area (commit needed)
 git reset --soft <sha_commit> //revert to the destinated commit changing in the local repository only
 git reset --hard <sha_commit> //revert to the destinated commit in all areas(working directory - staging area - local repository)
+git checkout <sha_commit><file_name> //copies the file as is from the destinated commit to the working directory
+git checkout //undo changes in working directory before pushing
+git checkout <file_name> || git restore --staged <file_name> //undo changes in staging area before pushing
+git checkout <sha_commit> //reverts all the files to the commit with the sha number(git log --oneline)
+git revert <sha_commit> //reverts all the files to the commit with the sha number
+
+
+
+Notes:
+------
+^ means before or -1
+which means HEAD^ is the commit before the current HEAD
