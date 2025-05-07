@@ -205,6 +205,15 @@ git commit -am "message" //commit to add files to staging area before pushing to
 git commit --amend -m "commit new message" //to undo changes before pushing the new version on the local repository(commit)
 git diff //shows the difference between an existing file modified between the working directory and staging area not added
 git diff --staged //shows the difference between an existing file modified between the staging area and local repository not commited
+git diff <sha_commit><file_name> //to check the differences between a single file from different commits(local commit and chosen commit)
+git diff <sha_commit> //check differences between the current state and a chosen commit of all files
+git diff --name-only <sha_commit> //see files that changed between the current state and a chosen commit
+git diff <sha_commit1>..<sha_commit2> //see the differences between the 2 chosen commits
+git diff --name-only <sha_commit1>..<sha_commit2> //see files that changed between 2 chosen commits 
+git diff <sha_commit>..HEAD //see differences between chosen commit and the commit with the HEAD pointer (usually last push except HEAD pointing to other commit manually)
+git switch - //In case head deattached from branch, this command returns the head and branch on same commit
+git show <sha_commit> //gives details about the chosen commit
+
 
 
 
