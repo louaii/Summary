@@ -222,6 +222,14 @@ git show <sha_commit> //gives details about the chosen commit
 git log //to check if the HEAD is pointing to the last commit on working branch
 git log --oneline //same as git log but summarized
 git log --oneline --name-only //returns commits and the changes commited
+git log --online -number //return number of commits given if 2 last commits shown if 3 last 3 commits 
+git log --since="year-month-day" //return logs starting from that date
+git log --until="year-month-day" //return logs till that date
+git log --author="username" //return logs from a certain username
+git log --stat //differences between commits in logs
+git log <sha_commit1>..<sha_commit2> //details between chosen logs
+git log --graph --all --oneline --decorate //logs between all branches
+git log --pretty=format'...' //customized logs check this link ==> https://git-scm.com/docs/git-log 
 
 
 
