@@ -274,6 +274,30 @@ git revert <sha_commit> //reverts all the files to the commit with the sha numbe
 
 
 
+.Git Stash:
+-----------
+git stash //in case a change is done on the working directory to a file and urgent update is needed without the new version stash takes the HEAD commit and pastes it to working directory and staging area hiding the changes in a stash list
+git stash list //to see stashes
+git stash pop //to get the last stash to working directory
+git stash drop <stash_name> // to delete a stash
+git stash show <stash_name> //to see changes in the chosen stash from the working directory
+git stash save "message to add on stash list" //to add a stash with custom message
+git stash pop <stash_name> //to get the chosen stash on working directory
+
+
+
+.Git Branch:
+------------
+git branch //to see branches of the project and the one pointed
+git branch <branch_name> //to create a new branch
+git checkout <branch_name> //to switch from branch to another
+git switch <branch_name> //to switch between two existing branches
+git log --online --all //to see logs of all branches
+git branch -D <branch_name> //to delete a branch (change HEAD pointer to another branch before deleting)
+git checkout -b <branch_name> // create a new branch switching HEAD pointer to it
+
+
+
 Notes:
 ------
 ^ means before or -1
