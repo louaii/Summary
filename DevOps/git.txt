@@ -230,6 +230,7 @@ git log --stat //differences between commits in logs
 git log <sha_commit1>..<sha_commit2> //details between chosen logs
 git log --graph --all --oneline --decorate //logs between all branches
 git log --pretty=format'...' //customized logs check this link ==> https://git-scm.com/docs/git-log 
+git log --oneline --decorate --all --graph //to check all the commits on different branches seperately
 
 
 
@@ -295,6 +296,75 @@ git switch <branch_name> //to switch between two existing branches
 git log --online --all //to see logs of all branches
 git branch -D <branch_name> //to delete a branch (change HEAD pointer to another branch before deleting)
 git checkout -b <branch_name> // create a new branch switching HEAD pointer to it
+git checkout <sha_commit> //to create a new branch from a past commit, this way the HEAD de-attaches from the last commit and back to the chosen one creating a new branch from it
+git diff <branch1>..<branch2> // to check differences between 2 branches last commit and working directory between them
+
+
+
+.Git Merge:
+-----------
+Two types of merges: fast forward and recursive(sometimes causes conflicts)
+_Fast Forward: moves the HEAD indicator to other branch last state which makes them one branch without going through commit order or timestamps
+_Recursive: used when a new branch is created after it going back to old branch and committing changes(changes on both branches) this way the recursive merge looks for commits and timestamps
+!!The type of merge can be chosen manually in cases depending on dev also Git can chose it automatically for the case needs
+
+**git checkout <main_branch>
+git merge <second branch>
+//to merge changes from the second to main
+!!In case second branch is deleted after merge no revert will be made on main branch or files
+
+After conflict: files not in staging area =>> (git add ./git commit -m "message" || git commit -am "message")
+
+git merge --no-ff <second_branch> //to manually choose recursive merge over fast forward
+
+
+.Git Tag:
+---------
+tagging a commit makes it easier for reverting and keeping it as a checkpoint
+
+git tag <tag_name> //to create a tag
+git tag -l //to list all tags
+git tag -a <tag_name> <sha_commit> -m "message" //to create a custom noted tag from the chosen commit
+git show <tag_name> //to get tag details
+git tag -d <tag_name> //to delete a tag
+git checkout -b <branch_name> <tag_name> //to revert changes on working directory as the tagged commit chosen in a new branch
+
+
+.Git Rebase:
+------------
+rebase is used on secondary branches
+
+		----------      ----------      ----------                                   ----------
+	master-|          | -- |          | -- |          |-                               -|new commit|
+                ----------      ----------      ----------                                   ----------
+						                ----------      ----------
+							second-|    A     | -- |     B    |
+                                                                ----------      ----------
+using merge:
+                                                     
+		----------      ----------      ----------               -------      -------     ----------                  
+	master-|          | -- |          | -- |          |-- second -- |   A   | -- |   B   | --|new commit|-on master
+                ----------      ----------      ----------               -------      -------     ----------
+
+using rebase:
+		----------      ----------      ----------      ----------      ----------      ----------
+	master-|          | -- |          | -- |          | -- |new commit| -- |    A     | -- |     B    |
+                ----------      ----------      ----------      ----------      ----------      ----------
+
+rebase is used to make changes on master branch by copying secondary branch state as is to master
+rebase is followed by merge to avoid conflicts from recursive merge
+
+git rebase <main_branch>
+git checkout master
+git merge <secondary_branch>
+
+
+.Git Squash:
+------------
+squash is returning multiple commits into one single commit in logs using rebase interactive
+
+git rebase -i <sha_commit1>..<sha_commit2> //merging commits into one single commit in logs
+change commit name by commenting in editor the last commits and changing the first one
 
 
 
