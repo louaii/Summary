@@ -11,3 +11,4 @@ Set wireless configuration [wireles ==> wlan 1
 			    Wireless Protocol ==> nv2
 			    Frequency Mode ==> superchannel
 			    Bridge Mode ==> enabled
+check this: https://youtu.be/W6MA7PpTOak?si=NRAsx1fE8Orftbck
