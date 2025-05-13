@@ -1,0 +1,13 @@
+Create bridge and add ports(Wlan,ether) to bridges [bridge ==> + ==> bridge 1 / ports ==> bridge 1 wlan , ether]
+Assign IP address on bridge interface [IP ==> addresses ==> bridge1 ==> ip addess/subne mask]
+Set wireless configuration [wireles ==> wlan 1
+			    Mode ==> bridge
+			    Band ==> 5GHz-only-N
+			    Channel width ==> 20MHz
+			    Frequency ==> 5230
+			    SSID ==> D2
+			    Radio Name ==> D2
+			    Scan List ==> 5230
+			    Wireless Protocol ==> nv2
+			    Frequency Mode ==> superchannel
+			    Bridge Mode ==> enabled
