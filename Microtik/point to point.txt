@@ -10,5 +10,6 @@ Set wireless configuration [wireles ==> wlan 1
 			    Scan List ==> 5230
 			    Wireless Protocol ==> nv2
 			    Frequency Mode ==> superchannel
-			    Bridge Mode ==> enabled
+			    Bridge Mode ==> enabled}
+bridge --> station bridge
 check this: https://youtu.be/W6MA7PpTOak?si=NRAsx1fE8Orftbck
