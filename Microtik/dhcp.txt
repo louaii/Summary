@@ -1,7 +1,7 @@
 1. Set interfaces: Add details to each interface name in interface list
 2. Create a bridge and add the LAN and WLAN interfaces to bridge(do not include WAN)
 3.Set WAN in DHCP client to take ip
-4.Set IP addresses on wan and brige
+4.Set IP addresses on wan and bridge
 5.Set IP address on router(bridge)
 6.Set DHCP server: bridge1 - ip/subnet - gateway - lease
 7.ip -> firewall -> nat -> + -> action -> masquared
