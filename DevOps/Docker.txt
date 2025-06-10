@@ -1,0 +1,19 @@
+Docker is an open-source standalone application which works as an engine to run containerized application isolated from others. Docker can be defined as container management service.
+
+Container is a standard unit of software that packages up code and all its dependencies so the application runs quickly from a computing environment to another, it packages applications as images to run them.
+
+Virtualization allows using physical resources into many environments.
+
+	----------------			-----     -----     -----
+       |                |	               | App |   | App |   | App |   
+       |  Applications  |                       -----     -----     -----
+       |________________|                      | OS  |   | OS  |   | OS  |
+       |                |                       -----     -----     -----
+       | Operating      |                      |	Virualization    |
+       |      Systems   |                       -------------------------
+       |________________|                      |       Hardware          |
+       |    Hardware    |                       -------------------------
+       |                |
+        ----------------
+    Traditional (server,laptop)
+

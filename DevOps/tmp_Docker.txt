@@ -1,0 +1,200 @@
+Developers can use containerization technology to create and deploy apps more quickly and securely, containerization allows developers to write code in one place that can be executed anywhere.
+
+Container technnology is extremely useful in today's business world where applications must be platform-independent and deliver the same level of quality everywhere.
+
+A container is a piece of software that packages code and all of its dependencies so that the application can be moved from one computing environment to another, fast and reliably.
+
+Containerization is the process of packaging software code along with all of its essential components, it's a form of operating system virtualization through which applications run an isolated user spaces called containers, all using the same shared operating system.
+
+Benefits of containers:
+
+.Portability: A container seperates applications from their host operating system, making them portable, allowing them to function smoothly on any platform or cloud, that is, write once run anywhere.
+
+.Scalability: A container application with a service-oriented application design can handle growing workloads resulting in increased application scalability.
+
+.Faster development: A container can establish a master version of an image that can be easily deployed on demand resulting in increased app productivity.
+
+.High productivity: Containers allow developers to make modifications to the platform source code and track them.
+
+.Enhanced Security: Containers improves security since containers adhere to an app seperate one mechanism, making them more secure.
+
+.Continuity: Containerization ensures continuity because containers operate independently.
+
+_Virtualization:
+
+Virtualization uses software to create an abstraction layer over computer hardware that allows the hardware elements of a single computer, processors, memory, storage, and more to be divided into multiple virtual computers, commonly called virtual machines, VMs. Each VM runs its own operating system, OS, and behaves like an independent computer, even through it is running on just a portion of the actual underlying computer hardware.
+
+_Virtualization vs Containerization:
+
+.Virtualization: VMs are the fundamental unit in virtualization, it allows to run several operating systems on a single physical servers hardware, it replicates the real hardware(CPU cores, RAM, disk) and represents it as a seperate system. Virtualization is a heavyweight operation that consumes a lot of resources. Provides complete isolation from the host operating system and the other VMs. VMs have their own OS each. For startup time it has a starting time in minutes and allows for slow provising, VMs are not portable 
+
+
+.Containerization: Uses containers, containerization allows you to deploy numerous applications on the same server using the same operating system, it's an OS-level virtualization, it isn't a complete replica of the physical machine. Provides lightweight isolation from the host and other containers but it doesn't provide as strong as a security boundary as a VM. Containers use the host operating system. It has a startup time in milliseconds and allows for faster provisioning. Containers are portable
+
+Docker:
+
+Docker is a popular application containerization tool, the idea of Docker is for developers to easily develop applications, ship them into containers which can then be deployed anywhere. It is a free and open platfrom for creating, delivering, and operating applications. It also shortens the time between writing code and putting it into production.
+
+Docker platform is a feature provided by Docker to manage the lifecycle of containers, it provides the ability to package and run an application in a loosely isolated environment called a container, and to manage the life cycle of the container, it provides tooling and platform.It's used for development, containers can be used to develop your application and its supporting components. Testing, the application is distributed and tested using the container. Deployment, deploy the application as a container or an orchestrated service into your production environment.This method works on local data center, cloud provider and hybrid cloud.
+
+.Docker delivers benefits at various stages of the software development lifecycle(SDLC):
+
+_Build: Dockerizing an app into single or several modules, development teams can save time, effort, and money
+
+_Test: Test engineers may test each containerized application or its components individually with Docker without effecting other parts of the program.
+
+_Deploy and maintain: Docker helps teams collaborate more effectively by ensuring that the same versions of libraries and packages are utilized throughout the development process. Furthermore, deploying a previously tested container prevents bugs in the build process, allowing for a smooth transition to production.
+
+.Docker Features
+
+_Scalable: Docker containers are particulary scalable due to their lightweight nature. 
+
+_Provides easy and faster configuration: Docker's best feature is that it allows us to configure the system quickly and efficiently, it allows us to deploy our work in less time and effort.
+
+_Able to reduce the size: Docker can lower the size of the development by delivering a smaller operating system footprint via containers.
+
+_Increases productivity: boosts productivity by making technical configuration and application deployment easier.
+
+_Reduces infrastructure and maintenance costs: Docker provides instant benefit to the business by decreasing the infrastructure and maintenance expenses of our existing application portfolio, while also increasing our time to market for new solutions.
+
+_Application isolation: Docker provides containers, which can be used to run applications in a secure environment, each container is independent of the others, allowing us to run any type of application.
+
+_Swarm: is a tool for scheduling and clustering Docker containers, its front-end is the Docker API, which allows us to control it with a variety of tools. It also allows us to manage a cluster of Docker hosts as if they were a single virtual host. It's a self-organizing collection of engines that make plugable backends possible. 
+
+_Routing mesh: Incoming requests for published ports on available nodes are routed to an active container using Docker's routing mesh functionality. It allows the connection, even if no task is currently running on the node.
+
+_Services: are set of tasks that allow us to specify the state of a container. Swarm schedules each job and each task represents one instance of a container that should be executed. 
+
+_Security management: It enables us to store secrets in the swarm and then choose which services have access to which secrets.
+
+.Docker components: Docker uses a client-server architecture, Docker client communicates with the Docker Daemon which handles the construction, execution, and distribution of your Docker containers. You can execute the Docker client and daemon on the same machine, or you can link a Docker client to a Docker daemon that is located elsewhere. The Docker client and daemon uses a restAPI, Unix sockets, or a network interface to communicate.
+
+_Docker Host:
+Docker host is the first and most significant component as it offers a complete environment for executing and running applications. It includes the Docker daemon, which is one of the most core components. It includes the Docker daemon which is one of the most core components.
+
+_Docker Daemons: 
+The Docker daemon handles Docker objects(images, containers, networks, and volumes by listening for Docker API requests).
+
+_Docker Services:
+To manage Docker services, a daemon can communicate with other daemons.
+
+_Docker Client:
+Docker users can use client to interact with Docker. When the client executes a Docker command, it transmits it to the Docker Daemon which executes it.
+
+_Docker registries:
+Docker images are stored in a Docker registry. The Docker hub is a public registry that anybody may use and Docker is set up by default to look for images on it.You can run your private registry.
+
+_Docker Objects:
+You create and use images, containers, networks, volumes, plugins, ...
+
+.Different Types of Docker Objects:
+
+_Image: An image is a read-only template with Docker container creation instructions. Images usually are based on other images with some additional customization.
+
+_Container: A Docker container is created when you run a Docker image, this container contains all of the applications and their environments. To stop, start or destroy a container, you can use the Docker API or the Docker CLI
+
+_Volumes: are used to store the persistent data generated by Docker and utilized by Docker containers. Docker manages everything for you via the Docker CLI or the Docker API.
+
+_Network: Docker networking is a way for all the isolated containers to communicate with one another. Bridge, host, overlay, none, and macvlan are the five main network drivers in Docker
+
+.Docker Engine: is the core part of the whole Docker system. It is an application that follows a client server architecture. It is installed on the host machine. There are three components in the Docker engine:
+
+.Server: the Docker daemon called Dockered that can create and manage Docker images, containers, networks, ...
+
+.RestAPI: It is used to instruct Docker daemon what to do
+
+.Docker CLI(Command-line interface): used to enter Docker commands.
+
+
+_Docker containers and images:
+
+Image is a read-only template for building a Docker container that is based on another image that has been modified in some way.
+To create and use image, create a Docker file using a simple syntax for defining the steps required. A layer in the image is created for each instruction in a Docker file. When change the Docker file and rebuild the image, only those layers which have changed are rebuilt. When compared to other virtualization technologies, this is part of what makes images so light, tiny and fast.
+
+Images can be divided into two categories:
+
+.Parent image: The FROM directive in the image's Docker file specifies the image is parent image. The image servers as the foundation for all the commands. The FROM scratch directive in a Docker file builds a basic image without using any parents images.
+
+.Base image: does not have a parent image in its Docker file. The FROM scratch directive is used in a Docker file to construct it. 
+
+Docker image commands:
+.docker image build: used to create an image from a Docker file.
+.docker image history: used to display an image's history
+.docker image inspect: used to display extensive information about one or more images
+.docker image ls: used to list images
+.docker image prune: used to remove unused images
+.docker image pull: Pulls image or repository from a registry
+.docker image push: Push an image or repository to a registry
+.docker image rm: used to delete one or more images from a container
+.docker image save: Save one or more images to a tar file
+
+Containers: A container is a runnable instance of an image, which is isolated from other containers and its host machine to a large extent. The user have control over how isolated a container's network, storage, and other underlying subsystems are from other containers and the host machine.
+
+The container when created or started it's defined by its image and any configuration options given. Any changes to the state of a container that is not saved in persistent storage are lost when the container is removed.
+
+The Docker container is the tool used to create, test, an deploy applications. It can be created, started, stopped, moved or destroyed using the Docker API or CLI. A storage can be attached to a container, connected to one or more networks, or even construct a new image based on existing state
+
+_Docker Networking:
+
+Networking allows Docker containers to communicate with each other and the outside world via the host machine.
+The networking subsystem in Docker is driver-based and pluggable, by default Docker provides a few network drivers with basic functionalities mentioned below: bridge, host, overlay, macvlan, none.
+
+.Bridge: (When multiple containers need to communicate on the same Docker host)containers running on the same Docker Daemon server are connected by bridge networks. A software bridge is used in a bridge network to allow containers connected to the same bridge network to communicate, while isolating them from containers not connected to the bridge network. The Docker bridge driver implements rules in the host machine to prevent containers from communicating directly with each other.
+
+.Host: (When the network stack should not be isolated from the Docker host, but other components of the container should be)the network stack of the container is not isolated from the Docker host. The container shares the host's networking namespace and the container is not assigned its own IP address
+
+.Overlay: (When containers running on different Docker hosts need to communicate or when multiple apps require swarm services)The overlay network driver connects many Docker Daemon hosts to form a distributed network. When encryption is enabled, this network sits on top of overlay's host-specific networks allowing containers connected to it including swarm servers containers to communicate securely.
+
+.macvlan: (When containers are required to look like physical hosts on the network each with its own MAC address)Some applications, particulary legacy applications or network traffic monitoring apps, demand to be connected directly to the physical network, in this case the macvlan network driver can be used to assign a MAC address to each container's virtual network interface making it appear to be a physical network interface linked directly to the physical network
+
+.None: If you want to completely disabled the networking stack on a container you can use the network none flag when starting the container. 
+
+_Docker Registry and Docker Hub(Docker's official cloud-based registry):
+
+Docker Registry is a system for storing and distributing named DOcker images. Multiple versions of the same image may exist, each of which is distinguished by its tags.
+
+The Docker registry is organized into Docker repositories, where the repos holds all the versions of a specific image. The registry allows Docker users to pull images locally, as well as push new images to the registry, given adequate access permissions when applicable. The user should use the registry if they want to ensure that their images are saved in a secure location, control over their image distribution, completely integrate image, storage, and distribution tightly into their in-house development workflow.Requires Docker engine 1.6.0 or higher version.
+
+Docker Hub is the world's largest container image library and community, it is a Docker hosted-repository that allows to search and share containers images with the team
+
+_Docker hub features:
+.Private repositories: It allows users to push and pull container images
+.Automated builds: A user can automatically build container images from Github and Bitbucket and push them to Docker hub
+.Teams and organizations: A user can also manage access to private repositories
+.Official images: Docker hub allows users to pull and use high quality container images provided by Docker
+.Publisher images: It also allows users to pull and use high quality container provided by external vendors
+.Webhooks: It enables users to trigger actions after a successful push to a repository to integrate Docker hub with other services
+
+_Docker compose:
+
+Docker compose is a tool for defining and running multi-container Docker applications. Compose uses a YAML file to configure your application services. Then with a single command, you create and start all the services from your configuration. Compose is compatible with all environments, including production, staging, development, testing, and continuous integration workflows. 
+
+Three-step process of using Compose:
+
+.Create a Docker file to define your apps environment, so it can be replicated everywhere
+
+.In docker-compose.yml file, define the services that make up your app, so that they can be run in a seperate environment
+
+.Run docker-compose up, and it will start and run your entire app. You can alternatively run docker-compose up using the Docker compose.
+
+Docker compose characteristics:
+
+.Multiple isolated environments on single host
+.Preserve volume data when containers are created
+.Recreate containers that have changed
+.Moving a composition between environments and variables
+
+Commands:
+.docker compose build: Build or rebuild services
+.docker compose create: Create containers for a service
+.docker compose down: Stop and remove containers and networks
+.docker compose kill: Force stop service containers
+.docker compose ls: List running compose projects
+.docker compose pause: Pause services
+.docker compose ps: List containers
+.docker compose restart: Restart containers
+.docker compose rm: remove stopped service containers
+.docker compose start: start services
+.docker compose stop: stop services
+.docker compose up: Create and start containers
+
