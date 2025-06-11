@@ -25,3 +25,22 @@ Virtualization allows using physical resources into many environments using hype
 Docker Image: read-only template with instructions for creating a Docker container
 Docker Container: runnable instance of image
 Docker Registry: stores Docker images, DockerHub is a public registry
+Docker Client: using commands, client sends these commands to dockerd which carries them out. Docker commands use docker API
+Docker daemon: listens for Docker API requests and manages Docker objects such as images, containers, networks, volumes
+Docker Namespaces: used to provide isolated workspace(container), when running the container Docker creates a set of namespaces for that container. These name spaces provide a layer of isolation. Each aspect of a container runs in a separate namespace and its access is limited to that namespace.
+
+
+
+
+
+
+
+        Client                                       Docker-Host                               Registry
+ --------------------                          -------------------------                    -------------
+|                    |                        |                         |                  | {DockerHub} |
+| docker build-------|------------------------|------{docker daemon}    |                  |    ubuntu   |
+| docker pull--------|---------------------/  | images /       container|         ---------|    image    |
+| docker run---------|--------------------/   |  |debian|---------|a|   |         |          -------------
+|  (commands)        |                        |  |ubuntu|         |b|   |         |
+|                    |                        |      \__________________|----------         
+ --------------------                          -------------------------
