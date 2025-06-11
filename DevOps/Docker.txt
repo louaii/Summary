@@ -2,7 +2,7 @@ Docker is an open-source standalone application which works as an engine to run 
 
 Container is a standard unit of software that packages up code and all its dependencies so the application runs quickly from a computing environment to another, it packages applications as images to run them.
 
-Virtualization allows using physical resources into many environments.
+Virtualization allows using physical resources into many environments using hypervisors also known as virtual machine monitor(VMM), separate the physical resources from virtual enviroments.
 
 	----------------			-----     -----     -----
        |                |	               | App |   | App |   | App |   
