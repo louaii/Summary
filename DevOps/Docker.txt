@@ -4,16 +4,24 @@ Container is a standard unit of software that packages up code and all its depen
 
 Virtualization allows using physical resources into many environments using hypervisors also known as virtual machine monitor(VMM), separate the physical resources from virtual enviroments.
 
-	----------------			-----     -----     -----
-       |                |	               | App |   | App |   | App |   
-       |  Applications  |                       -----     -----     -----
-       |________________|                      | OS  |   | OS  |   | OS  |
-       |                |                       -----     -----     -----
-       | Operating      |                      |	Virualization    |
-       |      Systems   |                       -------------------------
-       |________________|                      |       Hardware          |
-       |    Hardware    |                       -------------------------
-       |                |
-        ----------------
+	----------------			-----     -----     -----             -------------------
+       |                |	               | App |   | App |   | App |           |   Containarized   |
+       |  Applications  |                       -----     -----     -----             -------------------
+       |________________|                      | OS  |   | OS  |   | OS  |           | A | B | C | D | E |
+       |                |                       -----     -----     -----             -------------------
+       | Operating      |                      |	Virualization    |           |       Docker      |
+       |      Systems   |                       -------------------------             -------------------
+       |________________|                      |       Hardware          |           |         OS        |
+       |    Hardware    |                       -------------------------             -------------------
+       |                |                                                            |      Hardware     |
+        ----------------                                                              -------------------
     Traditional (server,laptop)
 
+
+
+
+.Docker Architecture:
+---------------------
+Docker Image: read-only template with instructions for creating a Docker container
+Docker Container: runnable instance of image
+Docker Registry: stores Docker images, DockerHub is a public registry
