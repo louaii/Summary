@@ -52,4 +52,9 @@ Docker Namespaces: used to provide isolated workspace(container), when running t
 docker run <image> //to run a docker image installed and if not installed this command will search for the image, pull it then run it
 docker ps -a | -all//to check all the containers
 docker ps // to check the running containers
+docker container ls -a //works same as docker ps -a
+docker pull <image> // to pull a new image which isn't installed locally
+docker rm <container_id> // to delete container
+docker image rm <image_name> // to delete image
+docker image rm <image_id> //to delete image
 
