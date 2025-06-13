@@ -49,5 +49,7 @@ Docker Namespaces: used to provide isolated workspace(container), when running t
 
 .Docker Commands:
 -----------------
-
+docker run <image> //to run a docker image installed and if not installed this command will search for the image, pull it then run it
+docker ps -a | -all//to check all the containers
+docker ps // to check the running containers
 
