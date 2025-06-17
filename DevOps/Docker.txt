@@ -57,4 +57,22 @@ docker pull <image> // to pull a new image which isn't installed locally
 docker rm <container_id> // to delete container
 docker image rm <image_name> // to delete image
 docker image rm <image_id> //to delete image
+docker container run <container_id> //to run container
+docker container run -d <container_id> //to run container in the background without logs on screen till container stop
+docker inspect <container_id> //to get DockerFile of desired container - to get the ports look for exposed ports
+docker logs <container_id> //to show logs in container
+docker stats <container_id> //physical resources used
+docker info //to get all docker information
+docker inspect -f='{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container_id> //get container ip address
+docker container run -d --publish 80:80 --name n1 nginx //publish to host on port 80 and name to set the container name as n1
+docker container start <container_id> // to start container
+docker container stop <container_id> //to stop container
+docker exec -it <container_id> //get through the container as example nginx bash docker exec -it n1 bash
 
+NOTES:!!!
+---------
+-f: --format
+-it: --tty --interactive
+-p: --publish
+instead of container_id it can be replaced by 4_chars_hash - container name
+-d: --deattach
