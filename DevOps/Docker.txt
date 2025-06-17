@@ -84,7 +84,8 @@ instead of container_id it can be replaced by 4_chars_hash - container name
 
 Docker Tags are reference to docker images, many tags can refer to a single image.
 Default image is the latest tag
-
+				image<-------redis:alpine------->tag
+                            
 
 .Image Layers:
 --------------
