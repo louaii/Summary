@@ -76,3 +76,31 @@ NOTES:!!!
 -p: --publish
 instead of container_id it can be replaced by 4_chars_hash - container name
 -d: --deattach
+
+
+.Docker Tags:
+-------------
+
+
+Docker Tags are reference to docker images, many tags can refer to a single image.
+Default image is the latest tag
+
+
+.Image Layers:
+--------------
+
+
+App --> d12894 --> Layer
+Apache --> 95fe2a --> Layer
+Ubuntu --> 0f745 --> Layer
+
+
+All these layers from os, server and app can be on a single image
+
+
+.DockerFile:
+------------
+
+
+Docker can build images automatically by reading the instructions of a DockerFile.
+DockerFile is a text document tgar contains all the commands a user could call on the command line to assemble an image
