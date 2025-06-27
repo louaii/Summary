@@ -68,6 +68,7 @@ docker container run -d --publish 80:80 --name n1 nginx //publish to host on por
 docker container start <container_id> // to start container
 docker container stop <container_id> //to stop container
 docker exec -it <container_id> //get through the container as example nginx bash docker exec -it n1 bash
+docker build -t <container_name_tag> . //to build from Dockerfile naming the image
 
 NOTES:!!!
 ---------
