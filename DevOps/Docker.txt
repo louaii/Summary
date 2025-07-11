@@ -106,3 +106,10 @@ All these layers from os, server and app can be on a single image
 
 Docker can build images automatically by reading the instructions of a DockerFile.
 DockerFile is a text document tgar contains all the commands a user could call on the command line to assemble an image
+
+
+.Push on Dockerhub:
+-------------------
+
+
+After building the container ==> docker commit container_name username/image_name ==> docker login ==> docker push username/image_name
