@@ -372,3 +372,6 @@ Notes:
 ------
 ^ means before or -1
 which means HEAD^ is the commit before the current HEAD
+
+push pull conflict:
+git pull origin <branch_name> --> add commit merging --> git push 
