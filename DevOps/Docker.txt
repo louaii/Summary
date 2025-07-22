@@ -113,3 +113,23 @@ DockerFile is a text document tgar contains all the commands a user could call o
 
 
 After building the container ==> docker commit container_name username/image_name ==> docker login ==> docker push username/image_name
+
+
+
+.Data Management from containers and images:
+--------------------------------------------
+
+Data are separated of concerns: Volumes - Bind Mounting - 
+
+Volumes are stored in a part of the host filesystem which is managed by docker(/var/lib/docker/volumes)
+Non-Docker processes won't modify the filesystem
+Volumes are the best way to persist data in Docker
+Volume can be mounted into multiple containers simultaneously
+
+Bind Mounting may be stored anywhere on the host system
+Non-Docker processes on the Docker host or a Docker container can modify it
+To use bind mounts, file or directory doesn't exist on Docker host, created on demand
+
+
+
+
