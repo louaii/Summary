@@ -69,6 +69,7 @@ docker container start <container_id> // to start container
 docker container stop <container_id> //to stop container
 docker exec -it <container_id> //get through the container as example nginx bash docker exec -it n1 bash
 docker build -t <container_name_tag> . //to build from Dockerfile naming the image
+docker volume ls //to list volumes
 
 NOTES:!!!
 ---------
@@ -132,4 +133,33 @@ To use bind mounts, file or directory doesn't exist on Docker host, created on d
 
 
 
+.Volumes:
+---------
 
+
+Volumes are where data container are stored
+Check it using docker inspect container name as source on host and destination on container
+Also volumes can be used on different containers
+To separate volumes from generated naming when creating a container name it's volume using -v so it can be used on multiple containers
+
+example:
+docker pull mariadb //pull mariadb image 
+docker run -d --name mariadb1 -e MARIADB_ROOT_PASSWORD=1234 mariadb //create mariadb1 container entering password as 1234
+docker container inspect mariadb1 //check container volume and mount
+docker run -d --name mariadb2 -e MARIADB_ROOT_PASSWORD=1234 -v mariad2_volume:/var/lib/mysql mariadb //give the container a named volume (/var/lib/mysql is the path to volume which is required for naming a volume)
+docker volume create mariadb_volume_backup //create an empty volume named as mariadb_volume_backup
+docker run -d --name mariadb3 -e MARIADB_ROOT_PASSWORD=1234 -v mariadb_volume_backup:/var/lib/mysql mariadb //assign the created volume to a new container
+docker exec -it mariadb3 bash
+root# mysql -u root -p
+1234
+MARIADB# show databases;
+       # create database BACKUP_DATABASE;
+       # exit;
+root#exit
+
+//create a new container with existing volume so both containers will be synced together
+docker run -d --name mariadb-prod -e MARIADB_ROOT_PASSWORD=1234 -v mariadb_volume_backup:/var/lib/mysql mariadb
+docker exec -it mariadb-prod bash
+root# mysql -u root -p
+1234
+MARIADB#show databases;
