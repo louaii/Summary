@@ -163,3 +163,20 @@ docker exec -it mariadb-prod bash
 root# mysql -u root -p
 1234
 MARIADB#show databases;
+
+
+
+
+.Bind Mounting:
+---------------
+
+
+
+Bind Mounting used as a shared folder between the host and the containers created
+example:
+
+mkdir data
+cd data
+touch data01.txt
+docker container run -it --name alpine_container1 -v ${pwd}:/shared_folder alpine
+/ # ls //
