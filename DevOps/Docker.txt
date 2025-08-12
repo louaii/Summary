@@ -179,4 +179,16 @@ mkdir data
 cd data
 touch data01.txt
 docker container run -it --name alpine_container1 -v ${pwd}:/shared_folder alpine
-/ # ls //
+/ # ls //in alpine_container1
+cd shared_folder
+ls
+echo 'This is created from the host' >> data02.txt //in host
+ls //in alpine_container1
+cat data02.txt
+echo 'This is created from container' > data03.txt //from container
+ls //from host it should be seen
+
+
+!Note: if changed the folder name as mounting in another container, data of the shared folder won't be affected
+docker container run -it --name alpine2 -v ${pwd}:/sharepoint alpine
+ls sharepoint //the items should be the same
