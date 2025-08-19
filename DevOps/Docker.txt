@@ -192,3 +192,57 @@ ls //from host it should be seen
 !Note: if changed the folder name as mounting in another container, data of the shared folder won't be affected
 docker container run -it --name alpine2 -v ${pwd}:/sharepoint alpine
 ls sharepoint //the items should be the same
+
+
+
+
+
+.Networking:
+------------
+
+
+Docker networking is primarily used to establish communication between Docker containers and the outside world via the host machine where the Docker daemon is running
+Container works by default as bridge
+Networking types in Docker: Bridge - Host - None - Overlay - Macvlan
+Host: Disables Docker's network isolation. It means containers see and use exactly the same network interfaces the host has available
+None: The none network driver does not attach containers to any network, Containers do not access the external network or communicate with other containers
+Overlay:
+Macvlan:
+
+
+example:
+docker network ls  //to check network created and linked with drivers
+docker network inspect <name> //to inspect the network and containers linked to this network
+docker run -d -it --name ubuntu1 ubuntu //create new container
+docker container ls //check if the new container is running
+docker container inspect ubuntu1 //check it's ip
+docker run -d -it --name ubuntu2 ubuntu //create new container
+docker container inspect ubuntu2 //check ip
+docker network inspect bridge //check containers attached to bridge network
+docker network create --driver bridge n1 //create a new bridge network named n1
+docker network ls //check n1 and driver
+docker network inspect n1 //used to check attached containers and subnet on network
+docker run --network=n1 -d -it --name ubuntu3 ubuntu //create new container
+docker container inspect ubuntu3 //check the ip of container
+docker run --network=n1 -d -it --name ubuntu4 ubuntu //create new container
+docker container inspect ubuntu4 //check new container
+docker network inspect n1 //check containers attached on n1
+docker container stop ubuntu4 //stop container
+docker network inspect n1 // now n1 will have one less container attached since it's turned off
+docker network create --driver bridge --subnet 192.168.253.0/24 n2 //create a new bridge network with custom subnet
+docker network ls //check n2 if created and it's subnet
+docker network inspect n2 //check subnet and containers attached to the network
+docker run --network=n2 -d -it --name ubuntu5 ubuntu //create new container
+docker container ls //check if the new container is running
+docker container inspect ubuntu5 //check the container ip
+docker network disconnect n2 ubuntu5 //disconnect container from the desired network
+docker network connect n1 ubuntu5 //connect container to desired network
+docker container inspect ubuntu5 //check ip changed
+
+!note ==> container even if disattached from network and joined other network won't turn down and will still be available
+
+docker network inspect n1 //check attached containers
+docker run --network=n1 -it --name alpine1 alpine ash
+	/ # ping 172.19.0.2 //as example of network n1(same network)
+
+
