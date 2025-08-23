@@ -246,3 +246,36 @@ docker run --network=n1 -it --name alpine1 alpine ash
 	/ # ping 172.19.0.2 //as example of network n1(same network)
 
 
+
+Backend:
+--------
+
+
+
+						HyperV                                                                        WSL2
+					     Older version							Windows subsystem linux(newer version)
+					     windows 10(19H)
+
+
+
+
+Docker compose:
+---------------
+
+
+
+compose is a tool for defining and running multi-container Docker applications, with compose YAML file is used to configure your application's services
+
+YAML: Yet Another Markup Language
+Service in YAML is container
+
+
+
+Docker vs Docker Compose:
+-------------------------
+
+
+
+Docker works with only one container at a time and it's configuration
+Docker compose is an automation inovation to create and manage many containers at a time
+							
