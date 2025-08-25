@@ -264,7 +264,7 @@ Docker compose:
 
 
 
-compose is a tool for defining and running multi-container Docker applications, with compose YAML file is used to configure your application's services
+compose is a tool for defining and running multi-container Docker applications on a single host, with compose YAML file is used to configure your application's services
 
 YAML: Yet Another Markup Language
 Service in YAML is container
@@ -279,3 +279,31 @@ Docker vs Docker Compose:
 Docker works with only one container at a time and it's configuration
 Docker compose is an automation inovation to create and manage many containers at a time
 							
+
+
+Docker Swarm:
+-------------
+
+
+Docker Swarm is a container orchestration tool that allows you to run and connect containers on multiple hosts. It can do tasks like scaling, starting a new container when one crashes, networking and many more
+
+
+
+Kubernetes:
+-----------
+
+
+
+Kubernetes is a container orchestration tool similar to Docker Swarm
+"K8s" orchastrates containerized applications to run on a cluster hosts. Kubernetes system automates the deployment and management of cloud native applications using on-premises infrastructure and cloud platforms
+Docker
+
+
+
+Docker Swarm vs Kubernetes:
+---------------------------
+
+
+
+Docker Swarm: to deploy multiple hosts(cluster) simple and scalable
+Kubernetes: to manage a large deployment of scalable automated containers
