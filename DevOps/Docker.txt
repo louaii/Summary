@@ -307,3 +307,12 @@ Docker Swarm vs Kubernetes:
 
 Docker Swarm: to deploy multiple hosts(cluster) simple and scalable
 Kubernetes: to manage a large deployment of scalable automated containers
+
+
+
+Azure Container Instances(ACI):
+-------------------------------
+
+
+
+enables a dev to deploy containerson the Microsoft Azure public cloud without having to provision or manage any underlying infrastructure
