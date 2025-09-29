@@ -316,3 +316,16 @@ Azure Container Instances(ACI):
 
 
 enables a dev to deploy containerson the Microsoft Azure public cloud without having to provision or manage any underlying infrastructure
+
+
+
+Docker entrypoint vs CMD:
+-------------------------
+
+
+
+CMD cannot override the command but for entrypoint it can override
+Example:
+If created a docker container from a Dockerfile which has a cmd command with echo hello world ==> shows hello world but from the command to run the container I added echo Louay it shows only Louay without hello world.
+
+For entrypoint taking the exact example it shows hello world Louay (overrides the command)
