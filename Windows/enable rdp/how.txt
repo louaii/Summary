@@ -1,0 +1,2 @@
+powershell -ExecutionPolicy Bypass -File "C:\path\to\Enable-RDP.ps1"
+Get-NetFirewallRule -DisplayGroup "Remote Desktop"
