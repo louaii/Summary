@@ -56,6 +56,76 @@ def square_root(x):
 print(square_root(4))
 
 #boolean
+print("boolean")
+bool1= True
+bool2= 3*3==9
+bool3= False
+print(bool1)
+print(type(bool1)) #boolean
+bool5="True"
+print(type(bool5)) #String
 
 
+#Conditions
+def soda(money):
+	if money >= 2:
+		return "You get a soda"
+	else:
+		return "No soda for you"
 
+print(soda(13)) #you got a soda
+print(soda(1)) #No soda for you
+
+def alcohol(age, money):
+	if(age >= 21) and (money >= 5):
+		return "You get your drink"
+	elif(age >= 21) and (money < 5):
+		return "you're broke"
+	elif(age < 21) and (money >= 5):
+		return "Nice try kid"
+	else:
+		return "Go home"
+
+#lists
+name = ["John", "Jason", "Ali"]
+print(name[0]) #John
+print(name[1]) #Jason
+print(name[2]) #Ali
+print(name[1:2]) #['Jason', 'Ali'] index 1 2
+print(name[0:2]) #['John', 'Jason', 'Ali'] index 0 to 2
+print(name[1:]) #['Jason' , 'Ali'] index 1 to end
+print(name[:2]) #['John', 'Jason']stops at index 2-1
+print(name[-1]) #['Ali'] last index
+print(len[name]) #3 array length
+name.append("Louay") #adds louay at the end of list
+print(name) #['John', 'Jason', 'Ali', 'Louay']
+name.pop() #removes the last element from the list
+print(name) #['John', 'Jason', 'Ali']
+name.pop(1)#removes the index 1 element
+print(name) #['John', 'Ali']
+
+name = ['Abbes', 'Ali', 'Louay']
+person = ['Jason', 'John']
+combine = zip(name, person)
+print(list(combine)) #['Abbes', 'Ali', 'Louay', 'Jason', 'John']
+
+#tuples
+#have parentheses and cannot change (constant)
+grades = ("A", "B", "C", "D", "F")
+print(grades[1]) #"B"
+
+#loops
+#for
+vegetables = ['cucumber', 'spinach', 'cabbage']
+for x in vegetables:
+	print(x)
+###cucumber
+spinach
+cabbage###
+
+#while
+i=1
+while i < 10:
+	print(i)
+	i+=1
+#1 2 3 4 5 6 7 8 9
