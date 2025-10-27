@@ -14,3 +14,10 @@ win+r: inetcpl.cpl ==> proxy local and exceptions with domains
 
 to open network adapters:
 win+r: ncpa.cpl
+
+Get -wmiObject -Class win32-OperatingSystem | select version,BuildNumber //win version and build number
+dir: displays directories
+icalcs c:\users //displays the permissions over the disk
+
+wmic useraccount getname, sid: to get users on machine
+wmic group getname,sid: to get groups on machine

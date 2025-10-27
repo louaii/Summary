@@ -22,6 +22,10 @@ Ubuntu, Debian, CentOS, Fedora, Linux Mint, OpenSUSE, Archlinux, Elementary OS.
 Linux Role in DevOps: deliver software at a faster pace(building on existing infrastructure) and it's open source which makes it customizable for DevOps and flexible
 
 Linux commands:
+whoami: displays username
+id: returns user identity
+hostname: prints the name of the current user hostname
+uname: prints basic info about the operating system name and system hardrive
 passwd: change the password
 pwd: to get the working directory
 cd: change directory(to navigate between directories)
@@ -33,6 +37,32 @@ cp file/ path
 mv file/ path
 locate filename: shows the path of the file name
 grep: filters
+ifconfig: shows network interface details
+netstat: shows network status and ports
+ip a: shows the network details
+ss: investigate sockets
+ps: shows process status
+who: displays who logged in
+env: prints environment or sets and executes
+lsblk: List block devices
+lsusb: List usb devices
+lsof: Lists opened files
+lspci: List pci devices
+mv: to move file
+mv current_name rename_with: to rename a file
+tree: shows the subchild of the current directory
+cp: to copy a file into a destinated directory 
+which: returns the path or file that should be executed
+find: to find files and folders also filter
+cat: show file content
+sudo: super user do
+su: switch user
+useradd: create new user
+userdel: delete user
+addgroup: add new group to the system
+delgroup: delete group from the system
+systemd: create a scheduled process
+wget: alternate tool to transfer files from protocol
 
 System control:
 systemctl start <service_name> #start service
@@ -189,3 +219,7 @@ to renew gpg trusted key in kali:
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ED444FF07D8D0BF6
 
 nmtui // works as netplan to assign ip address
+
+sudo fdisk -l: shows disks partitions
+
+sudo mount /dev/{sbd1} /mount/usb : mount usb
