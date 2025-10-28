@@ -1,0 +1,7 @@
+Scapy is a library used for network packet generation sending sniffing
+Ether stands for ethernet to manipulate and analyze frames
+src for source mac address
+dst for destination mac address
+srp function used for sending and receiving packets at the ethernet(send receive packets) it uses socket(dependant) that takes two parameters:
+timeout: max time to unit response
+verbose: to control the level of output during operation
