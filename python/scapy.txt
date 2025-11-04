@@ -5,3 +5,4 @@ dst for destination mac address
 srp function used for sending and receiving packets at the ethernet(send receive packets) it uses socket(dependant) that takes two parameters:
 timeout: max time to unit response
 verbose: to control the level of output during operation
+
