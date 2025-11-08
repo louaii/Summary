@@ -1,0 +1,145 @@
+.CyberSecurity: 
+The practice of ensuring confidentiality, integrity and availability of information by protecting networks, devices, people and data from unauthorized access or criminal exploitation
+
+.Threat actor:
+Any person or group who presents a security risk, this risk can relate to computers, applications, networks and data
+
+.Security role:
+_Protect against external and internal hosts
+_Meets regular compliance
+_Maintains and improves business productivity
+_Reduce expenses
+_Maintaining brand trust
+
+.Security analyst responsibility:
+_Protecting computers and networks systems
+_Installing prevention software
+_Conducting periodic security audits
+
+.Playbook:
+List of how to go through a certain detection and what the analyst needs to look in order to investigate those incidents
+
+.Compliance:
+is the process of adhering to internal standards and external negotiations and enables organizations to avoid fines and security breaches
+
+.Security frameworks:
+are guidlines used for building plans to help mitigate risks and threats to data and privacy
+
+.Security Controls:
+are safeguards designed to reduce specific security risks. They are used with frameworks to establish a strong security posture.
+
+.Security Posture:
+is an organization's ability to manage its defence of critical assets and data and react to change. A strong security posture leads to lower risk for the organization
+
+.Internal threat:
+can be current/former employee, an external vendor, or trusted partner who poses a security risk. At times, an internal threat is accidental
+
+.Network security:
+practice of keeping an organization network infrastructure secure from unauthorized access. This includes data, services, systems and devices that are stored in an organization's network
+
+.Programming:
+to create a specific set of instructions
+
+.Cloud Security:
+ensures that assets stored in the cloud are properly configured and access to those assets in limited to authorized users. The cloud is a network made up of a collection of servers that store resources and data inn remote physical location that can be accessed via internet. Cloud security is a subfield of cyber that focuses on the protection of data, apps, infrastructures of cloud
+
+.Transfarable skills:
+skills from other areas that can apply to different careers
+
+.Technical skills:
+skills that require knowledge of specific tools, procedures and policies
+
+.Security Analyst transferable skills:
+_communication
+_collaboration
+_Analysis
+_problem solving
+_growth mindset
+_time management
+_diverse perspectives
+
+.Security analyst technical skills:
+_Programming languages (Python, SQl, JS)
+_Security information and event management(SIEM tools)
+_Computer forensics
+_IPS/IDS
+_Incident response
+_Comptia security +
+_Threat landscape knowledge
+
+.Personally Identifiable Information(PII):
+Any information used to infer an individual's identify (full name, birthdate, mac address, phone number, email, ip address)
+
+.Sensitive Personally Identifiable Infromation(SPII):
+A specific type of PII that fells under stricter handling guidlines(SSN, medical nb, financial info, biometric data)
+
+.learn to keep organizations secure:
+_Analytical thinking ==> monitoring and securing computer and network systems
+_collaboration ==> responding to an active threat
+_malware protection ==> install prevention software
+_communication ==> reports findings
+_programming ==> software development(python, sql, js)
+_security auditing ==> using siem tools
+
+.Social engineering:
+A manipulation technique that exploits human error to gain private information, access or valuables
+
+.Phishing:
+The use of digital communications to trick people into revealing sensitive data ir deploying malicious software
+
+Some Malwares:
+Love letter attack(ILOVEYOU virus)
+Morris worm
+Stuxnet worm
+wannacry ransomeware 
+Equifax breach
+Brain virus
+
+Phishing Types:
+_Business Email Compromise(BEC): A threat actor sending email seems legitimate and from trusted source in order to obtain financial advantage
+_Spear phishing: A malicious email targets a user or group that seems originated from trusted source
+_Whaling: spear phishing to gain access of sensitive data
+_vishing: the exploitation of electronic voice communication to obtain sensitive information or to impersonate a known source
+_smishing: The use of text messages to trick users in order to obtain sensitive info or to impersonate a known source
+
+Social engineering types:
+_Social media phishing: A threat actor collects detailed information about their target from social media sites
+
+_watering hole attack: A threat actor attacks a website frequently visited by a specific group of users
+
+_USB baiting: 
+A threat actor strategy calls leaves a malware USB stick for an employee to find and install unknowingly infect a network
+
+_Physical social engineering:
+A threat actor impersonates an employee, customer, or vendor to obtain unauthorized access to physical location
+
+In a data breach:
+Shutdown a server, data center to stop the data breach and data loss
+
+CISSP's security domain
+.Security domains:
+_Security and risks management:
+Security goals and objectives, risk mitigation, compliance, business continuity and law
+
+_Asset security:
+secures digital and physical assets related to storage, maitenance, retention and destruction of data
+
+_Security Architecture and engineering: optimizes data security by ensuring effective tools, systems and processes are in place
+
+_Communication and network security:
+Manage and secure physical networks and wireless communications
+
+_Identity and access management:
+Keeps data secure, by ensuring users follow established policies to control and manage physical assets
+
+_Security assessment and testing: 
+conducting seecurity control testing, collecting and analyzing data, conducting security audits to monitor for risks, threats and vulnerability
+
+_Security operations:
+conducting investigations and implemeting preventative measures
+
+_Software development security:
+users secure coding practices which are a set of recommended guidlines that are used to create secure applications and services
+
+_Password attack: Brutte force, Rainbow table, Cryptographic attack: Birthday, collision, downgrade
+ 
