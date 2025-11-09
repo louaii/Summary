@@ -1,0 +1,116 @@
+Security frameworks:
+Guidelines used for building plans to help mitigate risk and threats to data privacy
+
+Purpose of security frameworks:
+_Protecting PII
+_Security financial information
+_Identifying security weakness
+_Managing organizational risks
+_Aligning security with business guides
+
+Components of security frameworks:
+_Identifying and documenting security goals
+_Setting guidlines to achieve security goals
+_Implementing security process
+_Monitoring and communicating results
+
+Security controls:
+Safeguards designed to reduce specific security risks
+
+CIA Triad: Foundational cybersecurity model
+A foundational model that helps inform how organizations consider risk when setting up systems and security policies
+_Confidentiality: only authorized users can access specific assets or data
+_Integrity: data is correct, authentic and reliable
+_Availability: data is accessible to those who are authorized to access it
+
+NIST RMF(NIST risk management framework):
+A voluntary framework that consists of standards guidlines and best practices to manage risks
+
+NIST S.P.800-63: 
+A unified framework for protecting the security of information systems within the federal government
+
+NIST Core Functions:
+_Identity: The management of cybersecurity risk and its effect on a organization's people and assets
+_Protect: The strategy used to protect an organization through the implementation of policies, procedures, training, and tools that help mitigate cyber threats
+_Detect: Identifying potential security incidents and improving monitoring capabilities to increase the speed and efficiency of detections
+_Respond: Making sure that the proper procedures are used to contain, neutralize and analyse security incidents, and implement improvements to the security process
+_Recover: The process of returning affected systems back to normal operation
+
+NIT RMF steps:
+1.Prepare: activities that are necessary to manage security and privacy risks before a breach occurs
+2.Categorize: used to develop risk management tasks(CIA Triad)
+3.Select: choose documentation of controls that protect an organization
+3.Implement: implement privacy plans for the organization
+5.Assess: determine if established controls are implemented correctly
+6.Authorize: Being accountable for risks that may exist in firm
+7.Monitor: Be aware of how systems operating
+
+Asset: An item perceived as having value to an organization(PC)
+
+NIST cybersecurity framework: known as NIST CSF is a valuntary framework that consists of standards, guidlines, and best practices to manage cybersecurity risk
+
+CIS: Center of internet risk
+GDPR: General data protection regulation
+PCI DSS: Payment Card Industry data security standards
+HIPAA: Health insurance portability and accountability act (Privacy, Security, Branch Information)
+ISO: International Organization for standardization
+
+Ethics:
+Guidlines for making appropriate desicions as a security professional
+ethical principles in security:
+_confidentiality
+_privacy protection: safeguard personal information from unauthorised use
+_law: rules recognized by a community enforced by a governing entity
+
+Tools and programming languages:
+_Log: A record of events that occur within an organization's systems
+_SIEM tool(Security Information and event management): An app that collects and analyses log data to monitor critical activities in an organization(Splunk, chronicle)
+==> Splunk enterprise: a data analysis platform, provides SIEM solutions, it's self-hosted tool used to vetain, analyze and search an organization's log data.
+==> Google chronicle: is a cloud-native SIEM tool that stores security data for search and analysis. It allows fast delivery of new features
+_Network protocol analyzer(packet sniffer): A tool designed to capture data traffic within network(tcpdump and wireshark)
+_Risk mitigation: having the right procedures and rules in place quickly reduce the impcat of a risk like a breach
+_Risk: Analyzing that can impact the confidentiality, integrity or availability of asset(lack of backup)
+_Vulnerability: a weakness that can be exploited by a threat
+_Risk assessment: risk description, control best practices
+
+
+Frameworks and Controls:
+.Frameworks: guidlines used for building plans to help mitigate risk and threats to data privacy(social engineering and ransomeware) and they provide for how to prevent, detect and respond to attacks and risks.
+
+.Controls: safeguards to reduce specific security risks(encryption, authentication, authorization)
+
+.Encryption: The process of converting data from a vendable format to an encoded format(converting from plain text to cipher text)
+
+.Authentication: The process of verifying who someone or something is (login into website using username and password), more to identify the user is multifactor authentication and biometrics(unique physical characteristics that can be used to verify a person's identity)
+
+.Authorization: The concept of granting access to specific resources within a system
+
+OWASP Security tools:(Open web and security projects)
+.Minimize attack surface area(Phishing)
+.Principle of least privilige
+.Defense in depth(Multi factor authentication)
+.Seperation of duties
+.Keep Security simple
+.Fix Security issues correctly
+
+_Minimize attack surface area:
+Attack surface area refers to all the potential vulnerabilities and threat actor could exploit
+
+_Principle of least privilige:
+users have the least amount of access required to perform their everyday tasks.
+
+_Defense in depth: Organizations should have varying security controls that mitigate risks and threats
+
+_Seperation of duties: Critical actions that should rely on multiple people, each of who follow the principle of least privilige.
+
+_Keep security simple: Avoid unnecessairly complicated solutions. Complexity makes security difficult.
+
+_Fix security issues correctly: when security incidents occur, identify vulnerabilities and conduct tests to ensure that remedication is successful
+
+Security audit:
+A review of an organization's security controls, policies, procedures against a sort of exceptions(internal or external)
+
+Purposes of internal security audits:
+_Identify organizational risk
+_Assess controls
+_Correct compliance issue
