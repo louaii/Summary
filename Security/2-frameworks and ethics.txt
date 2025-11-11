@@ -114,3 +114,64 @@ Purposes of internal security audits:
 _Identify organizational risk
 _Assess controls
 _Correct compliance issue
+
+Common elements of internal audits:
+_Establish the scope and goals
+Scope: Specific critirea of internal audit
+Goals: Outline of the organization's security objectives
+_Conducting a risk assessment
+Risk assessment: risk observation, control best practices
+_Completing a control assessment
+_Assessing Compliance
+_Communicating results
+
+Audits Questions:
+What is the audit meant to achieve?
+Which assets are most at risk?
+Are current controls sufficient to protect those assets?
+What controls and compliance regulations need to implemented?
+
+Controls: Administrive(password/policies), technical(IDS/Encryption), physical(locks/CCTV survelliance)
+CCTV: Closed Circuit Television Survellience
+
+Stakeholder Communication:
+_Summarize scope and goals
+_List existing risks
+_Notes how quickly those risks need to be addressed
+_Identifies compliance regulations
+_Provides recommendations
+
+Logs:
+A record of events that occur within an organization's systems and networks(firewalls, Network, Server)
+
+.Firewall Log: 
+A record of attempted or established connections for incoming traffic from the internet. It also includes outbound requests to the internet from within the network
+
+.Network Log:
+A record of all computers and devices that enter and leave the network. It also records connections between devices and services on the network
+
+.Server Log:
+A record of events related to services such as websites, emails, or files shares. It includes actions such as login, password, and username requests
+
+.Metrics:
+Key technical attributes, such as response time, availability, failure rate, which are used to assess the performance of a software application
+
+.SOAR(Security Orchestration, automation, response): A collection of apps, tools and workflows that uses automation to respond to security events.
+
+Playbooks to respond to incidents:
+_Playbook: A manual that provides details about any operational action for urgency, efficiency and accuracy to quickly identify the threat
+_Incident response: An organization's quick attempt to identify an attack, contain the damage, and correct the effects of a security breach
+
+
+Incident response six steps:
+_Preparation: Organization's must prepare to mitigate risk and impact of a security incidentby documenting procedures, establishing, staffing plans and edcating users. It sets incident response
+_Detection and analysis: using defined processes and technology. Using appropriate tools and strategies during this phase helps security analysts determine wether a breach has occured and analyze its possible magnitude
+_Contaiment: is to prevate further damage and reduce the immediate impact of a security incident, security professionals take actions to contain an incident and minimize damage. It helps prevent ongoing risks to critical assets and data.
+_Eradication and recovery: involves the complete removal of an incident's artifacts so that a organization can return to normal operations. Security professionals eliminate artifacts of the incident log removing malicious code and mitigating vulnerabilities. Once done they can restore the affected environment to a secure state
+_Post-incident activity: documenting the incident, informing organizational leadership, and applying lessons learned to ensure that the organization is better prepared to handle future incidents.
+_Coordination: involves reporting incidents and sharing information, throughout the incident response process, based on the organization's established standards.
+
+
+
+
+
