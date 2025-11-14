@@ -1,0 +1,50 @@
+Security hardening:
+The process of strengthening a system to reduce its vulnerability and attack surface
+
+Attack Surface:
+All the potential vulnerabilities that a threat actor could exploit
+
+Penetration test:
+A simulated attack that helps identify vulnerabilities in systems, networks, websites, apps and processes
+
+Operating System:
+Interface between computer hardware and the user
+
+Patch updates:
+A software and operating system update that addresses security vulnerabilities within a program or product
+
+Baseline configuration(image): A documented set of specifications within a system that is used as a basis for future builds, releases and updates
+
+Multifactor Authentication:
+A security measure which requires a user to verify their identity in two or more ways to access a system or network
+
+Network security hardening:
+Port filtering: A firewall function that blocks or allows certain port numbers to limit unwanted communication
+Network access privilege
+Encryption
+
+Tasks performed:
+Firewall rules maintenance
+Network log analysis
+Patch updates
+Server Backups
+
+Devices:
+Firewalls:
+Advantages:
+allows or blocks traffic based on a set of rules 
+Disadvantages:
+only able to filter packets based on info provided in the header of the packets
+
+IDS:
+Advantage:
+detects and alerts admin about possible intrusion, attack and other malicious traffic
+Disadvantages:
+only seams for known attacks or obvious anomalies, new and sophisticated attacks might not be caught. It doesn't actually stop incoming traffic
+
+
+IPS:
+Advantage:
+monitors system activity for intrusions and anomalies and takes actions to stop them
+Disadvantages:
+Fail if connection lost between private network and internet also it might detect false positives and block legitimate traffic
