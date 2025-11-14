@@ -1,0 +1,85 @@
+	OSI							TCP/IP
+    Application-------------------
+				   \
+    Presentation--------------------------------------------Application
+				   /
+    Session------------------------
+
+    Transport-----------------------------------------------Transport
+
+    Network-------------------------------------------------Network
+
+    Data Link--------------------
+				 \
+				  -------------------------Access
+                                 /
+    Physical---------------------
+
+TCP/IP model: A framework used to visualize how data are organized and transmitted across the network 
+IP(Internet Protocol): Asset of standard used for routing and addressing data packets as they travel between devices on a network
+TCP(Transmission control protocol):Internet communication protocol that allows two devices to form a connection and stream data
+Port: A software-based location that organizes the sending and receiving of data between devices on a network
+Data Packet: A basic unit of info that travels from one device to another within a network
+
+	Header				Body 				Footer
+ip/mac/protocol_number		       message		        receiving data details
+
+
+Bandwidth: The amount of data a device receives every second
+Speed: The rate at which data packets are received or downloaded
+
+IEEE 802.11(wifi): A set of standards that define communication for wireless Local Area Networks
+Wifi protocol access(WPA): A wireless security protocol for devices to connect to the internet
+Firewall: A network security device that monitors traffic to and from by our network
+Port filtering: A firewall function that blocks or allows certain port numbers to limit unwanted communication
+cloud based firewalls: Software firewalls that are hosted by a cloud service provider
+stateful firewall: A class of firewall that keeps track of information passing through it and proactively filters out threats
+stateless firewall: A class of firewall that operates based on predefined rules and does not keep track of information from data packets
+Next generation firewall: Application layer
+VPN: Virtual private network security service that changes your IP and hides your virtual location so that you can keep your data private when you are using a public network
+Encapsulation: A process performed by VPN service that protects your data by wrapping sensitive data in other data packets
+Security Zone: A segment of a network that protects the internal network from the internet
+Network Segmentation: A security technique that divides the network into segments
+Internet -> firewall -> DMZ -> firewall -> internal network -> firewall -> restricted zone ==> Security Architecture
+Proxy: A server that fulfills the request of client by forwarding them on to other
+Forward Proxy: Regulates and restricts a person's access to the internet
+Reverse proxy: Regulates and restricts the internet's accross to an internal server
+
+
+Hacks that can harm an organization:
+Leaking valuable or confidential info
+Damaging an organization's repetition
+Impacting customer reflection
+Costing money and time
+
+Dos(Denial of service): An attack that targets a network or server and floods it with network traffic which costs money, time and leave them vulnerable to other attack
+
+Distributed denial of service attack DDoS: A type of denial of service attack that uses multiple devices or servers in different locations to flood the target network with unwanted traffic
+
+Three Common network level DDoS attacks:
+SYN(synchronization) flood attack: A type of DoS attack that simulates a TCP connection and floods a server with SYN Packets
+Sends SYN receives SYN/ACK and stops without sending ACK to the server so the tcp connection won't establish with the 3 way handshake
+
+ICMP(Internet Control Message Protocol): An internet Protocol used by devices to tell each other about data transmission errors across the network
+
+ICMP flood attack: A type of DoS attack performed by an attacker repeatedly sending ICMP packets to a network server as Ping of death that sends ICMP packets bigger than standard size (64KB)
+
+Passive Packet sniffing: A type of attack where data packets are read in transmit
+
+Active packet sniffing: A type of attack where data packets are manipulated in transmit
+
+Prevent packet sniffing:
+VPN
+HTTPS(SSL/TLS)
+Avoid using unprotected wifi
+
+ip spoofing: on path attack, smurf attack
+A network attack performed when an attacker changes the source ip of a data packet to impersonate an authorized system and gain access to network
+
+On-Path attack: An attack where a malicious actor places themselves in the middle of an authorized connection and intercepts the data in transmit(man in the middle)
+
+Smurf attack: A network attack performed when an attack sniffs an authorized user's ip and floods it with packets
+
+Protect against ip spoofing:
+VPN
+Firewall(configure it to stop traffic when an outcoming packet has the same ip on the local network) 
