@@ -223,3 +223,12 @@ nmtui // works as netplan to assign ip address
 sudo fdisk -l: shows disks partitions
 
 sudo mount /dev/{sbd1} /mount/usb : mount usb
+
+use session to use several tabs through ssh: screen
+_screen
+_screen -ls //check names
+_screen -D [name] //deattach
+_screen -r [name] //reattach
+CTRL A+C ==> new screen
+CTRL A+N ==> next
+CTRL A+P ==> previous
