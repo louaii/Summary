@@ -1,0 +1,35 @@
+Database is an organized set of data
+
+Relational database:
+A structured database containing tables that are related to each other
+
+Primary Key:
+A column where every row has a unique entry
+
+Foreign Key:
+A column in table that is a primary key in other table
+
+Query:
+A request for data from a database ex: SELECT employee_id FROM employees;
+
+Filtering:
+Selecting data that match a certain condition
+
+Operator:
+A symbol that represents operation
+
+WHERE:
+Indicates the condition for filter ex: SELECT * FROM login WHERE country='USA' East%: starts with east, %end: ends with end, %ab%: contains ab in the middle
+
+LIKE:
+Used with WHERE to search for a pattern in a column ex: SELECT * FROM login WHERE country LIKE 'US%'
+
+JOIN:
+To get data from many tables 
+
+INNER JOIN:
+returns rows matching on a specified column that exists in more than one table ex: SELECT username, office, operating_system FROM employees INNER JOIN machines ON employees:employeee_id=machines.employee_id
+
+LEFT JOIN: returns all of the records of the first table, but only returns rows the second table that match on a specified column
+
+FULL OUTER JOIN: returns all records from both tables

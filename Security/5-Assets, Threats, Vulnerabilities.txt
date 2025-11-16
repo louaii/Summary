@@ -1,0 +1,48 @@
+Risk: Anything that can impact the confidentiality, integrity, availability of asset
+Asset: An item perceived as having value to an organization
+Threat: Any circumstance(event) that can negativily impact asset
+Vulnerability: A weakness that can be exploited by a threat 
+Asset management: The process of tracking assets and risks that affect them
+Asset inventory: A catalog of assets that need to be protected
+Asset classification: The practice of labeling assets based on sensitivity and importance to an organization 
+Data: Info translated, processed or stored by computer
+Data in use: Data being accossed by one or more user
+Data in transit: Data traveling from one point to another
+Data at rest: Data not currently being accessed
+Information security: The practice of keeping data in all states away from unauthorized users
+Policy: A set of rules that reduces risk and protects information
+Standards: references that informs how to set policies
+Procedures: Step by step instructions to perform a specific security task
+Compliance: The process of adhering to internal standards and external regulations
+Regulations: Rules set by a government or other authority to control the way something is done
+Security controls: Safeguards designed to reduce specific security risks
+Information privacy: The protection of unauthorized access and distribution of data
+Principle of least privilege: The concept of granting only the minimal access and authorization required to complete a task or function
+Data owner: The person that decides who can access, edit, use or destroy their info
+Data custodian: Anyone or anything that's responsible for the safe handling, transport, and storage of information
+Cryptography: The process of transforming info into a form unintended readers cannot understand
+Algorithm: A set of rules used that solve a problem
+Cipher: An algo that encrypts info or data
+Cryptographic key: A mechanism that decrypts cipher text
+Brute force attack: A trial and error process of discovering private information
+PKI(Public key infrastructure): An encryption framework that secures the exchange of information online
+Asymetric encryption: The use of a public and private key pair for encryption and decryption data
+Symetric encryption: The use of a single key to exchange information
+Digital certificate: A file that verifies the identity of a public key holder
+Hash function: An algo that produces a code that cannot be decrypted
+Non-repudication: The concept that the authenticity of info cannot be denied
+Access controls: Security controls that manage access, authorization and accountability of information
+SSO(Single sign-on): A technology that combines several different logins into one
+Seperation of duties: The principle that users should not be given levels of authorization that would allow them to misuse a system
+Basic auth: The technology used to establish a user's request to access a server
+OAuth: An open standard authorization protocol that shares designated access between applications
+API token: A small block of encrypted code that contains info about a user
+Session: A sequence of network http basic auth requests and responses associated with the same user
+Session ID: A unique token that identifies a user and their device while accessing the system
+Session Hijacking: An event when attackers obtain a legitimate user's session ID
+Exploit: A way of taking advantage of a vulnerability
+Zero-day: An exploit that was previously unknown
+Defense-Depth: A layered approach to vulnerability management that reduces risks
+Defense-Depth strategy: 1.Perimeter, 2.Network, 3.Endpoint, 4.Applications, 5.Data
+CVE(Common Vulnerabilites and exposure list): An openly accessible dictionary of known vulnerabilities and exposures
+MITRE: A collection of non-profit research and development centers
