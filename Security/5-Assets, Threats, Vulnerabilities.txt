@@ -46,3 +46,40 @@ Defense-Depth: A layered approach to vulnerability management that reduces risks
 Defense-Depth strategy: 1.Perimeter, 2.Network, 3.Endpoint, 4.Applications, 5.Data
 CVE(Common Vulnerabilites and exposure list): An openly accessible dictionary of known vulnerabilities and exposures
 MITRE: A collection of non-profit research and development centers
+CNA(CVE Networking Authority): An organization that volunteers to analyze and distribute info on eligible CVEs
+
+CVE list criteria:
+_Independent of other issues
+_Recognized as a potential security risk
+_Submitted with supporting evidence
+_Only affect one codebase
+
+CVSs(Common Vulnerability Scoring System): A measurement system that scores the severity of a vulnerability
+Attack surface: All the potential vulnerabilities that a threat actor could exploit
+Security hardening: the process of strengthing a system to reduce its vulnerability and attack surface
+Attack vector: The pathways that attackers use to penetrate security defense
+
+Practicing an attacker mindset:
+_Identify a target
+_Determine how the target could be accessed
+_Evaluate attacker vectors that can be exploited
+_Find the tools and method of an attack
+
+Defending attacker vectors:
+_Educating users
+_Applying the principle of least privilige
+_Using the right security controls and tools
+_Building a diverse security team
+
+web based exploits: Malicious code or behavior that is used to take advantage of coding flows in a web app
+Injection attack: Malicious code interested into a vulnerable app
+Cross Site Scripting(XSS): An injection attack that inserts code into a vulnerable website or web app
+Reflected XSS attack: An instance when malicious script is sent to a server and activated during the server's response
+Stored XSS attack: An instance when malicious script is injected directly on the server
+DOM-based XSS attack: An instance when malicious script exists in the webpage a browser loads
+SQL injection: An attack that executes unexpected queries on database
+Prepared statement: A coding technique that executes SQL statements before passing them on database
+Threat modeling: The process of identifying of assets vulnerabilities, and how each is exposed to threats(1.Define scope, 2.Identify threats, 3.Characterize environment, 4.Analyze threat, 5.Mitigate risk, 6.Evaluate findings)
+Attack Tree: A diagram That maps threats to assets
+PASTA(Process for Attack Simulation and Threat Analysis): A popular threat modeling framework that is used across way industries
+1.Define business and security objectives 2.Define Technical Scope 3.Decompose the application 4.Perform a threat analysis 5.Perform a vulnerability analysis 6.Conduct attack modeling 7.Analyze risk and impact 
