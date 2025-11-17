@@ -1,0 +1,89 @@
+Incident: An occurance without authority, confidentiality, integrity or availability of information constitutes a violation or imminent threat of violation of law, security policies, security procedures or acceptable use policies
+
+Event: An observable occurence on a system, network or device
+
+5W's of an incident:
+who triggered that incident
+what happened
+when the incident took place
+where the incident took place
+why the incident occured
+
+Incident handler's journal: A form of documentation used on incident response
+
+CSIRT(Computer Security Incident Response Teams): A specialized group of security professionals that are trained in incident management and response
+
+Roles in CSIRT: Security Analyst, Technical Lead, Incident Coordinator
+
+Clements of Security Plan: Policies, Standards, Procedures
+
+Incident Response Plan: A document that outlines the procedures to take in each step of incident response
+
+Elements of an incident plan: Incident response procedures, system information, other documents
+
+Tools: Detection and management tools, Documentation tools, Investigate tools
+
+Documentation: Any form of recorded content that is used for a specific purpose
+
+Types of documentation: Playbooks, Incident handler's journals, policies, plans, find reports
+
+(IOC): Indicators of compromise: Observate evidence that suggests signs of a potential security incident
+
+Data exfiltration: unauthorized transmission of data from a system
+
+Rivoting: taking a sneaky access on a machine for a long time
+
+Defensive measures: Prevent attacker access, Monitor network activity, Protect assets, Detect and stop the exfiltration
+
+Components of a packet:
+Header: port and network protocol - source/dest ip
+Payload: data being delivered
+Footer: end of packet
+
+Packet ipv4 header:
+Version IHL Tos TotalLength Identification Flags Fragement offset TTL Protocol Header checker Source IP Destination IP
+
+Version: IPv4 / IPv6 
+IHL ==> Internet Header Length: Specifies the length of IP header
+Tos ==> Type of service notifies certain packets should be treated with different care
+Total Length: Length of active packet including header and data
+Identification - Flags - Fragement offset: Deal with info related to fragementation (when ip packet gets broken into chunks which get transmitted over the wire abd reassembled when they arrive at their destination they specify if fragementation has been used and how to reassemble the broken packets in the correct order)
+Time To Live(TTL): how long a packet can live before it gets dropped
+Protocol:Specifies the protocol used by providing value ex: TCP as 6
+Header checksum: Stores checksum value to determine if any errors occurs
+Source ip: Sender ip
+Dest ip: destination ip
+
+
+IPv6 Header:
+Version IPv6
+Traffic class like ToS(ipv4) provides info about the packet's priority
+Flow label: identifies the packets of a flow which is a sequence of packets sent from a specific source
+Payload length: Specifies the length of data portion of the packet
+Next header: indicates type of protocol ex: TCP
+Hop limit: as TTL
+Source IP
+Dest IP
+
+TCPdump: sudo tcpdump -i any -v -c 1
+-i interface 
+-v verbose
+-c count
+
+Detection: the prompt discovery of search events
+Analysis: The investigation and violation of alerts
+Chain of custody: The process of documenting evidence possession and control during an incident lifecycle => establish: Integrity, Reliability, Accurarcy
+Broken chainof custody: Inconsistencies in the collection and logging of evidence in the chain of custody
+Triage: The priotizing of incidents according to their level of importance or ugency (Ransomeware > Phishing email)
+Triage process: Recieve and assess, Assign Priority, Collect and analyze
+Containment: The act of limiting and preventing additional damage caused by an incident
+Eradication: The complete removal of incident elements from all affected systems
+Recovery: The process of returning affected systems back to normal operations
+Post-incident activity phase: The process of reviewing an incident to identify areas for improvement during incident handling
+Final report: Documentation that provides a comprehensive review of an incident
+Telementry: The collection and transmission of data for analysis
+Host-based intrusion detection system: An application that monitors the activity of the host on which it's installed
+Network-Based intrusion detection system: An application that collects and monitors network traffic and network data
+Signature analysis: A detection method used to find events of interest
+SPL(Search Processing Language): Splunk's query language
+YARA-L: A computer language used to create rules for searching through ingested log data
