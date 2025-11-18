@@ -21,3 +21,5 @@ icalcs c:\users //displays the permissions over the disk
 
 wmic useraccount getname, sid: to get users on machine
 wmic group getname,sid: to get groups on machine
+
+[drivername] -extractdrivers C:\RSTdriver //to get the inf file 
