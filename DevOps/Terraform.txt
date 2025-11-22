@@ -1,3 +1,23 @@
+Infrastructure(البنية التحتية): hardware and software components, facilities, data centers, servers, networking hardware, desktop computers and enterprise application software solutions
+
+IaC(Infrastructure as a Code): is defined as using software code for resource provisining in data center and cloud ennvironments instead of hardware settings or configuration tools, with benefits of automation and remote provisioning. IaC involves managing data centers through code modules rather than interactive configuration toolsor physical hardware tools. In straight forward terms, IaC means managing your IT Infrastructure with line of code, the code becomes part of the project and is stored insidde the vcs(version control system)
+
+
+                                                                                 manages =====> Infra Cloud
+                                                                                   //
+                                                                                  //
+dev ===write====> Infra Code========Push=======Pull=========Automation API/Server
+                      ||                                                          \\
+                      ||                                                           \\
+                      ||                                                         manages =====> Infra premises
+                     \  /
+                      VCS 
+
+
+Iac works through templates, the config files are created upon the infrastructure specs
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently.
 
 Terraform can manage existing and popular service providers as well as custom in-house solutions.
