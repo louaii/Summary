@@ -16,6 +16,28 @@ dev ===write====> Infra Code========Push=======Pull=========Automation API/Serve
 
 Iac works through templates, the config files are created upon the infrastructure specs
 
+.The 4 types of IaC:
+_Scripting: is a very direct form of IaC usually used for simple or on-off tasks(not advised for complex one)
+_Config management tools: implement automation by installing and configuring servers designed for complex tasks as they are specialized tools built to manage software
+_Provisioning tools: implement automation by creating infrastructure used by devs to create infrastructure components
+_Containers and templating tools: formulate templates and images pre-loaded with all the libraries and components required to run an application. Data distributed with these tools are easy to manage and have a lower overhead compared to running an entire server
+
+.Two Approaches of automating infrastructure:
+_Declarative(function): You define the desired state of the final solution(No guide or step by step)
+_Imperative(procedure): You define the steps to execute in order to reach the desired solution(step by step as dockerfile)
+
+.Mutable vs Immutable infrastructure:
+_Mutable: can be changed to fit business needs. You can easily introduce updates to the existing version, apply patches and scale(puppet, chef, Ansible)
+_Immutable: cannot be changed once deployed. If you want to make alterations to it, you have ti replace it with a new version(Kubernetes, Docker, Terraform)
+
+.Agent vs Agentless: 
+_Agent-based: tools as Puppet require the user to install a piece of software on each device that needs to be managed, called an agent each communicates over encrypted communications methods to a controlling 'master' devic, which stores the desired configs of the machines it manages.
+_Agentless-based: tools such as Ansible do not require agents to be installed to manage machines and communicate via protocols such as SSH, this approach is great when quick and easy deployments needs to be made. The problem is that there is no way of reporting back on a machine's current state or enforcing a desired state to make sure it is compliant
+
+Benefits of IaC:
+Efficiency, versioning and tracking, speed, collaboration, eliminate config drift(exactly what needed without downtime or collisions), stable, scalable, disaster recovery
+
+IaC tools: Terraform, Puppet, AWS cloud foundation, Ansible, Chef 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently.
@@ -34,3 +56,5 @@ _Key features of Terraform:
 .Resource graph: Terraform builds a graph of all your resources and parallelizes the creation and modification of any non-dependent resources. Because of this, Terraform builds infrastructure as efficiently as possible, and operators get insight into dependencies in their infrastructure.
 
 .Change automation: Complex change sets can be applied to your infrastructure with minimal human interaction, with the previously mentioned execution plan and resource graph, you know exactly what Terraform will change and in what order avoiding many possible human errors.
+
+
