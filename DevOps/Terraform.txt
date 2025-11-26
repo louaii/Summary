@@ -39,22 +39,171 @@ Efficiency, versioning and tracking, speed, collaboration, eliminate config drif
 
 IaC tools: Terraform, Puppet, AWS cloud foundation, Ansible, Chef 
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------
-Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently.
+What is Terraform?
+------------------
 
-Terraform can manage existing and popular service providers as well as custom in-house solutions.
+Terraform is an IaC tool that lets you define both cloud and on premises resources in human readable config files that can be version reuse and share to automate infra tasks. It is an open source cloud agnostic(run seamlessly across any cloud provider) provisioning tool developed by HarshCorp written in GO lang in 28/7/14
 
-Configuration files described to Terraform, the components needed to run a single application or your entire data center.
 
-Terraform generates an execution plan describing what it will do to reach the desired state and then executes it to build the described infrastructure
+			Practitioner				Community
+			     ||                                    ||
+                             ||                                    ||
+                             ||                                    ||
+                             ||                                   \  /
+                             ||                                    \/
+                             ||                               Public model
+                             ||                                 Regisrty
+                             ||                                    ||
+                            \  /                                  //
+                             \/     /                            //
+                        IaC(config)/=============================
+                             ||    \
+                             ||     \
+                             ||
+                             ||
+                            \  /
+                             \/
+                            Plan
+                             ||
+                             ||
+                             ||
+                            \  /
+                             \/
+                            Apply
+                             ||
+                             ||
+                             ||
+                            \  /
+                             \/
+                           Cloud
+                           /    \
+                          /      \
+                         /        \
+                        /          \
+                       PCs      Servers
 
-_Key features of Terraform:
-.Infrastructure as Code: Uses high-level configuration syntax and allows a blueprint of the datacenter, also infrastructure can be shared and reused. As the configuration changes, Terraform is able to determine what changed and create incremental execution plans, which can be applied. The infrastructure Terraform can manage low-level components, such as compute instances, storage, and networking as well as high-level components, such as DNS entries, SaaS features
 
-.Execution plans: Terraform has a planning step where it generates an execution plan. The execution plan shows what Terraform will do when you can apply. This lets you avoid any surprises when Terraform manipulates infrastructure.
+Terraform's HCL(HarshiCorp Config Language) allows a dev to learn one language to work with multiple cloud offerings and on premises providers rather than having to learn a new service and language for each
 
-.Resource graph: Terraform builds a graph of all your resources and parallelizes the creation and modification of any non-dependent resources. Because of this, Terraform builds infrastructure as efficiently as possible, and operators get insight into dependencies in their infrastructure.
+HCL is a declarative language, focusing on the end state as opposed to a procedural language, where all commands are executed in the order written
+Declarative language focuses on specifiying the desired end-state, letting the IaC tool handle the implementation details
 
-.Change automation: Complex change sets can be applied to your infrastructure with minimal human interaction, with the previously mentioned execution plan and resource graph, you know exactly what Terraform will change and in what order avoiding many possible human errors.
+Primary user                   Resource Meta                Resource                 Core
+  interface                         Data                     Graph                Application
+---------------------------------------------------------------------------------------------------
+HarshiCorp Config                  Files                      API                Authentication
+   Language                        State                 Communication                API
+                                                                                 Calls Resource
+                                                                                     Mapping
+                                                                                    Providers
+                                                                                 (AWS, Azure, VM,
+										    Kubernetes)
 
+
+Terraform Benefits:
+.Manage any infra on multiple cloud
+.Track infra through state file or source of truth
+.Automate Changes
+.Human-readable config lang
+.Helps write infra code quickly
+.Commit configs through version control to safely collaborate on infra
+
+The Core Terraform workflow consists three stages:
+
+.Write: Define infra and resource in config files which may be across multiple cloud providers and services
+
+						Terraform Project
+                                                        ||
+                                                       /  \
+                                                      /    \
+                                                     /      \
+                                                    /        \ 
+                                                   /          \
+                                               Config        State
+
+.Plan: Review the changes Terraform will make to the infra, Terraform creates an execution plan describing the infra will create, update, or destroy based on the existing infra and your config($terraform plan)
+
+.Apply: Terraform provisions your infra and updates the files state on approval, Terraform performs the proposed operations in the correct order, respecting any resources dependencies
+
+
+
+
+How to deploy infra with Terraform
+.Scope: Identify the infra for the project
+.Author: Write the config for infra
+.Initialize: Install the plugins Terraform needs to manage the infra
+.Plan: Preview the changes Terraform will make to match the config
+.Apply: Make the planned changes
+
+
+What is provisioning?
+Provisioning is the process of setting up IT infrastructure. It can also refer to the steps required to manage access to data and resources, make them available to users and systems. Once something has been provisioned, the next step is config
+
+
+
+Infrastructure Provisioning vs Configuration Management:
+--------------------------------------------------------
+
+
+Infra provisioning is the process of provisioning IT infrastructure resources like VM servers, Storage, network, cloud managed services, etc...
+Terraform, Pulumi and cloud formation are popular examples of infrastructure provisioning tools. Its primary purpose is to keep the infrastructure in its desired state and reproduce or update it whenever needed
+
+Configuration management is the process of configuring provisioned infra resources. As example configuring a server with required apps or configuring a firewall device. The primary purpose of config management tools is to configure the server. Meaning if you want to automate the installation and configuration of an application(nginx) in a server we use a tool like Ansible and Chef. It ensures all the servers are running in the same config mentioned in the ansible playbook or chef cook book
+
+Infra Provisioning(Terraform) is responsible for providing the network and servers 
+Config management(Ansible) configures apps inside servers provisioned by Terraform
+
+!Note: Infra provisioning and config management are not mutually exclusive Most config management tools can do some degree of provisioning and vice versa
+
+
+
+Infra Provisioning														Config Management
+      ||															       ||
+      ||                                                                                                                               ||
+      ||															       ||
+      ||                                                                                                                               ||
+     \  /                                                                                                                             \  /
+      \/                                                                                                                               \/
+Creates Infra Components                                                                                                 Configures provisioned servers
+      ||															       ||
+      ||                                                                                                                               ||
+      ||															       ||
+      ||                                                                                                                               ||
+     \  /                                                                                                                             \  /
+      \/                                                                                                                               \/
+   Terraform                                                                                                                         Ansible
+	 \\                                                                                                                           //
+          \\                                                                                                                         //
+           \\                                                                                                                       //
+            \\                                                                                                                     //
+             \\                                                                                                                   //
+           Provisioning servers/VPC=======================================AWS=================================Install and config apps on provisioned server
+                                                                    Server/VPC network
+
+
+Configuration Management:
+
+
+
+Get server details
+from inventory(ip/ssh_key)
+          /\
+         /  \
+          ||
+          ||
+          || 
+          ||
+          ||
+     Puppet, chef                                                                                                                       \
+  saltstack, Ansible ============================================Connect through ssh and execute list===================================  Server
+                                                                     of tasks module cook/play book                                     /
+
+
+Terraform Summary:
+.HCL language
+.Declarative
+.Infra Provisioning
+.Immutable
+.Agentless
+.Any cloud provider
 
