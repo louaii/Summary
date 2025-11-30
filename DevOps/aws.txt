@@ -148,3 +148,11 @@ _if master db instance fails, it automatically connects to a standby db instance
 _Reduce failover time up to 66%
 _Database accross control through IAM.
 
+
+-------------------------------------------------------------------------------------------------------------------------------
+Practical:
+Create IAM user:
+go to IAM in the search:
+
+users ==> create user ==> attach policies ==> generate access_key ==> in terminal aws configure ==> access_key_paste ==> secret_access_key ==> region ==> json
+

@@ -23,3 +23,10 @@ wmic useraccount getname, sid: to get users on machine
 wmic group getname,sid: to get groups on machine
 
 [drivername] -extractdrivers C:\RSTdriver //to get the inf file 
+
+add gemini:
+cmd ==> setx PATH "%PATH%;C:\Users\lserhal\AppData\Roaming\npm"
+powershell ==> $env:Path += ";C:\Users\lserhal\AppData\Roaming\npm"
+
+add envi vars:
+open as admin in the system vars ==> add the variable name and variable path
