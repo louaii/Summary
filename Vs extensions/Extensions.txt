@@ -4,3 +4,4 @@ Laravel artisan
 prettier
 bracket color pair
 thunder client ==> api
+terraform ==> harshcorp terraform
