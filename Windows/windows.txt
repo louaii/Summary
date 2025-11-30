@@ -30,3 +30,9 @@ powershell ==> $env:Path += ";C:\Users\lserhal\AppData\Roaming\npm"
 
 add envi vars:
 open as admin in the system vars ==> add the variable name and variable path
+
+to open eviromental variables: sysdm.cpl advanced
+
+to add terraform:
+cmd ==> setx PATH "%PATH%;C:\terraform"
+powershell ==> powershell ==> $env:Path += ";C:\terraform"
