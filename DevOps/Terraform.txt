@@ -212,3 +212,12 @@ Terraform Summary:
 Terraform install:
 _Linux: go to download terraform website and choose your distribution with the commands
 _Windows: use VPN since it's not available for our region(Lebanon) and install it then add it to the enviromental variables
+
+
+Terraform steps:
+write main.tf
+terraform init
+terraform validate
+terraform plan
+terraform apply
+terraform destroy //to delete everything added from the main.tf
