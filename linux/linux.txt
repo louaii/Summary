@@ -63,6 +63,7 @@ addgroup: add new group to the system
 delgroup: delete group from the system
 systemd: create a scheduled process
 wget: alternate tool to transfer files from protocol
+lsb_release -d: check distribution
 
 System control:
 systemctl start <service_name> #start service
