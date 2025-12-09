@@ -1,0 +1,25 @@
+Virtual Private Cloud's service in AWS that allows user to create a logically isolated within AWS Cloud from other VPCs and public internet giving complete control over the network environment
+
+.Subnets:
+A subnet is a range of ips within a VPC which can be used to group resources together and control how they communicate with each other
+
+.Gateway:
+Internet gateway is a virtual router that connects your vpc to the public internet supporting v4 and 6
+
+.Route tables:
+Collection of rules that determine how traffic routed within VPC, route tables can be used to control how traffic flows between subnets, internet and other VPCs
+
+.Security Groups:
+Collection of policies that can control inbound and outbound traffic for a group of resources and which can communicate with each other or access the internet
+
+.VPN connections:
+Allows your vpc to connect to private network
+
+.VPC endpoint:
+Private connection between VPC and other AWS service to improve performance and security of your connections to AWS services
+
+.Traffic mirroring:
+allows to copy traffic from one network to another can be used for troubleshooting or security purposes 
+
+
+ 
