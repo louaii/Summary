@@ -1,0 +1,68 @@
+A Bastion Host is a secure entry point used to access private servers inside a network — especially in cloud environments like AWS.
+
+🛡️ What a Bastion Host Is Used For
+✔ 1. Secure SSH Access into a Private VPC
+
+If your EC2 instances (like your Samba AD server) are inside a private subnet, you cannot SSH into them directly from the internet.
+
+Instead, you connect to the bastion, and from there → jump to the private instance.
+
+Your PC → Bastion Host (public) → AD Server (private)
+
+✔ 2. Restrict Open Ports to the Internet
+
+Without a bastion, you'd need to expose port 22 (SSH) of every server to the internet → high security risk.
+
+With a Bastion:
+
+Only 1 server has SSH open to the world.
+
+All other servers have SSH blocked from the internet.
+
+✔ 3. Logging, Monitoring, and Auditing
+
+You can monitor:
+
+who connects
+
+when
+
+what commands they run
+(by using logging, CloudWatch, SSM, or other tools)
+
+This improves compliance and audit control.
+
+✔ 4. Protecting Sensitive Infrastructure
+
+For environments hosting:
+
+Active Directory
+
+DNS
+
+Applications
+
+Databases
+
+A bastion acts as a controlled security gateway.
+
+🆚 Without Bastion vs With Bastion
+❌ Without Bastion
+
+Every server needs:
+
+Public IP
+
+Port 22 exposed
+
+Higher attack surface
+
+✔ With Bastion
+
+Only the bastion has:
+
+A public IP
+
+SSH access allowed
+
+All other servers stay private and secure.
