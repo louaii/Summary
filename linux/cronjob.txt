@@ -1,0 +1,14 @@
+
+To create a cronjob(Task schedule): 
+crontab -e
+
+* * * * * command_to_execute
+- - - - -
+| | | | |
+| | | | +---- Day of the week (0 - 7) (Sunday is 0 or 7)
+| | | +------ Month (1 - 12)
+| | +-------- Day of the month (1 - 31)
+| +---------- Hour (0 - 23)
++------------ Minute (0 - 59)
+example:
+0 9 * * * /home/lserhal/scripts/Anydesk-crack.sh

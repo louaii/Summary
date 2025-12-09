@@ -94,21 +94,6 @@ sudo nano /etc/systemd/system/prometheus.service #for creating shortcut promethe
 vim sites-enabled/000-default.conf #to change ports for apache2
 curl ipconfig.co #to get the current ip of the service
 
-sudo fdisk -l //to check the /dev/... running
-mount /dev/... media/usb_driver //To access a usb
-to create an app.AppImage as desktop application
-existing application can be found and editable through:
-cp /usr/share/applications/teams-for-linux.desktop ~/.local/share/applications/teams.desktop
-To create commands
-─(louay㉿kali)-[/usr/local/bin]
-└─$ cat xampp_start 
-#!/bin/bash
-cd /opt/lampp
-sudo ./lampp start
-
-Start bleutooth:
-┌──(louay㉿kali)-[~]
-└─$ sudo systemctl start bluetooth
 
 #add username:
 sudo adduser <username> #adds user
@@ -118,37 +103,6 @@ echo $USER #shows the current user
 usermod -aG sudo <username> #add username to sudoers list
 ssh-copy-id ssh -p username #to add to the known-hosts list
 
-
-To create an .AppImage or .desktop as an application
-in the ~/.local/share/applications create <name>.desktop
-┌──(louay㉿kali)-[~/.local/share/applications]
-└─$ cat arduino-ide.desktop 
-[Desktop Entry]
-Type=Application
-Name=Arduino IDE
-Exec=/etc/arduino/arduino-ide_2.3.2_Linux_64bit.AppImage
-Icon=/etc/arduino/arduino_103028.png
-Terminal=false
-Categories=Development;
-
-
-
-To access .exe through wine:
-WINEPREFIX=~/wineprefix wine /media/lserhal/16.0.15330.20266/OInstall.exe
-
-To create a cronjob(Task schedule): 
-crontab -e
-
-* * * * * command_to_execute
-- - - - -
-| | | | |
-| | | | +---- Day of the week (0 - 7) (Sunday is 0 or 7)
-| | | +------ Month (1 - 12)
-| | +-------- Day of the month (1 - 31)
-| +---------- Hour (0 - 23)
-+------------ Minute (0 - 59)
-example:
-0 9 * * * /home/lserhal/scripts/Anydesk-crack.sh
 
 To check disk:
 sudo fdisk -l
@@ -194,28 +148,6 @@ sudo mv Postman /opt/postman
 sudo ln -s /opt/postman/Postman /usr/bin/postman
 postman
 
-to create icon desktop:
-sudo nano /usr/share/applications/postman.desktop
-
-[Desktop Entry]
-Name=Postman
-Exec=/opt/postman/Postman
-Icon=/opt/postman/app/resources/app/assets/icon.png
-Type=Application
-Categories=Development;
-
-to install buds manager:
-flatpak install flathub me.timschneeberger.GalaxyBudsClient
-
-to access buds manager:
-flatpak run me.timschneeberger.GalaxyBudsClient
-
-install flathub:
-sudo apt install flatpak
-sudo apt install gnome-software-plugin-flatpak
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-reboot
-
 to renew gpg trusted key in kali:
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ED444FF07D8D0BF6
 
@@ -225,15 +157,4 @@ sudo fdisk -l: shows disks partitions
 
 sudo mount /dev/{sbd1} /mount/usb : mount usb
 
-use session to use several tabs through ssh: screen
-_screen
-_screen -ls //check names
-_screen -D [name] //deattach
-_screen -r [name] //reattach
-CTRL A+C ==> new screen
-CTRL A+N ==> next
-CTRL A+P ==> previous
-screen -S new_Session //create new session
-CTRL A D //deattach from the session
-screen -r mysession //reattach the session
-screen -ls //check sessions
+

@@ -1,0 +1,2 @@
+sudo fdisk -l //to check the /dev/... running
+mount /dev/... media/usb_driver //To access a usb

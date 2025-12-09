@@ -1,0 +1,2 @@
+To access .exe through wine:
+WINEPREFIX=~/wineprefix wine /media/lserhal/16.0.15330.20266/OInstall.exe

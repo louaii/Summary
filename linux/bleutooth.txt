@@ -1,0 +1,3 @@
+Start bleutooth:
+┌──(louay㉿kali)-[~]
+└─$ sudo systemctl start bluetooth

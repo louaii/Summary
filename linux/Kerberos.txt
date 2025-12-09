@@ -1,0 +1,31 @@
+Kerberos is the authentication system used by Active Directory, including Samba AD.
+A Kerberos test simply verifies that your domain controller can: Issue authentication tickets, Accept logins, Communicate internally through AD services
+
+After provisioning your Samba AD domain, you run two commands:
+1️⃣ kinit administrator
+This command requests a Kerberos Ticket Granting Ticket (TGT) for the administrator account.
+You will be asked for the administrator password (the one you used during samba-tool domain provision).
+
+If authentication works → Kerberos is functioning
+If it fails → AD is not configured properly
+
+2️⃣ Check the ticket using klist
+klist
+
+
+Expected output:
+
+Ticket cache: FILE:/tmp/krb5cc_0
+Default principal: administrator@YOURDOMAIN.COM
+
+Valid starting       Expires              Service principal
+02/15/2025 10:00:00  02/15/2025 20:00:00  krbtgt/YOURDOMAIN.COM@YOURDOMAIN.COM
+
+
+This confirms:
+
+Kerberos ticket was issued
+
+AD authentication works
+
+DNS + Samba AD + Kerberos integration is correct

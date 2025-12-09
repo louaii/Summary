@@ -1,0 +1,12 @@
+use session to use several tabs through ssh: screen
+_screen
+_screen -ls //check names
+_screen -D [name] //deattach
+_screen -r [name] //reattach
+CTRL A+C ==> new screen
+CTRL A+N ==> next
+CTRL A+P ==> previous
+screen -S new_Session //create new session
+CTRL A D //deattach from the session
+screen -r mysession //reattach the session
+screen -ls //check sessions

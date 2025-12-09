@@ -1,0 +1,37 @@
+to create an app.AppImage as desktop application
+existing application can be found and editable through:
+cp /usr/share/applications/teams-for-linux.desktop ~/.local/share/applications/teams.desktop
+To create commands
+─(louay㉿kali)-[/usr/local/bin]
+└─$ cat xampp_start 
+#!/bin/bash
+cd /opt/lampp
+sudo ./lampp start
+
+
+---------------------------------
+
+To create an .AppImage or .desktop as an application
+in the ~/.local/share/applications create <name>.desktop
+┌──(louay㉿kali)-[~/.local/share/applications]
+└─$ cat arduino-ide.desktop 
+[Desktop Entry]
+Type=Application
+Name=Arduino IDE
+Exec=/etc/arduino/arduino-ide_2.3.2_Linux_64bit.AppImage
+Icon=/etc/arduino/arduino_103028.png
+Terminal=false
+Categories=Development;
+
+
+-----------------------------------
+
+to create icon desktop:
+sudo nano /usr/share/applications/postman.desktop
+
+[Desktop Entry]
+Name=Postman
+Exec=/opt/postman/Postman
+Icon=/opt/postman/app/resources/app/assets/icon.png
+Type=Application
+Categories=Development;
