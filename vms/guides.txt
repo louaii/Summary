@@ -1,0 +1,8 @@
+controller server firmware update through esxi:
+https://support.hpe.com/hpesc/public/docDisplay?docLocale=en_US&docId=sf000075447en_us
+
+mac on ESXi:
+https://www.nakivo.com/blog/run-mac-os-on-vmware-esxi/
+
+Smart Array Upgrade from ESXi:
+https://support.hpe.com/hpesc/public/docDisplay?docLocale=en_US&docId=sf000075447en_us

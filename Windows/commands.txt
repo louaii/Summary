@@ -1,6 +1,3 @@
-Smart Array Upgrade from ESXi:
-https://support.hpe.com/hpesc/public/docDisplay?docLocale=en_US&docId=sf000075447en_us
-
 Key home to pro: VK7JG-NPHTM-C97JM-9MPGT-3V66T
 
 activations through powershell:
