@@ -65,6 +65,47 @@ Rules when creating YAML file:
 When you are creating a file in YAML, you should remeber the following basic, YAML is case-sensitive, the files should have (.yaml) as the extension. YAML does not allow the use of tabs while creating YAML files spaces are allowed instead.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
+Ansible linux installation:
+
+sudo apt install ansible -t buster-backports
+
+if error occured
+	==> nano /etc/apt/sources.list.d/backports.list
+		==> deb http://deb.debian.org/debian/buster-backports main contrib non-free
+		==> deb -src http://deb.debian.org/debian/buster-backports main contrib non-free
+CTRL+O
+
+sudo apt update
+
+inventory file in ansible is as index in html which maitains groups and it's assets
+
+nano inventory
+[all] #group all
+192.168.1.16 #ip_address
+louay.ubuntu@aws.com #dns
+[all:vars]
+ansible-python-interpreter=/usr/bin/python3 #hides warnings
+docs ==> https://docs.ansible.com/ansible/2.9/reference_appendencies/interpreter_discovery.html
+
+_ansible all#desired_group -i#for_path inventory#filename -m#modules command#desired_module -a#arguments date#desired_argument
+_ansible all -i inventory -u#user root#desired_user command -a "date" #gives back date from user root -f#forks_to_choose_the_number_of_devices_at_same_time(default is five) 1#one_device_at_a_time
+_ansible all -i inventory -u root -a "df -h" #servers storage space
+_ansible all -i inventory -u root -a "free -m" #memory space 
+_ansible all -i inventory -u root -m apt -a "name=apache2 state=present" #install apache2
+#!!! in warnings if changed is true it is changed manually if false then it's changing through ansible
+_ansible all -i inventory -u root -m apt -a "name=apache2 state=absent" #delete apache2
+_ansible all -i inventory -u root -m service -a "name=apache2 state=stopped" #stop apache2 service services(started,stopped,restarted,reloaded)
+_ansible all -i inventory -u root -m service -a "name=apache2 state=started" --limit 192.168.1.16 #to limit the command only on desired machine through ip or dns this command starts the apache2 only on 192.168.1.16 even if the all group has other machines in it
+
+
+
+
+
+
+
+
+
+
 
  
 
