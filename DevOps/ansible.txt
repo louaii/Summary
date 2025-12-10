@@ -46,13 +46,6 @@ _Ansible components:
 
 Instead of logging into each of these remote nodes and carrying out your tasks, you can comfortably do so from a central location and comfortably manage your servers. This is benefical when you want to maitain consistency in application deployment, reduce human error and automating repetitive and somewhat mundane tasks
 
-Six components of Ansible:
-.Modules: Ansible connects to nodes and sends scripts known as Ansible modules, User can write their own modules, most modules accept parameters that define the system's desired state, Ansible runs these modules by default over SSH and removes them when they are finished.
-.Modules utilities: Ansible stores function as module utilities when several modules use the same code, to reduce duplication and maitenance. However, only python or powershell can be used to build module utilities.
-.Plugins: Ansible's core functionality is augmented by plugins, plugins execute on the control node within the /usr/bin/ansible method, while modules execute on the target system in seperate processes, usually on a remote system. Ansible comes with many useful plugins and can also be created
-.Inventory: It is a configuration file where user defines the host information, it is a text file that contains a list of servers or nodes that the user manages and configures. Usually, the servers are listed based on their host names or IP addresses.
-.Playbooks: Ansible playbook is a blueprint for automation tasks, which are complex IT tasks with no human intervention, The playbooks are simply frameworks or pre-written code that developers can use as a starting point.IT infrastructure, networks, security systems, and developer personas are all routinely automated using Ansible playbooks, the scripts or instructions are written in YAML format.
-.Ansible search path: Modules, module utilities, plugins, playbooks, and tasks can all be stored in different locations stored in different locations, several files with similar or identical names in different locations can be available on the Ansible control node, search path decides which of these files Ansible can find and use.
 
 _YAML scripting:
 YAML syntax is simpler for humans to read and write than other popular data formats like XML and JSON.
@@ -70,6 +63,8 @@ Example of YAML file:
 
 Rules when creating YAML file:
 When you are creating a file in YAML, you should remeber the following basic, YAML is case-sensitive, the files should have (.yaml) as the extension. YAML does not allow the use of tabs while creating YAML files spaces are allowed instead.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 
  
 
