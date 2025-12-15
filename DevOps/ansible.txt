@@ -97,6 +97,44 @@ _ansible all -i inventory -u root -m apt -a "name=apache2 state=absent" #delete 
 _ansible all -i inventory -u root -m service -a "name=apache2 state=stopped" #stop apache2 service services(started,stopped,restarted,reloaded)
 _ansible all -i inventory -u root -m service -a "name=apache2 state=started" --limit 192.168.1.16 #to limit the command only on desired machine through ip or dns this command starts the apache2 only on 192.168.1.16 even if the all group has other machines in it
 
+Ansible vs Ansible-Playbook:
+----------------------------
+
+
+Ansible: Simple Commands, Can't be posted on a repo, usefull for a single time or error occured
+Ansible-Playbook: .yml files as scripts, can be saved as file, simple when configuring, pushed to repos
+
+main.yml:
+
+---
+  - name: Install and configure apache
+    hosts: all
+    user: root
+    pre-tasks:
+            - name: Update apt cache
+              apt:
+                  update_cache: true
+                  cache_valid_time: true
+           handlers:
+                  - name: Restart Apache
+                    service:
+                          name: apache2
+                          state: restarted
+          tasks:
+              - name: Install Apache
+                apt:
+                  name: apache2
+                  state: present
+   - name: Configure Update
+     template:
+            src: apache.conf.j2
+            dest: /etc/apache2/apache.conf
+            owner: root
+            group: root
+            mode: 777
+     notify: Restart apache
+
+==> Open terminal: ansible-playbook -i inventory main.yml
 
 
 
