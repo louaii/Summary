@@ -1,0 +1,8 @@
+go to https://aistudio.google.com/app/api-keys
+
+generate new key
+
+open gemini cli
+/auth
+2
+paste new key
