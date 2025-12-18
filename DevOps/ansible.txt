@@ -139,6 +139,104 @@ main.yml:
 
 
 
+Ansible Roles:
+--------------
+
+mkdir roles && cd roles
+ansible-galaxy search postgres #this command is used to search in ansible for a desired keyword
+ansible-galaxy init base_role #creates templated_directory named base_role
+ansible-galaxy init apache
+ansible-galaxy init postgres
+
+#delete .travis.yml, files/, tests/
+look for main.yml in tasks/
+
+base/tasks/main.yml
+---
+- name: Update APT Cache
+  apt: update_cache=true cache_valid_time=3600
+
+#delete all files in base and keep tasks and README.md
+
+apache/tasks/main.yml
+---
+- name: Install apache
+  apt:
+    name: apache2
+    state: present
+- name: Configure Apache
+  template: 
+     src: apache.conf.j2
+     dest: /etc/apache2/apache.conf
+     owner: root
+     group: root
+     mode: 0644
+notify: restart apache
+
+#copy apache.conf.j2 in apache/template
+#delete .travis.yml tests/ files/
+
+apache/handlers/main.yml
+---
+- name: restart apache
+  service:
+    name: apache2
+    state: restarted
+
+
+postgres/tasks/main.yml
+---
+- name: Install postgres
+  apt: 
+   name: postgressql-11
+   state: present
+#delete .travis.yml tests/ files/
+
+/main.yml #this is the root main.yml in the ansible-playbook that calls the other .yml files
+
+---
+- name: Baseline Configuration
+  hosts: #desired ip - dns - group
+  user: root
+  roles:
+    - role: base
+
+- name: Apache Configuration
+  hosts: all
+  user: root
+  roles:
+   - role: apache
+
+# edit groups in inventory
+
+# in terminal: ansible-playbook -i inventory main.yml
+
+
+
+
+
+Ansible Vault:
+--------------
+
+mkdir env
+cd env
+mkdir testing
+mkdir production
+cd testing
+../../inventory
+mkdir group-vars
+cd group-vars
+mkdir apache
+cd apache
+touch vars.yml
+cd ..
+touch all
+nano all
+ansible-python-interpreter: /usr/bin/python3
+
+
+
+
 
 
 
