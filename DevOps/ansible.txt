@@ -234,6 +234,85 @@ touch all
 nano all
 ansible-python-interpreter: /usr/bin/python3
 
+vi ~/Desktop/ansible-playbook/env/testing/inventory
+
+[all]
+192.168.1.16
+192.168.1.17
+
+[apache]
+192.168.1.16
+
+vi ~/Desktop/ansible-playbook/roles/apache/tasks/main.yml
+
+---
+- name: Install Apache & requirements
+  apt: 
+    name: ['apache2', 'python-passlib']
+    state: present
+- name: Configure apache
+  template:
+       src: apache.config.j2
+       dest: /etc/apache2/apache.conf
+       owner: root
+       group: root
+       mode: 0640
+  notify: Restart apache
+- name: Add user to password file
+  htpasswd: "{{ apache_htpasswd }}"
+  path: /etc/apache2/.htpasswd
+  name: "{{ item.username }}"
+  password: "{{ item.password }}"
+  owner: root
+  group: www-data
+  mode: 0640
+loop: "{{ users }}"
+no_log: True
+
+#cp /etc/apache2/sites-enabled ~/Desktop/ansible-playbook/roles/apache/templates
+#mv sites-enabled 000-default.conf.j2
+
+#above </VirtualHost>
+<Directrory "/var/www/docs">
+   AuthType Basic
+   AuthName Documents
+   AuthBasicProvider file
+   AuthUserFile "/etc/apache2/.htpasswd" #"{{ apache_htpasswd }}"
+   Require valid_user
+</Directory>
+</VirtualHost>
+
+- name: Configure Default App
+  template:
+    src: 000-default.conf.j2
+    dest: /etc/apache2/sites-enabled/000-default.conf
+    owner: root
+    group: root
+    mode: 0640
+notify: Restart apache
+
+vi ~/Desktop/ansible-playbook/env/testing/group-vars/apache/vars.yml
+
+users:
+  - username: louay
+    password: '1234'
+
+vi ~/Desktop/ansible-playbook/roles/apache/default/main.yml
+
+---
+- apache_htpasswd: "/etc/apache2/.htpasswd"
+
+
+terminal: ansible-playbook -i env/testing/inventory main.yml -u root
+touch ~/Desktop/ansible-playbook/env/testing/group-vars/apache/vault.yml
+
+#copy paste the content of vars.yml to vault.yml
+
+terminal: ansible-vault encrypt ~/Desktop/ansible-playbook/env/testing/groupvars/apache/vault.yml
+
+enter password then files open
+
+ansible-playbook -i ~/Desktop/ansible-playbook/env/testing/inventory main.yml -u root --ask-vault-pass
 
 
 
