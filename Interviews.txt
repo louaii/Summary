@@ -1,0 +1,631 @@
+1. Which monitoring tool have you used, and what protocol does it rely on?
+Most monitoring tools rely on SNMP for collecting performance and status information from network devices, ICMP for reachability and availability checks, and syslog for centralized log collection and analysis.
+
+My most recent hands-on experience is with Cisco Meraki, as the environment I currently work in is largely Cisco-based. In general terms, Meraki is a cloud-based monitoring and management platform that primarily relies on API-driven communication, while still supporting integration with traditional protocols such as SNMP, ICMP, and syslog when required.
+
+This combination allows for both real-time monitoring through the cloud dashboard and integration with on-premise monitoring or logging systems.
+  
+2. Are you familiar with Zabbix? 
+Yes, I am familiar with Zabbix. It is an open-source monitoring platform used to monitor networks, servers, and applications.
+
+Zabbix supports customized configurations based on the network environment, including SNMP-based monitoring for network devices, agent-based monitoring for servers, and ICMP checks for availability. It also allows the use of templates, triggers, and alerts to proactively detect issues and notify administrators.
+
+I have used Zabbix to monitor infrastructure performance and availability, adapting its configuration to match the operational requirements of the network.
+
+3. Explain the different types of DNS records.
+DNS records define how a domain name is mapped to services on the network. The most common types include:
+
+A Record – Maps a domain name to an IPv4 address, pointing the domain to a specific server.
+
+CNAME Record – Creates an alias that points one domain name to another domain name, often used when multiple services share the same A record.
+
+MX Record – Specifies the mail servers responsible for receiving email for a domain and includes priority values.
+
+TXT Record – Used to store text-based information, commonly for email authentication and domain verification.
+
+DKIM – Implemented through a TXT record, used to authenticate outgoing emails and help prevent spoofing.
+
+Additional records include NS records for defining authoritative name servers and PTR records for reverse DNS lookups.
+
+Proper DNS configuration is critical for ensuring reliable access to websites, email services, and other domain-based systems.
+  
+4. What is the difference between an A record and a CNAME record, and between an A record and an AAAA record?  
+An A record maps a domain name directly to an IPv4 address. It is commonly used to point a domain or subdomain to a specific server.
+
+A CNAME record, on the other hand, does not point to an IP address. Instead, it creates an alias that points one domain name to another domain name. This is useful when multiple domain names should resolve to the same destination, as changes only need to be made in one place.
+
+The difference between an A record and an AAAA record is the IP version they use. An A record maps a domain to an IPv4 address, while an AAAA record maps a domain to an IPv6 address.
+
+Both record types serve the same purpose but support different IP addressing standards.
+
+5. Which firewalls have you worked on, and do you have any experience with pfSense?  
+I have worked with several enterprise firewall platforms, including Fortinet (FortiGate) and Palo Alto firewalls using their graphical management interfaces, as well as Cisco ASA, which I configured and managed primarily through the CLI during my CCNP coursework.
+
+My experience includes configuring security policies, NAT rules, VPNs, and basic traffic troubleshooting.
+
+Regarding pfSense, I have hands-on experience with pfSense. I configured OpenVPN on pfSense to provide secure remote access, implementing two-factor authentication by combining user credentials with a one-time password (OTP) for enhanced security.
+
+In addition, I designed and implemented a guest network on a separate subnet to isolate guest traffic from the internal network. Internet access for the guest network was controlled through authentication-based access, ensuring improved security and proper network segmentation.
+
+These configurations helped strengthen network security while maintaining controlled and reliable access for users.
+
+6. What is a forest in the context of Active Directory? 
+
+In Active Directory, a forest is the highest-level logical container. It consists of one or more domain trees that share a common schema, configuration, and global catalog.
+
+A forest can contain multiple domains or subdomains, and trust relationships between these domains are automatically established within the forest.
+
+The forest defines the security boundary for Active Directory and enables centralized identity management across all domains within it.
+
+7. What is LDAP?
+LDAP (Lightweight Directory Access Protocol) is a standard protocol used to access and manage directory information services.
+
+In practice, it is commonly used for authentication and authorization between systems, such as Active Directory, NAS storage, IP telephony systems, and other applications that require centralized user management.
+
+LDAP allows clients to query and modify directory objects like users, groups, and devices, making it an essential protocol for managing identities and permissions across an enterprise environment.
+
+8. Have you installed any Windows Server? Describe the steps to install Active Directory on a Windows Server.
+Yes, I have installed Windows Server and configured Active Directory Domain Services (AD DS). The process I follow is:
+
+Install Windows Server and configure the network settings with a static IP.
+
+Install the Active Directory Domain Services role via Server Manager or PowerShell.
+
+Promote the server to a Domain Controller by running the AD DS configuration wizard, specifying a new domain or adding to an existing one.
+
+Configure the Forest and Domain functional levels, and set the Directory Services Restore Mode (DSRM) password.
+
+After installation, verify that Active Directory is functioning by checking domain replication, DNS configuration, and running tools like dcdiag and repadmin.
+
+Optionally, create organizational units, groups, and users to organize and manage the domain effectively.
+
+I have performed this setup in both lab environments and production networks, ensuring proper integration with DNS, DHCP, and other services.
+
+9. In a Linux CLI environment, how can you view something similar to Task Manager? Which commands do you use?  
+In a Linux CLI environment, there are several ways to view running processes and system resource usage, similar to Windows Task Manager. Some commonly used commands are:
+
+ps -aux – Lists all running processes along with details such as CPU and memory usage, user, and process ID.
+
+top – Provides a real-time, dynamic view of processes, CPU, and memory usage. It also allows sorting and managing processes interactively.
+
+htop – A more user-friendly, color-coded version of top (if installed), which makes monitoring processes easier.
+
+vmstat or free -h – Useful for checking memory and system resource usage.
+
+10. Have you worked on Ubuntu Server? How do you view or change its network settings in the GUI?  
+Yes, I have hands-on experience with Ubuntu Desktop and Ubuntu Server.
+
+On Ubuntu Desktop, network settings can be easily configured through the GUI, where I can manually assign a static IP address, subnet mask, gateway, and DNS servers via the network settings interface.
+
+On Ubuntu Server, which usually doesn’t have a GUI, network configuration is done via the CLI using Netplan. The process involves editing the .yml configuration file located in the /etc/netplan/ directory. I define the network interface (for example, ens33), switch from DHCP to static IP, specify the IP address, subnet, gateway, and DNS, then save the file and apply the changes using:
+
+sudo netplan apply
+
+
+Optionally, I may restart the network service to ensure settings take effect.
+
+This approach ensures precise control over network settings, which is essential for server reliability and integration with enterprise environments.
+
+
+11. How do you check or set an IP address in the Linux command-line environment?  
+In a Linux command-line environment, there are several ways to check or configure an IP address:
+
+To check the IP address:
+
+ip a – Displays all network interfaces along with their IP addresses and status.
+
+ifconfig – An older tool that provides similar information, but it may not be installed by default on newer distributions.
+
+To set or change the IP address:
+
+On modern systems, I usually use ip commands, for example:
+
+sudo ip addr add 192.168.1.100/24 dev ens33
+sudo ip route add default via 192.168.1.1
+
+12. Have you used Wireshark? Which command would you use to filter traffic for a specific IP address on port 8080? What is the exact filter expression? 
+Yes, I have hands-on experience with Wireshark for network traffic analysis and tcpdump for CLI packet capture.
+
+In Wireshark, to filter traffic for a specific IP address on port 8080, you can use the following display filter expression:
+
+ip.addr == 192.168.1.100 && tcp.port == 8080
+
+
+This will show all packets to or from that IP on TCP port 8080.
+
+In tcpdump, the equivalent command would be:
+
+sudo tcpdump -i <interface> host 192.168.1.100 and port 8080
+ 
+13. On a scale of 1 to 10, how would you rate your Linux skills? 
+I would rate myself 9 out of 10 in Linux. I have extensive hands-on experience with Ubuntu Server in CLI environments, managing servers without a GUI in a secure, production environment.
+
+My experience includes network configuration, VPN and proxy setup, DNS management, and server maintenance for live streaming applications, ensuring secure and reliable access for users.
+
+This has given me a strong ability to troubleshoot, configure, and manage Linux systems in enterprise-scale environments.
+ 
+14. What is HA (High Availability), what is the minimum number of nodes required, and how does HA work?  
+High Availability (HA) refers to a system design approach that ensures services remain accessible and operational even in the event of a server or component failure.
+
+The minimum number of nodes required for HA is typically two, so that if one node fails, the other can continue providing the service.
+
+HA works by replicating services or data across multiple nodes and continuously monitoring the health of each node. If a failure occurs, traffic and workload are automatically redirected to the healthy node(s), minimizing downtime and maintaining service continuity.
+
+HA is commonly implemented in servers, network devices, databases, and applications to ensure reliability in enterprise and production environments.
+
+15. Can nodes in an HA setup have different configurations, or must they be identical? Will HA still work if the nodes are configured differently?  
+In an HA setup, nodes are generally recommended to be identical or very similar in configuration to ensure consistent performance and predictable failover. This includes hardware specifications, software versions, and network settings.
+
+If the nodes are configured differently, HA can still work in some cases, but it may lead to inconsistent behavior, performance issues, or even failure of certain services during failover. For example, a node with insufficient resources might not handle the full load if the primary node fails.
+
+Therefore, maintaining uniformity across HA nodes is a best practice to guarantee reliability, seamless failover, and minimal disruption to users.
+
+16. What is COMD/COM? (I was not fully sure about this question; it might have referred to COM/DCOM.)  
+I believe the question refers to COM (Component Object Model) and DCOM (Distributed Component Object Model).
+
+COM is a Microsoft technology that allows software components to communicate within the same system, enabling modular application design.
+
+DCOM extends COM to work over a network, allowing components on different machines to communicate securely.
+
+Both technologies are used for inter-process communication and building distributed applications, often in enterprise Windows environments.
+
+While I haven’t done deep development with COM/DCOM, I am familiar with its role in Windows-based enterprise applications and understand the concepts of component communication and distribution.
+
+17. How would you rate yourself in R&D? Give an example of an issue you researched and how you resolved it.  
+I would rate myself 8.5 to 9 out of 10 in R&D. I am very comfortable researching unfamiliar technologies and solving problems without predefined documentation or guidance, which has been a recurring requirement throughout my experience.
+
+For example, early in my career as an undergraduate freelancer, I was tasked with building CRM automation in a live production environment using Microsoft Power Automate, despite having no prior hands-on experience with the platform. I researched workflows, connectors, and best practices, tested solutions in stages, and successfully implemented automation integrated with a help desk system.
+
+In another case, I faced a hardware-related limitation with a label printer that blocked operations. After researching the device behavior, I implemented a workaround by modifying the control logic using a microcontroller, allowing the printer to function as required without disrupting operations.
+
+These experiences reflect my ability to analyze problems, research solutions, test safely, and implement practical fixes in both software and hardware environments.
+
+18. Why do you want to leave your current employer?  
+I’ve gained valuable experience in my current role, but I am looking for an opportunity where I can take on more responsibility, lead a team, and contribute to a larger IT environment. I am also eager to expand my experience and gain hands-on exposure to new technologies and challenges, taking the next step in my career journey.
+
+19. What is a virtual host?  
+A virtual host is a method used by web servers to host multiple websites on a single server or IP address. Each website can have its own domain name, configuration, and content, even though they share the same server resources.
+
+Virtual hosting is commonly used to maximize server utilization, reduce costs, and manage multiple sites efficiently. There are two main types:
+
+Name-based virtual hosting – Different websites are distinguished by their domain names.
+
+IP-based virtual hosting – Each website is assigned a separate IP address.
+
+20. Name some web servers commonly used on Linux.  
+Apache is widely used for its flexibility, extensive module support, and strong community, making it suitable for a variety of applications.
+Nginx is known for its high performance, scalability, and efficient handling of concurrent connections, often used as a reverse proxy or load balancer in addition to serving websites.
+
+21. Do you know SSL? How do you configure SSL in Linux and Windows environments? Can you create a self-signed SSL certificate in Linux? Explain the steps.
+Yes, I am familiar with SSL (Secure Sockets Layer), which is a protocol used to encrypt communications between clients and servers, ensuring data confidentiality and integrity.
+
+Configuring SSL in Linux:
+
+For web servers like Apache or Nginx, you need an SSL certificate and private key.
+
+Copy the certificate and key to the server, configure the web server configuration file to use them, and enable SSL modules if necessary.
+
+Restart the web server to apply changes.
+
+Configuring SSL in Windows:
+
+In IIS, you import the certificate into the Windows Certificate Store and bind it to the desired website using the IIS Manager.
+
+This enables HTTPS access for the site.
+
+Creating a self-signed SSL certificate in Linux:
+
+Generate a private key:
+
+openssl genrsa -out server.key 2048
+
+
+Generate a self-signed certificate using the key:
+
+openssl req -new -x509 -key server.key -out server.crt -days 365
+
+
+Configure the web server (Apache/Nginx) to use server.key and server.crt.
+
+Restart the server to apply the SSL configuration.
+  
+22. Suppose there are two servers, A and B. Server A is accessible from the internet, and Server B is only accessible from the internal network. Server B hosts APIs that are used by Server A. If there is no DNS record for Server B’s hostname, how can Server A still connect to Server B?  
+Even if there is no DNS record for Server B, Server A can still connect to Server B using its IP address directly.
+
+Alternatively, you could:
+
+Add an entry in Server A’s hosts file mapping Server B’s hostname to its IP address.
+
+Use a private DNS or internal DNS server within the network to resolve Server B’s hostname.
+
+23. Have you worked on Proxmox?
+I am familiar with Proxmox conceptually as a virtualization platform for managing VMs and containers, and I understand its capabilities for storage, networking, and backup management. While I haven’t used it extensively, I am confident in quickly gaining hands-on proficiency due to my experience with virtualization technologies.
+
+24. If an AD user logs into a different domain-joined desktop, how can they access their personal files and settings on that desktop? (Shared folder and drive maps are not the answer)
+If an AD user logs into a different domain-joined desktop, they can access their personal files and settings through roaming profiles or folder redirection, provided the necessary permissions are in place.
+
+Additionally, if the domains have a forest or domain trust established, the user’s credentials can be recognized across domains, allowing access to their profile data. Proper access control and permissions must be configured to ensure the user can load their profile on the other machine.
+
+This setup allows users to maintain a consistent working environment regardless of which domain-joined machine they log into.
+
+25. What is Vmotion?
+vMotion is a feature of VMware vSphere that allows a running virtual machine (VM) to be migrated from one physical host to another without downtime.
+
+It enables continuous availability by moving VMs for load balancing, hardware maintenance, or resource optimization, all while keeping the applications running and users unaffected.
+
+vMotion works by replicating the VM’s memory and system state over the network to the destination host, then switching execution to the new host seamlessly.
+
+26. Any working experience on Docker?
+Yes, I have hands-on experience with Docker as part of my work with DevOps tools like Terraform, Ansible, and AWS SAM.
+
+My experience includes:
+
+Creating and managing Docker containers for applications
+
+Sharing volumes between containers and configuring container networking
+
+Deploying applications in production environments, such as OpenProject, using Docker
+
+Working alongside Kubernetes and Git for orchestration and version control
+
+This experience has given me a strong understanding of containerization, deployment pipelines, and infrastructure as code, which are essential for managing modern IT environments.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q1. Explain the Linux file system hierarchy. What is /etc, /var, /home, /usr?
+The Linux filesystem hierarchy organizes files and directories in a structured way to separate system, user, and application data. Some key directories include:
+
+/etc – Contains system-wide configuration files for the OS and installed services. Examples include network configuration, user account settings, and service configuration files.
+
+/var – Stores variable data such as logs, caches, mail spools, and databases that change frequently during system operation.
+
+/home – Contains user home directories, where each user’s personal files, settings, and documents are stored.
+
+/usr – Contains user-installed programs, libraries, and shared data. This directory is often read-only and includes binaries, documentation, and development tools.
+
+Q2. what is the difference between an absolute and relative path?
+In Linux, an absolute path specifies the full path from the root directory (/) to a file or folder. For example:
+
+/home/user/documents/file.txt
+
+
+A relative path specifies the location relative to the current working directory. For example, if you are in /home/user, the relative path to the same file would be:
+
+documents/file.txt
+
+
+Absolute paths are unambiguous and work from anywhere in the filesystem, while relative paths are shorter and context-dependent, useful for navigating within directories efficiently.
+
+Q3. How do you install, remove, or upgrade packages?
+In Linux, package management is used to install, remove, or upgrade software. The exact commands depend on the distribution and its package manager. Using the package manager ensures that dependencies are handled automatically and the system remains consistent and up-to-date.
+
+Q4. How do you schedule tasks using cron?
+In Linux, tasks can be scheduled using cron, which allows commands or scripts to run automatically at specified intervals.
+
+Q5. What is the use of /etc/hosts and /etc/resolv.conf file?
+/etc/hosts – This file is used for static hostname-to-IP address mappings. It allows the system to resolve hostnames without querying a DNS server, which is useful for local testing, internal networks, or overriding DNS resolution.
+
+/etc/resolv.conf – This file defines the DNS servers that the system uses for domain name resolution. It contains entries like nameserver <IP> and determines where the system sends queries to resolve hostnames on the network or internet.
+
+Together, these files control how a Linux system resolves hostnames, either locally (/etc/hosts) or via external DNS (/etc/resolv.conf).
+
+Q6. What is the purpose of shebang?
+The shebang (#!) is used at the very beginning of a script file to specify the interpreter that should execute the script.
+
+For example, in a Bash script:
+
+#!/bin/bash
+
+
+This tells the system to use /bin/bash to run the script, regardless of which shell the user is currently using.
+
+The shebang ensures that scripts execute consistently across different environments and eliminates the need for users to explicitly call the interpreter when running the script.
+
+Q7. What are sticky bits, SUID, and SGID?
+In Linux, special permission bits are used to control access and execution behavior:
+
+SUID (Set User ID) – When set on an executable file, the program runs with the permissions of the file owner instead of the user who executes it. This is commonly used for programs that require elevated privileges, such as passwd.
+
+SGID (Set Group ID) – When set on an executable, it runs with the group permissions of the file. When set on a directory, files created inside inherit the directory’s group, making group collaboration easier.
+
+Sticky Bit – When set on a directory, it ensures that only the file owner, directory owner, or root can delete or rename files within that directory. This is commonly used for shared directories like /tmp to prevent users from deleting each other’s files.
+
+Q8. what is the difference between locate and find a command?
+Both locate and find are used to search for files in Linux, but they work differently:
+
+find – Searches the filesystem in real-time based on criteria such as name, type, size, or modification date. It is slower but always up-to-date since it queries the filesystem directly. Example:
+
+find /home/user -name "*.txt"
+
+
+locate – Searches a prebuilt database of files (updated periodically by updatedb). It is much faster but may not reflect very recent changes if the database hasn’t been updated. Example:
+
+locate file.txt
+
+
+In summary, find is slower but accurate, while locate is fast but relies on a periodically updated database.
+
+Q9. What tools are used for network debugging?
+1. Ping – Tests basic connectivity between hosts and measures packet loss and latency.
+
+2. Traceroute / Tracert – Tracks the path packets take to a destination and identifies network hops causing delays.
+
+3. Netstat / ss – Displays network connections, listening ports, and routing tables, useful for identifying active services.
+
+4. Tcpdump / Wireshark – Captures and analyzes network traffic to troubleshoot complex network issues.
+
+5. Nslookup / Dig – Tests DNS resolution and helps debug domain name issues.
+
+6. MTR (My Traceroute) – Combines ping and traceroute to give a real-time view of network path performance.
+
+Q10.what is the port no. of ssh? can we change it ? if yes, how ?
+The default port number for SSH is 22.
+
+Yes, it can be changed for security reasons, especially when the server is exposed to the public internet, such as an AWS Linux instance. Changing the port can help reduce automated attacks.
+
+To change the SSH port:
+
+Edit the SSH configuration file:
+
+sudo nano /etc/ssh/sshd_config
+
+
+Locate the line Port 22 and change it to a desired port number (e.g., Port 2222).
+
+Save the file and restart the SSH service:
+
+sudo systemctl restart sshd
+
+
+After this, SSH will listen on the new port, and users must specify the port when connecting.
+
+Q11. A server is swapping heavily How do you identify memory-hungry processes and stabilize the server?
+If a server is swapping heavily, it indicates that physical memory is insufficient or that certain processes are consuming excessive RAM. To identify and stabilize the server:
+
+1. Identify memory-hungry processes:
+
+Use commands like:
+
+top
+
+
+or
+
+htop
+
+
+to see processes sorted by memory usage.
+
+ps aux --sort=-%mem can also list processes using the most memory.
+
+2. Stabilize the server:
+
+Terminate or restart processes that are consuming excessive memory if they are non-critical.
+
+Optimize application memory usage or reconfigure services to reduce RAM consumption.
+
+Consider adding swap space temporarily to relieve pressure.
+
+If feasible, increase physical RAM to handle workload demands.
+
+Monitor using tools like vmstat, free -h, and iostat to track memory and swapping behavior.
+
+This approach ensures the server remains stable while addressing both immediate and long-term memory management.
+
+Q12. What is the difference between kill, killall, and pkill?
+In Linux, kill, killall, and pkill are used to terminate processes, but they work differently:
+
+kill – Sends a signal to a process by its process ID (PID). Example:
+
+kill -9 1234
+
+
+This requires you to know the exact PID of the process.
+
+killall – Sends a signal to all processes matching a given name. Example:
+
+killall firefox
+
+
+This terminates all running instances of firefox.
+
+pkill – Similar to killall, but allows more flexible pattern matching and supports additional options like user ownership. Example:
+
+pkill -u user1 python
+
+
+This kills all python processes owned by user1.
+
+In summary, kill is PID-specific, killall works by process name, and pkill adds pattern matching and filtering options for more precise control.
+
+Q13. what is the main difference between yum and rpm command, as both are used to install packages?
+While both yum and rpm are used to install packages on Red Hat-based Linux systems, they serve different purposes:
+
+rpm (Red Hat Package Manager) – Works at a low level and manages individual .rpm packages. It can install, remove, or query packages but does not resolve dependencies automatically. Example:
+
+sudo rpm -ivh package.rpm
+
+
+yum (Yellowdog Updater, Modified) – Works at a higher level and uses repositories to manage packages. It resolves dependencies automatically and can handle installing, updating, and removing multiple packages efficiently. Example:
+
+sudo yum install package-name
+
+
+In short, rpm manages single packages manually, while yum automates package management with dependency resolution.
+
+Q14. Your server is not responding on SSH, but it pings. What do you check next?
+If a server responds to ping but not SSH, it indicates that the network is reachable but the SSH service or configuration may be failing. Steps I would take:
+
+1. Check if SSH service is running:
+
+sudo systemctl status sshd
+
+
+or
+
+sudo service ssh status
+
+
+2. Verify that SSH is listening on the correct port:
+
+sudo netstat -tulnp | grep ssh
+
+
+3. Check firewall rules:
+
+Ensure that iptables, firewalld, or security groups (e.g., AWS) allow traffic on the SSH port.
+
+4. Review logs for errors:
+
+sudo journalctl -u sshd
+
+
+or
+
+/var/log/auth.log
+
+
+5. Verify server load and resources:
+
+High CPU or memory usage can prevent SSH from accepting connections.
+
+These steps help identify whether the issue is service-related, configuration-related, or firewall-related, allowing for a targeted resolution.
+
+Q15. A system update caused your kernel to break. How do you boot using an older kernel?
+If a system update causes the kernel to break, you can boot using an older, stable kernel by following these steps:
+
+1. Reboot the system.
+
+2. Access the GRUB menu:
+
+On most Linux distributions, press Shift (for BIOS) or Esc (for UEFI) during boot to display the GRUB menu.
+
+3. Select “Advanced options” or “Advanced boot options” in GRUB.
+
+4. Choose an older kernel version from the list.
+
+5. Boot the system with the selected kernel.
+
+Once booted, you can troubleshoot the new kernel, remove it if necessary, or set the older kernel as the default until a stable update is available.
+
+Q16. How you can increase the filesystem?
+Increasing a filesystem in Linux depends on whether it is LVM-based or standard partition:
+
+1. For LVM (Logical Volume Manager) partitions:
+
+Extend the logical volume:
+
+sudo lvextend -L +10G /dev/mapper/vgname-lvname
+
+
+Resize the filesystem to use the new space:
+
+sudo resize2fs /dev/mapper/vgname-lvname   # for ext4
+sudo xfs_growfs /mount/point               # for XFS
+
+
+2. For standard partitions:
+
+Use parted or gparted to resize the partition.
+
+Then run the appropriate filesystem resize command (resize2fs or xfs_growfs).
+
+Before making changes, it’s important to backup critical data. After resizing, verify with df -h that the filesystem reflects the increased size.
+
+Q17. A file system is mounted read-only unexpectedly. How do you fix it?
+If a filesystem is mounted as read-only unexpectedly, it usually indicates errors or corruption, or that the system has remounted it read-only for protection. Steps to fix it:
+
+1. Check the filesystem for errors:
+
+sudo dmesg | tail
+sudo fsck /dev/sdXN
+
+
+Replace /dev/sdXN with the affected partition.
+
+2. Remount the filesystem as read-write (if safe):
+
+sudo mount -o remount,rw /mount/point
+
+Q18. Explain partitions and file systems. How you can create a filesystem and format a disk?
+In Linux, a partition is a defined segment of a physical disk, which can be used independently and may contain a filesystem. A filesystem is the method and data structure used by the OS to store, organize, and access files on a partition. Common Linux filesystems include ext4, XFS, and Btrfs.
+
+Creating a filesystem and formatting a disk:
+
+Create a partition (if needed):
+
+Use fdisk or parted to create a new partition on the disk:
+
+sudo fdisk /dev/sdX
+
+
+Format the partition with a filesystem:
+
+For ext4:
+
+sudo mkfs.ext4 /dev/sdX1
+
+
+For XFS:
+
+sudo mkfs.xfs /dev/sdX1
+
+
+Mount the partition:
+
+sudo mount /dev/sdX1 /mnt/point
+
+
+Update /etc/fstab for automatic mounting at boot.
+
+This process ensures the partition is ready for data storage and properly integrated into the Linux filesystem hierarchy.
+
+Q19. what are the different types of raid in linux?
+RAID 0 (Striping) – Splits data across multiple disks for performance, but offers no redundancy. If one disk fails, all data is lost.
+
+RAID 1 (Mirroring) – Duplicates data on two or more disks for redundancy. Offers high availability but requires double the storage.
+
+RAID 5 (Striping with parity) – Distributes data and parity across three or more disks. Provides fault tolerance and better storage efficiency.
+
+RAID 6 (Striping with double parity) – Similar to RAID 5 but can tolerate two disk failures, requires four or more disks.
+
+RAID 10 (1+0) – Combines mirroring and striping, offering both performance and redundancy, typically with at least four disks.
+
+Q20. df -h command is in hung state, what are the possible reason of it and how you will resolve it ?
+If the df -h command hangs, it usually indicates that the system is trying to read filesystem information from a mounted disk that is unresponsive. Common reasons include:
+
+Network filesystems (NFS, CIFS/SMB) are unreachable due to network issues.
+
+Disk errors or hardware failure on local storage.
+
+Stale or disconnected mounts, such as removable drives or remote shares.
+
+How to resolve it:
+
+Identify the problematic filesystem:
+
+sudo df -hT
+
+
+or
+
+sudo mount | grep type-of-filesystem
+
+
+If it’s a network mount, check network connectivity and remount if needed:
+
+sudo umount -f /mount/point
+sudo mount /mount/point
+
+
+For local disks, check dmesg or smartctl for errors:
+
+dmesg | tail
+sudo smartctl -a /dev/sdX
+
+
+Consider using df -l to list only local filesystems to bypass hanging network mounts.
+
+These steps help identify the root cause and restore normal filesystem reporting without disrupting other services.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
