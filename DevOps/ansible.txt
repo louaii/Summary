@@ -314,6 +314,147 @@ enter password then files open
 
 ansible-playbook -i ~/Desktop/ansible-playbook/env/testing/inventory main.yml -u root --ask-vault-pass
 
+Ansible Security:
+-----------------
+
+
+/ansible-playbook/env/testing/inventory/main.yml
+
+[all]
+192.168.1.17
+192.168.1.16
+
+/ansible-playbook/roles/base/tasks
+
+---
+- name: Update APT Cache
+  apt: update_cache=true cache_valid_time=3600
+
+- include: ssh.yml
+
+- include: users.yml
+  tags: users
+
+/ansible-playbook/roles/base/tasks/ssh.yml
+
+---
+- name: ssh - Install ssh
+  apt: 
+    name: openssh-server
+    state: present
+
+- name: ssh - create authorized_keys directory
+  file: 
+     path: /etc/ssh/authorized_keys
+     state: directory
+     owner: root
+     group: root
+     mode: 0755
+
+- name: ssh - Configure SSH
+  template: 
+        src: ssh_config.j2
+        dest: /etc/ssh/sshd_config
+        owner: root
+        group: root
+        mode: 0644
+
+notify: ssh - reload
+
+- name: ssh - Ensure ssh is running
+  service: 
+        name: sshd
+        state: started
+
+
+/ansible-playbook/roles/base/tasks/users.yml
+
+---
+- name: users - Load users
+  include_vars: users.yml
+
+- name: users - create user
+  user: 
+     name: "{{ item.username }}"
+  loop: "{{ users }}
+  loop_control:
+            label: "{{ item.username }}"
+
+- name: users - Install user ssh keys
+  authorized_key:
+              user: "{{ item.username }}"
+              key: "{{ item.public_key }}"
+              state: present
+              exclusive: yes
+              path: "/etc/ssh/authorized_keys/{{ item.username }}"
+              manage_dir: no
+  loop: "{{ users }}"
+  loop_control:
+            label: "{{ item.username }}"
+
+- name: users - set ssh key file permissions
+  file: 
+     path: "/etc/ssh/authorized_keys/{{ item.username }}"
+     owner: "{{ item.username }}"
+     group: "{{ item.username }}"
+     mode: 0400
+  loop: "{{ users }}"
+  loop_control:
+            label: "{{ item.username }}"
+
+/ansible-playbook/roles/base/vars/users.yml
+users: 
+- username: louay
+  public_key: id_rsa.pub
+
+/ansible-playbook/roles/base//handlers/main.yml
+---
+- name: ssh-reload
+  service:
+       name: sshd
+       state: reloaded
+
+/ansible-playbook/roles/base/templates/sshd_config.j2
+Port 22
+PermitRootLogin no
+AuthorizedKeysFile /etc/ssh/authorized_keys/%u
+PasswordAuthentication no
+ChallengePasswordResponse no
+UsePAM
+X11Forwarding yes
+PrintMotd no
+UseDNS no 
+AcceptEnv Lang LC_*
+
+#override default of no subsystems
+subsystem sftp /usr/lib/openssh/sftp_server
+
+terminal:
+$ansible-playbook -i ./env/testing/invenory main.yml -u louay
+
+
+
+Ansible Plugins:
+----------------
+
+Check Docs
+
+Write Plugins with python
+
+Call Back Plugins
+
+cd ansible-playbook
+mkdir callback_plugins
+touch time_taken.py
+
+#copy code from:
+https://docs.ansible.com/ansible/latest/dev_guide/developing_plugins.html#callback_plugins
+
+#change CALLBACK_NEEDS_WHITELIST False
+
+$ansible-playbook -i ./env/testing/inventory/main.yml
+
+
 
 
 
