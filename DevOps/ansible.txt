@@ -455,6 +455,51 @@ https://docs.ansible.com/ansible/latest/dev_guide/developing_plugins.html#callba
 $ansible-playbook -i ./env/testing/inventory/main.yml
 
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Ansible with windows server:
+
+/ansible-playbook/env/testing/group_vars/inventory
+
+[windows-server]
+192.168.122.89
+
+/ansible-playbook/env/testing/group_vars/windows_server
+
+---
+ansible_user=louay
+ansible_password='Windows123'
+ansible_connection: ssh
+ansible_shell_type: cmd
+
+$ansible -i ./env/testing/inventory windows_server -m win_ping
+
+/ansible-playbook/roles/base/tasks/main.yml
+---
+- include: windows.yml
+
+$touch /ansible-playbook/roles/base/tasks/windows.yml
+
+- name: Create new file
+  win_file:
+       path: C:\Users\louay\Desktop\t.txt
+       state: touch
+
+./main.yml
+
+---
+- name: Baseline Configuration
+  hosts: windows server
+  user: louay
+  roles:
+     role: base
+
+$ansible-playbook -i env/testing/inventory main.yml
+
+
+
 
 
 
