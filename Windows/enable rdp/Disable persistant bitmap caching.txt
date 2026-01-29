@@ -1,0 +1,1 @@
+mstsc ==> show more options ==> Experience ==> uncheck Persistant Bitmap Caching
