@@ -1,136 +1,16 @@
-A CI(Continuous Integration)/CD(Continuous Delivery) pipeline automates the software delivery process. Their is many tools for this job to build code, run tests and deploy them such as jenkis, teamcity, circleCI and gitlab.
-Jenkis has different roles such as building, integrating, deploying, reporting and testing. To achieve CI with Jenkis the best compiling tools are git and maven as source code management and build tools.
+Jenkins is used for fast software delivery(CI/CD), it allows automating repetitive tasks and reducing human errors, easily integrates with various tools improving workflow and collaboration between teams
 
-Automated pipelines remove manual errors and provide standardized feedback loopsto enable fast product iterations.
+Agile: Plan, code, build, test, release, deploy, operate, monitor
 
-CI(Continuous Integration): is a development practice in which all development work is integrated as early as possible.
+CI: Continuous integration - CD: Continuous Delivery
 
-_Some key points while implementing CI:
-.The developers need to commit the changes to the source code, to a shared repo at regular intervals, every commit made in the repository is then built.
-.Implementation of CI requires developers to have regular builds.
-.The general practice is that whenever a code commit occurs, a build should be triggered, this process helps to identify the errors in the early stages of a project.
-
-_List of tasks:
-.Generating and analyzing reports
-.Developing and compiling
-.Performing functional test and labelling code
-.Performing unit test
-.Preproduction deployment
-.Database Integration
-
-
-_Advantages of CI:
-.Monitors the health of your code coverage metrics
-.Reduces technical debts and maintenance cost
-.Publicly visible code quality metrics
-.Automated end-to-end acceptance tests
-.Reduces risk by providing faster feedback 
-.Helps identify and fix integration and regression
-.Helps simplify and accelerate delivery
-.Automates deployment process
-
-CD(Continuous Delivery): is an extension of CI(Continuous Integration)
-CD automatically deploys all the code changes to the testing or production environments after the build stage, any successful build can potentially be deployed into production and be in the hands of the end user, CD process is not automatic, in the implementation of CD, the goal is to make the deployments.
-
-Continuous Deployment is a step up from continuous delivery in which every change in the source code is deployed to production automatically without explicit approval from a developer. It is a strategy for software releases, where in any code commit that passes the automated testing phase is automatically released into the production environment making changes that are visible to the software's users.
-
-Benefits of Continuous Deployment:
-.Faster return
-.Faster feedback
-
-_Jenkis:
-Jenkis is an open source powerful automation tool that is java built. It lets you execute a series of actions to achieve the continuous integration and continuous delivery of software projects.
-
-Benefits of Jenkis:
-.Free and cost-effective tool
-.Highly portable application
-.It can be easily installed and configured as per the need.
-.Has a very rich plugin library and global community support
-.It can be integrated with limitless other applications and tools
-
-CI process with Jenkis:
-.All commits are built
-.Jenkis CI will check the build
-.The build is fine, the executable code is ready for deployment
-.Tne team of developers who will commit changes at regular intervals are notified.
-
-_Multiple tools that can be integrated with Jenkis to implement each stage of the CI/CD pipeline:
-.Git, Stash and VS to implement Code and Commit
-.Docker, Ansible and others can be used to Build and Configure the application
-.JUnit, Cucumber, and others can be used to scan the application for bugs and perform tests
-.uDeploy and Serena can be used to release application tools
-
-To deploy the application, Cloud services like AWS, Azure or platforms like Openstack can be used.
-
-_Setting Up Jenkis:
-Java is a prerequisite before installing jenkis
-wget -q -O - https://pkg.jenkis.io/debian/jenkis.io.key | sudo apt-key add -
-Run the below command to add the jenkis repository to the system:
-sudo sh -c 'echo deb http://jenkis.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkis.list'
-sudo apt-get install jenkins
-sudo service jenkins status
-sudo systemctl start jenkis
-navigate to 127.0.0.1:8080 on web
-sudo cat /var/lib/jenkis/secrets/initialAdminPassword and copy the code
-Install suggested plugins
-
-
-go to jenkins local host to manage jenkins ==> manage plugins ==> available search maven plugin ==> install without restart ==> git plugin install 
-
-go to jenkins local host to manage jenkins ==> global tool configuration ==> add jdk , maven , git
-
-_Job types in Jenkins:(By clicking new item in jenkins)
-.Freestyle project
-.Maven Project
-.External job
-.Multi-configuration project
-.pipeline
-.folder
-.github organization
-.multibranch pipeline
-
-Jenkins build job:
-.Poll SCM: polls the source code management which involves checking the version control server at regular intervals for any changes that have been committed since the last build and build the project if new commits have been pushed since the last build
-.Webhook: are one of few methods for web apps to communicate with one another. When a specific event occurs, it lets you transfer real time data from application to another. They provide your application a way of consuming new event data from an endpoint and instead of sending repeated requests for new events, you provide the end point with a url, which your application monitors
-.Periodic builds: it builds the project periodically even if nothing has changed. It might have tests that should be run periodically or a DB clean up jenkins or any other jenkins job
-
-_Scheduling Jenkins Jobs:
-.Scheduled builds simply trigger your build job at regular intervals
-.This strategy can be used for regular nightly builds
-.They can be done with something as simple as a Unix cronjob
-.Continuous Integration requires faster feedback than scheduled builds
-.Scheduled builds can be used for long running build jobs where quick feedback is less critical
-
-Scheduling syntax:
-min(0-59) hour(0-23) day of month(1-31) month(1-12) day of week(0-6)
-
-Notation:
-.* : represents all possible values for a field(* * * * *) means once a minute
-.M-N: defines range(1-5) in day of week mean monday to friday
-./: defines skips through a range: */15 in the minute field would mean every fifteen minutes
-.Comma-separated list: indicates a list of valid values : 15,45 in the min field would mean at 15 and 45 minutes past every hour 
-.Shorthand values: @yearly, @annually, @monthly, @weekly, @daily, @midnight, @hourly
-
-_Build tools and their usage:
-Jenkins requires build tools to integrate the changes made in the source code
-
-Popular build tools:
-.Apache Ant
-.Maven
-
-Advantages of build tools are:
-.Easy Configuration
-.Easy Support
-.Easy Integration
-
-Apache Ant is a Java-based build tool. Ant stands for Another Neat Tool. The main purpose of using Ant is to build Java-based applications. Ant can run many built-in tasks like compile, assemble and test, these tasks are defined in a build.xml file and reads the XML file and executes them. Also it executes shell commands.
-
-Maven is a build tool for managing software dependencies and life cycles. It automatically pulls code from a repository, compiles and packages it, and prepares it for the next stage of development.
-
-Maven Advantages:
-.Easily create a project
-.Consistent across all the projects
-.Connect a project to a source control system
-.Handle multiple projects simultaneously
-.Follows a standard strategy
  
+Continuous Integration:
+Software development practice that requires team members to integrate their work frequently, the goal of CI is to detect and fix integration issues early which is achieved by automating software testing and building everytime a team member pulses changes to the code repo
+
+
+Continuous Deployment/Delivery:
+Once the app is built it must be deployed in a testing environment and finally deliver it to production, it can be implemented automatically or manually
+
+
+Pre-staging --> functional and performance --> deploy --> manual/automatic --> production and monitor
