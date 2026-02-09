@@ -14,3 +14,26 @@ Once the app is built it must be deployed in a testing environment and finally d
 
 
 Pre-staging --> functional and performance --> deploy --> manual/automatic --> production and monitor
+
+
+Architecture and Components:
+----------------------------
+Master(jenkins core tomcat ssh 22, plugins JNLP 5000, Jobs, Users cloud api, security)
+
+Slave(Agent)
+
+
+Installation:
+-------------
+
+using docker
+
+docker network create jenkins
+docker network ls
+cp bridge jenkins
+
+mkdir jenkins_data
+
+docker run --name=jenkins-master --network=jenkins -d -p 8080:8080 -p 5000:5000 -v ./jenkins_data:/var/jenkins_home jenkins/jenkins
+
+docker ps
