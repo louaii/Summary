@@ -39,3 +39,14 @@ docker run --name=jenkins-master --network=jenkins -d -p 8080:8080 -p 5000:5000 
 docker ps
 
 
+(The "Restaurant" Model)
+Think of Jenkins as the Manager of a professional kitchen.
+
+The Trigger (The Order): A customer places an order. In Jenkins, this is usually a developer pushing code to GitHub.
+
+The Pipeline (The Recipe): The manager has a specific set of steps to follow (Wash vegetables → Chop → Cook → Plate).
+
+The Actions (The Cooking): These are the actual commands (like npm install or docker build) that happen inside those steps.
+
+The Result (The Meal): If everything goes well, you get a working app. If the "Cook" step fails, the Manager (Jenkins) screams "Fire!" (sends an email or Slack alert).
+
