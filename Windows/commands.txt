@@ -33,3 +33,6 @@ to open eviromental variables: sysdm.cpl advanced
 to add terraform:
 cmd ==> setx PATH "%PATH%;C:\terraform"
 powershell ==> powershell ==> $env:Path += ";C:\terraform"
+
+for windows installation load drivers
+driver_name -extractdrivers .
