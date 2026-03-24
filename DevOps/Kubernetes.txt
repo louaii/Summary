@@ -1,3 +1,5 @@
+https://youtube.com/playlist?list=PLX1bW_GeBRhDCHijCrMO5F-oHg52rRBpl&si=UFwgjvkcWV-o91j5
+
 Container Orchestration automates the deployment, management, scaling, and networking of containers that is useful for enterprises that need to deploy and manage hundreds or thousands of containers and hosts.
 
 Purpose of using Container orchestration:
