@@ -1,0 +1,25 @@
+Step 1: The standard way
+Open the Start Menu and type Windows Security.
+
+Go to App & browser control.
+
+Click on Smart App Control settings.
+
+Change the setting to Off.
+
+If the option is greyed out, see the Registry fix below.
+
+Step 2: The "Greyed Out" Registry Fix
+If Windows won't let you click "Off" in the settings menu, you can force it through the Registry:
+
+Press Win + R, type regedit, and hit Enter.
+
+Navigate to:
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\CI\Policy
+
+Look for the value VerifiedAndReputablePolicyState.
+
+Double-click it and change the Value Data to 0 (this means "Off").
+
+Restart your computer. This is a critical step; the change won't apply until a full reboot.
