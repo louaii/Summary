@@ -1,3 +1,18 @@
+Monolithic - SOA - Microservices:
+
+.Monolithic Architecture: traditional unified model for the design of a software program, being a large single software which continuously grows with a tightly coupled architecture, each component must be present in order for code to be executed or compiled. With such complexity scaling of individual features of the monolith is almost impossible but the entire app can achieve scaling by manual deployment as a new instance of the monolith on another server with a load balancer
+
+.SOA Architecture: SOA(Service Oriented Architecture) is an approach for defining, linking and integrating reusable business services. These services communicate with each other to enable simple data passing or it could involve two or more services coordinating activity. The complexity of each service within SOA is usually very low and they communicate with each other over a set of APIs.
+
+.Microservices architecture: consists of a collection of small services. Each service is self-contained and should implement a single business module with seperated codebase, which can be managed by a small development team. Services can be deployed independently which updates an existing service without rebuilding and redeploying the entire application communicating with each other using APIs, internal implementation details of each service are hidden from other services
+
+.Containers: are an application-centric method to deliver high-performing, scalable applications on any infrastructure of your choice. Containers are best suited to deliver microservices by providing portable, isolated virtual environments for applications to run without interference from other running applications
+
+.Container Orchestration: tools which group systems together to form clusters where containers deployment and management is automated at a scale while meeting the requirements mentioned above
+
+
+
+===============================================================================
 https://youtube.com/playlist?list=PLX1bW_GeBRhDCHijCrMO5F-oHg52rRBpl&si=UFwgjvkcWV-o91j5
 
 Container Orchestration automates the deployment, management, scaling, and networking of containers that is useful for enterprises that need to deploy and manage hundreds or thousands of containers and hosts.
