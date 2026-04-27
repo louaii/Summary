@@ -11,7 +11,19 @@ Monolithic - SOA - Microservices:
 .Container Orchestration: tools which group systems together to form clusters where containers deployment and management is automated at a scale while meeting the requirements mentioned above
 
 
+.What is Kubernetes?
+Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications, is also referred to as k8s (Kates) written in go language
 
+.Features of K8s:
+__Scalability: Kubernetes provides horizontal scaling of pods on the basis of CPU utilization. The threshold for CPU usage is configurable and Kubernetes will automatically start new pods if the threshold is reached
+***Vertical Scaling: Means to modify the attributed resources(like CPU/RAM) of each node in the cluster(Vertical Pod Autoscaler) referred as Scaling up
+***Horizontal Scaling: Means modifying the compute resources of an existing cluster, for example by adding new nodes to it or by adding new pods by increasing the replica count of pods(Horizontal Pod Autoscaler) referred as scaling out which is better of scaling up(vertical)
+__Self-healing: K8s automatically replaces and reschedules containers from failed nodes. It kills and restarts containers unresponsive to health checks based on existing rules/policy. It also prevents traffic from being routed to unresponsive containers.
+__Automated rollouts and rollbacks: K8s seamlessly rolls out and rolls back application updates and configuration changes, constantly monitoring the application's health to prevent any downtime.
+__Secret and configuration management: K8s manages sensitive data and configuration details for an application separately from the container image. Secrets consist of sensitive/confidential information passed to the application without revealing the sensitive content to the stack configuration(Github)
+__Portability: a cluster can run on any mainstream Linux distribution, processor architectures(either virtual machines or bare metal), cloud providers(AWS,Azure,...) and new container runtimes besides Docker
+
+4th video
 ===============================================================================
 https://youtube.com/playlist?list=PLX1bW_GeBRhDCHijCrMO5F-oHg52rRBpl&si=UFwgjvkcWV-o91j5
 
