@@ -23,7 +23,7 @@ __Automated rollouts and rollbacks: K8s seamlessly rolls out and rolls back appl
 __Secret and configuration management: K8s manages sensitive data and configuration details for an application separately from the container image. Secrets consist of sensitive/confidential information passed to the application without revealing the sensitive content to the stack configuration(Github)
 __Portability: a cluster can run on any mainstream Linux distribution, processor architectures(either virtual machines or bare metal), cloud providers(AWS,Azure,...) and new container runtimes besides Docker
 
-4th video
+
 ===============================================================================
 https://youtube.com/playlist?list=PLX1bW_GeBRhDCHijCrMO5F-oHg52rRBpl&si=UFwgjvkcWV-o91j5
 
