@@ -1,0 +1,4 @@
+Go to ADUC(Active Directory Users and Computers)
+View < Advanced features checked
+right click on desired OU < properties uncheck deletion protection
+right click delete

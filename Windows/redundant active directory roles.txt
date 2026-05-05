@@ -1,0 +1,21 @@
+Step 1: Promote BDC to a Domain Controller
+Right now, your BDC is just a member server. It needs to be promoted to become a DC.
+
+Open Server Manager on the BDC.
+
+Click Manage > Add Roles and Features.
+
+Select Active Directory Domain Services and follow the wizard to install.
+
+Once installed, click the yellow exclamation mark at the top of Server Manager and select Promote this server to a domain controller.
+
+Choose "Add a domain controller to an existing domain" and specify laceco.local.
+
+Ensure DNS and Global Catalog (GC) are checked during the setup.
+
+Step 2: High Availability (Automatic Failover)
+Once the BDC is promoted, you don't actually need to "make it the PDC" for it to work.
+
+Authentication: If the PDC goes down, users can still log in because the BDC has a copy of the database.
+
+DNS: Make sure your workstations have both DCs listed in their DNS settings (Primary: PDC IP, Secondary: BDC IP).
