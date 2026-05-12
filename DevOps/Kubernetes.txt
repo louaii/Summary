@@ -23,7 +23,40 @@ __Automated rollouts and rollbacks: K8s seamlessly rolls out and rolls back appl
 __Secret and configuration management: K8s manages sensitive data and configuration details for an application separately from the container image. Secrets consist of sensitive/confidential information passed to the application without revealing the sensitive content to the stack configuration(Github)
 __Portability: a cluster can run on any mainstream Linux distribution, processor architectures(either virtual machines or bare metal), cloud providers(AWS,Azure,...) and new container runtimes besides Docker
 
+Kubernetes Architecture:
 
+Photo 1
+
+.Worker Nodes and Master Nodes:
+Worker Nodes provides a running environment for client applications. Though containerized microservices, these applications are encapsulated in Pods.
+Pods are the smallest deployable units of computing that can create and manage in Kubernetes.
+A Pod is a group of one or more containers, with shared storage and network resources.
+
+Photo 2
+
+Worker Node Components:
+.Container Runtime controlled through CRI(Container Runtime Interface as containerd and CRI-O)
+.Node Agent (kubelet) is an agent running on each node and communicates with the control plane components from the master node. It receives Pod definitions, primarily from the API server, and interacts with the container runtime on the node to run containers associated with the Pod. It also monitors the health and resources of Pods running containers, the kubelet connects to container runtimes though a plugin based interface - the Container Runtime Interface(CRI)
+
+.Proxy (kube-proxy): is network agent which runs on each node responsible for dynamic updates and maintenance of all networking rules on the node. It abstracts the details of Pods networking and forwards connections requests to Pods.
+.Addons (DNS,Dashboard User Interface, Monitoring and Loggings): are cluster features and functionality not yet available in Kubernetes, therefore implemented through 3rd-party pods and services as DNS(cluster DNS server required to assign DNS records to kubernetes objects and resources) or Dashboard(a general purposed web-based user interface for cluster management) monitoring(collects cluster-level container metrics and saves them to a central data store) logging(collects cluster-level container logs and saves them to a central log store for analysis)
+
+Mater Nodes provides a running environment for the control plane responsible for managing the state of Kubernetes cluster and it is the brain behind all operations inside the cluster, In order to communicate with Kubernetes cluster, users send requests to the control plane via command line interface tool, a web user interface dashboard, application programming interface(API) to persist the kubernetes cluster's state, all cluster configuration data is save to etcd
+
+Master Node Components
+_Control Plane Components:
+.API Server(kube-apiserver): intercepts RESTful calls from users, operators and external agents, then validates and processes them, during the processing the API server reads the kubernetes cluster's current state from the etcd data store, and after a call's execution, the resulting state of the kubernetes cluster is saved in the distributed key-value data store for persistence
+.Scheduler(kube-scheduler): is a control plane process which assigns Pods to Nodes. The scheduler determines which Nodes are valid placements for each Pod in the scheduling queue according to constraints and available resources. The scheduler then ranks each valid Node and binds the Pod to a suitable Node.
+.Controller Manager(kube-controller-manager) is a control plane components on the master node running controllers to regulate the state of the kubernetes cluster. Controllers are continuously running and comparing the cluster's desired state(provided by objects configuration data) with its current state (obtained from etcd data store via the API server). In case of a mismatch corrective action is taken in the cluster until its current state matches the desired state, the kube-controller-manager runs controllers responsible to act when nodes become unavailable to ensure pod counts are as expected, to create endpoints, service accounts and API access tokens
+.Cloud Controller Manager(cloud-controller-manager) embeds cloud-specific control logic. The cloud controller manager lets you link your cluster into your cloud provider's API, and seperates out the components that interact with that cloud platform from components that only interact with your cluster
+.Data Store(etcd) is a distributed, reliable key-value for the most critical data of a distributed system. It is used to persist a kubernetes cluster's state. Only API Server is able to communicate with the etcd data store
+etcdctl: etcd's CLI management tool etcdctl, provides backup, snapshots and restore capabilities which come in handy especially for a single etcd instance kubernetes cluster - commong in Development and learning environments
+.kubectl (Kubernetes command line tool) allows you to run commands against Kubernetes clusters. You can use kubectl to deploy applications, inspect and manage cluster resources and view logs
+
+photo 3
+
+
+   
 ===============================================================================
 https://youtube.com/playlist?list=PLX1bW_GeBRhDCHijCrMO5F-oHg52rRBpl&si=UFwgjvkcWV-o91j5
 
