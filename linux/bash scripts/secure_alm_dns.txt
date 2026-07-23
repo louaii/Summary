@@ -25,25 +25,7 @@ $? 	The exit status of the script. This variable is useful to determine a comman
 -w 	tests if the file has write permission
 -x 	tests if the file has execute permission
 
-My header:
-
-#!/bin/bash
-#Remote Operations Management Assistant Supported for IP version 4 addresses.
-# title         :header   
-# description   :This script will execute as header of RomaV4.
-# author        :Louay Serhal
-# created       :2016-10-24
-# updated       :2018-10-01
-# version       :0.2.1
-# usage         :RomaV4 Header will execute automatically
-# bash_version  :5.2.21(1)-release (x86_64-pc-linux-gnu)
-<============================
-
-
-
-
 Script channels:
-
 
 #!/bin/bash
 #title:		Channels
