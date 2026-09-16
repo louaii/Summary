@@ -17,3 +17,15 @@ Kubernetes is an open-source system for automating deployment, scaling, and mana
 .Create a cluster:
 kind is a tool for running local kubernetes cluster using docker
 install go, kind, docker, minikube, kubectl
+
+what is a cluster?
+
+A group of machines that kubernetes manages together to run the app in containers, kubernetes coordinates a highly available cluster of computers that are connected to work as a single unit. Kubernetes automates the distribution and scheduling of apps containers across a cluster in a more efficient way
+
+cluster consists of two types of resources:
+.Control Plane coordinates the cluster
+.Nodes are the workers that run application
+
+Control Plane is responsible for managing the cluster(scheduling, maintaining applications desired state, scaling and rolling out new updates)
+
+A node is a vm or physical computer that serves as a worker machine in a kubernetes cluster, each node has kubelet(agent for managing node communicating with kubernetes control plane using Kubernetes API). Node should have tools for handling container operations as containerd
