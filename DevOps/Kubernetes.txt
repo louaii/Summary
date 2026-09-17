@@ -29,3 +29,7 @@ cluster consists of two types of resources:
 Control Plane is responsible for managing the cluster(scheduling, maintaining applications desired state, scaling and rolling out new updates)
 
 A node is a vm or physical computer that serves as a worker machine in a kubernetes cluster, each node has kubelet(agent for managing node communicating with kubernetes control plane using Kubernetes API). Node should have tools for handling container operations as containerd
+
+A pod is a group of one or more containers tied together for the purposes of administration and networking.
+
+A deployment checks on the health of your pod and restarts the Pod's container if it terminates, deployments are the recommended way to manage the creation and scaling of Pods
